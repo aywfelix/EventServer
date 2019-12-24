@@ -93,6 +93,12 @@
     <ClInclude Include="LibConfig.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SFNet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SFINet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SeEpoll.cpp">
@@ -147,6 +153,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Util.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SFNet.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

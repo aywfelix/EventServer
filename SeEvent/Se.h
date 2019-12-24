@@ -17,12 +17,13 @@
 #define EV_FINALIZE 32
 #define EV_CLOSED	64
 
-#define SE_EVENT_READING	0x01	/**< error encountered while reading */
-#define SE_EVENT_WRITING	0x02	/**< error encountered while writing */
-#define SE_EVENT_EOF		0x10	/**< eof file reached */
-#define SE_EVENT_ERROR		0x20	/**< unrecoverable error encountered */
-#define SE_EVENT_TIMEOUT	0x40	/**< user-specified timeout reached */
-#define SE_EVENT_CONNECTED	0x80	/**< connect operation finished. */
+enum SF_NET_EVENT
+{
+	SE_EVENT_EOF	=	0x10,	/**< eof file reached */
+	SE_EVENT_ERROR	=	0x20,	/**< unrecoverable error encountered */
+	SE_EVENT_TIMEOUT=	0x40,	/**< user-specified timeout reached */
+	SE_EVENT_CONNECTED=	0x80,	/**< connect operation finished. */
+};
 
 
 class seEventLoop;
@@ -60,7 +61,7 @@ public:
 	void StopLoop();
 private:
 	void AddSession(Socket* pSocket);
-	bool AcceptClient();
+	void AcceptClient();
 private:
 	bool mbStop;
 	SeEventOp* mEventOp;

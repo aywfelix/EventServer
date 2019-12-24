@@ -148,6 +148,8 @@
     <ClInclude Include="SePlatForm.h" />
     <ClInclude Include="SeSelect.h" />
     <ClInclude Include="Session.h" />
+    <ClInclude Include="SFINet.h" />
+    <ClInclude Include="SFNet.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="SocketBuffer.h" />
     <ClInclude Include="SocketDefine.h" />
@@ -168,6 +170,7 @@
     <ClCompile Include="SePlatForm.cpp" />
     <ClCompile Include="SeSelect.cpp" />
     <ClCompile Include="Session.cpp" />
+    <ClCompile Include="SFNet.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="SocketBuffer.cpp" />
     <ClCompile Include="SocketDefine.cpp" />

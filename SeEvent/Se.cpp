@@ -106,21 +106,24 @@ void seEventLoop::AddSession(Socket* pSocket)
 	mSessions.emplace(pSocket->GetFd(), pSession);
 }
 
-bool seEventLoop::AcceptClient()
+void seEventLoop::AcceptClient()
 {
-	socket_t connfd = INVALID_SOCKET;
-	struct sockaddr_in addr;
-	if (mSocket->Accept(connfd, addr))
+	for (;;)
 	{
-		Socket* pSocket = new Socket;
-		pSocket->SetSocket(connfd, addr);
-		pSocket->SetNonBlock();
-		AddSession(pSocket);
-		mEventOp->SetMaxFd(connfd);
-		LOG_INFO("accept client connect ...%d", connfd);
-		return true;
+		socket_t connfd = INVALID_SOCKET;
+		struct sockaddr_in addr;
+		if (mSocket->Accept(connfd, addr))
+		{
+			Socket* pSocket = new Socket;
+			pSocket->SetSocket(connfd, addr);
+			pSocket->SetNonBlock();
+			AddSession(pSocket);
+			mEventOp->SetMaxFd(connfd);
+			LOG_INFO("accept client connect ...%d", connfd);
+			continue;
+		}
+		break;
 	}
-	return false;
 }
 
 
