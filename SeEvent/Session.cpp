@@ -22,9 +22,14 @@ SessionPool::SessionPool()
 SessionPool::~SessionPool()
 {}
 
-Session* SessionPool::GetSession()
+Session* SessionPool::NewSession()
 {
 	return m_session_pool.NewElem();
+}
+
+MemPool<Session>& SessionPool::AllSession()
+{
+	return m_session_pool;
 }
 
 bool SessionPool::DelSession(Session* session)

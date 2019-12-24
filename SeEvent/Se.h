@@ -58,6 +58,8 @@ public:
 	bool InitClient(const char* ip, UINT port);
 	void StartLoop();
 	void StopLoop();
+private:
+	void AddSession(Socket* pSocket);
 	bool AcceptClient();
 private:
 	bool mbStop;

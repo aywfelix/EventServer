@@ -44,15 +44,17 @@ private:
 	SocketBuffer m_RecvBuffer;
 };
 
+using session_pool_t = MemPool<Session>;
 class SessionPool
 {
 public:
 	SessionPool();
 	~SessionPool();
-	Session* GetSession();
+	Session* NewSession();
 	bool DelSession(Session* session);
+	session_pool_t& AllSession();
 private:
-	MemPool<Session> m_session_pool;
+	session_pool_t m_session_pool;
 };
 
 extern std::unique_ptr<SessionPool> g_pSessionPool;

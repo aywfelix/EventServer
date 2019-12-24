@@ -3,6 +3,9 @@
 #include "LogHelper.h"
 #include "Session.h"
 #include "LogHelper.h"
+#include "SocketDefine.h"
+#include "Session.h"
+#include "MemPool.hpp"
 
 bool SeEventOp::Init()
 {
@@ -91,8 +94,16 @@ bool seEventLoop::InitClient(const char* ip, UINT port)
 		return false;
 	}
 	mSocket->SetNonBlock();
+	AddSession(mSocket);
 	LOG_INFO("init client ....");
 	return true;
+}
+
+void seEventLoop::AddSession(Socket* pSocket)
+{
+	Session* pSession = g_pSessionPool->NewSession();
+	pSession->SetSocket(pSocket);
+	mSessions.emplace(pSocket->GetFd(), pSession);
 }
 
 bool seEventLoop::AcceptClient()
@@ -104,9 +115,7 @@ bool seEventLoop::AcceptClient()
 		Socket* pSocket = new Socket;
 		pSocket->SetSocket(connfd, addr);
 		pSocket->SetNonBlock();
-		Session* pSession = g_pSessionPool->GetSession();
-		pSession->SetSocket(pSocket);
-		mSessions.emplace(connfd, pSession);
+		AddSession(pSocket);
 		mEventOp->SetMaxFd(connfd);
 		LOG_INFO("accept client connect ...%d", connfd);
 		return true;
@@ -126,16 +135,26 @@ void seEventLoop::StartLoop()
 		{
 			if (it->second & EV_READ)
 			{
-				if (mSocket->GetFd() == it->first)
+				if (mSocket->GetFd() == it->first && mbServer)
 				{
 					AcceptClient();
 				}
 				// if socket cache is readable then read data
+				int nRecvSize = GetReadableSizeOnSocket(it->first);
+				if (nRecvSize > 0)
+				{
+					LOG_INFO("can read data len==%d", nRecvSize);
+
+				}
 				LOG_INFO("read event trigger....%d", it->first);
 			}
 			if (it->second & EV_WRITE)
 			{
 				LOG_INFO("write event trigger....%d", it->first);
+				for (auto it : mSessions)
+				{
+					send(it.first, "1234567890", 10, 0);
+				}
 				mEventOp->DelEvent(it->first, EV_WRITE);
 			}
 			if (it->second & EV_CLOSED)

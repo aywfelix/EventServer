@@ -38,8 +38,4 @@ void Snprintf(char* buffer, size_t count, const char* format, ...);
 #define DELETE_PTR_ARR(x) if((x)) { delete[] (x); (x)=nullptr;}
 #endif
 
-#if SF_PLATFORM == SF_PLATFORM_WIN
-int gettimeofday(struct timeval* tp, void* tzp);
-#else
-#endif
 
