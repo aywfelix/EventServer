@@ -7,17 +7,12 @@ int main()
 {
 	g_pSessionPool = std::make_unique<SessionPool>();
 	INIT_SFLOG(true, true);
-	seEventLoop server;
-	server.Init();
 	SeEventOp* pEventOp = new SeSelect;
-	pEventOp->Init(&server, 5);
-	if (!pEventOp->InitClient("192.168.60.49", 88888))
-	{
-		printf("init client error");
-		return -1;
-	}
-	server.SetEventOp(pEventOp);
-	server.StartLoop();
+	pEventOp->Init();
+	seEventLoop client;
+	client.Init(pEventOp);
+	client.InitClient("192.168.43.38", 88888);
+	client.StartLoop();
 	while (1)
 	{
 		SFSLEEP(100);

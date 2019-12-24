@@ -7,12 +7,11 @@ int main()
 {
 	g_pSessionPool = std::make_unique<SessionPool>();
 	INIT_SFLOG(true, true);
-	seEventLoop server;
-	server.Init();
 	SeEventOp* pEventOp = new SeSelect;
-	pEventOp->Init(&server, 5);
-	pEventOp->InitServer(88888);
-	server.SetEventOp(pEventOp);
+	pEventOp->Init();
+	seEventLoop server;
+	server.Init(pEventOp);
+	server.InitServer(88888);
 	server.StartLoop();
 	while (1)
 	{

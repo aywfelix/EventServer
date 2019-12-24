@@ -25,7 +25,6 @@ bool SeSelect::DelEvent(socket_t fd, int mask)
 bool  SeSelect::Dispatch(struct timeval* tv)
 {
 	int ret = 0;
-	socket_t sock = mSocket->GetFd();
 	memcpy(&mSelectOp._rfds, &mSelectOp.rfds, sizeof(fd_set));
 	memcpy(&mSelectOp._wfds, &mSelectOp.wfds, sizeof(fd_set));
 
@@ -40,21 +39,8 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 		return true;
 	}
 	if (ret > 0) {
-		int i = mSocket->GetFd();
-		for (; i <= mMaxFd; i++)  // 其实没必要从1循环到最大
+		for (int i=0; i <= mMaxFd; i++)  // 其实没必要从1循环到最大
 		{
-			if (i == mSocket->GetFd() && mbServer)
-			{
-				socket_t connfd = -1;
-				if (AcceptClient(connfd))
-				{
-					if (mMaxFd < connfd)
-					{
-						mMaxFd = connfd;
-					}
-					AddEvent(connfd, EV_READ );
-				}
-			}
 			int mask = 0;
 			if (FD_ISSET(i, &mSelectOp._rfds))
 			{
@@ -69,7 +55,7 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 			{
 				continue;
 			}
-			mEventLoop->SetActiveEvent(i, mask);
+			SetActiveEvent(i, mask);
 		}
 	}
 	return true;

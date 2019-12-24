@@ -4,25 +4,74 @@
 #include "Session.h"
 #include "LogHelper.h"
 
-bool SeEventOp::Init(seEventLoop* pEventLoop, int timeout)
+bool SeEventOp::Init()
 {
 	mMaxFd = INVALID_SOCKET;
-	mEventLoop = pEventLoop;
+	// init timeval
+	gettimeofday(&mtv, NULL);
+	mtv.tv_sec = TIMEOUT;
+	mtv.tv_usec = 0;
+	this->InitOp();
+	return true;
+}
+
+void SeEventOp::SetMaxFd(socket_t fd)
+{
+	if (fd != INVALID_SOCKET)
+	{
+		if (fd > mMaxFd)
+		{
+			mMaxFd = fd;
+		}
+	}
+}
+
+void SeEventOp::SetActiveEvent(socket_t fd, int mask)
+{
+	auto it = mActiveEvents.find(fd);
+	if (it == mActiveEvents.end())
+	{
+		mActiveEvents[fd] = mask;
+	}
+	else
+	{
+		it->second = mask;
+	}
+}
+
+std::map<socket_t, int>& SeEventOp::GetActiveEvents()
+{
+	return mActiveEvents;
+}
+
+bool SeEventOp::Dispatch()
+{
+
+	return this->Dispatch(&mtv);
+}
+
+void seEventLoop::Init(SeEventOp* pEventOp)
+{
+	mbStop = false;
+	if (pEventOp)
+	{
+		mEventOp = pEventOp;
+	}
 #if SF_PLATFORM == SF_PLATFORM_WIN
 	WSADATA wsa_data;
 	WSAStartup(0x0201, &wsa_data);
 #endif
 	mSocket = new Socket;
 	mSocket->CreateFd();
-	// init timeval
-	gettimeofday(&mtv, NULL);
-	mtv.tv_sec = timeout;
-	mtv.tv_usec = 0;
-	this->InitOp();
-	return true;
+	mEventOp->SetMaxFd(mSocket->GetFd());
+#ifdef _WIN32
+	mEventOp->AddEvent(mSocket->GetFd(), EV_READ | EV_WRITE);
+#else
+	AddEvent(mSocket->GetFd(), EPOLLET | EPOLLONESHOT | EPOLLIN);
+#endif
 }
 
-bool SeEventOp::InitServer(UINT port)
+bool seEventLoop::InitServer(UINT port)
 {
 	mbServer = true;
 	mSocket->SetNonBlock();
@@ -31,32 +80,24 @@ bool SeEventOp::InitServer(UINT port)
 		return false;
 	}
 	mSocket->SetReUseAddr();
-	mMaxFd = mSocket->GetFd();
-#ifndef _WIN32
-
-#endif
-	InitOp();
-	AddEvent(mSocket->GetFd(), EV_READ | EV_WRITE);
-	LOG_INFO("init server %d", mMaxFd);
+	LOG_INFO("init server ok ....");
 	return true;
 }
 
-bool SeEventOp::InitClient(const char* ip, UINT port)
+bool seEventLoop::InitClient(const char* ip, UINT port)
 {
 	if (!mSocket->Connect(ip, port))
 	{
 		return false;
 	}
 	mSocket->SetNonBlock();
-	mMaxFd = mSocket->GetFd();
-	InitOp();
-	AddEvent(mSocket->GetFd(), EV_READ | EV_WRITE);
-	LOG_INFO("init client %d", mMaxFd);
+	LOG_INFO("init client ....");
 	return true;
 }
 
-bool SeEventOp::AcceptClient(socket_t& connfd)
+bool seEventLoop::AcceptClient()
 {
+	socket_t connfd = INVALID_SOCKET;
 	struct sockaddr_in addr;
 	if (mSocket->Accept(connfd, addr))
 	{
@@ -66,31 +107,30 @@ bool SeEventOp::AcceptClient(socket_t& connfd)
 		Session* pSession = g_pSessionPool->GetSession();
 		pSession->SetSocket(pSocket);
 		mSessions.emplace(connfd, pSession);
+		mEventOp->SetMaxFd(connfd);
+		LOG_INFO("accept client connect ...%d", connfd);
 		return true;
 	}
 	return false;
 }
 
-bool SeEventOp::Dispatch()
-{
-	return this->Dispatch(&mtv);
-}
-
-void seEventLoop::Init()
-{
-	mbStop = false;
-}
 
 void seEventLoop::StartLoop()
 {
 	while (!mbStop)
 	{
 		mEventOp->Dispatch();
+		auto activemq = mEventOp->GetActiveEvents();
 		// do with activemq
-		for (auto it = mActiveEvents.begin(); it != mActiveEvents.end();)
+		for (auto it = activemq.begin(); it != activemq.end();)
 		{
 			if (it->second & EV_READ)
 			{
+				if (mSocket->GetFd() == it->first)
+				{
+					AcceptClient();
+				}
+				// if socket cache is readable then read data
 				LOG_INFO("read event trigger....%d", it->first);
 			}
 			if (it->second & EV_WRITE)
@@ -102,35 +142,15 @@ void seEventLoop::StartLoop()
 			{
 				LOG_INFO("close event trigger....%d", it->first);
 			}
-			it = mActiveEvents.erase(it);
+			it = activemq.erase(it);
 		}
 	}
 }
 
-void seEventLoop::SetEventOp(SeEventOp* pEventOp)
-{
-	if (pEventOp)
-	{
-		mEventOp = pEventOp;
-	}
-}
 
 void seEventLoop::StopLoop()
 {
 	mEventOp->Clear();
 	mbStop = true;
-}
-
-void seEventLoop::SetActiveEvent(socket_t fd, int mask)
-{
-	auto it = mActiveEvents.find(fd);
-	if (it == mActiveEvents.end())
-	{
-		mActiveEvents[fd] = mask;
-	}
-	else
-	{
-		it->second = mask;
-	}
 }
 

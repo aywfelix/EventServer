@@ -28,43 +28,41 @@
 class seEventLoop;
 class Socket;
 class Session;
-typedef struct seBaseEvent
-{
-}seBaseEvent;
+
+#define TIMEOUT 5
 
 class SeEventOp
 {
 public:
-	virtual bool Init(seEventLoop* pEventLoop, int timeout);
-	bool InitServer(UINT port);
-	bool InitClient(const char* ip, UINT port);
+	virtual bool Init();
 	bool Dispatch();
 	virtual bool InitOp() = 0;
 	virtual bool AddEvent(socket_t fd, int mask) = 0;
 	virtual bool DelEvent(socket_t fd, int mask) = 0;
 	virtual bool Dispatch(struct timeval* tv) = 0;
 	virtual bool Clear() = 0;
-	bool AcceptClient(socket_t& connfd);
+	void SetActiveEvent(socket_t fd, int mask);
+	std::map<socket_t, int>& GetActiveEvents();
+	void SetMaxFd(socket_t fd);
 protected:
 	socket_t mMaxFd;
-	seEventLoop* mEventLoop;
-	Socket* mSocket;
-	std::map<socket_t, Session*> mSessions;
-	bool mbServer{false};
 	struct timeval mtv;
-
+	std::map<socket_t, int> mActiveEvents;
 };
 
 class seEventLoop
 {
 public:
-	void Init();
+	void Init(SeEventOp* pEventOp);
+	bool InitServer(UINT port);
+	bool InitClient(const char* ip, UINT port);
 	void StartLoop();
-	void SetEventOp(SeEventOp* pEventOp);
 	void StopLoop();
-	void SetActiveEvent(socket_t fd, int mask);
+	bool AcceptClient();
 private:
 	bool mbStop;
 	SeEventOp* mEventOp;
-	std::map<socket_t, int> mActiveEvents;
+	Socket* mSocket;
+	std::map<socket_t, Session*> mSessions;
+	bool mbServer{ false };
 };

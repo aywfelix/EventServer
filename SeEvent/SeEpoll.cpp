@@ -120,16 +120,7 @@ bool SeEpoll::Dispatch(struct timeval *tv)
 		{
 			struct epoll_event ev = mEpollOp.events[i];
 			int mask = 0;
-			if (ev.data.fd == mSocket->GetFd() && mbServer)
-			{
-				// accept client
-				socket_t connfd = -1;
-				if (AcceptClient(connfd))
-				{
-					AddEvent(connfd, EPOLLET | EPOLLONESHOT | EPOLLIN);
-				}
-			}
-			else if (ev.events & (EPOLLHUP | EPOLLERR))
+			if (ev.events & (EPOLLHUP | EPOLLERR))
 			{
 				mask = EV_READ | EV_WRITE;
 			}
@@ -155,7 +146,7 @@ bool SeEpoll::Dispatch(struct timeval *tv)
 			{
 				continue;
 			}
-			mEventLoop->SetActiveEvent(ev.data.fd, mask);
+			SetActiveEvent(ev.data.fd, mask);
 		}
 	}
     return true;
