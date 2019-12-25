@@ -9,16 +9,14 @@ public:
 	Timestamp(int delay);
 	Timestamp Now();
 	Timestamp AddTime(int seconds);
-	//INT64 MilliSeconds() const { return mmilliseconds; }
-	operator INT64() { return mmilliseconds; }
-
+	INT64 MilliSeconds() const { return mmilliseconds; }
 	bool operator<=(Timestamp& timestamp) const
 	{
 		if (this == &timestamp)
 		{
 			return false;
 		}
-		return mmilliseconds <= (INT64)timestamp;
+		return mmilliseconds <= timestamp.MilliSeconds();
 	}
 
 	bool operator<(const Timestamp& timestamp) const
@@ -27,7 +25,7 @@ public:
 		{
 			return false;
 		}
-		return (Timestamp)mmilliseconds < timestamp;
+		return mmilliseconds < timestamp.MilliSeconds();
 	}
 
 	bool operator==(const Timestamp& timestamp) const
@@ -36,7 +34,7 @@ public:
 		{
 			return false;
 		}
-		return (Timestamp)mmilliseconds == timestamp;
+		return mmilliseconds == timestamp.MilliSeconds();
 	}
 	Timestamp operator+(int delay)
 	{

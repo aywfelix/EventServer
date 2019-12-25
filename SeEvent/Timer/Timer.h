@@ -11,12 +11,10 @@ public:
 	Timer(TimerCb& cb, Timestamp& when, int interval):mCb(cb), mExpiration(when), mInterval(interval)
 	{
 		mRepeate = interval > 0;
-		mSeq.fetch_add(1);
+		mSeq = seq.fetch_add(1);
 	}
-	void Run()
-	{
-		mCb();
-	}
+	void Run() { mCb(); }
+
 	void Reset(Timestamp& now)
 	{
 		if (mRepeate)
@@ -27,6 +25,7 @@ public:
 	Timestamp Expiration() { return mExpiration; }
 	int64_t Seq() { return mSeq; }
 	bool IsRepeate() { return mRepeate; }
+	static std::atomic<int64_t> seq;
 private:
 	TimerCb mCb;
 	Timestamp mExpiration;

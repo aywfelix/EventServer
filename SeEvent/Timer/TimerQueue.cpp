@@ -67,3 +67,5 @@ TimeId TimerQueue::NearestTimer()
 	}
 	return TimeId();
 }
+
+std::atomic<int64_t> Timer::seq = 0;

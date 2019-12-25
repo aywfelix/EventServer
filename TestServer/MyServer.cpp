@@ -32,10 +32,16 @@ int main()
 	TimerLoop timerLoop;
 
 	timerLoop.RunAfter(10 * 1000, Print);
+	timerLoop.RunAfter(15 * 1000, Print);
+	timerLoop.RunAfter(20 * 1000, Print);
 
+	TimeId tid = timerLoop.NearestTimer();
+	cout << tid.GetSeq() << endl;
 
 	while (1)
 	{
+		TimeId tid = timerLoop.NearestTimer();
+		cout << tid.GetSeq() << endl;
 		timerLoop.TimeLoop();
 		SFSLEEP(100);
 	}
