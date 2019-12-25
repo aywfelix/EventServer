@@ -183,7 +183,6 @@
     <ClCompile Include="ThreadBase.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="Timer\TimerQueue.cpp" />
-    <ClCompile Include="Timer\Timer.cpp" />
     <ClCompile Include="Timer\TimerLoop.cpp" />
     <ClCompile Include="Timer\Timestamp.cpp" />
     <ClCompile Include="Util.cpp" />

@@ -1,12 +1,10 @@
 #pragma once
 
-#include <functional>
-#include <vector>
 #include "Timestamp.h"
 #include "Timer.h"
-#include "TimerQueue.h"
-#include "SePlatForm.h"
 #include "Lock.hpp"
+
+class TimerQueue;
 
 class TimerLoop
 {

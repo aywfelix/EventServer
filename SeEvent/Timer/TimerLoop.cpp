@@ -1,5 +1,6 @@
 #include "TimerLoop.h"
 #include "Assertx.h"
+#include "TimerQueue.h"
 
 TimerLoop::TimerLoop()
 {

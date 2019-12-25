@@ -173,9 +173,6 @@
     <ClCompile Include="Timer\TimerLoop.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Timer\Timer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Timer\TimerQueue.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
