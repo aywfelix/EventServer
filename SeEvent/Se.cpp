@@ -68,9 +68,9 @@ void seEventLoop::Init(SeEventOp* pEventOp)
 	mSocket->CreateFd();
 	mEventOp->SetMaxFd(mSocket->GetFd());
 #ifdef _WIN32
-	mEventOp->AddEvent(mSocket->GetFd(), EV_READ | EV_WRITE);
+	mEventOp->AddEvent(mSocket->GetFd(), EV_READ);
 #else
-	AddEvent(mSocket->GetFd(), EPOLLET | EPOLLONESHOT | EPOLLIN);
+	mEventOp->AddEvent(mSocket->GetFd(), EV_READ);
 #endif
 }
 
@@ -102,6 +102,8 @@ bool seEventLoop::InitClient(const char* ip, UINT port)
 void seEventLoop::AddSession(Socket* pSocket)
 {
 	Session* pSession = g_pSessionPool->NewSession();
+	if (pSession == nullptr)
+		return;
 	pSession->SetSocket(pSocket);
 	mSessions.emplace(pSocket->GetFd(), pSession);
 }
@@ -119,6 +121,11 @@ void seEventLoop::AcceptClient()
 			pSocket->SetNonBlock();
 			AddSession(pSocket);
 			mEventOp->SetMaxFd(connfd);
+#ifdef _WIN32
+			mEventOp->AddEvent(mSocket->GetFd(), EV_READ);
+#else
+			mEventOp->AddEvent(mSocket->GetFd(), EV_READ);
+#endif
 			LOG_INFO("accept client connect ...%d", connfd);
 			continue;
 		}

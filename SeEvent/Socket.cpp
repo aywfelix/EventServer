@@ -72,8 +72,7 @@ bool Socket::Connect(const char* ip, UINT port)
 	struct sockaddr_in addr;
 	addr.sin_family = AF_INET;
 	addr.sin_port = port;
-	addr.sin_addr.s_addr = inet_addr(ip);
-	//inet_pton(AF_INET, ip, &addr.sin_addr);
+	inet_pton(AF_INET, ip, &addr.sin_addr);
 	if ((connect(m_fd, (struct sockaddr*) & addr, sizeof(addr))) < 0)
 	{
 		return false;

@@ -37,20 +37,29 @@ bool SeEpoll::InitOp()
 
 bool SeEpoll::AddEvent(socket_t fd, int mask)
 {
+	UINT32 events = 0;
+	if (mask & EV_READ)
+	{
+		events = EPOLLET | EPOLLONESHOT | EPOLLIN | EPOLLOUT;
+	}
+	if (mask & EV_WRITE)
+	{
+		events = EPOLLET | EPOLLONESHOT | EPOLLIN;
+	}
 	struct epoll_event ev = { 0 };
 	short op = 0;
 	auto it = mEvents.find(fd);
 	if (it == mEvents.end())
 	{
 		ev.data.fd = fd;
-		ev.events = mask; // EPOLLET | EPOLLONESHOT | EPOLLIN | EPOLLOUT
+		ev.events = events; // EPOLLET | EPOLLONESHOT | EPOLLIN | EPOLLOUT
 		mEvents.emplace(fd, ev);
 		op = EPOLL_CTL_ADD;
 	}
 	else
 	{
 		ev = it->second;
-		ev.events = mask;
+		ev.events = events;
 		op = EPOLL_CTL_MOD;
 	}
 	if (epoll_ctl(mEpollOp.epfd, op, fd, &ev) == 0)
@@ -129,12 +138,12 @@ bool SeEpoll::Dispatch(struct timeval *tv)
 				if (ev.events & EPOLLIN)
 				{
 					mask |= EV_READ;
-					AddEvent(ev.data.fd, EPOLLET | EPOLLONESHOT | EPOLLIN | EPOLLOUT);
+					AddEvent(ev.data.fd, mask);
 				}
 				if (ev.events & EPOLLOUT)
 				{
 					mask |= EV_WRITE;
-					AddEvent(ev.data.fd, EPOLLET | EPOLLONESHOT | EPOLLIN);
+					AddEvent(ev.data.fd, mask);
 				}
 				if (ev.events & EPOLLRDHUP)
 				{

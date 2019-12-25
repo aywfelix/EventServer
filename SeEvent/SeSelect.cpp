@@ -39,23 +39,25 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 		return true;
 	}
 	if (ret > 0) {
-		for (int i=0; i <= mMaxFd; i++)  // 其实没必要从1循环到最大
+		socket_t rFd = mSelectOp._rfds.fd_array[0];
+		socket_t wFd = mSelectOp._wfds.fd_array[0];
+		socket_t iter = rFd > wFd ? wFd : rFd;
+		for (iter =0; iter <= mMaxFd; iter++)
 		{
 			int mask = 0;
-			if (FD_ISSET(i, &mSelectOp._rfds))
+			if (FD_ISSET(iter, &mSelectOp._rfds))
 			{
 				mask |= EV_READ;
+			}
+			if (FD_ISSET(iter, &mSelectOp._wfds))
+			{
 				mask |= EV_WRITE;
 			}
-			//if (FD_ISSET(i, &mSelectOp._wfds))
-			//{
-			//	mask |= EV_WRITE;
-			//}
 			if (mask == 0)
 			{
 				continue;
 			}
-			SetActiveEvent(i, mask);
+			SetActiveEvent(iter, mask);
 		}
 	}
 	return true;

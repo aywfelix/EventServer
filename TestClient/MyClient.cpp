@@ -11,7 +11,7 @@ int main()
 	pEventOp->Init();
 	seEventLoop client;
 	client.Init(pEventOp);
-	client.InitClient("192.168.43.38", 88888);
+	client.InitClient("192.168.60.49", 88888);
 	client.StartLoop();
 	while (1)
 	{
