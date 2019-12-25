@@ -107,6 +107,22 @@ void seEventLoop::AddSession(Socket* pSocket)
 	mSessions.emplace(pSocket->GetFd(), pSession);
 }
 
+Session* seEventLoop::GetSession(socket_t fd)
+{
+	auto it = mSessions.find(fd);
+	if (it == mSessions.end())
+	{
+		return nullptr;
+	}
+	return it->second;
+}
+
+void seEventLoop::CloseSession(Session* pSession)
+{
+	g_pSessionPool->DelSession(pSession);
+	mEventOp->DelEvent(pSession->GetSocket()->GetFd(), EV_READ | EV_WRITE);
+}
+
 void seEventLoop::AcceptClient()
 {
 	for (;;)
@@ -146,29 +162,80 @@ void seEventLoop::StartLoop()
 		// do with activemq
 		for (auto it = activemq.begin(); it != activemq.end();)
 		{
+			Session* pSession = GetSession(it->first);
+			if (pSession == nullptr)
+			{
+				LOG_WARN("eventloop session is null, socket==%d", it->first);
+				continue;
+			}
+
 			if (it->second & EV_READ)
 			{
+				LOG_INFO("read event trigger....%d", it->first);
 				if (mSocket->GetFd() == it->first && mbServer)
 				{
 					AcceptClient();
 				}
 				// if socket cache is readable then read data
+
+				
 				int nRecvSize = GetReadableSizeOnSocket(it->first);
+				int nRecvLeft = 0;
 				if (nRecvSize > 0)
 				{
 					LOG_INFO("can read data len==%d", nRecvSize);
-
+					for (;;)
+					{
+						char* buf = pSession->GetRecvBuf(nRecvLeft);
+						int ret = recv(it->first, buf, nRecvLeft, 0);
+						if (ret < 0)
+						{
+							if (errno == EINTR)
+							{
+								continue;
+							}
+							if (errno == EAGAIN || errno == EWOULDBLOCK)
+							{
+								LOG_INFO("select recv data finish!");
+								pSession->PostRecvData(nRecvSize);
+								break;
+							}
+							LOG_WARN("select recv error!");
+							CloseSession(pSession);
+						}
+						else if (ret == 0)
+						{
+							LOG_WARN("connection peer closed!");
+							CloseSession(pSession);
+							break;
+						}
+						nRecvLeft -= ret;
+						LOG_INFO("select recv %d byte of content %s", ret, buf);
+					}
 				}
-				LOG_INFO("read event trigger....%d", it->first);
 			}
 			if (it->second & EV_WRITE)
 			{
 				LOG_INFO("write event trigger....%d", it->first);
-				mEventOp->DelEvent(it->first, EV_WRITE);
+				int nSendSize = 0;
+				char* pSendBuf = pSession->GetSendBuf(nSendSize);
+				while (pSession && pSendBuf)
+				{
+					int ret = send(it->first, pSendBuf, nSendSize, 0);
+					if (ret <= 0)
+					{
+						break;
+					}
+					pSession->PostSendData(ret);
+					nSendSize = 0;
+					pSendBuf = pSession->GetSendBuf(nSendSize);
+					LOG_INFO("select write to socket....%d len, contents %s", pSendBuf);
+				}
 			}
 			if (it->second & EV_CLOSED)
 			{
 				LOG_INFO("close event trigger....%d", it->first);
+				CloseSession(pSession);
 			}
 			it = activemq.erase(it);
 		}

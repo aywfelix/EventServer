@@ -61,6 +61,8 @@ public:
 	void StopLoop();
 private:
 	void AddSession(Socket* pSocket);
+	Session* GetSession(socket_t fd);
+	void CloseSession(Session* pSession);
 	void AcceptClient();
 private:
 	bool mbStop;

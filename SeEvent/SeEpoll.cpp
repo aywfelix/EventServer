@@ -101,7 +101,7 @@ bool SeEpoll::DelEvent(socket_t fd, int mask)
 	{
 		return false;
 	}
-	if (epoll_ctl(mEpollOp.epfd, EPOLL_CTL_DEL, fd, &(it->second)) == 0)
+	if (epoll_ctl(mEpollOp.epfd, EPOLL_CTL_DEL, fd, nullptr) == 0)
 	{
 		return true;
 	}
