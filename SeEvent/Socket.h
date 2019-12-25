@@ -11,7 +11,7 @@ public:
 	void SetNonBlock();
 
 	void CreateFd();
-	void Close();
+	void CloseSocket();
 
 	// server
 	bool Listen(UINT port);

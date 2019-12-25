@@ -25,16 +25,17 @@ void Socket::CreateFd()
 	m_fd = socket(AF_INET, SOCK_STREAM, 0);
 	Assert(m_fd > 0);
 }
-void Socket::Close()
+
+void Socket::CloseSocket()
 {
-#if SF_PLATFORM == SF_PLATFORM_WIN
+#ifdef _WIN32
 	shutdown(m_fd, SD_BOTH);
 	closesocket(m_fd);
 #else
 	shutdown(m_fd, SHUT_RDWR);
 	close(m_fd);
 #endif
-	m_fd = -1;
+	m_fd = INVALID_SOCKET;
 }
 
 

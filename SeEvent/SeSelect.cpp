@@ -65,7 +65,7 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 
 bool SeSelect::Clear()
 {
-	for (int i=0;i< mMaxFd; i++)
+	for (int i=0;i<= mMaxFd; i++)
 	{
 		if (FD_ISSET(i, &mSelectOp.rfds))
 		{

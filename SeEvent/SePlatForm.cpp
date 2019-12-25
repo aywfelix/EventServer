@@ -21,15 +21,7 @@ int SocketCloseOnExec(socket_t fd)
     return 0;
 }
 
-int CloseSocket(socket_t fd)
-{
-#ifndef _WIN32
-    return close(fd);
-#else
-    return closesocket(fd);
-#endif
-	fd = INVALID_SOCKET;
-}
+
 
 #ifdef _WIN32
 int SocketGetError(socket_t sock)

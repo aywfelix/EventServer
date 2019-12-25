@@ -10,7 +10,7 @@ bool Session::Clear()
 {
 	if (m_pSocket)
 	{
-		m_pSocket->Close();
+		m_pSocket->CloseSocket();
 		delete m_pSocket;
 	}
 	return true;

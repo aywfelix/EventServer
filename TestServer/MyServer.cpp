@@ -13,6 +13,7 @@ int main()
 	server.Init(pEventOp);
 	server.InitServer(88888);
 	server.StartLoop();
+	server.StopLoop();
 	while (1)
 	{
 		SFSLEEP(100);

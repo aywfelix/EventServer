@@ -49,7 +49,6 @@ std::map<socket_t, int>& SeEventOp::GetActiveEvents()
 
 bool SeEventOp::Dispatch()
 {
-
 	return this->Dispatch(&mtv);
 }
 
@@ -117,6 +116,7 @@ void seEventLoop::AcceptClient()
 		if (mSocket->Accept(connfd, addr))
 		{
 			Socket* pSocket = new Socket;
+			Assert(pSocket != nullptr);
 			pSocket->SetSocket(connfd, addr);
 			pSocket->SetNonBlock();
 			AddSession(pSocket);
@@ -138,7 +138,10 @@ void seEventLoop::StartLoop()
 {
 	while (!mbStop)
 	{
-		mEventOp->Dispatch();
+		if (!mEventOp->Dispatch())
+		{
+			break;
+		}
 		auto activemq = mEventOp->GetActiveEvents();
 		// do with activemq
 		for (auto it = activemq.begin(); it != activemq.end();)
@@ -161,10 +164,6 @@ void seEventLoop::StartLoop()
 			if (it->second & EV_WRITE)
 			{
 				LOG_INFO("write event trigger....%d", it->first);
-				for (auto it : mSessions)
-				{
-					send(it.first, "1234567890", 10, 0);
-				}
 				mEventOp->DelEvent(it->first, EV_WRITE);
 			}
 			if (it->second & EV_CLOSED)
@@ -176,10 +175,14 @@ void seEventLoop::StartLoop()
 	}
 }
 
-
 void seEventLoop::StopLoop()
 {
 	mEventOp->Clear();
 	mbStop = true;
+	mSocket->CloseSocket();
+	for (auto it : mSessions)
+	{
+		g_pSessionPool->DelSession(it.second);
+	}
 }
 

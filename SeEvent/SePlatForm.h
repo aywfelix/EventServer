@@ -118,4 +118,3 @@ int gettimeofday(struct timeval* tp, void* tzp);
 #endif
 
 int SocketCloseOnExec(socket_t fd);
-int CloseSocket(socket_t fd);

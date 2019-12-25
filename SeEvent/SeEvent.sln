@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeEvent", "SeEvent.vcxproj", "{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestServer", "..\TestServer\TestServer.vcxproj", "{D094A4B7-C8EC-46BB-BAC4-C8F46B67CEBD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763} = {F22D411E-9BD7-4AD5-980F-9BCDE22BD763}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestClient", "..\TestClient\TestClient.vcxproj", "{31A43A28-618A-4B58-BC15-74E739B4A03A}"
 EndProject
