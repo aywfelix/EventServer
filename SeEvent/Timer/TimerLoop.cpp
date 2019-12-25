@@ -35,6 +35,12 @@ TimeId TimerLoop::RunAt(Timestamp& timestamp, TimerCb& cb)
 	return mTimeQ->AddTimer(new Timer(cb, timestamp, 0));
 }
 
+TimeId TimerLoop::RunAt(time_t& ti, TimerCb& cb)
+{
+	Timestamp timestamp(ti*1000);
+	return RunAt(timestamp, cb);
+}
+
 TimeId TimerLoop::RunEvery(int interval, TimerCb& cb)
 {
 	LockGuard lock(mMutex);

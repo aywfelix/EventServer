@@ -24,11 +24,6 @@ Timestamp Timestamp::Now()
 	return Timestamp(mmilliseconds);
 }
 
-Timestamp Timestamp::Timet(time_t tim)
-{
-	return Timestamp(tim * 1000);
-}
-
 Timestamp Timestamp::AddTime(int seconds)
 {
 	return Timestamp(mmilliseconds + (INT64)seconds * 1000);

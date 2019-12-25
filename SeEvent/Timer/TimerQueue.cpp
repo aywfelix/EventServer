@@ -24,22 +24,15 @@ void TimerQueue::TimeLoop()
 	{
 		if (it->mTimestamp <= now)
 		{
-			mActiveList.emplace(it->mTimer->Seq(), it->mTimer);
-			it = mTimerList.erase(it);
+			it->mTimer->Run();
+			if (it->mTimer->IsRepeate())
+			{
+				it->mTimer->Reset(now);
+			}
 			continue;
 		}
 		break;
 	}
-	for (auto it : mActiveList)
-	{
-		it.second->Run();
-		if (it.second->IsRepeate())
-		{
-			it.second->Reset(now);
-			mTimerList.emplace(Entry(it.second->Expiration(), it.second));
-		}
-	}
-	mActiveList.clear();
 }
 
 void TimerQueue::CancelTimer(TimeId& timeid)

@@ -16,9 +16,6 @@ struct Entry
 };
 
 using TimeList_t = std::set<Entry>;
-using ActiveTimer_T = std::map<int64_t, Timer*>;
-
-class TimerLoop;
 
 class TimerQueue
 {
@@ -31,7 +28,5 @@ public:
 	void Clear();
 private:
 	TimeList_t mTimerList;
-	ActiveTimer_T mActiveList;
-	TimerLoop* mLoop;
 };
 

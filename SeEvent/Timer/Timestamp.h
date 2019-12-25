@@ -8,7 +8,6 @@ public:
 	Timestamp(INT64 millisecond);
 	Timestamp(int delay);
 	Timestamp Now();
-	Timestamp Timet(time_t tim);
 	Timestamp AddTime(int seconds);
 	//INT64 MilliSeconds() const { return mmilliseconds; }
 	operator INT64() { return mmilliseconds; }
