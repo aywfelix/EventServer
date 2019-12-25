@@ -16,6 +16,12 @@ public:
 	TimeId RunAt(Timestamp& timestamp, TimerCb& cb);
 	TimeId RunAt(time_t& ti, TimerCb& cb);
 	TimeId RunEvery(int interval, TimerCb& cb);
+
+	TimeId RunAfter(int delay, TimerCb&& cb);
+	TimeId RunAt(Timestamp& timestamp, TimerCb&& cb);
+	TimeId RunAt(time_t& ti, TimerCb&& cb);
+	TimeId RunEvery(int interval, TimerCb&& cb);
+
 	void Cancel(TimeId& timeid);
 
 	TimeId NearestTimer();

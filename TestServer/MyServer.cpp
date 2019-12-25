@@ -9,12 +9,11 @@
 
 using namespace std;
 
-static void Print()
+void Print()
 {
 	cout << "test timer" << endl;
 }
 
-std::function<void()> P = Print;
 
 int main()
 {
@@ -32,7 +31,7 @@ int main()
 
 	TimerLoop timerLoop;
 
-	timerLoop.RunAfter(10 * 1000, P);
+	timerLoop.RunAfter(10 * 1000, Print);
 
 
 	while (1)
