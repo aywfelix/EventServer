@@ -16,9 +16,8 @@ LogHelper::~LogHelper()
 {
 }
 
-bool LogHelper::Init(bool termout, bool termcolor)
+bool LogHelper::Init(bool termout)
 {
-	m_TermColor = termcolor;
 	m_TermOut = termout;
 	return true;
 }
@@ -119,7 +118,7 @@ void LogHelper::Log(const char* file, const char* func, int line, int level, con
 	va_end(ap);
 
 	std::ostringstream oss;
-	if (m_TermColor)
+	if (m_TermOut)
 	{
 		if (level == E_LOG_FATAL || level == E_LOG_ERR)
 		{

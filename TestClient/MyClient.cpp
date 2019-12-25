@@ -6,7 +6,7 @@
 int main()
 {
 	g_pSessionPool = std::make_unique<SessionPool>();
-	INIT_SFLOG(true, true);
+	INIT_SFLOG(true);
 	SeEventOp* pEventOp = new SeSelect;
 	pEventOp->Init();
 	seEventLoop client;

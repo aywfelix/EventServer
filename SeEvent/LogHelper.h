@@ -22,7 +22,7 @@ class LogHelper {
 public:
 	LogHelper();
 	~LogHelper();
-	bool Init(bool termout = true, bool termcolor = true);
+	bool Init(bool termout = true);
 	void Log(const char* file, const char* func, int line, int level, const char* fmt, ...);
 	void Start();
 	void Stop();
@@ -49,8 +49,8 @@ extern std::unique_ptr<LogHelper> g_pLog;
 #define LOG_ERR(...)     g_pLog->Log(__FILE__, __FUNCTION__, __LINE__, E_LOG_ERR, __VA_ARGS__)
 #define LOG_FATAL(...)   g_pLog->Log(__FILE__, __FUNCTION__, __LINE__, E_LOG_FATAL, __VA_ARGS__)
 
-#define INIT_SFLOG(a,b) do{\
+#define INIT_SFLOG(a) do{\
 g_pLog = std::make_unique<LogHelper>();\
-g_pLog->Init(a,b);\
+g_pLog->Init(a);\
 g_pLog->Start();\
 }while (0);

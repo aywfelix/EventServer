@@ -18,7 +18,7 @@ void Print()
 int main()
 {
 	
-	INIT_SFLOG(true, true);
+	INIT_SFLOG(true);
 	/*signal(SIGPIPE, SIG_IGN);*/
 	g_pSessionPool = std::make_unique<SessionPool>();
 	SeEventOp* pEventOp = new SeSelect;
