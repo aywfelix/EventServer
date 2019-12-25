@@ -11,10 +11,10 @@ struct Entry
 	Timer* mTimer;
 	bool operator<(const Entry& entry) const
 	{
-		return mTimestamp.MilliSeconds() < entry.mTimestamp.MilliSeconds();
+		return mTimestamp < entry.mTimestamp;
 	}
 };
-//using Entry_t = std::pair<Timestamp, Timer*>;
+
 using TimeList_t = std::set<Entry>;
 using ActiveTimer_T = std::map<int64_t, Timer*>;
 
@@ -23,12 +23,12 @@ class TimerLoop;
 class TimerQueue
 {
 public:
-	TimerQueue(TimerLoop* pLoop);
+	TimerQueue();
 	~TimerQueue();
 	TimeId AddTimer(Timer* pTimer);
-	void CallInsertTimer(Timer* pTimer);
 	void TimeLoop();
 	void CancelTimer(TimeId& timeid);
+	void Clear();
 private:
 	TimeList_t mTimerList;
 	ActiveTimer_T mActiveList;

@@ -16,12 +16,12 @@ Timestamp::Timestamp(int delay)
 	mmilliseconds += delay;
 }
 
-INT64 Timestamp::Now()
+Timestamp Timestamp::Now()
 {
 	struct timeval tv;
 	gettimeofday(&tv, nullptr);
 	mmilliseconds = (INT64)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
-	return mmilliseconds;
+	return Timestamp(mmilliseconds);
 }
 
 Timestamp Timestamp::Timet(time_t tim)

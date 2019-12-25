@@ -1,25 +1,19 @@
 #include "TimerQueue.h"
 #include "TimerLoop.h"
 
-TimerQueue::TimerQueue(TimerLoop* pLoop)
+TimerQueue::TimerQueue()
 {
-	mLoop = pLoop;
 }
 
 TimerQueue::~TimerQueue()
 {
-
+	Clear();
 }
 
 TimeId TimerQueue::AddTimer(Timer* pTimer)
 {
-	mLoop->RunInLoop(std::bind(&TimerQueue::CallInsertTimer, this, pTimer)); 
-	return TimeId(pTimer, pTimer->Seq());
-}
-
-void TimerQueue::CallInsertTimer(Timer* pTimer)
-{
 	mTimerList.emplace(Entry(pTimer->Expiration(), pTimer));
+	return TimeId(pTimer, pTimer->Seq());
 }
 
 void TimerQueue::TimeLoop()
@@ -56,5 +50,13 @@ void TimerQueue::CancelTimer(TimeId& timeid)
 		{
 			it = mTimerList.erase(it);
 		}
+	}
+}
+
+void TimerQueue::Clear()
+{
+	for (auto it : mTimerList)
+	{
+		delete it.mTimer;
 	}
 }

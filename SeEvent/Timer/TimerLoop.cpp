@@ -3,73 +3,47 @@
 
 TimerLoop::TimerLoop()
 {
-	mTimeQ = new TimerQueue(this);
+	mTimeQ = new TimerQueue;
 	Assert(mTimeQ != nullptr);
 }
 
 TimerLoop::~TimerLoop()
 {
-
-}
-
-bool TimerLoop::IsThisThread()
-{
-	return mThreadId == CurrentThreadId();
+	if (mTimeQ)
+	{
+		delete mTimeQ;
+		mTimeQ = nullptr;
+	}
 }
 
 void TimerLoop::TimeLoop()
 {
+	LockGuard lock(mMutex);
 	mTimeQ->TimeLoop();
-	DoPendingFunctors();
-}
-
-void TimerLoop::RunInLoop(const Functor_t& cb)
-{
-	if (IsThisThread())
-	{
-		cb();
-	}
-	else
-	{
-		PutPendingQ(cb);
-	}
-}
-
-void TimerLoop::PutPendingQ(const Functor_t& cb)
-{
-	LockUnique lock(mMutex);
-	mPendingFunctors.emplace_back(cb);
 }
 
 TimeId TimerLoop::RunAfter(int delay, TimerCb& cb)
 {
+	LockGuard lock(mMutex);
 	Timestamp timestamp(delay);
 	return mTimeQ->AddTimer(new Timer(cb, timestamp, 0));
 }
 
 TimeId TimerLoop::RunAt(Timestamp& timestamp, TimerCb& cb)
 {
+	LockGuard lock(mMutex);
 	return mTimeQ->AddTimer(new Timer(cb, timestamp, 0));
 }
 
 TimeId TimerLoop::RunEvery(int interval, TimerCb& cb)
 {
+	LockGuard lock(mMutex);
 	Timestamp timestamp(interval);  // 从下个间隔时间开始执行
 	return mTimeQ->AddTimer(new Timer(cb, timestamp, interval));
 }
 
 void TimerLoop::Cancel(TimeId& timeid)
 {
+	LockGuard lock(mMutex);
 	mTimeQ->CancelTimer(timeid);
-}
-
-void TimerLoop::DoPendingFunctors()
-{
-	std::vector<Functor_t> functors;
-	LockUnique lock(mMutex);
-	functors.swap(mPendingFunctors);
-	for (int i=0;i<functors.size();i++)
-	{
-		functors[i]();
-	}
 }
