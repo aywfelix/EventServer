@@ -76,12 +76,11 @@ void seEventLoop::Init(SeEventOp* pEventOp)
 bool seEventLoop::InitServer(UINT port)
 {
 	mbServer = true;
-	mSocket->SetNonBlock();
 	if (!mSocket->Listen(port))
 	{
 		return false;
 	}
-	mSocket->SetReUseAddr();
+	mSocket->SetSocketOptions();
 	LOG_INFO("init server ok ....");
 	return true;
 }
@@ -90,9 +89,10 @@ bool seEventLoop::InitClient(const char* ip, UINT port)
 {
 	if (!mSocket->Connect(ip, port))
 	{
+		LOG_WARN("init client error, can not connect server....");
 		return false;
 	}
-	mSocket->SetNonBlock();
+	mSocket->SetSocketOptions();
 	AddSession(mSocket);
 	LOG_INFO("init client ....");
 	return true;
@@ -134,7 +134,7 @@ void seEventLoop::AcceptClient()
 			Socket* pSocket = new Socket;
 			Assert(pSocket != nullptr);
 			pSocket->SetSocket(connfd, addr);
-			pSocket->SetNonBlock();
+			pSocket->SetSocketOptions();
 			AddSession(pSocket);
 			mEventOp->SetMaxFd(connfd);
 #ifdef _WIN32
@@ -162,6 +162,11 @@ void seEventLoop::StartLoop()
 		// do with activemq
 		for (auto it = activemq.begin(); it != activemq.end();)
 		{
+			if ((it->second & EV_READ) && (mSocket->GetFd() == it->first) && mbServer)
+			{
+				AcceptClient();
+				break;
+			}
 			Session* pSession = GetSession(it->first);
 			if (pSession == nullptr)
 			{
@@ -172,13 +177,7 @@ void seEventLoop::StartLoop()
 			if (it->second & EV_READ)
 			{
 				LOG_INFO("read event trigger....%d", it->first);
-				if (mSocket->GetFd() == it->first && mbServer)
-				{
-					AcceptClient();
-				}
 				// if socket cache is readable then read data
-
-				
 				int nRecvSize = GetReadableSizeOnSocket(it->first);
 				int nRecvLeft = 0;
 				if (nRecvSize > 0)

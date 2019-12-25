@@ -126,3 +126,12 @@ void Socket::SetReUseAddr()
 	const int optval = 1;
 	setsockopt(m_fd, SOL_SOCKET, SO_REUSEADDR, (const char*)&optval, sizeof(optval));
 }
+
+void Socket::SetSocketOptions()
+{
+	SetNonBlock();
+	SetReUseAddr();
+	SetNodelay();
+	SetKeepAlive(SOCKET_KEEP_ALIVE_INTERVAL);
+	SetBufferSize(SOCKET_BUFFER_SIZE, SOCKET_BUFFER_SIZE);
+}

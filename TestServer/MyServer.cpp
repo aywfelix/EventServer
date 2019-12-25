@@ -20,14 +20,14 @@ int main()
 	
 	INIT_SFLOG(true, true);
 	/*signal(SIGPIPE, SIG_IGN);*/
-	//g_pSessionPool = std::make_unique<SessionPool>();
-	//SeEventOp* pEventOp = new SeSelect;
-	//pEventOp->Init();
-	//seEventLoop server;
-	//server.Init(pEventOp);
-	//server.InitServer(88888);
-	//server.StartLoop();
-	//server.StopLoop();
+	g_pSessionPool = std::make_unique<SessionPool>();
+	SeEventOp* pEventOp = new SeSelect;
+	pEventOp->Init();
+	seEventLoop server;
+	server.Init(pEventOp);
+	server.InitServer(88888);
+	server.StartLoop();
+	server.StopLoop();
 
 	TimerLoop timerLoop;
 
