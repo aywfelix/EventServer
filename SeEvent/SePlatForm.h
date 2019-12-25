@@ -93,9 +93,11 @@ typedef unsigned int    UINT32;
 #define SE_SOCKET_ERROR() WSAGetLastError()
 int SocketGetError(socket_t fd);
 int gettimeofday(struct timeval* tp, void* tzp);
+typedef DWORD		TID;
 #else
 #define SE_SOCKET_ERROR() (errno)
 #define SocketGetError(socket_t fd) (errno)
+typedef pthread_t	TID;
 #endif
 
 #if SF_PLATFORM == SF_PLATFORM_WIN
@@ -118,3 +120,5 @@ int gettimeofday(struct timeval* tp, void* tzp);
 #endif
 
 int SocketCloseOnExec(socket_t fd);
+
+TID CurrentThreadId();

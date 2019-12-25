@@ -58,3 +58,12 @@ int gettimeofday(struct timeval* tp, void* tzp)
 	return (0);
 }
 #endif
+
+TID CurrentThreadId()
+{
+#ifdef _WIN32
+	return GetCurrentThreadId();
+#else
+	return pthread_self();
+#endif
+}

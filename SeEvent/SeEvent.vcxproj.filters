@@ -99,6 +99,18 @@
     <ClInclude Include="SFINet.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Timer\TimerLoop.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer\Timer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer\TimerQueue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer\Timestamp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SeEpoll.cpp">
@@ -156,6 +168,18 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SFNet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer\TimerLoop.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer\Timer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer\TimerQueue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer\Timestamp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

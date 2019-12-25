@@ -91,6 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,6 +157,10 @@
     <ClInclude Include="StringUtil.h" />
     <ClInclude Include="ThreadBase.h" />
     <ClInclude Include="ThreadPool.h" />
+    <ClInclude Include="Timer\TimerQueue.h" />
+    <ClInclude Include="Timer\Timer.h" />
+    <ClInclude Include="Timer\TimerLoop.h" />
+    <ClInclude Include="Timer\Timestamp.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +182,10 @@
     <ClCompile Include="StringUtil.cpp" />
     <ClCompile Include="ThreadBase.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
+    <ClCompile Include="Timer\TimerQueue.cpp" />
+    <ClCompile Include="Timer\Timer.cpp" />
+    <ClCompile Include="Timer\TimerLoop.cpp" />
+    <ClCompile Include="Timer\Timestamp.cpp" />
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
