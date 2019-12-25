@@ -12,13 +12,13 @@ public:
 	//INT64 MilliSeconds() const { return mmilliseconds; }
 	operator INT64() { return mmilliseconds; }
 
-	bool operator<=(const Timestamp& timestamp) const
+	bool operator<=(Timestamp& timestamp) const
 	{
 		if (this == &timestamp)
 		{
 			return false;
 		}
-		return (Timestamp)mmilliseconds <= timestamp;
+		return mmilliseconds <= (INT64)timestamp;
 	}
 
 	bool operator<(const Timestamp& timestamp) const

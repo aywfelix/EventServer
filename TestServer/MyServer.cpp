@@ -5,51 +5,22 @@
 
 #include <set>
 #include<iostream>
+#include "Timer/TimerLoop.h"
 
 using namespace std;
+
+static void Print()
+{
+	cout << "test timer" << endl;
+}
+
+std::function<void()> P = Print;
 
 int main()
 {
 	
 	INIT_SFLOG(true, true);
 	/*signal(SIGPIPE, SIG_IGN);*/
-	multiset<string> ms;
-	ms.insert("abc");
-	ms.insert("123");
-	ms.insert("111");
-	ms.insert("aaa");
-	ms.insert("123");
-	ms.insert("123");
-	ms.insert("123");
-	ms.insert("bbb");
-
-	multiset<string>::iterator it;
-	for (it = ms.begin(); it != ms.end(); it++)
-	{
-		cout << *it << endl;
-	}
-	cout << endl << "集合的大小:" << ms.size() << endl;
-
-	it = ms.find("123");
-	while (it != ms.end() && *it == "123")
-	{
-		cout << *it << endl;
-		it++;
-	}
-
-	it = ms.find("43");
-	if (it != ms.end())
-	{
-		cout << *it << endl;
-	}
-	else cout << "not found" << endl;
-
-	int n = ms.erase("123");
-	cout << "共删除:" << n << endl << endl;
-	for (it = ms.begin(); it != ms.end(); it++)
-	{
-		cout << *it << endl;
-	}
 	//g_pSessionPool = std::make_unique<SessionPool>();
 	//SeEventOp* pEventOp = new SeSelect;
 	//pEventOp->Init();
@@ -59,8 +30,14 @@ int main()
 	//server.StartLoop();
 	//server.StopLoop();
 
+	TimerLoop timerLoop;
+
+	timerLoop.RunAfter(10 * 1000, P);
+
+
 	while (1)
 	{
+		timerLoop.TimeLoop();
 		SFSLEEP(100);
 	}
 	return 0;

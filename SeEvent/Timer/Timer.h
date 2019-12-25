@@ -3,7 +3,7 @@
 #include <atomic>
 #include "Timestamp.h"
 
-using TimerCb = std::function<void()>;
+typedef std::function<void()> TimerCb;
 
 class Timer
 {
@@ -32,7 +32,7 @@ private:
 	Timestamp mExpiration;
 	int mInterval;
 	bool mRepeate;
-	static std::atomic<int64_t> mSeq;
+	std::atomic<int64_t> mSeq;
 };
 
 class TimeId

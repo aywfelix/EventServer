@@ -26,6 +26,7 @@ public:
 	void TimeLoop();
 	void CancelTimer(TimeId& timeid);
 	void Clear();
+	TimeId NearestTimer();
 private:
 	TimeList_t mTimerList;
 };

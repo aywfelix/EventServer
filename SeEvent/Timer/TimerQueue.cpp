@@ -29,6 +29,10 @@ void TimerQueue::TimeLoop()
 			{
 				it->mTimer->Reset(now);
 			}
+			else
+			{
+				it = mTimerList.erase(it);
+			}
 			continue;
 		}
 		break;
@@ -52,4 +56,14 @@ void TimerQueue::Clear()
 	{
 		delete it.mTimer;
 	}
+}
+
+TimeId TimerQueue::NearestTimer()
+{
+	auto first = mTimerList.begin();
+	if (first != mTimerList.end())
+	{
+		return TimeId(first->mTimer, first->mTimer->Seq());
+	}
+	return TimeId();
 }

@@ -54,3 +54,8 @@ void TimerLoop::Cancel(TimeId& timeid)
 	LockGuard lock(mMutex);
 	mTimeQ->CancelTimer(timeid);
 }
+
+TimeId TimerLoop::NearestTimer()
+{
+	return mTimeQ->NearestTimer();
+}

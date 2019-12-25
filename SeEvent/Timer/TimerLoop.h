@@ -18,6 +18,7 @@ public:
 	TimeId RunEvery(int interval, TimerCb& cb);
 	void Cancel(TimeId& timeid);
 
+	TimeId NearestTimer();
 private:
 	TimerQueue* mTimeQ;
 	Mutex mMutex;
