@@ -93,12 +93,6 @@
     <ClInclude Include="LibConfig.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SFNet.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SFINet.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Timer\TimerLoop.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -109,6 +103,21 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Timer\Timestamp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SeFINet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SeFMsgHead.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SeFNet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SeFNetClient.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SeFNetServer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -167,9 +176,6 @@
     <ClCompile Include="Util.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="SFNet.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Timer\TimerLoop.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -177,6 +183,18 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Timer\Timestamp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SeFMsgHead.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SeFNet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SeFNetClient.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SeFNetServer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
