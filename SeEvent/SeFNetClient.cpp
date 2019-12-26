@@ -78,7 +78,7 @@ void SeFNetClient::RemoveReceiveCallBack(EServerType eType, UINT32 nMsgId)
 
 void SeFNetClient::AddServer(const ConnectData& info)
 {
-	mTempList.push_back(info);
+	mTemplist.emplace_back(info);
 }
 
 void SeFNetClient::Excute()
@@ -94,30 +94,32 @@ void SeFNetClient::ProcessExcute()
 
 void SeFNetClient::ProcessAddConnect()
 {
-	for (auto conn : mTempList)
+	if (mTemplist.empty())
+	{
+		return;
+	}
+
+	for (auto conn : mTemplist)
 	{
 		auto it = mConnecServers.find(conn.ServerId);
 		if (it == mConnecServers.end())
 		{
-			ConnectData data;
-			data.Ip = conn.Ip;
-			data.Port = conn.Port;
-			data.ServerType = conn.ServerType;
-			data.ConnState = ConnectState::CONNECTING;
-			data.pSession = nullptr;
-			data.pNet = std::make_shared<seEventLoop>();
-			if (data.pNet->InitClient(data.Ip.c_str(), data.Port))
+			conn.ConnState = ConnectState::CONNECTING;
+			conn.pNet = std::make_shared<seEventLoop>();
+			conn.pNet->Init();
+			if (conn.pNet->InitClient(conn.Ip.c_str(), conn.Port))
 			{
-				data.ConnState = ConnectState::NORMAL;
-				InitCallBacks(data);
+				conn.ConnState = ConnectState::NORMAL;
+				InitCallBacks(conn);
 			}
 			else
 			{
-				data.ConnState = ConnectState::DISCONNECT;
+				conn.ConnState = ConnectState::DISCONNECT;
 			}
+			mConnecServers.emplace(data.ServerId, conn);
 		}
 	}
-	mTempList.clear();
+	mTemplist.clear();
 }
 
 void SeFNetClient::InitCallBacks(ConnectData& data)

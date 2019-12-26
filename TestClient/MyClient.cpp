@@ -6,13 +6,7 @@
 int main()
 {
 	g_pSessionPool = std::make_unique<SessionPool>();
-<<<<<<< HEAD
 	INIT_SFLOG(true);
-	SeEventOp* pEventOp = new SeSelect;
-	pEventOp->Init();
-=======
-	INIT_SFLOG(true, true);
->>>>>>> 1543edbd31dfdb0112e2f4d3dcca5d6d796ddd86
 	seEventLoop client;
 	client.Init();
 	/*client.InitClient("192.168.60.49", 88888);*/

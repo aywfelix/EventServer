@@ -4,6 +4,7 @@
 #include <string>
 #include "SePlatForm.h"
 #include "Session.h"
+#include "SeFNodeNet.pb.h"
 
 // Message Head[ MsgID(2) | MsgSize(4) ]
 #define MSG_HEAD_LEN 6
@@ -164,12 +165,12 @@ struct ConnectData
 	EServerType ServerType;
 	ConnectState ConnState;
 
-	std::shared_ptr<Session> pSession;
 	std::shared_ptr<seEventLoop> pNet;
 };
 
 // 服务器保存连接的客户端信息 客户端上报的信息
 struct ServerData
 {
-
+	std::shared_ptr<ServerReport> ServerInfo;
+	socket_t fd;
 };

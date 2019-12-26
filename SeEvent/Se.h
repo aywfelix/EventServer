@@ -39,7 +39,6 @@ using NET_EVENT_FUNCTOR = std::function<void(const SOCK nFd, const SE_NET_EVENT 
 using NET_EVENT_FUNCTOR_PTR = std::shared_ptr<NET_EVENT_FUNCTOR>;
 
 
-
 class SeEventOp
 {
 public:

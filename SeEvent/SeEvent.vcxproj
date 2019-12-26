@@ -147,6 +147,7 @@
     <ClInclude Include="SeFNetClient.h" />
     <ClInclude Include="SeFNetServer.h" />
     <ClInclude Include="SeFMsgHead.h" />
+    <ClInclude Include="SeFNodeNet.pb.h" />
     <ClInclude Include="SeIOCP.h" />
     <ClInclude Include="SeKqueue.h" />
     <ClInclude Include="SePlatForm.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="SeFNetClient.cpp" />
     <ClCompile Include="SeFNetServer.cpp" />
     <ClCompile Include="SeFMsgHead.cpp" />
+    <ClCompile Include="SeFNodeNet.pb.cc" />
     <ClCompile Include="SeIOCP.cpp" />
     <ClCompile Include="SeKqueue.cpp" />
     <ClCompile Include="SePlatForm.cpp" />

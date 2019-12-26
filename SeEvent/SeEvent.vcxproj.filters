@@ -120,6 +120,9 @@
     <ClInclude Include="SeFNetServer.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SeFNodeNet.pb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SeEpoll.cpp">
@@ -195,6 +198,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SeFNetServer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SeFNodeNet.pb.cc">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

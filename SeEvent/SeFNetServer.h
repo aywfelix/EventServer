@@ -10,6 +10,10 @@ class SeFNetServer
 {
 public:
 	void Excute();
+	void RemoveReceiveCallBack(const int nMsgID);
+	bool AddReceiveCallBack(const int nMsgID, const NET_RECEIVE_FUNCTOR_PTR& cb);
+	bool AddReceiveCallBack(const NET_RECEIVE_FUNCTOR_PTR& cb);
+	bool AddEventCallBack(const NET_EVENT_FUNCTOR_PTR& cb);
 private:
 	seEventLoop* pNet;
 

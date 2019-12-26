@@ -62,9 +62,8 @@ private:
 	};
 	// ServerType callback
 	std::map<int, CallBack> mmCallBack;
-	
-	std::list<ConnectData> mTempList;
 
+	std::list<ConnectData> mTemplist;
 	// serverid connect data
 	std::map<int, ConnectData> mConnecServers;
 };
