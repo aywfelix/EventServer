@@ -2,8 +2,10 @@
 
 #include <ctime>
 #include <map>
-#include "SePlatForm.h"
+#include <memory>
+#include <functional>
 
+#include "SePlatForm.h"
 
 #define SE_OK 0
 #define SE_ERR -1
@@ -12,25 +14,31 @@
 #define EV_TIMEOUT 1
 #define EV_READ	2
 #define EV_WRITE 4
-#define EV_PERSIST 8
-#define EV_ET 16
-#define EV_FINALIZE 32
-#define EV_CLOSED	64
+#define EV_CLOSED 8
 
-enum SF_NET_EVENT
+#define TIMEOUT 5
+
+typedef int64_t SOCK;
+
+enum SE_NET_EVENT
 {
-	SE_EVENT_EOF	=	0x10,	/**< eof file reached */
-	SE_EVENT_ERROR	=	0x20,	/**< unrecoverable error encountered */
-	SE_EVENT_TIMEOUT=	0x40,	/**< user-specified timeout reached */
-	SE_EVENT_CONNECTED=	0x80,	/**< connect operation finished. */
+	SE_NET_EVENT_EOF = 0x10,	/**< eof file reached */
+	SE_NET_EVENT_ERROR = 0x20,	/**< unrecoverable error encountered */
+	SE_NET_EVENT_TIMEOUT = 0x40,	/**< user-specified timeout reached */
+	SE_NET_EVENT_CONNECTED = 0x80,	/**< connect operation finished. */
 };
-
 
 class seEventLoop;
 class Socket;
 class Session;
 
-#define TIMEOUT 5
+using NET_RECEIVE_FUNCTOR = std::function<void(const SOCK nFd, const int nMsgId, const char* pMsg, const uint32_t nLen)>;
+using NET_RECEIVE_FUNCTOR_PTR = std::shared_ptr<NET_RECEIVE_FUNCTOR>;
+
+using NET_EVENT_FUNCTOR = std::function<void(const SOCK nFd, const SE_NET_EVENT nEvent, seEventLoop* pNet)>;
+using NET_EVENT_FUNCTOR_PTR = std::shared_ptr<NET_EVENT_FUNCTOR>;
+
+
 
 class SeEventOp
 {
@@ -54,20 +62,28 @@ protected:
 class seEventLoop
 {
 public:
-	void Init(SeEventOp* pEventOp);
+	void Init();
 	bool InitServer(UINT port);
 	bool InitClient(const char* ip, UINT port);
 	void StartLoop();
 	void StopLoop();
+	
 private:
 	void AddSession(Socket* pSocket);
 	Session* GetSession(socket_t fd);
 	void CloseSession(Session* pSession);
 	void AcceptClient();
+
+	void EventRead(Session* pSession);
+	void EventWrite(Session* pSession);
+
 private:
 	bool mbStop;
 	SeEventOp* mEventOp;
 	Socket* mSocket;
 	std::map<socket_t, Session*> mSessions;
 	bool mbServer{ false };
+
+	NET_RECEIVE_FUNCTOR mRecvCB;
+	NET_EVENT_FUNCTOR mEventCB;
 };

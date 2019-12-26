@@ -7,6 +7,10 @@
 #include "Session.h"
 #include "MemPool.hpp"
 
+#include "SeSelect.h"
+#include "SeEpoll.h"
+
+
 bool SeEventOp::Init()
 {
 	mMaxFd = INVALID_SOCKET;
@@ -52,17 +56,23 @@ bool SeEventOp::Dispatch()
 	return this->Dispatch(&mtv);
 }
 
-void seEventLoop::Init(SeEventOp* pEventOp)
+void seEventLoop::Init()
 {
-	mbStop = false;
-	if (pEventOp)
+#ifdef _WIN32
+	mEventOp = new SeSelect();
+#else
+	mEventOp = new SeEpoll();
+#endif
+	if (mEventOp == nullptr)
 	{
-		mEventOp = pEventOp;
+		return;
 	}
+	mEventOp->Init();
 #if SF_PLATFORM == SF_PLATFORM_WIN
 	WSADATA wsa_data;
 	WSAStartup(0x0201, &wsa_data);
 #endif
+	mbStop = false;
 	mSocket = new Socket;
 	mSocket->CreateFd();
 	mEventOp->SetMaxFd(mSocket->GetFd());
@@ -95,6 +105,7 @@ bool seEventLoop::InitClient(const char* ip, UINT port)
 	mSocket->SetSocketOptions();
 	AddSession(mSocket);
 	LOG_INFO("init client ....");
+	mbServer = false;
 	return true;
 }
 
@@ -149,6 +160,66 @@ void seEventLoop::AcceptClient()
 	}
 }
 
+void seEventLoop::EventRead(Session* pSession)
+{
+	socket_t fd = pSession->GetSocket()->GetFd();
+	LOG_INFO("read event trigger....%d", fd);
+	// if socket cache is readable then read data
+	int nRecvSize = GetReadableSizeOnSocket(fd);
+	int nRecvLeft = 0;
+	if (nRecvSize > 0)
+	{
+		LOG_INFO("can read data len==%d", nRecvSize);
+		for (;;)
+		{
+			char* buf = pSession->GetRecvBuf(nRecvLeft);
+			int ret = recv(fd, buf, nRecvLeft, 0);
+			if (ret < 0)
+			{
+				if (errno == EINTR)
+				{
+					continue;
+				}
+				if (errno == EAGAIN || errno == EWOULDBLOCK)
+				{
+					LOG_INFO("select recv data finish!");
+					pSession->PostRecvData(nRecvSize);
+					break;
+				}
+				LOG_WARN("select recv error!");
+				CloseSession(pSession);
+			}
+			else if (ret == 0)
+			{
+				LOG_WARN("connection peer closed!");
+				CloseSession(pSession);
+				break;
+			}
+			nRecvLeft -= ret;
+			LOG_INFO("select recv %d byte of content %s", ret, buf);
+		}
+	}
+}
+
+void seEventLoop::EventWrite(Session* pSession)
+{
+	socket_t fd = pSession->GetSocket()->GetFd();
+	LOG_INFO("write event trigger....%d", fd);
+	int nSendSize = 0;
+	char* pSendBuf = pSession->GetSendBuf(nSendSize);
+	while (pSession && pSendBuf)
+	{
+		int ret = send(fd, pSendBuf, nSendSize, 0);
+		if (ret <= 0)
+		{
+			break;
+		}
+		pSession->PostSendData(ret);
+		nSendSize = 0;
+		pSendBuf = pSession->GetSendBuf(nSendSize);
+		LOG_INFO("select write to socket....%d len, contents %s", pSendBuf);
+	}
+}
 
 void seEventLoop::StartLoop()
 {
@@ -176,60 +247,11 @@ void seEventLoop::StartLoop()
 
 			if (it->second & EV_READ)
 			{
-				LOG_INFO("read event trigger....%d", it->first);
-				// if socket cache is readable then read data
-				int nRecvSize = GetReadableSizeOnSocket(it->first);
-				int nRecvLeft = 0;
-				if (nRecvSize > 0)
-				{
-					LOG_INFO("can read data len==%d", nRecvSize);
-					for (;;)
-					{
-						char* buf = pSession->GetRecvBuf(nRecvLeft);
-						int ret = recv(it->first, buf, nRecvLeft, 0);
-						if (ret < 0)
-						{
-							if (errno == EINTR)
-							{
-								continue;
-							}
-							if (errno == EAGAIN || errno == EWOULDBLOCK)
-							{
-								LOG_INFO("select recv data finish!");
-								pSession->PostRecvData(nRecvSize);
-								break;
-							}
-							LOG_WARN("select recv error!");
-							CloseSession(pSession);
-						}
-						else if (ret == 0)
-						{
-							LOG_WARN("connection peer closed!");
-							CloseSession(pSession);
-							break;
-						}
-						nRecvLeft -= ret;
-						LOG_INFO("select recv %d byte of content %s", ret, buf);
-					}
-				}
+				EventRead(pSession);
 			}
 			if (it->second & EV_WRITE)
 			{
-				LOG_INFO("write event trigger....%d", it->first);
-				int nSendSize = 0;
-				char* pSendBuf = pSession->GetSendBuf(nSendSize);
-				while (pSession && pSendBuf)
-				{
-					int ret = send(it->first, pSendBuf, nSendSize, 0);
-					if (ret <= 0)
-					{
-						break;
-					}
-					pSession->PostSendData(ret);
-					nSendSize = 0;
-					pSendBuf = pSession->GetSendBuf(nSendSize);
-					LOG_INFO("select write to socket....%d len, contents %s", pSendBuf);
-				}
+				EventWrite(pSession);
 			}
 			if (it->second & EV_CLOSED)
 			{
