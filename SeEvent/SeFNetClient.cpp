@@ -116,7 +116,7 @@ void SeFNetClient::ProcessAddConnect()
 			{
 				conn.ConnState = ConnectState::DISCONNECT;
 			}
-			mConnecServers.emplace(data.ServerId, conn);
+			mConnecServers.emplace(conn.ServerId, conn);
 		}
 	}
 	mTemplist.clear();

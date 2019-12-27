@@ -151,6 +151,7 @@
     <ClInclude Include="SeIOCP.h" />
     <ClInclude Include="SeKqueue.h" />
     <ClInclude Include="SePlatForm.h" />
+    <ClInclude Include="ServerPublic.pb.h" />
     <ClInclude Include="SeSelect.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="SeFINet.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="SeIOCP.cpp" />
     <ClCompile Include="SeKqueue.cpp" />
     <ClCompile Include="SePlatForm.cpp" />
+    <ClCompile Include="ServerPublic.pb.cc" />
     <ClCompile Include="SeSelect.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="SeFNet.cpp" />
