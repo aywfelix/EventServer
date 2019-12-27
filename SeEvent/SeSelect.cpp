@@ -11,7 +11,7 @@ bool SeSelect::InitOp()
 bool SeSelect::AddEvent(socket_t fd, int mask)
 {
 	if (mask & EV_READ) 
-		FD_SET(fd, &mSelectOp.rfds);
+		FD_SET(fd, &mSelectOp.rfds);  // windows delete fd from fd_set failed, only fd_count minus 1
 	if (mask & EV_WRITE) 
 		FD_SET(fd, &mSelectOp.wfds);
 	return true;

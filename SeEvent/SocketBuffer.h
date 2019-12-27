@@ -31,12 +31,17 @@ class SocketBuffer
 {
 public:
 	void Init();
+	// 单独使用buffer的操作接口
 	void Write(const char* data, int size);
 	void Read(char* buf, int size);
+	// 为了服务器通信协议解析使用的接口
+	void ReadProtoHead(char* buf, int size = 6);
+
 	void Clear();
 	BufferChain* NewChain(int size);
 	char* PullUp();  // 将链中数据放到第一个链中并返回头指针
 
+	// 下面四个接口是给socket接收发送提供的接口
 	char* GetRecvBuf(int size)
 	{
 		BufferChain* chain = GetWriteChain(size);

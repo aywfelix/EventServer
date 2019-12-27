@@ -7,6 +7,7 @@ void SocketBuffer::Init()
 	m_oBuffer.total_len = 0;
 	m_oBuffer.chain_num = 0;
 }
+
 void SocketBuffer::Write(const char* data, int size)
 {
 	BufferChain* chain = GetWriteChain(size);
@@ -14,6 +15,7 @@ void SocketBuffer::Write(const char* data, int size)
 	chain->write_pos += size;
 	m_oBuffer.total_len += size;  // data len
 }
+
 void SocketBuffer::Read(char* buf, int size)
 {
 	if (size > m_oBuffer.total_len)
@@ -46,6 +48,35 @@ void SocketBuffer::Read(char* buf, int size)
 		}
 	}
 }
+
+void SocketBuffer::ReadProtoHead(char* buf, int size)
+{
+	if (m_oBuffer.total_len <= size)
+	{
+		return;  // 尽量保证读到完整协议
+	}
+	int read_len = 0;
+	int can_read_len = 0;
+	BufferChain* chain = m_oBuffer.last_datap;
+	while (size > 0 && chain)
+	{
+		can_read_len = chain->write_pos - chain->read_pos;
+		if (can_read_len >= size)
+		{
+			can_read_len = size;
+		}
+		memcpy(buf + read_len, chain->buffer + chain->read_pos, can_read_len);
+		read_len += can_read_len;
+		size -= can_read_len;
+		int pos = chain->read_pos + can_read_len;
+		if (pos == chain->write_pos)
+		{
+			chain = chain->next;
+			m_oBuffer.last_datap = chain;
+		}
+	}
+}
+
 void SocketBuffer::Clear()
 {
 	struct BufferChain* first = m_oBuffer.first;

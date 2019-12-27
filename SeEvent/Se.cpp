@@ -9,6 +9,7 @@
 
 #include "SeSelect.h"
 #include "SeEpoll.h"
+#include "SeFINet.h"
 
 
 bool SeEventOp::Init()
@@ -181,8 +182,6 @@ void SeNet::EventRead(Session* pSession)
 		char* pRecvBuf = pSession->GetRecvBuf(nRecvLeft);
 		int ret = recv(fd, pRecvBuf, nRecvLeft, 0);
 #ifdef DEBUG
-		//int total = pSession->GetSocketRecvBuf().TotalLen();
-		//int recvlen = total + 1;
 		char tmpbuf[1024] = { 0 };
 		pSession->GetSocketRecvBuf().ReadAll(tmpbuf);
 		LOG_INFO("socket recv from peer content %s", tmpbuf);
@@ -215,11 +214,42 @@ void SeNet::EventRead(Session* pSession)
 		nRecvLeft -= ret;
 		LOG_INFO("socket recv %d byte of content %s", ret, pRecvBuf);
 		pSession->PostRecvData(ret);
+
+		for (;;)
+		{
+			// 进行数据解包
+			if (!Dismantle(pSession))
+			{
+				break;
+			}
+		}
 		if (nRecvLeft == 0)
 		{
 			break;
 		}
 	}
+}
+
+bool SeNet::Dismantle(Session* pSession)
+{
+	int nTotal = pSession->GetRecvTotal();
+	if (nTotal > MSG_HEAD_LEN)
+	{
+		char headbuf[MSG_HEAD_LEN] = { 0 };
+		pSession->ReadProtoHead(headbuf, MSG_HEAD_LEN);
+		NetMsgHead MsgHead;
+		MsgHead.DeCode(headbuf);
+		int nPacketLen = MsgHead.GetBodyLength();
+		if (nTotal < (MSG_HEAD_LEN + nPacketLen))
+			return false;
+		int nRead = nPacketLen + MSG_HEAD_LEN;
+		char *pMsgBuf = new char[nRead];
+		pSession->Read(pMsgBuf, nRead);
+		// 回调协议处理接口
+		mRecvCB(pSession->GetSocket()->GetFd(), MsgHead.GetMsgID(), pMsgBuf +MSG_HEAD_LEN, MsgHead.GetBodyLength());
+		delete[] pMsgBuf;
+	}
+	return false;
 }
 
 void SeNet::EventWrite(Session* pSession)
@@ -249,6 +279,7 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 	{
 		if (!mEventOp->Dispatch())
 		{
+			LOG_FATAL("eventloop dispatch error");
 			break;
 		}
 		auto activemq = mEventOp->GetActiveEvents();
@@ -312,7 +343,7 @@ void SeNet::SendMsg(socket_t fd, const char* msg, int len)
 	}
 }
 
-void SeNet::SendMsg(std::vector<socket_t> fdlist, const char* msg, int len)
+void SeNet::SendMsg(std::vector<socket_t>& fdlist, const char* msg, int len)
 {
 	for (auto& it : fdlist)
 	{
@@ -338,7 +369,6 @@ void SeNet::SendToAllClients(const char* msg, int len)
 	}
 }
 
-
 void SeNet::SendMsg(const char* msg, int len)
 {
 	for (auto& it : mSessions)
@@ -346,4 +376,40 @@ void SeNet::SendMsg(const char* msg, int len)
 		it.second->Send(msg, len);
 		mEventOp->AddEvent(it.first, EV_WRITE);
 	}
+}
+
+void SeNet::SendProtoMsg(socket_t fd, const int nMsgID, const char* msg, int len)
+{
+	NetMsgHead MsgHead;
+	MsgHead.SetMsgID(nMsgID);
+	MsgHead.SetBodyLength(len);
+	int nSend = len + MSG_HEAD_LEN;
+	char pHead[MSG_HEAD_LEN] = { 0 };
+	MsgHead.EnCode(pHead);
+	SendMsg(fd, pHead, MSG_HEAD_LEN);
+	SendMsg(fd, msg, len);
+}
+
+void SeNet::SendProtoMsg(std::vector<socket_t>& fdlist, const int nMsgID, const char* msg, int len)
+{
+	NetMsgHead MsgHead;
+	MsgHead.SetMsgID(nMsgID);
+	MsgHead.SetBodyLength(len);
+	int nSend = len + MSG_HEAD_LEN;
+	char pHead[MSG_HEAD_LEN] = { 0 };
+	MsgHead.EnCode(pHead);
+	SendMsg(fdlist, pHead, MSG_HEAD_LEN);
+	SendMsg(fdlist, msg, len);
+}
+
+void SeNet::SendProtoMsg(const int nMsgID, const char* msg, int len)
+{
+	NetMsgHead MsgHead;
+	MsgHead.SetMsgID(nMsgID);
+	MsgHead.SetBodyLength(len);
+	int nSend = len + MSG_HEAD_LEN;
+	char pHead[MSG_HEAD_LEN] = { 0 };
+	MsgHead.EnCode(pHead);
+	SendMsg(pHead, MSG_HEAD_LEN);
+	SendMsg(msg, len);
 }

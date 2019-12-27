@@ -18,7 +18,17 @@ public:
 	{
 		m_SendBuffer.Write(data, size);
 	}
+	void Read(char* buf, int size)
+	{
+		return m_RecvBuffer.Read(buf, size);
+	}
+	// parse proto by buffer
+	void ReadProtoHead(char* buf, int size = 6)
+	{
+		return m_RecvBuffer.ReadProtoHead(buf, size);
+	}
 
+	// socket operate the buffer
 	char* GetSendBuf(int& size)
 	{
 		return m_SendBuffer.GetSendBuf(size);
@@ -38,6 +48,7 @@ public:
 		m_RecvBuffer.PostRecvData(size);
 	}
 
+	int GetRecvTotal() { return m_RecvBuffer.TotalLen(); }
 #ifdef DEBUG
 	// for test
 	SocketBuffer& GetSocketSendBuf() { return m_SendBuffer; }
