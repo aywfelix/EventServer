@@ -14,7 +14,7 @@ void SeFNetClient::Init()
 	}
 }
 
-void SeFNetClient::OnSocketEvent(const SOCK nFd, const SE_NET_EVENT nEvent, seEventLoop* pNet)
+void SeFNetClient::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
 {
 	if (nEvent & SE_NET_EVENT_CONNECTED)
 	{
@@ -26,12 +26,12 @@ void SeFNetClient::OnSocketEvent(const SOCK nFd, const SE_NET_EVENT nEvent, seEv
 	}
 }
 
-void SeFNetClient::OnSocketConnect(const SOCK nFd, seEventLoop* pNet)
+void SeFNetClient::OnSocketConnect(const socket_t nFd, SeNet* pNet)
 {
 	LOG_INFO("connect server ok, socket(%d)", nFd);
 }
 
-void SeFNetClient::OnSocketDisConnect(const SOCK nFd, seEventLoop* pNet)
+void SeFNetClient::OnSocketDisConnect(const socket_t nFd, SeNet* pNet)
 {
 	LOG_WARN("disconnect, socket(%d)", nFd);
 }
@@ -63,7 +63,7 @@ void SeFNetClient::AddEventCallBack(EServerType eType, NET_EVENT_FUNCTOR_PTR fun
 	{
 		return;
 	}
-	mmCallBack[eType].mEventCallBack.emplace_back(functorPtr);
+	mmCallBack[eType].mEventCallBackList.emplace_back(functorPtr);
 }
 
 void SeFNetClient::RemoveReceiveCallBack(EServerType eType, UINT32 nMsgId)
@@ -105,9 +105,8 @@ void SeFNetClient::ProcessAddConnect()
 		if (it == mConnecServers.end())
 		{
 			conn.ConnState = ConnectState::CONNECTING;
-			conn.pNet = std::make_shared<seEventLoop>();
-			conn.pNet->Init();
-			if (conn.pNet->InitClient(conn.Ip.c_str(), conn.Port))
+			conn.pNet = std::make_shared<SeFNet>();
+			if (conn.pNet->InitNet(conn.Ip.c_str(), conn.Port))
 			{
 				conn.ConnState = ConnectState::NORMAL;
 				InitCallBacks(conn);
@@ -124,5 +123,19 @@ void SeFNetClient::ProcessAddConnect()
 
 void SeFNetClient::InitCallBacks(ConnectData& data)
 {
-
+	for (auto& it : mmCallBack)
+	{
+		for (auto& receivecb : it.second.mReceiveCallBack)
+		{
+			data.pNet->AddReceiveCallBack(receivecb.first, receivecb.second);
+		}
+		for (auto& receivecb : it.second.mCallBackList)
+		{
+			data.pNet->AddReceiveCallBack(receivecb);
+		}
+		for (auto& eventcb : it.second.mEventCallBackList)
+		{
+			data.pNet->AddEventCallBack(eventcb);
+		}
+	}
 }

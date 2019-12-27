@@ -18,7 +18,6 @@
 
 #define TIMEOUT 5
 
-typedef int64_t SOCK;
 
 enum SE_NET_EVENT
 {
@@ -28,14 +27,14 @@ enum SE_NET_EVENT
 	SE_NET_EVENT_CONNECTED = 0x80,	/**< connect operation finished. */
 };
 
-class seEventLoop;
+class SeNet;
 class Socket;
 class Session;
 
-using NET_RECEIVE_FUNCTOR = std::function<void(const SOCK nFd, const int nMsgId, const char* pMsg, const uint32_t nLen)>;
+using NET_RECEIVE_FUNCTOR = std::function<void(const socket_t nFd, const int nMsgId, const char* pMsg, const uint32_t nLen)>;
 using NET_RECEIVE_FUNCTOR_PTR = std::shared_ptr<NET_RECEIVE_FUNCTOR>;
 
-using NET_EVENT_FUNCTOR = std::function<void(const SOCK nFd, const SE_NET_EVENT nEvent, seEventLoop* pNet)>;
+using NET_EVENT_FUNCTOR = std::function<void(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)>;
 using NET_EVENT_FUNCTOR_PTR = std::shared_ptr<NET_EVENT_FUNCTOR>;
 
 
@@ -58,16 +57,28 @@ protected:
 	std::map<socket_t, int> mActiveEvents;
 };
 
-class seEventLoop
+class SeNet
 {
 public:
-	void Init();
+
+	SeNet(NET_RECEIVE_FUNCTOR& receiveCb, NET_EVENT_FUNCTOR& eventCb)
+	{
+		mRecvCB = receiveCb;
+		mEventCB = eventCb;
+	}
+	template<typename BaseType>
+	SeNet(BaseType* pBaseType, void (BaseType::* HandleReceive)(const socket_t, const int, const char*, const UINT32), void (BaseType::* HandleEvent)(const socket_t, const SE_NET_EVENT, SeNet*))
+	{
+		mRecvCB = std::bind(HandleReceive, pBaseType, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
+		mEventCB = std::bind(HandleEvent, pBaseType, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	}
 	bool InitServer(UINT port);
 	bool InitClient(const char* ip, UINT port);
 	void StartLoop();
 	void StopLoop();
 	
 private:
+	void InitEventOp();
 	void AddSession(Socket* pSocket);
 	Session* GetSession(socket_t fd);
 	void CloseSession(Session* pSession);

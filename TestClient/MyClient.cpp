@@ -7,8 +7,7 @@ int main()
 {
 	g_pSessionPool = std::make_unique<SessionPool>();
 	INIT_SFLOG(true);
-	seEventLoop client;
-	client.Init();
+	SeNet client;
 	/*client.InitClient("192.168.60.49", 88888);*/
 	client.InitClient("192.168.43.38", 88888);
 	client.StartLoop();

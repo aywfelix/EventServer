@@ -56,7 +56,8 @@ bool SeEventOp::Dispatch()
 	return this->Dispatch(&mtv);
 }
 
-void seEventLoop::Init()
+
+void SeNet::InitEventOp()
 {
 #ifdef _WIN32
 	mEventOp = new SeSelect();
@@ -83,8 +84,9 @@ void seEventLoop::Init()
 #endif
 }
 
-bool seEventLoop::InitServer(UINT port)
+bool SeNet::InitServer(UINT port)
 {
+	InitEventOp();
 	mbServer = true;
 	if (!mSocket->Listen(port))
 	{
@@ -95,8 +97,9 @@ bool seEventLoop::InitServer(UINT port)
 	return true;
 }
 
-bool seEventLoop::InitClient(const char* ip, UINT port)
+bool SeNet::InitClient(const char* ip, UINT port)
 {
+	InitEventOp();
 	if (!mSocket->Connect(ip, port))
 	{
 		LOG_WARN("init client error, can not connect server....");
@@ -109,7 +112,7 @@ bool seEventLoop::InitClient(const char* ip, UINT port)
 	return true;
 }
 
-void seEventLoop::AddSession(Socket* pSocket)
+void SeNet::AddSession(Socket* pSocket)
 {
 	Session* pSession = g_pSessionPool->NewSession();
 	if (pSession == nullptr)
@@ -118,7 +121,7 @@ void seEventLoop::AddSession(Socket* pSocket)
 	mSessions.emplace(pSocket->GetFd(), pSession);
 }
 
-Session* seEventLoop::GetSession(socket_t fd)
+Session* SeNet::GetSession(socket_t fd)
 {
 	auto it = mSessions.find(fd);
 	if (it == mSessions.end())
@@ -128,13 +131,13 @@ Session* seEventLoop::GetSession(socket_t fd)
 	return it->second;
 }
 
-void seEventLoop::CloseSession(Session* pSession)
+void SeNet::CloseSession(Session* pSession)
 {
 	g_pSessionPool->DelSession(pSession);
 	mEventOp->DelEvent(pSession->GetSocket()->GetFd(), EV_READ | EV_WRITE);
 }
 
-void seEventLoop::AcceptClient()
+void SeNet::AcceptClient()
 {
 	for (;;)
 	{
@@ -160,7 +163,7 @@ void seEventLoop::AcceptClient()
 	}
 }
 
-void seEventLoop::EventRead(Session* pSession)
+void SeNet::EventRead(Session* pSession)
 {
 	socket_t fd = pSession->GetSocket()->GetFd();
 	LOG_INFO("read event trigger....%d", fd);
@@ -201,7 +204,7 @@ void seEventLoop::EventRead(Session* pSession)
 	}
 }
 
-void seEventLoop::EventWrite(Session* pSession)
+void SeNet::EventWrite(Session* pSession)
 {
 	socket_t fd = pSession->GetSocket()->GetFd();
 	LOG_INFO("write event trigger....%d", fd);
@@ -221,7 +224,7 @@ void seEventLoop::EventWrite(Session* pSession)
 	}
 }
 
-void seEventLoop::StartLoop()
+void SeNet::StartLoop()
 {
 	while (!mbStop)
 	{
@@ -263,7 +266,7 @@ void seEventLoop::StartLoop()
 	}
 }
 
-void seEventLoop::StopLoop()
+void SeNet::StopLoop()
 {
 	mEventOp->Clear();
 	mbStop = true;

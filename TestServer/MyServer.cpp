@@ -21,8 +21,7 @@ int main()
 	INIT_SFLOG(true);
 	/*signal(SIGPIPE, SIG_IGN);*/
 	g_pSessionPool = std::make_unique<SessionPool>();
-	seEventLoop server;
-	server.Init();
+	SeNet server;
 	server.InitServer(88888);
 	server.StartLoop();
 	server.StopLoop();

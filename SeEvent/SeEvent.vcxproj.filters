@@ -111,19 +111,16 @@
     <ClInclude Include="SeFMsgHead.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SeFNet.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="SeFNetClient.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SeFNetServer.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="SeFNodeNet.pb.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ServerPublic.pb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SeFNet.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -194,19 +191,16 @@
     <ClCompile Include="SeFMsgHead.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="SeFNet.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="SeFNetClient.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SeFNetServer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SeFNodeNet.pb.cc">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ServerPublic.pb.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SeFNet.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
