@@ -18,6 +18,11 @@
 
 #define TIMEOUT 5
 
+enum LOOP_RUN_TYPE
+{
+	LOOP_RUN_BLOCK = 1,
+	LOOP_RUN_NONBLOCK = 2,
+};
 
 enum SE_NET_EVENT
 {
@@ -74,7 +79,7 @@ public:
 	}
 	bool InitServer(UINT port);
 	bool InitClient(const char* ip, UINT port);
-	void StartLoop();
+	void StartLoop(LOOP_RUN_TYPE run);
 	void StopLoop();
 	
 private:

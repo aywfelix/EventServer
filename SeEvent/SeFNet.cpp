@@ -1,8 +1,8 @@
 #include "SeFNet.h"
 
-void SeFNet::Excute()
+void SeFNet::Excute(LOOP_RUN_TYPE run)
 {
-	mNet->StartLoop();
+	mNet->StartLoop(run);
 }
 
 void SeFNet::RemoveReceiveCallBack(const int nMsgID)

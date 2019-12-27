@@ -8,7 +8,7 @@
 class SeFNet
 {
 public:
-	void Excute();
+	void Excute(LOOP_RUN_TYPE run);
 
 	// init client
 	bool InitNet(const char* ip, UINT32 port);

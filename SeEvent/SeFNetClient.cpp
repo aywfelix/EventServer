@@ -81,15 +81,46 @@ void SeFNetClient::AddServer(const ConnectData& info)
 	mTemplist.emplace_back(info);
 }
 
-void SeFNetClient::Excute()
+void SeFNetClient::Excute(LOOP_RUN_TYPE run)
 {
-	ProcessExcute();
+	ProcessExcute(run);
 	ProcessAddConnect();
 }
 
-void SeFNetClient::ProcessExcute()
+void SeFNetClient::ProcessExcute(LOOP_RUN_TYPE run)
 {
-
+	for (auto& it : mConnecServers)
+	{
+		ConnectState state = it.second.ConnState;
+		switch (state)
+		{
+		case ConnectState::DISCONNECT:
+			if (it.second.pNet->InitNet(it.second.Ip.c_str(), it.second.Port))
+			{
+				it.second.ConnState = ConnectState::NORMAL;
+				InitCallBacks(it.second);
+			}
+			break;
+		case ConnectState::NORMAL:
+			it.second.pNet->Excute(run);
+			break;
+		case ConnectState::RECONNECT:
+			it.second.ConnState = ConnectState::CONNECTING;
+			it.second.pNet = std::make_shared<SeFNet>();
+			if (it.second.pNet->InitNet(it.second.Ip.c_str(), it.second.Port))
+			{
+				it.second.ConnState = ConnectState::NORMAL;
+				InitCallBacks(it.second);
+			}
+			else
+			{
+				it.second.ConnState = ConnectState::DISCONNECT;
+			}
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 void SeFNetClient::ProcessAddConnect()

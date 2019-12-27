@@ -224,7 +224,7 @@ void SeNet::EventWrite(Session* pSession)
 	}
 }
 
-void SeNet::StartLoop()
+void SeNet::StartLoop(LOOP_RUN_TYPE run)
 {
 	while (!mbStop)
 	{
@@ -262,6 +262,10 @@ void SeNet::StartLoop()
 				CloseSession(pSession);
 			}
 			it = activemq.erase(it);
+		}
+		if (run == LOOP_RUN_NONBLOCK)
+		{
+			break;
 		}
 	}
 }
