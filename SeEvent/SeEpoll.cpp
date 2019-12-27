@@ -40,11 +40,11 @@ bool SeEpoll::AddEvent(socket_t fd, int mask)
 	UINT32 events = 0;
 	if (mask & EV_READ)
 	{
-		events = EPOLLET | EPOLLONESHOT | EPOLLIN | EPOLLOUT;
+		events = EPOLLET | EPOLLONESHOT | EPOLLIN;
 	}
 	if (mask & EV_WRITE)
 	{
-		events = EPOLLET | EPOLLONESHOT | EPOLLIN;
+		events = EPOLLET | EPOLLONESHOT | EPOLLOUT;
 	}
 	struct epoll_event ev = { 0 };
 	short op = 0;

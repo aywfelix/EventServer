@@ -10,15 +10,19 @@ bool SeSelect::InitOp()
 
 bool SeSelect::AddEvent(socket_t fd, int mask)
 {
-	if (mask & EV_READ) FD_SET(fd, &mSelectOp.rfds);
-	if (mask & EV_WRITE) FD_SET(fd, &mSelectOp.wfds);
+	if (mask & EV_READ) 
+		FD_SET(fd, &mSelectOp.rfds);
+	if (mask & EV_WRITE) 
+		FD_SET(fd, &mSelectOp.wfds);
 	return true;
 }
 
 bool SeSelect::DelEvent(socket_t fd, int mask)
 {
-	if (mask & EV_READ) FD_CLR(fd, &mSelectOp.rfds);
-	if (mask & EV_WRITE) FD_CLR(fd, &mSelectOp.wfds);
+	if (mask & EV_READ) 
+		FD_CLR(fd, &mSelectOp.rfds);
+	if (mask & EV_WRITE) 
+		FD_CLR(fd, &mSelectOp.wfds);
 	return true;
 }
 
@@ -42,7 +46,7 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 		socket_t rFd = mSelectOp._rfds.fd_array[0];
 		socket_t wFd = mSelectOp._wfds.fd_array[0];
 		socket_t iter = rFd > wFd ? wFd : rFd;
-		for (iter =0; iter <= mMaxFd; iter++)
+		for (; iter <= mMaxFd; iter++)
 		{
 			int mask = 0;
 			if (FD_ISSET(iter, &mSelectOp._rfds))

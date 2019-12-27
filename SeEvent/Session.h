@@ -38,6 +38,11 @@ public:
 		m_RecvBuffer.PostRecvData(size);
 	}
 
+#ifdef DEBUG
+	// for test
+	SocketBuffer& GetSocketSendBuf() { return m_SendBuffer; }
+	SocketBuffer& GetSocketRecvBuf() { return m_RecvBuffer; }
+#endif
 private:
 	Socket* m_pSocket{nullptr};
 	SocketBuffer m_SendBuffer;

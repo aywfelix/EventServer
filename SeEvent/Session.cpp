@@ -12,6 +12,7 @@ bool Session::Clear()
 	{
 		m_pSocket->CloseSocket();
 		delete m_pSocket;
+		m_pSocket = nullptr;
 	}
 	return true;
 }

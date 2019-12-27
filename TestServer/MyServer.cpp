@@ -23,7 +23,7 @@ int main()
 	g_pSessionPool = std::make_unique<SessionPool>();
 	SeNet server;
 	server.InitServer(88888);
-	server.StartLoop();
+	server.StartLoop(LOOP_RUN_TYPE::LOOP_RUN_BLOCK);
 	server.StopLoop();
 
 	TimerLoop timerLoop;

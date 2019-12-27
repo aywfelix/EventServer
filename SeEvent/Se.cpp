@@ -93,7 +93,7 @@ bool SeNet::InitServer(UINT port)
 		return false;
 	}
 	mSocket->SetSocketOptions();
-	LOG_INFO("init server ok ....");
+	LOG_INFO("init server ok ....%d", mSocket->GetFd());
 	return true;
 }
 
@@ -107,7 +107,7 @@ bool SeNet::InitClient(const char* ip, UINT port)
 	}
 	mSocket->SetSocketOptions();
 	AddSession(mSocket);
-	LOG_INFO("init client ....");
+	LOG_INFO("init client ....%d", mSocket->GetFd());
 	mbServer = false;
 	return true;
 }
@@ -133,8 +133,13 @@ Session* SeNet::GetSession(socket_t fd)
 
 void SeNet::CloseSession(Session* pSession)
 {
-	g_pSessionPool->DelSession(pSession);
-	mEventOp->DelEvent(pSession->GetSocket()->GetFd(), EV_READ | EV_WRITE);
+	socket_t fd = pSession->GetSocket()->GetFd();
+	if (fd > 0)
+	{
+		mSessions.erase(fd);
+		mEventOp->DelEvent(fd, EV_READ | EV_WRITE);
+		g_pSessionPool->DelSession(pSession);
+	}
 }
 
 void SeNet::AcceptClient()
@@ -152,9 +157,9 @@ void SeNet::AcceptClient()
 			AddSession(pSocket);
 			mEventOp->SetMaxFd(connfd);
 #ifdef _WIN32
-			mEventOp->AddEvent(mSocket->GetFd(), EV_READ);
+			mEventOp->AddEvent(connfd, EV_READ);
 #else
-			mEventOp->AddEvent(mSocket->GetFd(), EV_READ);
+			mEventOp->AddEvent(connfd, EV_READ);
 #endif
 			LOG_INFO("accept client connect ...%d", connfd);
 			continue;
@@ -169,37 +174,50 @@ void SeNet::EventRead(Session* pSession)
 	LOG_INFO("read event trigger....%d", fd);
 	// if socket cache is readable then read data
 	int nRecvSize = GetReadableSizeOnSocket(fd);
-	int nRecvLeft = 0;
-	if (nRecvSize > 0)
+	int nRecvLeft = nRecvSize;
+	LOG_INFO("can read data len==%d", nRecvSize);
+	for (; nRecvLeft >= 0;)
 	{
-		LOG_INFO("can read data len==%d", nRecvSize);
-		for (;;)
+		char* pRecvBuf = pSession->GetRecvBuf(nRecvLeft);
+		int ret = recv(fd, pRecvBuf, nRecvLeft, 0);
+#ifdef DEBUG
+		//int total = pSession->GetSocketRecvBuf().TotalLen();
+		//int recvlen = total + 1;
+		char tmpbuf[1024] = { 0 };
+		pSession->GetSocketRecvBuf().ReadAll(tmpbuf);
+		LOG_INFO("socket recv from peer content %s", tmpbuf);
+#endif
+		if (ret < 0)
 		{
-			char* buf = pSession->GetRecvBuf(nRecvLeft);
-			int ret = recv(fd, buf, nRecvLeft, 0);
-			if (ret < 0)
+			if (errno == EINTR)
 			{
-				if (errno == EINTR)
-				{
-					continue;
-				}
-				if (errno == EAGAIN || errno == EWOULDBLOCK)
-				{
-					LOG_INFO("select recv data finish!");
-					pSession->PostRecvData(nRecvSize);
-					break;
-				}
-				LOG_WARN("select recv error!");
-				CloseSession(pSession);
+				continue;
 			}
-			else if (ret == 0)
+			if (errno == EAGAIN || errno == EWOULDBLOCK)
 			{
-				LOG_WARN("connection peer closed!");
-				CloseSession(pSession);
+				LOG_INFO("socket recv data finish!");
 				break;
 			}
-			nRecvLeft -= ret;
-			LOG_INFO("select recv %d byte of content %s", ret, buf);
+			LOG_WARN("socket recv error!");
+			CloseSession(pSession);
+			break;
+		}
+		else if (ret == 0)
+		{
+			if (errno == ECONNRESET)
+			{
+				LOG_INFO("================================================");
+			}
+			LOG_WARN("connection peer closed!");
+			CloseSession(pSession);
+			break;
+		}
+		nRecvLeft -= ret;
+		LOG_INFO("socket recv %d byte of content %s", ret, pRecvBuf);
+		pSession->PostRecvData(ret);
+		if (nRecvLeft == 0)
+		{
+			break;
 		}
 	}
 }
@@ -218,10 +236,11 @@ void SeNet::EventWrite(Session* pSession)
 			break;
 		}
 		pSession->PostSendData(ret);
+		LOG_INFO("socket write to socket....%d len, content %s", ret, pSendBuf);
 		nSendSize = 0;
 		pSendBuf = pSession->GetSendBuf(nSendSize);
-		LOG_INFO("select write to socket....%d len, contents %s", pSendBuf);
 	}
+	mEventOp->DelEvent(fd, EV_WRITE);
 }
 
 void SeNet::StartLoop(LOOP_RUN_TYPE run)
@@ -234,35 +253,37 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 		}
 		auto activemq = mEventOp->GetActiveEvents();
 		// do with activemq
-		for (auto it = activemq.begin(); it != activemq.end();)
+		for (auto it = activemq.begin(); it != activemq.end(); it++)
 		{
 			if ((it->second & EV_READ) && (mSocket->GetFd() == it->first) && mbServer)
 			{
 				AcceptClient();
-				break;
 			}
-			Session* pSession = GetSession(it->first);
-			if (pSession == nullptr)
+			else
 			{
-				LOG_WARN("eventloop session is null, socket==%d", it->first);
-				continue;
-			}
+				Session* pSession = GetSession(it->first);
+				if (pSession == nullptr)
+				{
+					LOG_WARN("eventloop session is null, socket==%d", it->first);
+					continue;
+				}
 
-			if (it->second & EV_READ)
-			{
-				EventRead(pSession);
+				if (it->second & EV_READ)
+				{
+					EventRead(pSession);
+				}
+				if (it->second & EV_WRITE)
+				{
+					EventWrite(pSession);
+				}
+				if (it->second & EV_CLOSED)
+				{
+					LOG_INFO("close event trigger....%d", it->first);
+					CloseSession(pSession);
+				}
 			}
-			if (it->second & EV_WRITE)
-			{
-				EventWrite(pSession);
-			}
-			if (it->second & EV_CLOSED)
-			{
-				LOG_INFO("close event trigger....%d", it->first);
-				CloseSession(pSession);
-			}
-			it = activemq.erase(it);
 		}
+		activemq.clear();
 		if (run == LOOP_RUN_NONBLOCK)
 		{
 			break;
@@ -281,3 +302,48 @@ void SeNet::StopLoop()
 	}
 }
 
+void SeNet::SendMsg(socket_t fd, const char* msg, int len)
+{
+	auto it = mSessions.find(fd);
+	if (it != mSessions.end())
+	{
+		it->second->Send(msg, len);
+		mEventOp->AddEvent(it->first, EV_WRITE);
+	}
+}
+
+void SeNet::SendMsg(std::vector<socket_t> fdlist, const char* msg, int len)
+{
+	for (auto& it : fdlist)
+	{
+		auto it2 = mSessions.find(it);
+		if (it2 != mSessions.end())
+		{
+			it2->second->Send(msg, len);
+			mEventOp->AddEvent(it2->first, EV_WRITE);
+		}
+	}
+}
+
+void SeNet::SendToAllClients(const char* msg, int len)
+{
+	if (!mbServer)
+	{
+		return;
+	}
+	for (auto& it : mSessions)
+	{
+		it.second->Send(msg, len);
+		mEventOp->AddEvent(it.first, EV_WRITE);
+	}
+}
+
+
+void SeNet::SendMsg(const char* msg, int len)
+{
+	for (auto& it : mSessions)
+	{
+		it.second->Send(msg, len);
+		mEventOp->AddEvent(it.first, EV_WRITE);
+	}
+}

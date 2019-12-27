@@ -78,6 +78,22 @@ public:
 	{
 		return m_oBuffer;
 	}
+
+#ifdef DEBUG
+	void ReadAll(char* buf)
+	{
+		BufferChain* chain = m_oBuffer.first;
+		int datalen = 0;
+		while (chain)
+		{
+			int len = (int)strlen(chain->buffer);
+			memcpy(buf + datalen, chain->buffer, len);
+			datalen += len;
+			chain = chain->next;
+		}
+	}
+#endif
+
 private:
 	BufferChain* GetWriteChain(int size);
 	int GetAllocSize(int size);

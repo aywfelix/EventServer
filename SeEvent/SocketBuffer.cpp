@@ -86,10 +86,10 @@ BufferChain* SocketBuffer::GetWriteChain(int size)
 	// 写入原则，(应该从最后一个是否有空闲空间写入数据，但是为了socket直接读取，不用拷贝，暂时不能这么做)
 	// 1、查找前面已经空闲一个大小最为合适的空链表写入
 	// 2、如果空的链表的长度大于（能够写入size的大小）的2倍以上则写入一个新链表
-	//if (m_oBuffer.last && m_oBuffer.last->Left() >= size)
-	//{
-	//	return m_oBuffer.last;
-	//}
+	if (m_oBuffer.last && m_oBuffer.last->Left() >= size)
+	{
+		return m_oBuffer.last;
+	}
 	BufferChain* chain = m_oBuffer.first;
 	BufferChain* wait = nullptr;
 	int min_len = 0;
