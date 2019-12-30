@@ -82,11 +82,7 @@ public:
 	bool InitClient(const char* ip, UINT port);
 	void StartLoop(LOOP_RUN_TYPE run);
 	void StopLoop();
-	
-	// send msg
-	void SendMsg(socket_t fd, const char* msg, int len);
-	void SendMsg(std::vector<socket_t>& fdlist, const char* msg, int len);
-	void SendToAllClients(const char* msg, int len);
+
 	// send msg with proto head
 	void SendProtoMsg(socket_t fd, const int nMsgID, const char* msg, int len);
 	void SendProtoMsg(std::vector<socket_t>& fdlist, const int nMsgID, const char* msg, int len);
@@ -104,6 +100,10 @@ private:
 	void EventWrite(Session* pSession);
 
 	bool Dismantle(Session* pSession);
+	// send msg
+	void SendMsg(socket_t fd, const char* msg, int len);
+	void SendMsg(std::vector<socket_t>& fdlist, const char* msg, int len);
+	void SendToAllClients(const char* msg, int len);
 
 private:
 	bool mbStop;

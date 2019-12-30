@@ -180,7 +180,7 @@ void SeNet::EventRead(Session* pSession)
 	for (; nRecvLeft >= 0;)
 	{
 		char* pRecvBuf = pSession->GetRecvBuf(nRecvLeft);
-		int ret = recv(fd, pRecvBuf, nRecvLeft, 0);
+		int ret = ::recv(fd, pRecvBuf, nRecvLeft, 0);
 #ifdef DEBUG
 		char tmpbuf[1024] = { 0 };
 		pSession->GetSocketRecvBuf().ReadAll(tmpbuf);
@@ -246,8 +246,12 @@ bool SeNet::Dismantle(Session* pSession)
 		char *pMsgBuf = new char[nRead];
 		pSession->Read(pMsgBuf, nRead);
 		// 回调协议处理接口
-		mRecvCB(pSession->GetSocket()->GetFd(), MsgHead.GetMsgID(), pMsgBuf +MSG_HEAD_LEN, MsgHead.GetBodyLength());
+		if (mRecvCB)
+		{
+			mRecvCB(pSession->GetSocket()->GetFd(), MsgHead.GetMsgID(), pMsgBuf + MSG_HEAD_LEN, MsgHead.GetBodyLength());
+		}
 		delete[] pMsgBuf;
+		return true;
 	}
 	return false;
 }
@@ -260,7 +264,7 @@ void SeNet::EventWrite(Session* pSession)
 	char* pSendBuf = pSession->GetSendBuf(nSendSize);
 	while (pSession && pSendBuf)
 	{
-		int ret = send(fd, pSendBuf, nSendSize, 0);
+		int ret = ::send(fd, pSendBuf, nSendSize, 0);
 		if (ret <= 0)
 		{
 			break;
@@ -380,9 +384,7 @@ void SeNet::SendMsg(const char* msg, int len)
 
 void SeNet::SendProtoMsg(socket_t fd, const int nMsgID, const char* msg, int len)
 {
-	NetMsgHead MsgHead;
-	MsgHead.SetMsgID(nMsgID);
-	MsgHead.SetBodyLength(len);
+	NetMsgHead MsgHead(nMsgID, len);
 	int nSend = len + MSG_HEAD_LEN;
 	char pHead[MSG_HEAD_LEN] = { 0 };
 	MsgHead.EnCode(pHead);
@@ -392,9 +394,7 @@ void SeNet::SendProtoMsg(socket_t fd, const int nMsgID, const char* msg, int len
 
 void SeNet::SendProtoMsg(std::vector<socket_t>& fdlist, const int nMsgID, const char* msg, int len)
 {
-	NetMsgHead MsgHead;
-	MsgHead.SetMsgID(nMsgID);
-	MsgHead.SetBodyLength(len);
+	NetMsgHead MsgHead(nMsgID, len);
 	int nSend = len + MSG_HEAD_LEN;
 	char pHead[MSG_HEAD_LEN] = { 0 };
 	MsgHead.EnCode(pHead);
@@ -404,9 +404,7 @@ void SeNet::SendProtoMsg(std::vector<socket_t>& fdlist, const int nMsgID, const 
 
 void SeNet::SendProtoMsg(const int nMsgID, const char* msg, int len)
 {
-	NetMsgHead MsgHead;
-	MsgHead.SetMsgID(nMsgID);
-	MsgHead.SetBodyLength(len);
+	NetMsgHead MsgHead(nMsgID, len);
 	int nSend = len + MSG_HEAD_LEN;
 	char pHead[MSG_HEAD_LEN] = { 0 };
 	MsgHead.EnCode(pHead);

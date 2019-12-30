@@ -20,7 +20,7 @@ struct IMsgHead
 	virtual UINT32 GetBodyLength() const = 0;
 	virtual void SetBodyLength(UINT32 nLength) = 0;
 
-	INT64 Htonll(INT64 nData)
+	UINT64 Htonll(UINT64 nData)
 	{
 #ifdef _WIN32
 		return htonll(nData);
@@ -29,7 +29,7 @@ struct IMsgHead
 #endif
 	}
 
-	INT64 Ntohll(INT64 nData)
+	UINT64 Ntohll(UINT64 nData)
 	{
 #ifdef _WIN32
 		return ntohll(nData);
@@ -38,7 +38,7 @@ struct IMsgHead
 #endif
 	}
 
-	INT32 Htonl(INT32 nData)
+	UINT32 Htonl(UINT32 nData)
 	{
 #ifdef _WIN32
 		return htonl(nData);
@@ -47,7 +47,7 @@ struct IMsgHead
 #endif
 	}
 
-	INT32 Ntohl(INT32 nData)
+	UINT32 Ntohl(UINT32 nData)
 	{
 #ifdef _WIN32
 		return ntohl(nData);
@@ -56,7 +56,7 @@ struct IMsgHead
 #endif
 	}
 
-	INT16 Htons(INT16 nData)
+	UINT16 Htons(UINT16 nData)
 	{
 #ifdef _WIN32
 		return htons(nData);
@@ -65,7 +65,7 @@ struct IMsgHead
 #endif
 	}
 
-	INT16 Ntohs (INT16 nData)
+	UINT16 Ntohs (UINT16 nData)
 	{
 #ifdef _WIN32
 		return ntohs(nData);
@@ -84,16 +84,20 @@ public:
 		mSize = 0;
 		mMsgID = 0;
 	}
+	NetMsgHead(UINT16 MsgID, UINT32 Size):mMsgID(MsgID), mSize(Size){}
 
 	// Message Head[ MsgID(2) | MsgSize(4) ]
 	virtual void EnCode(char* strData)
 	{
 		UINT16 nMsgID = Htons(mMsgID);
-		memcpy(strData, (void*)(&nMsgID), sizeof(mMsgID));
+		memcpy(strData, &nMsgID, sizeof(nMsgID));
 
 		UINT32 nPackSize = mSize + MSG_HEAD_LEN;
 		UINT32 nSize = Htonl(nPackSize);
-		memcpy(strData + 2, (void*)(&nSize), sizeof(mSize));
+		memcpy(strData + 2, &nSize, sizeof(nSize));
+		//memcpy(strData, &mMsgID, sizeof(mMsgID));
+		//UINT32 n = mSize + MSG_HEAD_LEN;
+		//memcpy(strData + 2, &n, sizeof(n));
 	}
 
 	// Message Head[ MsgID(2) | MsgSize(4) ]
@@ -106,6 +110,10 @@ public:
 		UINT32 nPackSize = 0;
 		memcpy(&nPackSize, strData + 2, sizeof(mSize));
 		mSize = Ntohl(nPackSize) - MSG_HEAD_LEN;
+		//memcpy(&mMsgID, strData, sizeof(mMsgID));
+		//int nSize = 0;
+		//memcpy(&nSize, strData + 2, sizeof(nSize));
+		//mSize = nSize - MSG_HEAD_LEN;
 	}
 
 	virtual UINT16 GetMsgID() const
@@ -128,7 +136,7 @@ public:
 		mSize = nLength;
 	}
 
-protected:
+private:
 	UINT32 mSize;
 	UINT16 mMsgID;
 };
