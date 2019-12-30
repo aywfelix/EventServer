@@ -104,6 +104,8 @@ bool SeNet::InitClient(const char* ip, UINT port)
 	if (!mSocket->Connect(ip, port))
 	{
 		LOG_WARN("init client error, can not connect server....");
+		// close connect event
+		mEventCB(mSocket->GetFd(), SE_NET_EVENT_TIMEOUT, this);
 		return false;
 	}
 	mSocket->SetSocketOptions();
@@ -120,6 +122,8 @@ void SeNet::AddSession(Socket* pSocket)
 		return;
 	pSession->SetSocket(pSocket);
 	mSessions.emplace(pSocket->GetFd(), pSession);
+	// connect event
+	mEventCB(pSocket->GetFd(), SE_NET_EVENT_CONNECTED, this);
 }
 
 Session* SeNet::GetSession(socket_t fd)
@@ -137,6 +141,9 @@ void SeNet::CloseSession(Session* pSession)
 	socket_t fd = pSession->GetSocket()->GetFd();
 	if (fd > 0)
 	{
+		// close connect event
+		mEventCB(fd, SE_NET_EVENT_EOF, this);
+
 		mSessions.erase(fd);
 		mEventOp->DelEvent(fd, EV_READ | EV_WRITE);
 		g_pSessionPool->DelSession(pSession);
@@ -197,7 +204,12 @@ void SeNet::EventRead(Session* pSession)
 				LOG_INFO("socket recv data finish!");
 				break;
 			}
-			LOG_WARN("socket recv error!");
+			else if (errno == 0)
+			{
+				LOG_WARN("socket recv ok, err %s", strerror(errno));
+				break;
+			}
+			LOG_WARN("socket recv error! err code %d, %s", errno, strerror(errno));
 			CloseSession(pSession);
 			break;
 		}
@@ -207,7 +219,7 @@ void SeNet::EventRead(Session* pSession)
 			{
 				LOG_INFO("================================================");
 			}
-			LOG_WARN("connection peer closed!");
+			LOG_WARN("connection peer closed! err code %d, %s", errno, strerror(errno));
 			CloseSession(pSession);
 			break;
 		}
