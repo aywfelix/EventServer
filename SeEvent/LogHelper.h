@@ -24,6 +24,7 @@ public:
 	~LogHelper();
 	bool Init(bool termout = true);
 	void Log(const char* file, const char* func, int line, int level, const char* fmt, ...);
+	
 	void Start();
 	void Stop();
 	bool LoadInfoFromCfg(std::string& logcfg);
@@ -54,3 +55,26 @@ g_pLog = std::make_unique<LogHelper>();\
 g_pLog->Init(a);\
 g_pLog->Start();\
 }while (0);
+
+class Writer
+{
+public:
+	int mline;
+	const char* mfile;
+	const char* mlevel;
+	const char* mfunc;
+	Writer(const char* file, const char* func, const char* level, int line):mfile(file),mfunc(func),mlevel(level),mline(line){}
+	friend std::ostringstream& operator<<(std::ostringstream& oss, const Writer& writer)
+	{
+		
+	}
+};
+
+
+#define LOG(LEVEL, ...) LOG##LEVEL(__FILE__, __FUNCTION__, __LINE__, #LEVEL, __VA_ARGS__)
+
+#define LOGDEBUG(__FILE__, __FUNCTION__, __LINE__, LEVEL, ...)  Writer(__FILE__, __FUNCTION__, __LINE__, #LEVEL, __VA_ARGS__)
+#define LOGINFO(__FILE__, __FUNCTION__, __LINE__, LEVEL, ...)  Writer(__FILE__, __FUNCTION__, __LINE__, #LEVEL, __VA_ARGS__)
+#define LOGWARN(__FILE__, __FUNCTION__, __LINE__, LEVEL, ...)  Writer(__FILE__, __FUNCTION__, __LINE__, #LEVEL, __VA_ARGS__)
+#define LOGERR(__FILE__, __FUNCTION__, __LINE__, LEVEL, ...)  Writer(__FILE__, __FUNCTION__, __LINE__, #LEVEL, __VA_ARGS__)
+#define LOGFATAL(__FILE__, __FUNCTION__, __LINE__, LEVEL, ...)  Writer(__FILE__, __FUNCTION__, __LINE__, #LEVEL, __VA_ARGS__)
