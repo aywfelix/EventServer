@@ -121,7 +121,14 @@ void SeNet::AddSession(Socket* pSocket)
 	if (pSession == nullptr)
 		return;
 	pSession->SetSocket(pSocket);
-	mSessions.emplace(pSocket->GetFd(), pSession);
+	if (!mbServer)
+	{
+		mSessions.emplace(0, pSession);  // 客户端只有一个session信息
+	}
+	else
+	{
+		mSessions.emplace(pSocket->GetFd(), pSession);
+	}
 	// connect event
 	mEventCB(pSocket->GetFd(), SE_NET_EVENT_CONNECTED, this);
 }

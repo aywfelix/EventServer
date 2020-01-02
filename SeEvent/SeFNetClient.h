@@ -41,7 +41,13 @@ public:
 	// remove call back
 	void RemoveReceiveCallBack(EServerType eType, UINT32 nMsgId);
 	// send msg
-	void SendByServerId();
+	void SendByServerId(int nServerId, const int nMsgID, const char* msg, int len);
+	void SendByServerIds(std::vector<int>& nServerIds, const int nMsgID, const char* msg, int len);
+	void SendProtoBuffer(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendProtoBuffer(std::vector<int>& nServerIds, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendToAll(const int nMsgID, const char* msg, int len);
+	void SendToAll(const int nMsgID, ::google::protobuf::Message* pMsg);
+
 private:
 	void AddReceiveCallBack(EServerType eType, UINT32 nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr);
 	void AddReceiveCallBack(EServerType eType, NET_RECEIVE_FUNCTOR_PTR functorPtr);

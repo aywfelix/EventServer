@@ -2,7 +2,7 @@
 
 #include <list>
 #include <map>
-
+#include <google/protobuf/message.h>
 #include "Se.h"
 
 class SeFNet
@@ -44,8 +44,16 @@ public:
 	void AddReceiveCallBack(const NET_RECEIVE_FUNCTOR_PTR& cb);
 	void AddEventCallBack(const NET_EVENT_FUNCTOR_PTR& cb);
 	void RemoveReceiveCallBack(const int nMsgID);
-private:
 
+	// send msg
+	void SendMsg(socket_t fd, const int nMsgID, const char* msg, int len);
+	void SendMsg(std::vector<socket_t>& fdlist, const int nMsgID, const char* msg, int len);
+	void SendToAllMsg(const int nMsgID, const char* msg, int len);
+
+	void SendPBMsg(socket_t fd, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendPBMsg(std::vector<socket_t>& fdlist, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendPBToAllMsg(const int nMsgID, ::google::protobuf::Message* pMsg);
+private:
 	void OnReceiveNetPack(const socket_t nFd, const int nMsgId, const char* pMsg, const uint32_t nLen);
 	void OnSocketNetEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);
 private:
