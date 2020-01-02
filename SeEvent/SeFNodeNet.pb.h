@@ -546,32 +546,32 @@ class ServerReportList :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kServerListFieldNumber = 1,
+    kServerInfoFieldNumber = 1,
   };
-  // repeated .SeFNetProto.ServerReport server_list = 1;
-  int server_list_size() const;
+  // repeated .SeFNetProto.ServerReport server_info = 1;
+  int server_info_size() const;
   private:
-  int _internal_server_list_size() const;
+  int _internal_server_info_size() const;
   public:
-  void clear_server_list();
-  ::SeFNetProto::ServerReport* mutable_server_list(int index);
+  void clear_server_info();
+  ::SeFNetProto::ServerReport* mutable_server_info(int index);
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::SeFNetProto::ServerReport >*
-      mutable_server_list();
+      mutable_server_info();
   private:
-  const ::SeFNetProto::ServerReport& _internal_server_list(int index) const;
-  ::SeFNetProto::ServerReport* _internal_add_server_list();
+  const ::SeFNetProto::ServerReport& _internal_server_info(int index) const;
+  ::SeFNetProto::ServerReport* _internal_add_server_info();
   public:
-  const ::SeFNetProto::ServerReport& server_list(int index) const;
-  ::SeFNetProto::ServerReport* add_server_list();
+  const ::SeFNetProto::ServerReport& server_info(int index) const;
+  ::SeFNetProto::ServerReport* add_server_info();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::SeFNetProto::ServerReport >&
-      server_list() const;
+      server_info() const;
 
   // @@protoc_insertion_point(class_scope:SeFNetProto.ServerReportList)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::SeFNetProto::ServerReport > server_list_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::SeFNetProto::ServerReport > server_info_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_SeFNodeNet_2eproto;
 };
@@ -3732,43 +3732,43 @@ inline void ServerReport::set_server_type(::PROTOBUF_NAMESPACE_ID::int32 value) 
 
 // ServerReportList
 
-// repeated .SeFNetProto.ServerReport server_list = 1;
-inline int ServerReportList::_internal_server_list_size() const {
-  return server_list_.size();
+// repeated .SeFNetProto.ServerReport server_info = 1;
+inline int ServerReportList::_internal_server_info_size() const {
+  return server_info_.size();
 }
-inline int ServerReportList::server_list_size() const {
-  return _internal_server_list_size();
+inline int ServerReportList::server_info_size() const {
+  return _internal_server_info_size();
 }
-inline void ServerReportList::clear_server_list() {
-  server_list_.Clear();
+inline void ServerReportList::clear_server_info() {
+  server_info_.Clear();
 }
-inline ::SeFNetProto::ServerReport* ServerReportList::mutable_server_list(int index) {
-  // @@protoc_insertion_point(field_mutable:SeFNetProto.ServerReportList.server_list)
-  return server_list_.Mutable(index);
+inline ::SeFNetProto::ServerReport* ServerReportList::mutable_server_info(int index) {
+  // @@protoc_insertion_point(field_mutable:SeFNetProto.ServerReportList.server_info)
+  return server_info_.Mutable(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::SeFNetProto::ServerReport >*
-ServerReportList::mutable_server_list() {
-  // @@protoc_insertion_point(field_mutable_list:SeFNetProto.ServerReportList.server_list)
-  return &server_list_;
+ServerReportList::mutable_server_info() {
+  // @@protoc_insertion_point(field_mutable_list:SeFNetProto.ServerReportList.server_info)
+  return &server_info_;
 }
-inline const ::SeFNetProto::ServerReport& ServerReportList::_internal_server_list(int index) const {
-  return server_list_.Get(index);
+inline const ::SeFNetProto::ServerReport& ServerReportList::_internal_server_info(int index) const {
+  return server_info_.Get(index);
 }
-inline const ::SeFNetProto::ServerReport& ServerReportList::server_list(int index) const {
-  // @@protoc_insertion_point(field_get:SeFNetProto.ServerReportList.server_list)
-  return _internal_server_list(index);
+inline const ::SeFNetProto::ServerReport& ServerReportList::server_info(int index) const {
+  // @@protoc_insertion_point(field_get:SeFNetProto.ServerReportList.server_info)
+  return _internal_server_info(index);
 }
-inline ::SeFNetProto::ServerReport* ServerReportList::_internal_add_server_list() {
-  return server_list_.Add();
+inline ::SeFNetProto::ServerReport* ServerReportList::_internal_add_server_info() {
+  return server_info_.Add();
 }
-inline ::SeFNetProto::ServerReport* ServerReportList::add_server_list() {
-  // @@protoc_insertion_point(field_add:SeFNetProto.ServerReportList.server_list)
-  return _internal_add_server_list();
+inline ::SeFNetProto::ServerReport* ServerReportList::add_server_info() {
+  // @@protoc_insertion_point(field_add:SeFNetProto.ServerReportList.server_info)
+  return _internal_add_server_info();
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::SeFNetProto::ServerReport >&
-ServerReportList::server_list() const {
-  // @@protoc_insertion_point(field_list:SeFNetProto.ServerReportList.server_list)
-  return server_list_;
+ServerReportList::server_info() const {
+  // @@protoc_insertion_point(field_list:SeFNetProto.ServerReportList.server_info)
+  return server_info_;
 }
 
 // -------------------------------------------------------------------

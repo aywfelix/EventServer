@@ -43,11 +43,14 @@ public:
 	// send msg
 	void SendByServerId(int nServerId, const int nMsgID, const char* msg, int len);
 	void SendByServerIds(std::vector<int>& nServerIds, const int nMsgID, const char* msg, int len);
-	void SendProtoBuffer(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg);
-	void SendProtoBuffer(std::vector<int>& nServerIds, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendPBByServerId(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendPBByServerIds(std::vector<int>& nServerIds, const int nMsgID, ::google::protobuf::Message* pMsg);
 	void SendToAll(const int nMsgID, const char* msg, int len);
-	void SendToAll(const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendPBToAll(const int nMsgID, ::google::protobuf::Message* pMsg);
 
+	// 
+	ConnectDataPtr GetServerNetInfo(const int nServerID);
+	ConnectDataPtr GetServerNetInfo(const SeNet* pNet);
 private:
 	void AddReceiveCallBack(EServerType eType, UINT32 nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr);
 	void AddReceiveCallBack(EServerType eType, NET_RECEIVE_FUNCTOR_PTR functorPtr);
@@ -65,7 +68,6 @@ private:
 		std::map<int, NET_RECEIVE_FUNCTOR_PTR> mReceiveCallBack;
 		std::list<NET_RECEIVE_FUNCTOR_PTR> mCallBackList;
 		std::list<NET_EVENT_FUNCTOR_PTR> mEventCallBackList;
-		
 	};
 	// ServerType callback
 	std::map<int, CallBack> mmCallBack;

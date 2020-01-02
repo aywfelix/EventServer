@@ -420,7 +420,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_SeFNodeNet_2eproto::offsets[] 
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerReportList, server_list_),
+  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerReportList, server_info_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerHeartBeat, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -624,7 +624,7 @@ const char descriptor_table_protodef_SeFNodeNet_2eproto[] PROTOBUF_SECTION_VARIA
   "ax_online\030\005 \001(\005\022\030\n\020server_cur_count\030\006 \001("
   "\005\022/\n\014server_state\030\007 \001(\0162\031.SeFNetProto.ES"
   "erverState\022\023\n\013server_type\030\010 \001(\005\"B\n\020Serve"
-  "rReportList\022.\n\013server_list\030\001 \003(\0132\031.SeFNe"
+  "rReportList\022.\n\013server_info\030\001 \003(\0132\031.SeFNe"
   "tProto.ServerReport\" \n\017ServerHeartBeat\022\r"
   "\n\005count\030\001 \001(\005\"D\n\022NodeToMasterPacket\022.\n\013s"
   "erver_info\030\001 \001(\0132\031.SeFNetProto.ServerRep"
@@ -1164,7 +1164,7 @@ ServerReportList::ServerReportList()
 ServerReportList::ServerReportList(const ServerReportList& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr),
-      server_list_(from.server_list_) {
+      server_info_(from.server_info_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:SeFNetProto.ServerReportList)
 }
@@ -1196,7 +1196,7 @@ void ServerReportList::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  server_list_.Clear();
+  server_info_.Clear();
   _internal_metadata_.Clear();
 }
 
@@ -1207,13 +1207,13 @@ const char* ServerReportList::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // repeated .SeFNetProto.ServerReport server_list = 1;
+      // repeated .SeFNetProto.ServerReport server_info = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_server_list(), ptr);
+            ptr = ctx->ParseMessage(_internal_add_server_info(), ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
@@ -1245,12 +1245,12 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .SeFNetProto.ServerReport server_list = 1;
+  // repeated .SeFNetProto.ServerReport server_info = 1;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_server_list_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->_internal_server_info_size()); i < n; i++) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(1, this->_internal_server_list(i), target, stream);
+      InternalWriteMessageToArray(1, this->_internal_server_info(i), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1269,9 +1269,9 @@ size_t ServerReportList::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .SeFNetProto.ServerReport server_list = 1;
-  total_size += 1UL * this->_internal_server_list_size();
-  for (const auto& msg : this->server_list_) {
+  // repeated .SeFNetProto.ServerReport server_info = 1;
+  total_size += 1UL * this->_internal_server_info_size();
+  for (const auto& msg : this->server_info_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -1307,7 +1307,7 @@ void ServerReportList::MergeFrom(const ServerReportList& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  server_list_.MergeFrom(from.server_list_);
+  server_info_.MergeFrom(from.server_info_);
 }
 
 void ServerReportList::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -1331,7 +1331,7 @@ bool ServerReportList::IsInitialized() const {
 void ServerReportList::InternalSwap(ServerReportList* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  server_list_.InternalSwap(&other->server_list_);
+  server_info_.InternalSwap(&other->server_info_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ServerReportList::GetMetadata() const {

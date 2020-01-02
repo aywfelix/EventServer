@@ -70,7 +70,7 @@ void SeFNet::OnSocketNetEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeN
 	}
 }
 
-void SeFNet::SendMsg(socket_t fd, const int nMsgID, const char* msg, int len)
+void SeFNet::SendMsg(const socket_t fd, const int nMsgID, const char* msg, int len)
 {
 	mNet->SendProtoMsg(fd, msg, len);
 }
@@ -109,4 +109,18 @@ void SeFNet::SendPBToAllMsg(const int nMsgID, ::google::protobuf::Message* pMsg)
 		return;
 	}
 	mNet->SendProtoMsg(nMsgID, strMsg.c_str(), strMsg.length());
+}
+
+bool SeFNet::ReceivePB(const int nMsgID, const std::string& strMsg, google::protobuf::Message* pMsg)
+{
+	return ReceivePB(nMsgID, strMsg.c_str(), strMsg.length(), pMsg);
+}
+bool SeFNet::ReceivePB(const int nMsgID, const char* msg, const UINT32 nLen, google::protobuf::Message* pData)
+{
+	if (msg == nullptr)
+	{
+		return false;
+	}
+	pData->ParseFromArray(msg, nLen);
+	return true;
 }

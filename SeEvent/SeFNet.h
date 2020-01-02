@@ -15,7 +15,6 @@ public:
 	// init server 
 	bool InitNet(UINT32 port);
 
-
 	// add callback
 	template<typename BaseType>
 	void AddReceiveCallBack(const int nMsgID, BaseType* pBase, void (BaseType::* HandleReceive)(const socket_t, const int, const char*, const uint32_t))
@@ -46,13 +45,19 @@ public:
 	void RemoveReceiveCallBack(const int nMsgID);
 
 	// send msg
-	void SendMsg(socket_t fd, const int nMsgID, const char* msg, int len);
+	void SendMsg(const socket_t fd, const int nMsgID, const char* msg, int len);
 	void SendMsg(std::vector<socket_t>& fdlist, const int nMsgID, const char* msg, int len);
 	void SendToAllMsg(const int nMsgID, const char* msg, int len);
 
-	void SendPBMsg(socket_t fd, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendPBMsg(const socket_t fd, const int nMsgID, ::google::protobuf::Message* pMsg);
 	void SendPBMsg(std::vector<socket_t>& fdlist, const int nMsgID, ::google::protobuf::Message* pMsg);
 	void SendPBToAllMsg(const int nMsgID, ::google::protobuf::Message* pMsg);
+	// receive msg
+	bool ReceivePB(const int nMsgID, const std::string& strMsg, google::protobuf::Message* pMsg);
+	bool ReceivePB(const int nMsgID, const char* msg, const UINT32 nLen, google::protobuf::Message* pData);
+
+	//
+	SeNet* GetNet() { return mNet; }
 private:
 	void OnReceiveNetPack(const socket_t nFd, const int nMsgId, const char* pMsg, const uint32_t nLen);
 	void OnSocketNetEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);

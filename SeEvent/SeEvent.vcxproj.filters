@@ -123,6 +123,12 @@
     <ClInclude Include="SeFNet.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="NetServerBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NetClientBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SeEpoll.cpp">
@@ -201,6 +207,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SeFNet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NetServerBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NetClientBase.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

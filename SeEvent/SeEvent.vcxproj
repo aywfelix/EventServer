@@ -92,6 +92,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,6 +143,8 @@
     <ClInclude Include="Lock.hpp" />
     <ClInclude Include="LogHelper.h" />
     <ClInclude Include="MemPool.hpp" />
+    <ClInclude Include="NetClientBase.h" />
+    <ClInclude Include="NetServerBase.h" />
     <ClInclude Include="Se.h" />
     <ClInclude Include="SeEpoll.h" />
     <ClInclude Include="SeFNetClient.h" />
@@ -172,6 +175,8 @@
     <ClCompile Include="JsonConfig.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
     <ClCompile Include="LogHelper.cpp" />
+    <ClCompile Include="NetClientBase.cpp" />
+    <ClCompile Include="NetServerBase.cpp" />
     <ClCompile Include="Se.cpp" />
     <ClCompile Include="SeEpoll.cpp" />
     <ClCompile Include="SeFNetClient.cpp" />

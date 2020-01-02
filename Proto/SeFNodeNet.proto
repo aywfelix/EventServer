@@ -27,7 +27,7 @@ message ServerReport
 
 message ServerReportList
 {
-	repeated ServerReport	server_list = 1;
+	repeated ServerReport server_info = 1;
 }
 
 message ServerHeartBeat

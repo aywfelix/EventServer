@@ -187,12 +187,12 @@ void SeFNetClient::SendByServerIds(std::vector<int>& nServerIds, const int nMsgI
 		SendByServerId(it, nMsgID, msg, len);
 	}
 }
-void SeFNetClient::SendProtoBuffer(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg)
+void SeFNetClient::SendPBByServerId(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg)
 {
 	std::string strMsg = pMsg->SerializeAsString();
 	SendByServerId(nServerId, nMsgID, strMsg.c_str(), strMsg.length());
 }
-void SeFNetClient::SendProtoBuffer(std::vector<int>& nServerIds, const int nMsgID, ::google::protobuf::Message* pMsg)
+void SeFNetClient::SendPBByServerIds(std::vector<int>& nServerIds, const int nMsgID, ::google::protobuf::Message* pMsg)
 {
 	for (auto& it : nServerIds)
 	{
@@ -210,7 +210,7 @@ void SeFNetClient::SendToAll(const int nMsgID, const char* msg, int len)
 		}
 	}
 }
-void SeFNetClient::SendToAll(const int nMsgID, ::google::protobuf::Message* pMsg)
+void SeFNetClient::SendPBToAll(const int nMsgID, ::google::protobuf::Message* pMsg)
 {
 	for (auto& it : mConnecServers)
 	{
@@ -220,4 +220,29 @@ void SeFNetClient::SendToAll(const int nMsgID, ::google::protobuf::Message* pMsg
 			it.second.pNet->SendMsg(0, nMsgID, strMsg.c_str(), strMsg.length());
 		}
 	}
+}
+
+ConnectDataPtr SeFNetClient::GetServerNetInfo(const int nServerID)
+{
+	auto it = mConnecServers.find(nServerID);
+	if (it == mConnecServers.end())
+	{
+		return nullptr;
+	}
+	ConnectDataPtr connect = std::make_shared<ConnectData>(it->second);
+	return connect;
+}
+
+ConnectDataPtr SeFNetClient::GetServerNetInfo(const SeNet* pNet)
+{
+	auto it = mConnecServers.begin();
+	for (;it != mConnecServers.end(); it++)
+	{
+		if (it->second.pNet->GetNet() == pNet)
+		{
+			ConnectDataPtr connect = std::make_shared<ConnectData>(it->second);
+			return connect;
+		}
+	}
+	return nullptr;
 }

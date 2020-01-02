@@ -10,6 +10,8 @@
 // Message Head[ MsgID(2) | MsgSize(4) ]
 #define MSG_HEAD_LEN 6
 
+
+
 struct IMsgHead
 {
 
@@ -171,6 +173,7 @@ struct ConnectData
 	int ServerId;
 	int Port;
 	std::string Ip;
+	std::string name;
 	EServerType ServerType;
 	ConnectState ConnState;
 
@@ -183,3 +186,6 @@ struct ServerData
 	std::shared_ptr<SeFNetProto::ServerReport> ServerInfo;
 	socket_t fd;
 };
+
+using ConnectDataPtr = std::shared_ptr<ConnectData>;
+using ServerDataPtr = std::shared_ptr<ServerData>;
