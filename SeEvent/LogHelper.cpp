@@ -8,13 +8,57 @@
 
 std::unique_ptr<LogHelper> g_pLog = nullptr;
 
-LogHelper::LogHelper()
-{
-}
+std::ostringstream LogHelper::moss;
 
+LogHelper::LogHelper() {}
+
+LogHelper::LogHelper(int level, const char* file, const char* func, int line) :m_level(level), m_file(file), m_func(func), m_line(line)
+{
+	// time
+	char time_stamp[32];
+	memset(time_stamp, '\0', sizeof(time_stamp));
+	time_t now = time(0);
+	::strftime(time_stamp, sizeof(time_stamp), "%Y-%m-%d %H:%M:%S", localtime(&now));
+	if (level == E_LOG_FATAL || level == E_LOG_ERR)
+	{
+		moss << "\x1b[31m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
+	}
+	else if (level == E_LOG_WARN)
+	{
+		moss << "\x1b[33m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
+	}
+	else if (level == E_LOG_INFO)
+	{
+		moss << "\x1b[32m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
+	}
+	else if (level == E_LOG_DEBUG)
+	{
+		moss << "\x1b[37m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
+	}
+}
 LogHelper::~LogHelper()
 {
+	if (m_level == E_LOG_FATAL || m_level == E_LOG_ERR)
+	{
+		moss << "\x1b[0m";  //red
+	}
+	else if (m_level == E_LOG_WARN)
+	{
+		moss << "\x1b[0m"; //yellow
+	}
+	else if (m_level == E_LOG_INFO)
+	{
+		moss << "\x1b[0m"; //green
+	}
+	else if (m_level == E_LOG_DEBUG)
+	{
+		moss << "\x1b[0m"; //white
+	}
+	moss << "\n";
+	std::cout << moss.str() << std::flush;
+	moss.clear();
 }
+
 
 bool LogHelper::Init(bool termout)
 {
@@ -62,7 +106,7 @@ void LogHelper::SetLogLevel(int level)
 	m_level = level;
 }
 
-void LogHelper::Log(const char* file, const char* func, int line, int level, const char* fmt, ...)
+void LogHelper::Log(int level, const char* file, const char* func, int line, const char* fmt, ...)
 {
 	switch (m_level)
 	{
@@ -104,7 +148,7 @@ void LogHelper::Log(const char* file, const char* func, int line, int level, con
 	default:
 		break;
 	}
-	//记录日志时间
+	// time
 	char time_stamp[32];
 	memset(time_stamp, '\0', sizeof(time_stamp));
 	time_t now = time(0);
@@ -117,33 +161,32 @@ void LogHelper::Log(const char* file, const char* func, int line, int level, con
 	vsnprintf(content, sizeof(content) - 1, fmt, ap);
 	va_end(ap);
 
-	std::ostringstream oss;
 	if (m_TermOut)
 	{
 		if (level == E_LOG_FATAL || level == E_LOG_ERR)
 		{
-			oss << "\x1b[31m" <<time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m";  //red
+			moss << "\x1b[31m" <<time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m";  //red
 		}
 		else if (level == E_LOG_WARN)
 		{
-			oss << "\x1b[33m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //yellow
+			moss << "\x1b[33m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //yellow
 		}
 		else if (level == E_LOG_INFO)
 		{
-			oss << "\x1b[32m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //green
+			moss << "\x1b[32m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //green
 		}
 		else if(level == E_LOG_DEBUG)
 		{
-			oss << "\x1b[37m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //white
+			moss << "\x1b[37m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //white
 		}
 	}
 	else
 	{
-		oss << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content;
+		moss << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content;
 	}
-	oss << "\n";
-	m_queue.PutQ(oss.str());
-	oss.clear();
+	moss << "\n";
+	m_queue.PutQ(moss.str());
+	moss.clear();
 }
 
 bool LogHelper::LoadInfoFromCfg(std::string& logcfg)
