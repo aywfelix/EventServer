@@ -8,8 +8,7 @@ using namespace SeFNetProto;
 bool MasterNodeServer::InitHelper()
 {
 	//init server info
-	int ret = mpNetModule->InitNet(g_pJsonConfig->m_ServerConf["NodePort"].asUInt());
-	if (ret < 0)
+	if (!mpNetModule->InitNet(g_pJsonConfig->m_ServerConf["NodePort"].asUInt()))
 	{
 		LOG_ERR("init MasterNodeServer failed");
 		return false;

@@ -69,7 +69,7 @@ void NetServerBase::OnReportToServer(const socket_t nFd, const int nMsgID, const
 	*(pServerData->ServerInfo) = report;
 	mmClientNodes.erase(report.server_id());
 	mmClientNodes.emplace(report.server_id(), pServerData);
-	AfterReportToServer(pServerData);
+	AfterReportToServer(pServerData);  // 被子类重新接口
 	LOG_INFO("report server info from %d", report.server_id());
 }
 void NetServerBase::AfterReportToServer(ServerDataPtr pReportServerData)
