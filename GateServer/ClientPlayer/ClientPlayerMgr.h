@@ -3,7 +3,7 @@
 #include <map>
 #include <memory>
 #include <list>
-#include "NFPluginModule/NFPlatform.h"
+
 
 class ClientPlayer;
 class NetObject;

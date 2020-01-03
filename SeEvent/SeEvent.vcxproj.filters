@@ -129,6 +129,39 @@
     <ClInclude Include="NetClientBase.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Packet\Packet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Packet\PacketMgr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Packet\Player.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientProto\Chat.pb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientProto\ClientPublic.pb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientModule\ModuleChat.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientModule\ModuleGate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientModule\ModuleLogin.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientModule\ModuleWorld.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CityHash\city.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CityHash\citycrc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SeEpoll.cpp">
@@ -213,6 +246,24 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="NetClientBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Packet\Packet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Packet\PacketMgr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Packet\Player.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientProto\Chat.pb.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientProto\ClientPublic.pb.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CityHash\city.cc">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

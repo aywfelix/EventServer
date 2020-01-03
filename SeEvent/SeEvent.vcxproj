@@ -133,6 +133,14 @@
   <ItemGroup>
     <ClInclude Include="Assertx.h" />
     <ClInclude Include="blockingconcurrentqueue.h" />
+    <ClInclude Include="CityHash\city.h" />
+    <ClInclude Include="CityHash\citycrc.h" />
+    <ClInclude Include="ClientModule\ModuleChat.h" />
+    <ClInclude Include="ClientModule\ModuleGate.h" />
+    <ClInclude Include="ClientModule\ModuleLogin.h" />
+    <ClInclude Include="ClientModule\ModuleWorld.h" />
+    <ClInclude Include="ClientProto\Chat.pb.h" />
+    <ClInclude Include="ClientProto\ClientPublic.pb.h" />
     <ClInclude Include="concurrentqueue.h" />
     <ClInclude Include="ConcurrentQueue.hpp" />
     <ClInclude Include="json.h" />
@@ -145,6 +153,9 @@
     <ClInclude Include="MemPool.hpp" />
     <ClInclude Include="NetClientBase.h" />
     <ClInclude Include="NetServerBase.h" />
+    <ClInclude Include="Packet\Packet.h" />
+    <ClInclude Include="Packet\PacketMgr.h" />
+    <ClInclude Include="Packet\Player.h" />
     <ClInclude Include="Se.h" />
     <ClInclude Include="SeEpoll.h" />
     <ClInclude Include="SeFNetClient.h" />
@@ -172,11 +183,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assertx.cpp" />
+    <ClCompile Include="CityHash\city.cc" />
+    <ClCompile Include="ClientProto\Chat.pb.cc" />
+    <ClCompile Include="ClientProto\ClientPublic.pb.cc" />
     <ClCompile Include="JsonConfig.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
     <ClCompile Include="LogHelper.cpp" />
     <ClCompile Include="NetClientBase.cpp" />
     <ClCompile Include="NetServerBase.cpp" />
+    <ClCompile Include="Packet\Packet.cpp" />
+    <ClCompile Include="Packet\PacketMgr.cpp" />
+    <ClCompile Include="Packet\Player.cpp" />
     <ClCompile Include="Se.cpp" />
     <ClCompile Include="SeEpoll.cpp" />
     <ClCompile Include="SeFNetClient.cpp" />
