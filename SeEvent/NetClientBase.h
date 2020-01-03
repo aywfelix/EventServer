@@ -4,7 +4,6 @@
 
 class SeFNetClient;
 
-
 class NetClientBase
 {
 public:
@@ -25,6 +24,7 @@ public:
 		return (EServerType)mServerReport.server_type();
 	}
 	virtual void AddConnectMaster();
+
 protected:
 	SeFNetClient* mpNetClientModule{ nullptr };
 	SeFNetProto::ServerReport mServerReport;

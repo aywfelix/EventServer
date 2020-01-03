@@ -1,23 +1,25 @@
 #include "GateNodeClient.h"
-#include "ServerComm/Config.h"
+#include "JsonConfig.h"
+#include "Se.h"
+#include "SeFNetClient.h"
 
 void GateNodeClient::InitHelper()
 {
-    m_pNetClientModule->NFINetClientModule::AddEventCallBack(EServerType::SERVER_TYPE_MASTER, this, &GateNodeClient::OnSocketEvent);
+	mpNetClientModule->AddEventCallBack(EServerType::SERVER_TYPE_MASTER, this, &GateNodeClient::OnSocketEvent);
 	SetServerInfoReport();
 	AddConnectServer();
 }
 
 void GateNodeClient::SetServerInfoReport()
 {
-    m_serverInfoReport.set_server_id(g_pConfig->m_ServerConf["NodeId"].asInt());
-    m_serverInfoReport.set_server_name(g_pConfig->m_ServerConf["NodeName"].asString());
-    m_serverInfoReport.set_server_cur_count(0);
-    m_serverInfoReport.set_server_ip(g_pConfig->m_ServerConf["NodeIp"].asString());
-    m_serverInfoReport.set_server_port(g_pConfig->m_ServerConf["NodePort"].asInt());
-    m_serverInfoReport.set_server_max_online(2000);
-    m_serverInfoReport.set_server_state(EServerState::EST_NORMAL);
-    m_serverInfoReport.set_server_type(SERVER_TYPE_GATE);
+	mServerReport.set_server_id(g_pJsonConfig->m_ServerConf["NodeId"].asInt());
+	mServerReport.set_server_name(g_pJsonConfig->m_ServerConf["NodeName"].asString());
+	mServerReport.set_server_cur_count(0);
+	mServerReport.set_server_ip(g_pJsonConfig->m_ServerConf["NodeIp"].asString());
+	mServerReport.set_server_port(g_pJsonConfig->m_ServerConf["NodePort"].asInt());
+	mServerReport.set_server_max_online(2000);
+	mServerReport.set_server_state(SeFNetProto::EServerState::EST_NORMAL);
+	mServerReport.set_server_type(SERVER_TYPE_GATE);
 }
 
 void GateNodeClient::AddConnectServer()
@@ -25,9 +27,9 @@ void GateNodeClient::AddConnectServer()
 	AddConnectMaster();
 }
 
-void GateNodeClient::OnSocketEvent(const NFSOCK nSockIndex, const NF_NET_EVENT nEvent, NFINet* pNet)
+void GateNodeClient::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
 {
-    OnSocketNodeEvent(nSockIndex, nEvent, pNet);
+    OnSocketNodeEvent(nFd, nEvent, pNet);
 }
 
 

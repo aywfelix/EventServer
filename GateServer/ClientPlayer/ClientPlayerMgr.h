@@ -1,37 +1,32 @@
-
 #pragma once
 #include <map>
 #include <memory>
 #include <list>
+#include "SeFINet.h"
+#include "MemPool.hpp"
+#include "ClientPlayer.h"
 
+class Session;
 
-class ClientPlayer;
-class NetObject;
-
-class ClientPlayerMgr
+using clientplayer_pool_t = MemPool<ClientPlayer>;
+class ClientPlayerMgr 
 {
 public:
-	ClientPlayerMgr();
-	virtual ~ClientPlayerMgr();
+	ClientPlayerMgr() {}
+	virtual ~ClientPlayerMgr() {}
+	ClientPlayer* NewPlayer(Session* pSession);
+	void DelPlayer(ClientPlayer* pClientPlayer);
+	ClientPlayer* GetPlayer(int memId);
 
-	void Destory();
-
-	ClientPlayer* CreatePlayer(NetObject* pNetObject);
-	void DestoryPlayer(ClientPlayer* pPlayer);
-
-	ClientPlayer* GetPlayer(NFSOCK nSockIndex);
-
-	void AddPlayerIDMap(uint64_t playerId, ClientPlayer* pPlayer);
-
-	ClientPlayer* GetPlayerByID(uint64_t playerId);
+	void AddPlayerIDMap(UINT64 playerId, ClientPlayer* pPlayer);
+	ClientPlayer* GetPlayerByID(UINT64 playerId);
 
 private:
-	std::list<ClientPlayer*> mNonPlayerList;
+	clientplayer_pool_t mClientPool;
 	//SocketId ClientPlayer
-	std::map<NFSOCK, ClientPlayer*> mPlayerSockMap;
+	std::map<socket_t, ClientPlayer*> mPlayerSockMap;
 	//PlayerId ClientPlayer
-	std::map<uint64_t, ClientPlayer*> mPlayerIDMap;
-
+	std::map<UINT64, ClientPlayer*> mPlayerIDMap;
 };
 
 extern std::unique_ptr<ClientPlayerMgr> g_pClientPlayerMgr;

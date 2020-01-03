@@ -1,14 +1,14 @@
 #pragma once
-#include "NFComm/NFNetPlugin/NetClientBase.h"
-#include "ServerComm/Config.h"
 
+#include "NetClientBase.h"
+
+class SeNet;
 class GateNodeClient : public NetClientBase{
 public:
     void InitHelper();
     void SetServerInfoReport();
     void AddConnectServer();
-    void OnSocketEvent(const NFSOCK nSockIndex, const NF_NET_EVENT nEvent, NFINet* pNet);
+    void OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);
    
-
 private:
 };

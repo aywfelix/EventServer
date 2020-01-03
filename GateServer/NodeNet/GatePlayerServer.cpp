@@ -2,86 +2,81 @@
 #include "NodeNet/GatePlayerServer.h"
 #include "ClientPlayer/ClientPlayer.h"
 #include "ClientPlayer/ClientPlayerMgr.h"
-#include "ServerComm/Config.h"
+#include "JsonConfig.h"
 #include "ClientModule/ModuleChat.h"
 #include "ClientModule/ModuleGate.h"
 #include "ClientModule/ModuleLogin.h"
 #include "ClientModule/ModuleWorld.h"
-#include "easylogging/easylogging++.h"
+#include "LogHelper.h"
+#include "SeFINet.h"
+#include "LogHelper.h"
 
 
 bool GatePlayerServer::Init()
 {
-	m_pNetModule = new NFNetModule();
-	m_pNetModule->ExpandBufferSize(1024 * 1024 * 20);  //20k cache
-	m_pNetModule->NFINetModule::AddEventCallBack(this, &GatePlayerServer::OnSocketClientEvent);
-	m_pNetModule->NFINetModule::AddReceiveCallBack(this, &GatePlayerServer::OnOtherMessage);
-
-	m_pNetModule->NFINetModule::AddReceiveCallBack(ModuleChat::RPC_CHAT_CHAT_REQ, this, &GatePlayerServer::OnOtherMessage);
-	int ret = m_pNetModule->Initialization(
-		g_pConfig->m_Root["GatePlayerServer"]["NodeIp"].asCString(),
-		g_pConfig->m_Root["GatePlayerServer"]["NodePort"].asInt(),
-		g_pConfig->m_Root["GatePlayerServer"]["MaxConnect"].asInt()
-	);
-	if (ret < 0)
+	m_pNetModule = new SeFNet();
+	m_pNetModule->AddEventCallBack(this, &GatePlayerServer::OnSocketClientEvent);
+	m_pNetModule->AddReceiveCallBack(this, &GatePlayerServer::OnOtherMessage);
+	m_pNetModule->AddReceiveCallBack(ModuleChat::RPC_CHAT_CHAT_REQ, this, &GatePlayerServer::OnOtherMessage);
+	//init server info
+	if (!m_pNetModule->InitNet(g_pJsonConfig->m_ServerConf["NodePort"].asUInt()))
 	{
-		LOG(ERROR) << "init GatePlayerServer failed";
+		LOG_ERR("init MasterNodeServer failed");
 		return false;
 	}
 	return true;
 }
 
-bool GatePlayerServer::Loop()
+void GatePlayerServer::Loop()
 {
-	return m_pNetModule->Execute();
+	m_pNetModule->Excute(LOOP_RUN_NONBLOCK);
 }
 
 
-void GatePlayerServer::OnSocketClientEvent(const NFSOCK nSockIndex, const NF_NET_EVENT eEvent, NFINet* pNet)
+void GatePlayerServer::OnSocketClientEvent(const socket_t nFd, const SE_NET_EVENT eEvent, SeNet* pNet)
 {
 	switch (eEvent)
 	{
-	case NF_NET_EVENT_EOF:
-	case NF_NET_EVENT_ERROR:
-	case NF_NET_EVENT_TIMEOUT:
-		OnClientDisconnect(nSockIndex);
+	case SE_NET_EVENT_EOF:
+	case SE_NET_EVENT_ERROR:
+	case SE_NET_EVENT_TIMEOUT:
+		OnClientDisconnect(nFd);
 		break;
-	case NF_NET_EVENT_CONNECTED:
-		OnClientConnected(nSockIndex);
+	case SE_NET_EVENT_CONNECTED:
+		OnClientConnected(nFd);
 		break;
 	default:
-		
 		break;
 	}
 }
 
-void GatePlayerServer::OnClientConnected(const NFSOCK nSockIndex)
+void GatePlayerServer::OnClientConnected(const socket_t nFd)
 {
-	//bind client'id with socket id
+	// bind client'id with socket id
+	//NetObject* pNetObject = m_pNetModule->GetNet()->GetNetObject(nFd);
+	//if (pNetObject)
+	//{
+	//	ClientPlayer* pClientPlayer = g_pClientPlayerMgr->CreatePlayer(pNetObject);
+	//	g_pClientPlayerMgr->AddPlayerIDMap(1, pClientPlayer); // TODO 测试 默认playerid 为 1
+	//	CLOG_INFO << "gate player server create player ok Sockfd:" << nFd;
 
-	NetObject* pNetObject = m_pNetModule->GetNet()->GetNetObject(nSockIndex);
-	if (pNetObject)
-	{
-		ClientPlayer* pClientPlayer = g_pClientPlayerMgr->CreatePlayer(pNetObject);
-		g_pClientPlayerMgr->AddPlayerIDMap(1, pClientPlayer); //TODO 测试 默认playerid 为 1
-		LOG(INFO) << "gate player server create player ok Sockfd:"<< nSockIndex;
-	}
-	else
-	{
-		LOG(ERROR) << "gate player server create player error netobject is nullptr";
-	}
+	//}
+	//else
+	//{
+	//	CLOG_ERR << "gate player server create player error netobject is nullptr";
+	//}
 }
 
-void GatePlayerServer::OnClientDisconnect(const NFSOCK nSockIndex)
+void GatePlayerServer::OnClientDisconnect(const socket_t nFd)
 {
-	ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayer(nSockIndex);
+	ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayer(nFd);
 	if (pPlayer == nullptr)
 	{
 		return;
 	}
 	else
 	{
-		g_pClientPlayerMgr->DestoryPlayer(pPlayer);
+		/*g_pClientPlayerMgr->DestoryPlayer(pPlayer);*/
 	}
 }
 
@@ -90,7 +85,7 @@ int GatePlayerServer::GetModuleID(const int msgid)
 	return int(msgid / 100);
 }
 
-void GatePlayerServer::OnOtherMessage(const NFSOCK nSockIndex, const int msgid, const char* msg, const uint32_t nLen)
+void GatePlayerServer::OnOtherMessage(const socket_t nFd, const int msgid, const char* msg, const uint32_t nLen)
 {
 	if (msgid <= 0)
 	{
@@ -99,7 +94,7 @@ void GatePlayerServer::OnOtherMessage(const NFSOCK nSockIndex, const int msgid, 
 
 	int moduleId = GetModuleID(msgid);
 
-	ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayer(nSockIndex);
+	ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayer(nFd);
 	if (pPlayer == nullptr)
 	{
 		return;
@@ -108,7 +103,7 @@ void GatePlayerServer::OnOtherMessage(const NFSOCK nSockIndex, const int msgid, 
 	{
 	case ModuleGate::MODULE_ID_GATE:
 	{
-		pPlayer->OnModuleGateMessage(msgid, msg, nLen, nSockIndex);
+		pPlayer->OnModuleGateMessage(msgid, msg, nLen, nFd);
 		break;
 	}
 	case ModuleLogin::MODULE_ID_LOGIN:
@@ -133,27 +128,25 @@ void GatePlayerServer::OnOtherMessage(const NFSOCK nSockIndex, const int msgid, 
 
 }
 
-
-
-void GatePlayerServer::SentToClient(const int nMsgID, const std::string& msg, const NFSOCK nSockIndex)
+void GatePlayerServer::SentToClient(const int nMsgID, const std::string& msg, const socket_t nFd)
 {
-	m_pNetModule->SendMsgWithOutHead(nMsgID, msg, nSockIndex);
+	m_pNetModule->SendMsg(nFd, nMsgID, msg.c_str(), msg.length());
 }
 
-void GatePlayerServer::SentToClient(int nMsgID, const google::protobuf::Message& xData, NFSOCK nSockIndex)
+void GatePlayerServer::SentToClient(const int nMsgID, google::protobuf::Message& xData, socket_t nFd)
 {
-	m_pNetModule->SendMsgPB(nMsgID, xData, nSockIndex);
+	m_pNetModule->SendPBMsg(nFd, nMsgID, &xData);
 }
 
 void GatePlayerServer::SentToAllClient(const int nMsgID, const std::string& msg)
 {
-	m_pNetModule->SendMsgToAllClientWithOutHead(nMsgID, msg);
+	m_pNetModule->SendToAllMsg(nMsgID, msg.c_str(), msg.length());
 }
 
-void GatePlayerServer::SetClientServerNode(NFSOCK client_fd, NF_SHARE_PTR<ServerData> spServerData)
+void GatePlayerServer::SetClientServerNode(socket_t client_fd, ServerDataPtr& ptr)
 {
 	ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayer(client_fd);
-	if (pPlayer != nullptr && spServerData != nullptr)
+	if (pPlayer != nullptr)
 	{
 		//pPlayer->AttachServerData(spServerData);
 		return;
@@ -163,15 +156,14 @@ void GatePlayerServer::SetClientServerNode(NFSOCK client_fd, NF_SHARE_PTR<Server
 	{
 		return;
 	}
-
 }
 
-void GatePlayerServer::KickPlayer(const NFSOCK nSockIndex)
+void GatePlayerServer::KickPlayer(const socket_t nFd)
 {
-	m_pNetModule->GetNet()->CloseNetObject(nSockIndex);
+	m_pNetModule->GetNet()->CloseClient(nFd);
 }
 
 void GatePlayerServer::KickPlayerAllPlayer()
 {
-	m_pNetModule->GetNet()->KickAll();
+	m_pNetModule->GetNet()->CloseAllClient();
 }

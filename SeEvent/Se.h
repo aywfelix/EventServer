@@ -88,6 +88,9 @@ public:
 	void SendProtoMsg(std::vector<socket_t>& fdlist, const int nMsgID, const char* msg, int len);
 	void SendProtoMsg(const int nMsgID, const char* msg, int len);
 
+	// close or kick socket
+	void CloseClient(socket_t fd);
+	void CloseAllClient();
 private:
 	void InitEventOp();
 	void AddSession(Socket* pSocket);

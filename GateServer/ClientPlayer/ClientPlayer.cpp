@@ -1,32 +1,33 @@
-#include "ClientPlayer/ClientPlayer.h"
+#include "ClientPlayer.h"
 #include "NodeNet/GateServerThread.h"
-#include "ServerProto/NFNodeNet.pb.h"
-#include "easylogging/easylogging++.h"
+#include "SeFNodeNet.pb.h"
+#include "Session.h"
+#include "Socket.h"
+#include "LogHelper.h"
 
-ClientPlayer::ClientPlayer(int id):m_id(id)
+using namespace SeFNetProto;
+
+bool ClientPlayer::Init()
 {
-
-}
-ClientPlayer::ClientPlayer()
-{
-
-}
-ClientPlayer::~ClientPlayer()
-{
-
+	return true;
 }
 
-void ClientPlayer::Clear()
+bool ClientPlayer::Clear()
 {
-
+	return true;
 }
 
-NFSOCK ClientPlayer::GetSockFd()
+int ClientPlayer::GetId()
 {
-	return m_pNetObject->GetRealFD();
+	return this->GetMemId();
 }
 
-bool ClientPlayer::OnModuleGateMessage(const int msgid, const char* msg, uint32_t nLen, NFSOCK nSockIndex)
+socket_t ClientPlayer::GetSockFd() 
+{ 
+	return mSession->GetSocket()->GetFd(); 
+}
+
+bool ClientPlayer::OnModuleGateMessage(const int msgid, const char* msg, uint32_t nLen, socket_t nFd)
 {
 	return true;
 }
@@ -41,16 +42,15 @@ bool ClientPlayer::OnModuleGameMessage(const int msgid, const char* msg, uint32_
 bool ClientPlayer::OnModuleChatMessage(const int msgid, const char* msg, uint32_t nLen)
 {
 	GateToChatPacket gatetochat;
-	gatetochat.set_player_id(m_PlayerId); //TODO 默认玩家id为1
+	gatetochat.set_player_id(mPlayerId); // TODO 默认玩家id为1
 	gatetochat.set_msg_id(msgid);
 	gatetochat.set_msg_body(msg, nLen);
 	g_pServerThread->NodeServer().SentPackToChat(GATE_ROUTE_TO_CHAT, gatetochat);
-	LOG(INFO) << "OnModuleChatMessage " << m_PlayerId << "  msgid:" << msgid;
+	CLOG_INFO << "OnModuleChatMessage " << mPlayerId << "  msgid:" << msgid;
 	return true;
 }
 bool ClientPlayer::OnModuleWorldMessage(const int msgid, const char* msg, uint32_t nLen)
 {
-
 	return true;
 }
 

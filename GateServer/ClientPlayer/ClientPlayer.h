@@ -1,41 +1,38 @@
 #pragma once
+#include "SePlatForm.h"
+#include <memory>
+#include "MemPool.hpp"
 
+class Session;
 
-class ClientPlayer
+class ClientPlayer : public MemElem
 {
 public:
-	ClientPlayer(int id);
-	ClientPlayer();
-	virtual ~ClientPlayer();
-
-	void SetSceneId(int sceneId) { m_SceneId = sceneId; }
-	void SetLastSceneId(int sceneId) { m_LastSceneId = sceneId; }
-	void SetNetObject(NetObject* pObject) { m_pNetObject = pObject; }
-	void SetConnTime(uint64_t ti) { m_ConnTime = ti; }
-	void SetPlayerId(uint64_t playerId) { m_PlayerId = playerId; }
-
-	void Clear();
-
-	NFSOCK GetSockFd();
-	uint64_t GetPlayerId() { return m_PlayerId; }
-
-	int GetId() { return m_id; }
-
+	ClientPlayer(){}
+	~ClientPlayer(){}
+	virtual bool Init();
+	virtual bool Clear();
+	int GetId();
+	socket_t GetSockFd();
+	UINT64 GetPlayerId() { return mPlayerId; }
+	void SetSceneId(int sceneId) { mSceneId = sceneId; }
+	void SetLastSceneId(int sceneId) { mLastSceneId = sceneId; }
+	void SetSession(Session* pSession) { mSession = pSession; }
+	void SetConnTime(INT64 ti) { mConnTime = ti; }
+	void SetPlayerId(UINT64 playerId) { mPlayerId = playerId; }
 public:
-	bool OnModuleGateMessage(const int msgid, const char* msg, uint32_t nLen, NFSOCK nSockIndex);
+	bool OnModuleGateMessage(const int msgid, const char* msg, uint32_t nLen, socket_t nFd);
 	bool OnModuleLoginMessage(const int msgid, const char* msg, uint32_t nLen);
 	bool OnModuleGameMessage(const int msgid, const char* msg, uint32_t nLen);
 	bool OnModuleChatMessage(const int msgid, const char* msg, uint32_t nLen);
 	bool OnModuleWorldMessage(const int msgid, const char* msg, uint32_t nLen);
-
 	void SendToClient(const int nMsgID, const std::string& msg);
 private:
-    NetObject *m_pNetObject; //store player socket info
-    int m_SceneId;
-    int m_LastSceneId;
-    int m_LineId;
-    uint64_t m_ConnTime; 
-	uint64_t m_PlayerId;
-
-	int m_id;
+	UINT64 mPlayerId;
+	int mLineId;
+	int mSceneId;
+	int mLastSceneId;
+	INT64 mConnTime;
+	Session* mSession;
 };
+

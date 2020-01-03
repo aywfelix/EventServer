@@ -366,6 +366,15 @@ void SeNet::SendMsg(socket_t fd, const char* msg, int len)
 	}
 }
 
+void SeNet::SendMsg(const char* msg, int len)
+{
+	for (auto& it : mSessions)
+	{
+		it.second->Send(msg, len);
+		mEventOp->AddEvent(it.first, EV_WRITE);
+	}
+}
+
 void SeNet::SendMsg(std::vector<socket_t>& fdlist, const char* msg, int len)
 {
 	for (auto& it : fdlist)
@@ -385,15 +394,6 @@ void SeNet::SendToAllClients(const char* msg, int len)
 	{
 		return;
 	}
-	for (auto& it : mSessions)
-	{
-		it.second->Send(msg, len);
-		mEventOp->AddEvent(it.first, EV_WRITE);
-	}
-}
-
-void SeNet::SendMsg(const char* msg, int len)
-{
 	for (auto& it : mSessions)
 	{
 		it.second->Send(msg, len);
@@ -429,4 +429,27 @@ void SeNet::SendProtoMsg(const int nMsgID, const char* msg, int len)
 	MsgHead.EnCode(pHead);
 	SendMsg(pHead, MSG_HEAD_LEN);
 	SendMsg(msg, len);
+}
+
+void SeNet::CloseClient(socket_t fd)
+{
+	for (auto& it : mSessions)
+	{
+		Session* pSession = it.second;
+		if (pSession->GetSocket()->GetFd() == fd)
+		{
+			CloseSession(pSession);
+			break;
+		}
+	}
+}
+
+void SeNet::CloseAllClient()
+{
+	for (auto it = mSessions.begin(); it != mSessions.end(); it++)
+	{
+		Session* pSession = it->second;
+		CloseSession(pSession);
+	}
+	mSessions.clear();
 }

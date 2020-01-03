@@ -10,11 +10,8 @@
 // Message Head[ MsgID(2) | MsgSize(4) ]
 #define MSG_HEAD_LEN 6
 
-
-
 struct IMsgHead
 {
-
 	virtual void EnCode(char* strData) = 0;
 	virtual void DeCode(const char* strData) = 0;
 	virtual UINT16 GetMsgID() const = 0;
@@ -97,9 +94,6 @@ public:
 		UINT32 nPackSize = mSize + MSG_HEAD_LEN;
 		UINT32 nSize = Htonl(nPackSize);
 		memcpy(strData + 2, &nSize, sizeof(nSize));
-		//memcpy(strData, &mMsgID, sizeof(mMsgID));
-		//UINT32 n = mSize + MSG_HEAD_LEN;
-		//memcpy(strData + 2, &n, sizeof(n));
 	}
 
 	// Message Head[ MsgID(2) | MsgSize(4) ]
@@ -112,10 +106,6 @@ public:
 		UINT32 nPackSize = 0;
 		memcpy(&nPackSize, strData + 2, sizeof(mSize));
 		mSize = Ntohl(nPackSize) - MSG_HEAD_LEN;
-		//memcpy(&mMsgID, strData, sizeof(mMsgID));
-		//int nSize = 0;
-		//memcpy(&nSize, strData + 2, sizeof(nSize));
-		//mSize = nSize - MSG_HEAD_LEN;
 	}
 
 	virtual UINT16 GetMsgID() const

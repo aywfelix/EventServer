@@ -83,14 +83,14 @@ void SeFNet::SendToAllMsg(const int nMsgID, const char* msg, int len)
 	mNet->SendProtoMsg(nMsgID, msg, len);
 }
 
-void SeFNet::SendPBMsg(socket_t fd, const int nMsgID, ::google::protobuf::Message* pMsg)
+void SeFNet::SendPBMsg(const socket_t fd, const int nMsgID, ::google::protobuf::Message* pMsg)
 {
 	std::string strMsg = pMsg->SerializeAsString();
 	if (strMsg.empty())
 	{
 		return;
 	}
-	mNet->SendProtoMsg(fd, strMsg.c_str(), strMsg.length());
+	mNet->SendProtoMsg(fd, nMsgID, strMsg.c_str(), strMsg.length());
 }
 void SeFNet::SendPBMsg(std::vector<socket_t>& fdlist, const int nMsgID, ::google::protobuf::Message* pMsg)
 {
