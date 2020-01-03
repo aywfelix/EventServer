@@ -19,7 +19,22 @@ enum eLogLevel
 	E_LOG_FATAL = 5,
 };
 
-class LogStream
+class NullStream
+{
+public:
+	inline NullStream& operator<<(std::ostream& (*)(std::ostream&)) {
+		return *this;
+	}
+
+	template <typename T>
+	inline NullStream& operator<<(const T&) {
+		return *this;
+	}
+
+private:
+};
+
+class LogStream : public NullStream
 {
 public:
 	LogStream();
@@ -77,6 +92,7 @@ private:
 	std::thread m_thread;
 
 	LogStream stream;
+	NullStream nullstream;
 };
 
 extern std::unique_ptr<LogHelper> g_pLog;
@@ -87,16 +103,16 @@ extern std::unique_ptr<LogHelper> g_pLog;
 #define LOG_ERR(...)     g_pLog->Log(E_LOG_ERR, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
 #define LOG_FATAL(...)   g_pLog->Log(E_LOG_FATAL, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
 
-#define INIT_SFLOG(a) do{\
-g_pLog = std::make_unique<LogHelper>();\
-g_pLog->Init(a);\
-g_pLog->Start();\
-}while (0);
-
-
-// 流风格输出(只用来调试输出)
+// 流风格日志输出
 #define CLOG_DEBUG g_pLog->Stream(E_LOG_DEBUG, __FILE__, __FUNCTION__, __LINE__)
 #define CLOG_INFO g_pLog->Stream(E_LOG_INFO, __FILE__, __FUNCTION__, __LINE__)
 #define CLOG_WARN g_pLog->Stream(E_LOG_WARN, __FILE__, __FUNCTION__, __LINE__)
 #define CLOG_ERR g_pLog->Stream(E_LOG_ERR, __FILE__, __FUNCTION__, __LINE__)
 #define CLOG_FATAL g_pLog->Stream(E_LOG_FATAL, __FILE__, __FUNCTION__, __LINE__)
+	
+
+#define INIT_SFLOG(a) do{\
+g_pLog = std::make_unique<LogHelper>();\
+g_pLog->Init(a);\
+g_pLog->Start();\
+}while (0);

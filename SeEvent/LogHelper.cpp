@@ -60,45 +60,9 @@ void LogHelper::SetLogLevel(int level)
 
 void LogHelper::Log(int level, const char* file, const char* func, int line, const char* fmt, ...)
 {
-	switch (m_level)
+	if (level < m_level)
 	{
-	case E_LOG_FATAL:
-	{
-		if (level < E_LOG_FATAL)
-		{
-			return;
-		}
-	}
-	case E_LOG_ERR:
-	{
-		if (level < E_LOG_ERR)
-		{
-			return;
-		}
-	}
-	case E_LOG_WARN:
-	{
-		if (level < E_LOG_WARN)
-		{
-			return;
-		}
-	}
-	case E_LOG_INFO:
-	{
-		if (level < E_LOG_INFO)
-		{
-			return;
-		}
-	}
-	case E_LOG_DEBUG:
-	{
-		if (level < E_LOG_DEBUG)
-		{
-			return;
-		}
-	}
-	default:
-		break;
+		return;
 	}
 	// time
 	char time_stamp[32];
@@ -208,6 +172,15 @@ void LogStream::Init(int level, const char* file, const char* func, int line)
 
 void LogStream::Clear()
 {
+	if (m_level < g_pLog->GetLevel())
+	{
+		moss.clear();
+		m_level = 1;
+		m_file = nullptr;
+		m_func = nullptr;
+		m_line = 0;
+		return;
+	}
 	if (m_level == E_LOG_FATAL || m_level == E_LOG_ERR)
 	{
 		moss << "\x1b[0m";  // red
