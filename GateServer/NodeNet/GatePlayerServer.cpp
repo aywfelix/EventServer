@@ -1,4 +1,3 @@
-
 #include "NodeNet/GatePlayerServer.h"
 #include "ClientPlayer/ClientPlayer.h"
 #include "ClientPlayer/ClientPlayerMgr.h"
@@ -10,7 +9,7 @@
 #include "LogHelper.h"
 #include "SeFINet.h"
 #include "LogHelper.h"
-
+#include "JsonConfig.h"
 
 bool GatePlayerServer::Init()
 {
@@ -19,11 +18,14 @@ bool GatePlayerServer::Init()
 	m_pNetModule->AddReceiveCallBack(this, &GatePlayerServer::OnOtherMessage);
 	m_pNetModule->AddReceiveCallBack(ModuleChat::RPC_CHAT_CHAT_REQ, this, &GatePlayerServer::OnOtherMessage);
 	//init server info
-	if (!m_pNetModule->InitNet(g_pJsonConfig->m_ServerConf["NodePort"].asUInt()))
+	Json::Value GatePlayerServerConf = g_pJsonConfig->m_Root["GatePlayerServer"];
+	if (!m_pNetModule->InitNet(GatePlayerServerConf["NodePort"].asUInt()))
 	{
-		LOG_ERR("init MasterNodeServer failed");
+		CLOG_ERR << "init GatePlayerServer failed" << CLOG_END;
+		//LOG_ERR("init GatePlayerServer failed");
 		return false;
 	}
+	CLOG_INFO << "init GatePlayerServer ok" << CLOG_END;
 	return true;
 }
 
@@ -125,7 +127,6 @@ void GatePlayerServer::OnOtherMessage(const socket_t nFd, const int msgid, const
 		pPlayer->OnModuleGameMessage(msgid, msg, nLen);
 		break;
 	}
-
 }
 
 void GatePlayerServer::SentToClient(const int nMsgID, const std::string& msg, const socket_t nFd)

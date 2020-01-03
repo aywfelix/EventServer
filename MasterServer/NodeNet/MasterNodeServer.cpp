@@ -13,6 +13,7 @@ bool MasterNodeServer::InitHelper()
 		LOG_ERR("init MasterNodeServer failed");
 		return false;
 	}
+	CLOG_INFO << "init MasterNodeServer ok" << CLOG_END;
 	return true;
 }
 

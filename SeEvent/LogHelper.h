@@ -109,7 +109,8 @@ extern std::unique_ptr<LogHelper> g_pLog;
 #define CLOG_WARN g_pLog->Stream(E_LOG_WARN, __FILE__, __FUNCTION__, __LINE__)
 #define CLOG_ERR g_pLog->Stream(E_LOG_ERR, __FILE__, __FUNCTION__, __LINE__)
 #define CLOG_FATAL g_pLog->Stream(E_LOG_FATAL, __FILE__, __FUNCTION__, __LINE__)
-	
+
+#define CLOG_END std::endl
 
 #define INIT_SFLOG(a) do{\
 g_pLog = std::make_unique<LogHelper>();\

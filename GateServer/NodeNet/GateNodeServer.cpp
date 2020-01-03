@@ -21,9 +21,10 @@ bool GateNodeServer::InitHelper()
 	//init server info
 	if (!mpNetModule->InitNet(g_pJsonConfig->m_ServerConf["NodePort"].asUInt()))
 	{
-		LOG_ERR("init MasterNodeServer failed");
+		LOG_ERR("init GateNodeServer failed");
 		return false;
 	}
+	CLOG_INFO << "init GateNodeServer ok" << CLOG_END;
 	return true;
 }
 

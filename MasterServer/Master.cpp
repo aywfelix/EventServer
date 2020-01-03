@@ -1,6 +1,6 @@
 #include "Master.h"
 #include "NodeNet/MasterServerThread.h"
-
+#include "Session.h"
 
 Master::Master()
 {
@@ -13,8 +13,8 @@ Master::~Master()
 
 void Master::Init()
 {
-	g_pServerThread.reset(new MasterServerThread());
-
+	g_pServerThread = std::make_unique<MasterServerThread>();
+	g_pSessionPool = std::make_unique<SessionPool>();
 	InitManager();
 }
 
