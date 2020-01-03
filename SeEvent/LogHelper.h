@@ -5,7 +5,8 @@
 #include <cstdio>
 #include <cstdarg>
 #include <thread>
-
+#include <iostream>
+#include <sstream>
 #include "ThreadBase.h"
 #include "ConcurrentQueue.hpp"
 
@@ -18,19 +19,40 @@ enum eLogLevel
 	E_LOG_FATAL = 5,
 };
 
-
-class LogHelper {
+class LogStream
+{
 public:
-	LogHelper();
-	LogHelper(int level, const char* file, const char* func, int line);
-	~LogHelper();
+	LogStream();
+	~LogStream();
 
+	void Init(int level, const char* file, const char* func, int line);
+	void Clear();
 	template<typename T>
-	LogHelper& operator<<(const T& log)
+	LogStream& operator<<(const T& log)
 	{
 		moss << log;
 		return *this;
 	}
+
+	LogStream& operator<<(std::ostream& (*log)(std::ostream&))
+	{
+		Clear();
+		return *this;
+	}
+
+	std::ostringstream moss;
+
+	int m_level{ 1 };
+	int m_line{ 0 };
+	const char* m_file;
+	const char* m_func;
+
+};
+
+class LogHelper {
+public:
+	LogHelper();
+	~LogHelper();
 
 	bool Init(bool termout = true);
 	void Log(int level, const char* file, const char* func, int line, const char* fmt, ...);
@@ -40,6 +62,9 @@ public:
 	bool LoadInfoFromCfg(std::string& logcfg);
 	bool LoadInfoFromCfg(const char* logcfg);
 	int GetLevel() { return m_level; }
+
+	LogStream& Stream(int level, const char* file, const char* func, int line);
+	ConcurrentQueue<std::string>& GetQueue() { return m_queue; }
 private:
 	void ThreadLoop();
 	bool SendLog();
@@ -47,12 +72,11 @@ private:
 private:
 	ConcurrentQueue<std::string> m_queue;
 	int m_level{ 1 };
-	int m_line{ 0 };
-	const char* m_file;
-	const char* m_func;
 	bool m_TermOut{ false };
-	static std::ostringstream moss;
+	std::ostringstream moss;
 	std::thread m_thread;
+
+	LogStream stream;
 };
 
 extern std::unique_ptr<LogHelper> g_pLog;
@@ -69,9 +93,10 @@ g_pLog->Init(a);\
 g_pLog->Start();\
 }while (0);
 
+
 // 流风格输出(只用来调试输出)
-#define CLOG_DEBUG LogHelper(E_LOG_DEBUG, __FILE__, __FUNCTION__, __LINE__)
-#define CLOG_INFO LogHelper(E_LOG_INFO, __FILE__, __FUNCTION__, __LINE__)
-#define CLOG_WARN LogHelper(E_LOG_WARN, __FILE__, __FUNCTION__, __LINE__)
-#define CLOG_ERR LogHelper(E_LOG_ERR, __FILE__, __FUNCTION__, __LINE__)
-#define CLOG_FATAL LogHelper(E_LOG_FATAL, __FILE__, __FUNCTION__, __LINE__)
+#define CLOG_DEBUG g_pLog->Stream(E_LOG_DEBUG, __FILE__, __FUNCTION__, __LINE__)
+#define CLOG_INFO g_pLog->Stream(E_LOG_INFO, __FILE__, __FUNCTION__, __LINE__)
+#define CLOG_WARN g_pLog->Stream(E_LOG_WARN, __FILE__, __FUNCTION__, __LINE__)
+#define CLOG_ERR g_pLog->Stream(E_LOG_ERR, __FILE__, __FUNCTION__, __LINE__)
+#define CLOG_FATAL g_pLog->Stream(E_LOG_FATAL, __FILE__, __FUNCTION__, __LINE__)

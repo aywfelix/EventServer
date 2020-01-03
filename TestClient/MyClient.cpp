@@ -4,6 +4,7 @@
 #include "Session.h"
 
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 void RecvCb(const socket_t nFd, const int nMsgId, const char* pMsg, const uint32_t nLen)
@@ -17,10 +18,38 @@ void EventCb(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
 	cout << nEvent << endl;
 }
 
+//class MyStream 
+//{
+//public:
+//	template<typename T>
+//	MyStream& operator<<(const T& log)
+//	{
+//		moss << log;
+//		return *this;
+//	}
+//
+//	MyStream& operator<<(std::ostream& (*log)(std::ostream&))
+//	{
+//		moss << log;
+//		std::ostringstream moss2;
+//		moss.swap(moss2);
+//		std::cout << moss2.str();
+//		return *this;
+//	}
+//private:
+//	std::ostringstream moss;
+//	
+//};
+
 int main()
 {
+	//MyStream stream;
+	//stream << "aaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbb";
+	//stream << "aaaaaaaaaaaaaaa" << std::endl;
 	g_pSessionPool = std::make_unique<SessionPool>();
 	INIT_SFLOG(true);
+	CLOG_DEBUG << "aaaaaaaaaaaaaaaa" << std::endl;
+
 	NET_RECEIVE_FUNCTOR Refunctor = std::bind(RecvCb, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
 	NET_EVENT_FUNCTOR Evfunctor = std::bind(EventCb, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 	SeNet client(Refunctor, Evfunctor);

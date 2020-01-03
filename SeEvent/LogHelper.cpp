@@ -8,56 +8,8 @@
 
 std::unique_ptr<LogHelper> g_pLog = nullptr;
 
-std::ostringstream LogHelper::moss;
-
 LogHelper::LogHelper() {}
-
-LogHelper::LogHelper(int level, const char* file, const char* func, int line) :m_level(level), m_file(file), m_func(func), m_line(line)
-{
-	// time
-	char time_stamp[32];
-	memset(time_stamp, '\0', sizeof(time_stamp));
-	time_t now = time(0);
-	::strftime(time_stamp, sizeof(time_stamp), "%Y-%m-%d %H:%M:%S", localtime(&now));
-	if (level == E_LOG_FATAL || level == E_LOG_ERR)
-	{
-		moss << "\x1b[31m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
-	}
-	else if (level == E_LOG_WARN)
-	{
-		moss << "\x1b[33m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
-	}
-	else if (level == E_LOG_INFO)
-	{
-		moss << "\x1b[32m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
-	}
-	else if (level == E_LOG_DEBUG)
-	{
-		moss << "\x1b[37m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
-	}
-}
-LogHelper::~LogHelper()
-{
-	if (m_level == E_LOG_FATAL || m_level == E_LOG_ERR)
-	{
-		moss << "\x1b[0m";  //red
-	}
-	else if (m_level == E_LOG_WARN)
-	{
-		moss << "\x1b[0m"; //yellow
-	}
-	else if (m_level == E_LOG_INFO)
-	{
-		moss << "\x1b[0m"; //green
-	}
-	else if (m_level == E_LOG_DEBUG)
-	{
-		moss << "\x1b[0m"; //white
-	}
-	moss << "\n";
-	std::cout << moss.str() << std::flush;
-	moss.clear();
-}
+LogHelper::~LogHelper(){}
 
 
 bool LogHelper::Init(bool termout)
@@ -214,4 +166,69 @@ bool LogHelper::LoadInfoFromCfg(const char* logcfg)
 {
 	std::string strLogcfg = logcfg;
 	return LoadInfoFromCfg(strLogcfg);
+}
+
+LogStream& LogHelper::Stream(int level, const char* file, const char* func, int line)
+{
+	stream.Init(level, file, func, line);
+	return stream;
+}
+
+LogStream::LogStream(){}
+LogStream::~LogStream(){}
+
+void LogStream::Init(int level, const char* file, const char* func, int line)
+{
+	m_level = level;
+	m_file = file;
+	m_func = func;
+	m_line = line;
+	// time
+	char time_stamp[32];
+	memset(time_stamp, '\0', sizeof(time_stamp));
+	time_t now = time(0);
+	::strftime(time_stamp, sizeof(time_stamp), "%Y-%m-%d %H:%M:%S", localtime(&now));
+	if (level == E_LOG_FATAL || level == E_LOG_ERR)
+	{
+		moss << "\x1b[31m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
+	}
+	else if (level == E_LOG_WARN)
+	{
+		moss << "\x1b[33m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
+	}
+	else if (level == E_LOG_INFO)
+	{
+		moss << "\x1b[32m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
+	}
+	else if (level == E_LOG_DEBUG)
+	{
+		moss << "\x1b[37m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
+	}
+}
+
+void LogStream::Clear()
+{
+	if (m_level == E_LOG_FATAL || m_level == E_LOG_ERR)
+	{
+		moss << "\x1b[0m";  // red
+	}
+	else if (m_level == E_LOG_WARN)
+	{
+		moss << "\x1b[0m"; // yellow
+	}
+	else if (m_level == E_LOG_INFO)
+	{
+		moss << "\x1b[0m"; // green
+	}
+	else if (m_level == E_LOG_DEBUG)
+	{
+		moss << "\x1b[0m"; // white
+	}
+	moss << "\n";
+	g_pLog->GetQueue().PutQ(moss.str());
+	moss.clear();
+	m_level = 1;
+	m_file = nullptr;
+	m_func = nullptr;
+	m_line = 0;
 }

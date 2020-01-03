@@ -42,7 +42,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -69,16 +69,23 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\bin\</OutDir>
+    <IntDir>..\obj\Gate\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\SeEvent;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>SeEvent.lib;libconfig++.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -123,6 +130,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ClientPlayer\ClientPlayer.cpp" />
+    <ClCompile Include="ClientPlayer\ClientPlayerMgr.cpp" />
+    <ClCompile Include="Gate.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="NodeNet\GateNodeClient.cpp" />
+    <ClCompile Include="NodeNet\GateNodeServer.cpp" />
+    <ClCompile Include="NodeNet\GatePlayerServer.cpp" />
+    <ClCompile Include="NodeNet\GateServerThread.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ClientPlayer\ClientPlayer.h" />
+    <ClInclude Include="ClientPlayer\ClientPlayerMgr.h" />
+    <ClInclude Include="Gate.h" />
+    <ClInclude Include="NodeNet\GateNodeClient.h" />
+    <ClInclude Include="NodeNet\GateNodeServer.h" />
+    <ClInclude Include="NodeNet\GatePlayerServer.h" />
+    <ClInclude Include="NodeNet\GateServerThread.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
