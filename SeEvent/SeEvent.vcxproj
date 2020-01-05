@@ -143,6 +143,7 @@
     <ClInclude Include="ClientProto\ClientPublic.pb.h" />
     <ClInclude Include="concurrentqueue.h" />
     <ClInclude Include="ConcurrentQueue.hpp" />
+    <ClInclude Include="FileHelper.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="JsonConfig.h" />
     <ClInclude Include="lexical_cast.hpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="CityHash\city.cc" />
     <ClCompile Include="ClientProto\Chat.pb.cc" />
     <ClCompile Include="ClientProto\ClientPublic.pb.cc" />
+    <ClCompile Include="FileHelper.cpp" />
     <ClCompile Include="JsonConfig.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
     <ClCompile Include="LogHelper.cpp" />

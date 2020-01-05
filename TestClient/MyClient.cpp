@@ -2,7 +2,7 @@
 #include "SeSelect.h"
 #include "LogHelper.h"
 #include "Session.h"
-
+#include "Util.h"
 #include <iostream>
 #include <sstream>
 using namespace std;
@@ -47,8 +47,14 @@ int main()
 	//stream << "aaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbb";
 	//stream << "aaaaaaaaaaaaaaa" << std::endl;
 	g_pSessionPool = std::make_unique<SessionPool>();
-	INIT_SFLOG(true);
-	CLOG_DEBUG << "aaaaaaaaaaaaaaaa" << std::endl;
+	INIT_SFLOG(true, "");
+	CLOG_DEBUG << "aaaaaaaaaaaaaaaa" << CLOG_END;
+
+	g_pLog->LoadInfoFromCfg("../Config/log.cfg");
+
+	std::cout << GetTimeS() << std::endl;
+	std::cout << time(0) << std::endl;
+	std::cout << (int)(GetTimeS()/60) << std::endl;
 
 	NET_RECEIVE_FUNCTOR Refunctor = std::bind(RecvCb, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
 	NET_EVENT_FUNCTOR Evfunctor = std::bind(EventCb, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);

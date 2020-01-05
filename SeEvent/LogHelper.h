@@ -7,8 +7,12 @@
 #include <thread>
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include "ThreadBase.h"
 #include "ConcurrentQueue.hpp"
+#include "FileHelper.h"
+#include "SePlatForm.h"
+#include "Util.h"
 
 enum eLogLevel
 {
@@ -17,6 +21,13 @@ enum eLogLevel
 	E_LOG_WARN = 3,
 	E_LOG_ERR = 4,
 	E_LOG_FATAL = 5,
+};
+
+enum eLogRollType
+{
+	E_ROLL_SIZE = 1,
+	E_ROLL_HOUR = 2,
+	E_ROLL_DAY = 3,
 };
 
 class NullStream
@@ -69,7 +80,7 @@ public:
 	LogHelper();
 	~LogHelper();
 
-	bool Init(bool termout = true);
+	bool Init(bool termout = true, std::string servername = "");
 	void Log(int level, const char* file, const char* func, int line, const char* fmt, ...);
 	
 	void Start();
@@ -84,15 +95,24 @@ private:
 	void ThreadLoop();
 	bool SendLog();
 	void SetLogLevel(int level);
+	bool CreateLog();
 private:
 	ConcurrentQueue<std::string> m_queue;
 	int m_level{ 1 };
 	bool m_TermOut{ false };
+	std::string m_LogPath;
 	std::ostringstream moss;
 	std::thread m_thread;
 
 	LogStream stream;
-	NullStream nullstream;
+	
+	int m_RollType;
+	std::string m_LogName;
+	std::string m_ServerName;
+	INT64 m_LastTime;
+	FileC mFileC;
+
+	TimeOut m_TimeOut;
 };
 
 extern std::unique_ptr<LogHelper> g_pLog;
@@ -112,8 +132,8 @@ extern std::unique_ptr<LogHelper> g_pLog;
 
 #define CLOG_END std::endl
 
-#define INIT_SFLOG(a) do{\
+#define INIT_SFLOG(a, b) do{\
 g_pLog = std::make_unique<LogHelper>();\
-g_pLog->Init(a);\
+g_pLog->Init(a, b);\
 g_pLog->Start();\
 }while (0);

@@ -69,9 +69,9 @@ typedef unsigned int    UINT32;
 
 
 #ifdef _WIN32
-#define open _open
-#define read _read
-#define close _close
+//#define open _open
+//#define read _read
+//#define close _close
 #ifndef fstat
 #define fstat _fstati64
 #endif

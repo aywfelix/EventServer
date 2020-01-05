@@ -162,6 +162,9 @@
     <ClInclude Include="CityHash\citycrc.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="FileHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SeEpoll.cpp">
@@ -264,6 +267,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CityHash\city.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FileHelper.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

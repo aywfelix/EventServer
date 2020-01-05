@@ -5,6 +5,7 @@
 #include "LogHelper.h"
 #include "SePlatForm.h"
 #include "LibConfig.hpp"
+#include "Assertx.h"
 
 std::unique_ptr<LogHelper> g_pLog = nullptr;
 
@@ -12,9 +13,45 @@ LogHelper::LogHelper() {}
 LogHelper::~LogHelper(){}
 
 
-bool LogHelper::Init(bool termout)
+bool LogHelper::Init(bool termout, std::string servername)
 {
 	m_TermOut = termout;
+	m_ServerName = servername;
+	if (m_RollType == E_ROLL_HOUR)
+	{
+		m_TimeOut.SetInterval(3600);
+	}
+	if (m_RollType == E_ROLL_DAY)
+	{
+		m_TimeOut.SetInterval(3600 * 24);
+	}
+	return true;
+}
+
+bool LogHelper::CreateLog()
+{
+	INT64 now = time(0);
+	switch (m_RollType)
+	{
+	case E_ROLL_HOUR:
+	case E_ROLL_DAY:
+		if (!m_TimeOut.IsTimeOut())
+		{
+			return false;
+		}
+		mFileC.Close();
+		m_LogName = m_ServerName + "_" + std::to_string(now / 60) + ".log"; // 取分钟数日志的名称为：服务器名_分钟数.log
+		mFileC.SetFile(m_LogPath, m_LogName);
+		if (!mFileC.Open())
+		{
+			AssertEx(0, "open log file error");
+			return false;
+		}
+		break;
+	case E_ROLL_SIZE:
+
+		break;
+	}
 	return true;
 }
 
@@ -22,6 +59,7 @@ void LogHelper::ThreadLoop()
 {
 	for (;;)
 	{
+		CreateLog();
 		SendLog();
 		SFSLEEP(10);
 	}
@@ -34,8 +72,9 @@ bool LogHelper::SendLog()
 	{
 		if (m_TermOut)
 		{
-			std::cout << info << std::flush;
+			std::cout << info << std::flush; // 默认输出
 		}
+		mFileC.Write(info.c_str(), sizeof(char), info.length());
 	}
 	return true;
 }
@@ -109,19 +148,21 @@ bool LogHelper::LoadInfoFromCfg(std::string& logcfg)
 {
 	if (!LibConfig::Instance().loadcfg(logcfg))
 	{
-		std::cout << "load log cfg error" << std::endl;
+		AssertEx(0, "load log cfg error");
 	}
 	const Setting& root = LibConfig::Instance().GetRoot();
 	const Setting& log = root["log"];
-	int level = 1;
-	log.lookupValue("default_level", level);
-	if (level == 0)
+	if (!log.lookupValue("default_level", m_level))
 	{
-		m_level = 1;
+		AssertEx(0, "log level cfg error");
 	}
-	else
+	if (!log.lookupValue("default_roll", m_RollType))
 	{
-		m_level = level;
+		AssertEx(0, "log roll cfg error");
+	}
+	if (!log.lookupValue("default_path", m_LogPath))
+	{
+		AssertEx(0, "log path cfg error");
 	}
 	return true;
 }

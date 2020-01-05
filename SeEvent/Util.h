@@ -38,4 +38,33 @@ void Snprintf(char* buffer, size_t count, const char* format, ...);
 #define DELETE_PTR_ARR(x) if((x)) { delete[] (x); (x)=nullptr;}
 #endif
 
-
+class TimeOut
+{
+public:
+	bool IsTimeOut()
+	{
+		if (mExpired == 0)
+		{
+			mExpired = time(0) + mInterval;
+			return true;
+		}
+		INT64 now = time(0);
+		if (now > mExpired)
+		{
+			mExpired += mInterval;
+			return true;
+		}
+		return false;
+	}
+	INT64 DisTimeOut()
+	{
+		return mExpired - time(0);
+	}
+	void SetInterval(INT64 interval)
+	{
+		mInterval = interval;
+	}
+private:
+	INT64 mExpired{0};
+	int mInterval;
+};
