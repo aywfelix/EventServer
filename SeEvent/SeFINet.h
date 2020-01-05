@@ -179,3 +179,4 @@ struct ServerData
 
 using ConnectDataPtr = std::shared_ptr<ConnectData>;
 using ServerDataPtr = std::shared_ptr<ServerData>;
+

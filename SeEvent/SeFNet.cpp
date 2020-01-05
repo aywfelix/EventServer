@@ -111,16 +111,4 @@ void SeFNet::SendPBToAllMsg(const int nMsgID, ::google::protobuf::Message* pMsg)
 	mNet->SendProtoMsg(nMsgID, strMsg.c_str(), strMsg.length());
 }
 
-bool SeFNet::ReceivePB(const int nMsgID, const std::string& strMsg, google::protobuf::Message* pMsg)
-{
-	return ReceivePB(nMsgID, strMsg.c_str(), strMsg.length(), pMsg);
-}
-bool SeFNet::ReceivePB(const int nMsgID, const char* msg, const UINT32 nLen, google::protobuf::Message* pData)
-{
-	if (msg == nullptr)
-	{
-		return false;
-	}
-	pData->ParseFromArray(msg, nLen);
-	return true;
-}
+

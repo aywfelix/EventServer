@@ -60,7 +60,7 @@ void NetServerBase::OnReportToServer(const socket_t nFd, const int nMsgID, const
 {
 	ServerDataPtr pServerData = std::make_shared<ServerData>();
 	SeFNetProto::ServerReport report;
-	if (!mpNetModule->ReceivePB(nMsgID, msg, nLen, &report))
+	if (!SeNet::ReceivePB(nMsgID, msg, nLen, &report))
 	{
 		return;
 	}

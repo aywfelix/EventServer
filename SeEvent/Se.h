@@ -5,8 +5,10 @@
 #include <vector>
 #include <memory>
 #include <functional>
+#include <string>
 
 #include "SePlatForm.h"
+#include "google/protobuf/message.h"
 
 #define SE_OK 0
 #define SE_ERR -1
@@ -87,7 +89,9 @@ public:
 	void SendProtoMsg(socket_t fd, const int nMsgID, const char* msg, int len);
 	void SendProtoMsg(std::vector<socket_t>& fdlist, const int nMsgID, const char* msg, int len);
 	void SendProtoMsg(const int nMsgID, const char* msg, int len);
-
+	// recv pb msg
+	static bool ReceivePB(const int nMsgID, const std::string& strMsg, google::protobuf::Message* pMsg);
+	static bool ReceivePB(const int nMsgID, const char* msg, const UINT32 nLen, google::protobuf::Message* pData);
 	// close or kick socket
 	void CloseClient(socket_t fd);
 	void CloseAllClient();
@@ -108,6 +112,7 @@ private:
 	void SendMsg(std::vector<socket_t>& fdlist, const char* msg, int len);
 	void SendToAllClients(const char* msg, int len);
 
+	
 private:
 	bool mbStop;
 	SeEventOp* mEventOp;

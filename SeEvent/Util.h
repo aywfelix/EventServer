@@ -68,3 +68,20 @@ private:
 	INT64 mExpired{0};
 	int mInterval;
 };
+
+template<typename T>
+class AutoFree
+{
+public:
+	AutoFree(T* t):m_t(t){}
+	~AutoFree()
+	{
+		if (m_t)
+		{
+			delete m_t;
+			m_t = nullptr;
+		}
+	}
+private:
+	T* m_t;
+};
