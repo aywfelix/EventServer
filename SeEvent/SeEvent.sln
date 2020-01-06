@@ -20,6 +20,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChatServer", "..\ChatServer
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PlayerClient", "..\PlayerClient\PlayerClient.vcxproj", "{DB372B12-9C79-4282-9803-7AE13DD99840}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "..\Test\Test.vcxproj", "{239FDF32-F249-47FD-8666-462D4710ECF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -84,6 +86,14 @@ Global
 		{DB372B12-9C79-4282-9803-7AE13DD99840}.Release|x64.Build.0 = Release|x64
 		{DB372B12-9C79-4282-9803-7AE13DD99840}.Release|x86.ActiveCfg = Release|Win32
 		{DB372B12-9C79-4282-9803-7AE13DD99840}.Release|x86.Build.0 = Release|Win32
+		{239FDF32-F249-47FD-8666-462D4710ECF2}.Debug|x64.ActiveCfg = Debug|x64
+		{239FDF32-F249-47FD-8666-462D4710ECF2}.Debug|x64.Build.0 = Debug|x64
+		{239FDF32-F249-47FD-8666-462D4710ECF2}.Debug|x86.ActiveCfg = Debug|Win32
+		{239FDF32-F249-47FD-8666-462D4710ECF2}.Debug|x86.Build.0 = Debug|Win32
+		{239FDF32-F249-47FD-8666-462D4710ECF2}.Release|x64.ActiveCfg = Release|x64
+		{239FDF32-F249-47FD-8666-462D4710ECF2}.Release|x64.Build.0 = Release|x64
+		{239FDF32-F249-47FD-8666-462D4710ECF2}.Release|x86.ActiveCfg = Release|Win32
+		{239FDF32-F249-47FD-8666-462D4710ECF2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
