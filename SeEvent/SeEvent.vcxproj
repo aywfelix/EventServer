@@ -91,7 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ThirdPart\hiredis;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -157,6 +157,8 @@
     <ClInclude Include="Packet\Packet.h" />
     <ClInclude Include="Packet\PacketMgr.h" />
     <ClInclude Include="Packet\Player.h" />
+    <ClInclude Include="Redis\db_hiredis.h" />
+    <ClInclude Include="Redis\db_redis.h" />
     <ClInclude Include="Se.h" />
     <ClInclude Include="SeEpoll.h" />
     <ClInclude Include="SeFNetClient.h" />
@@ -196,6 +198,8 @@
     <ClCompile Include="Packet\Packet.cpp" />
     <ClCompile Include="Packet\PacketMgr.cpp" />
     <ClCompile Include="Packet\Player.cpp" />
+    <ClCompile Include="Redis\db_hiredis.cpp" />
+    <ClCompile Include="Redis\db_redis.cpp" />
     <ClCompile Include="Se.cpp" />
     <ClCompile Include="SeEpoll.cpp" />
     <ClCompile Include="SeFNetClient.cpp" />
