@@ -91,7 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;DEBUG;_WIN32;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ThirdPart\hiredis\adapters;..\ThirdPart\hiredis;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\MariaDB 10.4\include\mysql;.\MariaCpp;..\ThirdPart\hiredis\adapters;..\ThirdPart\hiredis;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -151,6 +151,14 @@
     <ClInclude Include="LibConfig.hpp" />
     <ClInclude Include="Lock.hpp" />
     <ClInclude Include="LogHelper.h" />
+    <ClInclude Include="MariaCpp\mariacpp\bits\bind.hpp" />
+    <ClInclude Include="MariaCpp\mariacpp\connection.hpp" />
+    <ClInclude Include="MariaCpp\mariacpp\exception.hpp" />
+    <ClInclude Include="MariaCpp\mariacpp\lib.hpp" />
+    <ClInclude Include="MariaCpp\mariacpp\prepared_stmt.hpp" />
+    <ClInclude Include="MariaCpp\mariacpp\resultset.hpp" />
+    <ClInclude Include="MariaCpp\mariacpp\time.hpp" />
+    <ClInclude Include="MariaCpp\mariacpp\uri.hpp" />
     <ClInclude Include="MemPool.hpp" />
     <ClInclude Include="NetClientBase.h" />
     <ClInclude Include="NetServerBase.h" />
@@ -193,6 +201,15 @@
     <ClCompile Include="JsonConfig.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
     <ClCompile Include="LogHelper.cpp" />
+    <ClCompile Include="MariaCpp\src\bind.cpp" />
+    <ClCompile Include="MariaCpp\src\connection.cpp" />
+    <ClCompile Include="MariaCpp\src\exception.cpp" />
+    <ClCompile Include="MariaCpp\src\lib.cpp" />
+    <ClCompile Include="MariaCpp\src\ma_time.c" />
+    <ClCompile Include="MariaCpp\src\prepared_stmt.cpp" />
+    <ClCompile Include="MariaCpp\src\resultset.cpp" />
+    <ClCompile Include="MariaCpp\src\time.cpp" />
+    <ClCompile Include="MariaCpp\src\uri.cpp" />
     <ClCompile Include="NetClientBase.cpp" />
     <ClCompile Include="NetServerBase.cpp" />
     <ClCompile Include="Packet\Packet.cpp" />

@@ -171,6 +171,30 @@
     <ClInclude Include="Redis\db_redis.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="MariaCpp\mariacpp\bits\bind.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MariaCpp\mariacpp\connection.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MariaCpp\mariacpp\exception.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MariaCpp\mariacpp\lib.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MariaCpp\mariacpp\prepared_stmt.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MariaCpp\mariacpp\resultset.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MariaCpp\mariacpp\time.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MariaCpp\mariacpp\uri.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SeEpoll.cpp">
@@ -282,6 +306,33 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Redis\db_redis.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MariaCpp\src\bind.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MariaCpp\src\connection.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MariaCpp\src\exception.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MariaCpp\src\lib.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MariaCpp\src\ma_time.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MariaCpp\src\prepared_stmt.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MariaCpp\src\resultset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MariaCpp\src\time.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MariaCpp\src\uri.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
