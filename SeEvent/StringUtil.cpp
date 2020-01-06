@@ -3,9 +3,19 @@
 
 #include "stringUtil.h"
 
-void StringUtil::Split(const std::string& str,
-	const std::string& delim,
-	std::vector<std::string>* result) {
+void StringUtil::Split(const std::string& str, const std::string& delim, std::vector<std::string>& res)
+{
+	char* p = strtok(const_cast<char*>(str.c_str()), delim.c_str());
+	while (p)
+	{
+		std::string s = p;
+		res.emplace_back(s);
+		p = strtok(nullptr, delim.c_str());
+	}
+}
+
+void StringUtil::Split(const std::string& str,const std::string& delim,std::vector<std::string>* result) 
+{
 	if (str.empty()) {
 		return;
 	}

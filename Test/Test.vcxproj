@@ -81,7 +81,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\ThirdPart\hiredis\adapters;..\ThirdPart\hiredis;..\SeEvent;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PreprocessorDefinitions>WIN32;_WIN32;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="SF_Test.cpp" />
     <ClCompile Include="TestRedis.cpp" />
+    <ClCompile Include="TestSplit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SF_Test.h" />
