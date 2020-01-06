@@ -13,9 +13,8 @@ LogHelper::LogHelper() {}
 LogHelper::~LogHelper(){}
 
 
-bool LogHelper::Init(bool termout, std::string servername)
+bool LogHelper::Init(std::string servername)
 {
-	m_TermOut = termout;
 	m_ServerName = servername;
 	if (m_RollType == E_ROLL_HOUR)
 	{
@@ -70,10 +69,9 @@ bool LogHelper::SendLog()
 	std::string info;
 	if (m_queue.TryPopQ(info))
 	{
-		if (m_TermOut)
-		{
-			std::cout << info << std::flush; // 默认输出
-		}
+#ifdef DEBUG
+		std::cout << info << std::flush; // 默认输出
+#endif
 		mFileC.Write(info.c_str(), sizeof(char), info.length());
 	}
 	return true;
@@ -116,29 +114,26 @@ void LogHelper::Log(int level, const char* file, const char* func, int line, con
 	vsnprintf(content, sizeof(content) - 1, fmt, ap);
 	va_end(ap);
 
-	if (m_TermOut)
+#ifdef DEBUG
+	if (level == E_LOG_FATAL || level == E_LOG_ERR)
 	{
-		if (level == E_LOG_FATAL || level == E_LOG_ERR)
-		{
-			moss << "\x1b[31m" <<time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m";  //red
-		}
-		else if (level == E_LOG_WARN)
-		{
-			moss << "\x1b[33m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //yellow
-		}
-		else if (level == E_LOG_INFO)
-		{
-			moss << "\x1b[32m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //green
-		}
-		else if(level == E_LOG_DEBUG)
-		{
-			moss << "\x1b[37m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //white
-		}
+		moss << "\x1b[31m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m";  //red
 	}
-	else
+	else if (level == E_LOG_WARN)
 	{
-		moss << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content;
+		moss << "\x1b[33m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //yellow
 	}
+	else if (level == E_LOG_INFO)
+	{
+		moss << "\x1b[32m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //green
+	}
+	else if (level == E_LOG_DEBUG)
+	{
+		moss << "\x1b[37m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //white
+	}
+#else
+	moss << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content;
+#endif
 	moss << "\n";
 	m_queue.PutQ(moss.str());
 	moss.clear();

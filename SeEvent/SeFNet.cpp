@@ -1,6 +1,6 @@
 #include "SeFNet.h"
 
-void SeFNet::Excute(LOOP_RUN_TYPE run)
+void SeFNet::Execute(LOOP_RUN_TYPE run)
 {
 	mNet->StartLoop(run);
 }

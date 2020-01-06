@@ -14,7 +14,7 @@ public:
 	void Init();
 
 	void AddServer(const ConnectData& info);
-	void Excute(LOOP_RUN_TYPE run);
+	void Execute(LOOP_RUN_TYPE run);
 
 	// add call back
 	template<typename BaseType>
@@ -58,7 +58,7 @@ private:
 	void OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);
 	void OnSocketConnect(const socket_t nFd, SeNet* pNet);
 	void OnSocketDisConnect(const socket_t nFd, SeNet* pNet);
-	void ProcessExcute(LOOP_RUN_TYPE run);
+	void ProcessExecute(LOOP_RUN_TYPE run);
 	void ProcessAddConnect();
 	void InitCallBacks(ConnectData& data);
 private:

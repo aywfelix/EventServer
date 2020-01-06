@@ -46,7 +46,7 @@ int main()
 	g_pJsonConfig.reset(new JsonConfig);
 	g_pJsonConfig->Load("../Config/ServerConf.json");
 	g_pJsonConfig->m_ServerConf = g_pJsonConfig->m_Root["MasterServer"];
-	INIT_SFLOG(true);
+	INIT_SFLOG("MasterServer");
 	Master master;
 	master.Init();
 	master.Start();

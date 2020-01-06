@@ -60,7 +60,7 @@ public:
 	{
 		return mExpired - time(0);
 	}
-	void SetInterval(INT64 interval)
+	void SetInterval(int interval)
 	{
 		mInterval = interval;
 	}

@@ -75,7 +75,7 @@ void NetClientBase::OnMasterMessage(const socket_t nFd, const int nMsgID, const 
 
 void NetClientBase::Loop()
 {
-	mpNetClientModule->Excute(LOOP_RUN_NONBLOCK);
+	mpNetClientModule->Execute(LOOP_RUN_NONBLOCK);
 }
 
 

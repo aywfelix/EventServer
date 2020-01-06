@@ -80,7 +80,7 @@ public:
 	LogHelper();
 	~LogHelper();
 
-	bool Init(bool termout = true, std::string servername = "");
+	bool Init(std::string servername = "");
 	void Log(int level, const char* file, const char* func, int line, const char* fmt, ...);
 	
 	void Start();
@@ -99,7 +99,6 @@ private:
 private:
 	ConcurrentQueue<std::string> m_queue;
 	int m_level{ 1 };
-	bool m_TermOut{ false };
 	std::string m_LogPath;
 	std::ostringstream moss;
 	std::thread m_thread;
@@ -132,8 +131,8 @@ extern std::unique_ptr<LogHelper> g_pLog;
 
 #define CLOG_END std::endl
 
-#define INIT_SFLOG(a, b) do{\
+#define INIT_SFLOG(a) do{\
 g_pLog = std::make_unique<LogHelper>();\
-g_pLog->Init(a, b);\
+g_pLog->Init(a);\
 g_pLog->Start();\
 }while (0);

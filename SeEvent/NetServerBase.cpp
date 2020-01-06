@@ -79,5 +79,5 @@ void NetServerBase::AfterReportToServer(ServerDataPtr pReportServerData)
 
 void NetServerBase::Loop()
 {
-	mpNetModule->Excute(LOOP_RUN_TYPE::LOOP_RUN_NONBLOCK);
+	mpNetModule->Execute(LOOP_RUN_TYPE::LOOP_RUN_NONBLOCK);
 }

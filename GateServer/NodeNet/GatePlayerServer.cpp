@@ -31,7 +31,7 @@ bool GatePlayerServer::Init()
 
 void GatePlayerServer::Loop()
 {
-	m_pNetModule->Excute(LOOP_RUN_NONBLOCK);
+	m_pNetModule->Execute(LOOP_RUN_NONBLOCK);
 }
 
 

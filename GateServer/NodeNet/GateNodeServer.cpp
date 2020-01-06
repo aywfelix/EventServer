@@ -74,7 +74,7 @@ void GateNodeServer::OnLoginRouteBack(socket_t nFd, const int msgid, const char*
 void GateNodeServer::OnChatRouteBack(socket_t nFd, const int msgid, const char* msg, const uint32_t nLen)
 {
 	ChatToGatePacket xData;
-	if (!mpNetModule->ReceivePB(msgid, msg, nLen, &xData))
+	if (!SeNet::ReceivePB(msgid, msg, nLen, &xData))
 	{
 		return;
 	}

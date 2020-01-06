@@ -47,7 +47,7 @@ int main()
 	//stream << "aaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbb";
 	//stream << "aaaaaaaaaaaaaaa" << std::endl;
 	g_pSessionPool = std::make_unique<SessionPool>();
-	INIT_SFLOG(true, "");
+	INIT_SFLOG("TestClient");
 	CLOG_DEBUG << "aaaaaaaaaaaaaaaa" << CLOG_END;
 
 	g_pLog->LoadInfoFromCfg("../Config/log.cfg");

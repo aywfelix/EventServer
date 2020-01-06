@@ -81,13 +81,13 @@ void SeFNetClient::AddServer(const ConnectData& info)
 	mTemplist.emplace_back(info);
 }
 
-void SeFNetClient::Excute(LOOP_RUN_TYPE run)
+void SeFNetClient::Execute(LOOP_RUN_TYPE run)
 {
-	ProcessExcute(run);
+	ProcessExecute(run);
 	ProcessAddConnect();
 }
 
-void SeFNetClient::ProcessExcute(LOOP_RUN_TYPE run)
+void SeFNetClient::ProcessExecute(LOOP_RUN_TYPE run)
 {
 	for (auto& it : mConnecServers)
 	{
@@ -102,7 +102,7 @@ void SeFNetClient::ProcessExcute(LOOP_RUN_TYPE run)
 			}
 			break;
 		case ConnectState::NORMAL:
-			it.second.pNet->Excute(run);
+			it.second.pNet->Execute(run);
 			break;
 		case ConnectState::RECONNECT:
 			it.second.ConnState = ConnectState::CONNECTING;

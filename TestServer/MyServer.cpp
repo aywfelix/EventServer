@@ -28,7 +28,7 @@ void EventCb(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
 int main()
 {
 	
-	INIT_SFLOG(true);
+	INIT_SFLOG("TestServer");
 	/*signal(SIGPIPE, SIG_IGN);*/
 	g_pSessionPool = std::make_unique<SessionPool>();
 	NET_RECEIVE_FUNCTOR Refunctor = std::bind(RecvCb, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
