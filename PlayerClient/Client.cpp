@@ -11,6 +11,7 @@ using namespace SeFNetProto;
 bool Client::Init()
 {
 	m_pNetClientModule = new SeFNetClient();
+	m_pNetClientModule->Init();
 	m_pNetClientModule->AddEventCallBack(EServerType::SERVER_TYPE_GATE, this, &Client::OnSocketEvent);
 	m_pNetClientModule->AddReceiveCallBack(EServerType::SERVER_TYPE_GATE, this, &Client::OnMessage);
 	

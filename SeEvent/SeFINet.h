@@ -166,7 +166,7 @@ struct ConnectData
 	std::string name;
 	EServerType ServerType;
 	ConnectState ConnState;
-
+	socket_t SockFd;
 	std::shared_ptr<SeFNet> pNet;
 };
 

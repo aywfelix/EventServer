@@ -95,10 +95,12 @@ public:
 	// close or kick socket
 	void CloseClient(socket_t fd);
 	void CloseAllClient();
+
+	Session* GetSession(socket_t fd);
 private:
 	void InitEventOp();
 	void AddSession(Socket* pSocket);
-	Session* GetSession(socket_t fd);
+	
 	void CloseSession(Session* pSession);
 	void AcceptClient();
 

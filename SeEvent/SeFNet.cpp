@@ -72,7 +72,7 @@ void SeFNet::OnSocketNetEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeN
 
 void SeFNet::SendMsg(const socket_t fd, const int nMsgID, const char* msg, int len)
 {
-	mNet->SendProtoMsg(fd, msg, len);
+	mNet->SendProtoMsg(fd, nMsgID, msg, len);
 }
 void SeFNet::SendMsg(std::vector<socket_t>& fdlist, const int nMsgID, const char* msg, int len)
 {

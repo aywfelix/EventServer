@@ -53,7 +53,7 @@ public:
 
 	T* NewElem()
 	{
-		LockUnique lock(m_mutex);
+		UniqueLock lock(m_mutex);
 		if (m_list.size() <= 0)
 		{
 			Expand();
@@ -80,7 +80,7 @@ public:
 
 	bool DelElem(int id)
 	{
-		LockUnique lock(m_mutex);
+		UniqueLock lock(m_mutex);
 		auto it = m_use.find(id);
 		if (it == m_use.end())
 		{

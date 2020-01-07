@@ -14,9 +14,9 @@ using namespace SeFNetProto;
 
 bool GateNodeServer::InitHelper()
 {
-	mpNetModule->AddReceiveCallBack(this, &GateNodeServer::OtherMessage);
-	mpNetModule->AddReceiveCallBack(LOGIN_ROUTE_TO_GATE, this, &GateNodeServer::OnLoginRouteBack);
-	mpNetModule->AddReceiveCallBack(CHAT_ROUTE_TO_GATE, this, &GateNodeServer::OnChatRouteBack);
+	//mpNetModule->AddReceiveCallBack(this, &GateNodeServer::OtherMessage);
+	//mpNetModule->AddReceiveCallBack(LOGIN_ROUTE_TO_GATE, this, &GateNodeServer::OnLoginRouteBack);
+	//mpNetModule->AddReceiveCallBack(CHAT_ROUTE_TO_GATE, this, &GateNodeServer::OnChatRouteBack);
 
 	//init server info
 	if (!mpNetModule->InitNet(g_pJsonConfig->m_ServerConf["NodePort"].asUInt()))

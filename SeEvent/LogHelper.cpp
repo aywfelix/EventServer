@@ -70,7 +70,7 @@ bool LogHelper::SendLog()
 	if (m_queue.TryPopQ(info))
 	{
 #ifdef DEBUG
-		std::cout << info << std::flush; // 默认输出
+		std::cout << info << std::endl; // 默认输出
 #endif
 		mFileC.Write(info.c_str(), sizeof(char), info.length());
 	}
@@ -139,7 +139,7 @@ void LogHelper::Log(int level, const char* file, const char* func, int line, con
 	moss.clear();
 }
 
-bool LogHelper::LoadInfoFromCfg(std::string& logcfg)
+bool LogHelper::LoadLogCfg(std::string& logcfg)
 {
 	if (!LibConfig::Instance().loadcfg(logcfg))
 	{
@@ -162,10 +162,10 @@ bool LogHelper::LoadInfoFromCfg(std::string& logcfg)
 	return true;
 }
 
-bool LogHelper::LoadInfoFromCfg(const char* logcfg)
+bool LogHelper::LoadLogCfg(const char* logcfg)
 {
 	std::string strLogcfg = logcfg;
-	return LoadInfoFromCfg(strLogcfg);
+	return LoadLogCfg(strLogcfg);
 }
 
 LogStream& LogHelper::Stream(int level, const char* file, const char* func, int line)

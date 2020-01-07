@@ -15,11 +15,14 @@ public:
 	ClientPlayerMgr() {}
 	virtual ~ClientPlayerMgr() {}
 	ClientPlayer* NewPlayer(Session* pSession);
-	void DelPlayer(ClientPlayer* pClientPlayer);
+	void DelPlayer(ClientPlayer* player);
 	ClientPlayer* GetPlayer(int memId);
 
-	void AddPlayerIDMap(UINT64 playerId, ClientPlayer* pPlayer);
+	void AddPlayerIDMap(UINT64 playerId, ClientPlayer* player);
 	ClientPlayer* GetPlayerByID(UINT64 playerId);
+
+	void AddPlayerSockMap(socket_t nFd, ClientPlayer* player);
+	ClientPlayer* GetPlayerByFd(socket_t nFd);
 
 private:
 	clientplayer_pool_t mClientPool;

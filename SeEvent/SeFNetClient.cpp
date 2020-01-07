@@ -8,10 +8,6 @@ void SeFNetClient::Init()
 		CallBack cb;
 		mmCallBack.emplace(eType, cb);
 	}
-	for (int i = 0; i < SERVER_TYPE_MAX; ++i)
-	{
-		AddEventCallBack((EServerType)i, this, &SeFNetClient::OnSocketEvent);
-	}
 }
 
 void SeFNetClient::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
@@ -137,16 +133,16 @@ void SeFNetClient::ProcessAddConnect()
 		{
 			conn.ConnState = ConnectState::CONNECTING;
 			conn.pNet = std::make_shared<SeFNet>();
+			InitCallBacks(conn);
+			mConnecServers.emplace(conn.ServerId, conn);
 			if (conn.pNet->InitNet(conn.Ip.c_str(), conn.Port))
 			{
 				conn.ConnState = ConnectState::NORMAL;
-				InitCallBacks(conn);
 			}
 			else
 			{
 				conn.ConnState = ConnectState::DISCONNECT;
 			}
-			mConnecServers.emplace(conn.ServerId, conn);
 		}
 	}
 	mTemplist.clear();
@@ -178,7 +174,7 @@ void SeFNetClient::SendByServerId(int nServerId, const int nMsgID, const char* m
 	{
 		return;
 	}
-	it->second.pNet->SendMsg(0, nMsgID, msg, len);
+	it->second.pNet->SendMsg(it->second.SockFd, nMsgID, msg, len);
 }
 void SeFNetClient::SendByServerIds(std::vector<int>& nServerIds, const int nMsgID, const char* msg, int len)
 {
@@ -206,7 +202,7 @@ void SeFNetClient::SendToAll(const int nMsgID, const char* msg, int len)
 	{
 		if (it.second.pNet.get())
 		{
-			it.second.pNet->SendMsg(0, nMsgID, msg, len);
+			it.second.pNet->SendMsg(it.second.SockFd, nMsgID, msg, len);
 		}
 	}
 }
@@ -217,7 +213,7 @@ void SeFNetClient::SendPBToAll(const int nMsgID, ::google::protobuf::Message* pM
 		if (it.second.pNet.get())
 		{
 			std::string strMsg = pMsg->SerializeAsString();
-			it.second.pNet->SendMsg(0, nMsgID, strMsg.c_str(), strMsg.length());
+			it.second.pNet->SendMsg(it.second.SockFd, nMsgID, strMsg.c_str(), strMsg.length());
 		}
 	}
 }

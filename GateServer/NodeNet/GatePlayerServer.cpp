@@ -8,15 +8,17 @@
 #include "ClientModule/ModuleWorld.h"
 #include "LogHelper.h"
 #include "SeFINet.h"
-#include "LogHelper.h"
 #include "JsonConfig.h"
+#include "LogHelper.h"
+#include "Se.h"
+#include "Session.h"
 
 bool GatePlayerServer::Init()
 {
 	m_pNetModule = new SeFNet();
-	m_pNetModule->AddEventCallBack(this, &GatePlayerServer::OnSocketClientEvent);
-	m_pNetModule->AddReceiveCallBack(this, &GatePlayerServer::OnOtherMessage);
-	m_pNetModule->AddReceiveCallBack(ModuleChat::RPC_CHAT_CHAT_REQ, this, &GatePlayerServer::OnOtherMessage);
+	//m_pNetModule->AddEventCallBack(this, &GatePlayerServer::OnSocketClientEvent);
+	//m_pNetModule->AddReceiveCallBack(this, &GatePlayerServer::OnOtherMessage);
+	//m_pNetModule->AddReceiveCallBack(ModuleChat::RPC_CHAT_CHAT_REQ, this, &GatePlayerServer::OnOtherMessage);
 	//init server info
 	Json::Value GatePlayerServerConf = g_pJsonConfig->m_Root["GatePlayerServer"];
 	if (!m_pNetModule->InitNet(GatePlayerServerConf["NodePort"].asUInt()))
@@ -55,31 +57,26 @@ void GatePlayerServer::OnSocketClientEvent(const socket_t nFd, const SE_NET_EVEN
 void GatePlayerServer::OnClientConnected(const socket_t nFd)
 {
 	// bind client'id with socket id
-	//NetObject* pNetObject = m_pNetModule->GetNet()->GetNetObject(nFd);
-	//if (pNetObject)
-	//{
-	//	ClientPlayer* pClientPlayer = g_pClientPlayerMgr->CreatePlayer(pNetObject);
-	//	g_pClientPlayerMgr->AddPlayerIDMap(1, pClientPlayer); // TODO 测试 默认playerid 为 1
-	//	CLOG_INFO << "gate player server create player ok Sockfd:" << nFd;
-
-	//}
-	//else
-	//{
-	//	CLOG_ERR << "gate player server create player error netobject is nullptr";
-	//}
+	Session* pSession = m_pNetModule->GetNet()->GetSession(nFd);
+	ClientPlayer* pPlayer = g_pClientPlayerMgr->NewPlayer(pSession);
+	if (pSession == nullptr || pPlayer == nullptr)
+	{
+		CLOG_ERR << "GatePlayerServer: create player error" << CLOG_END;
+		return;
+	}
+	g_pClientPlayerMgr->AddPlayerIDMap(nFd, pPlayer);
+	CLOG_INFO << "GatePlayerServer: create player ok Sockfd:" << nFd << CLOG_END;
 }
 
 void GatePlayerServer::OnClientDisconnect(const socket_t nFd)
 {
-	ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayer(nFd);
-	if (pPlayer == nullptr)
+	ClientPlayer* player = g_pClientPlayerMgr->GetPlayerByFd(nFd);
+	if (player == nullptr)
 	{
 		return;
 	}
-	else
-	{
-		/*g_pClientPlayerMgr->DestoryPlayer(pPlayer);*/
-	}
+	g_pClientPlayerMgr->DelPlayer(player);
+	CLOG_INFO << "GatePlayerServer: player quit" << nFd << CLOG_END;
 }
 
 int GatePlayerServer::GetModuleID(const int msgid)

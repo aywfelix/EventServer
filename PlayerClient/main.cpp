@@ -13,6 +13,8 @@ int main()
 	g_pJsonConfig->Load("../Config/ServerConf.json");
 	g_pJsonConfig->m_ServerConf = g_pJsonConfig->m_Root["GateServer"];
 
+	g_pSessionPool = std::make_unique<SessionPool>();
+
 	Client client;
 	client.Init();
 	while (true)

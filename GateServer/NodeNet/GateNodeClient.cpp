@@ -5,7 +5,8 @@
 
 void GateNodeClient::InitHelper()
 {
-	mpNetClientModule->AddEventCallBack(EServerType::SERVER_TYPE_MASTER, this, &GateNodeClient::OnSocketEvent);
+	mpNetClientModule->Init();
+	mpNetClientModule->AddEventCallBack(SERVER_TYPE_MASTER, this, &GateNodeClient::OnSocketEvent);
 	SetServerInfoReport();
 	AddConnectServer();
 }

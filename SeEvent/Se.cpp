@@ -121,14 +121,7 @@ void SeNet::AddSession(Socket* pSocket)
 	if (pSession == nullptr)
 		return;
 	pSession->SetSocket(pSocket);
-	if (!mbServer)
-	{
-		mSessions.emplace(0, pSession);  // 客户端只有一个session信息
-	}
-	else
-	{
-		mSessions.emplace(pSocket->GetFd(), pSession);
-	}
+	mSessions.emplace(pSocket->GetFd(), pSession);
 	// connect event
 	mEventCB(pSocket->GetFd(), SE_NET_EVENT_CONNECTED, this);
 }
@@ -362,7 +355,8 @@ void SeNet::SendMsg(socket_t fd, const char* msg, int len)
 	if (it != mSessions.end())
 	{
 		it->second->Send(msg, len);
-		mEventOp->AddEvent(it->first, EV_WRITE);
+		fd = it->second->GetSocket()->GetFd();
+		mEventOp->AddEvent(fd, EV_WRITE);
 	}
 }
 

@@ -19,20 +19,20 @@ TimerLoop::~TimerLoop()
 
 void TimerLoop::TimeLoop()
 {
-	LockGuard lock(mMutex);
+	GuardLock lock(mMutex);
 	mTimeQ->TimeLoop();
 }
 
 TimeId TimerLoop::RunAfter(int delay, TimerCb& cb)
 {
-	LockGuard lock(mMutex);
+	GuardLock lock(mMutex);
 	Timestamp timestamp(delay);
 	return mTimeQ->AddTimer(new Timer(cb, timestamp, 0));
 }
 
 TimeId TimerLoop::RunAt(Timestamp& timestamp, TimerCb& cb)
 {
-	LockGuard lock(mMutex);
+	GuardLock lock(mMutex);
 	return mTimeQ->AddTimer(new Timer(cb, timestamp, 0));
 }
 
@@ -44,21 +44,21 @@ TimeId TimerLoop::RunAt(time_t& ti, TimerCb& cb)
 
 TimeId TimerLoop::RunEvery(int interval, TimerCb& cb)
 {
-	LockGuard lock(mMutex);
+	GuardLock lock(mMutex);
 	Timestamp timestamp(interval);  // 从下个间隔时间开始执行
 	return mTimeQ->AddTimer(new Timer(cb, timestamp, interval));
 }
 
 TimeId TimerLoop::RunAfter(int delay, TimerCb&& cb)
 {
-	LockGuard lock(mMutex);
+	GuardLock lock(mMutex);
 	Timestamp timestamp(delay);
 	return mTimeQ->AddTimer(new Timer(cb, timestamp, 0));
 }
 
 TimeId TimerLoop::RunAt(Timestamp& timestamp, TimerCb&& cb)
 {
-	LockGuard lock(mMutex);
+	GuardLock lock(mMutex);
 	return mTimeQ->AddTimer(new Timer(cb, timestamp, 0));
 }
 
@@ -70,7 +70,7 @@ TimeId TimerLoop::RunAt(time_t& ti, TimerCb&& cb)
 
 TimeId TimerLoop::RunEvery(int interval, TimerCb&& cb)
 {
-	LockGuard lock(mMutex);
+	GuardLock lock(mMutex);
 	Timestamp timestamp(interval);  // 从下个间隔时间开始执行
 	return mTimeQ->AddTimer(new Timer(cb, timestamp, interval));
 }
@@ -78,7 +78,7 @@ TimeId TimerLoop::RunEvery(int interval, TimerCb&& cb)
 
 void TimerLoop::Cancel(TimeId& timeid)
 {
-	LockGuard lock(mMutex);
+	GuardLock lock(mMutex);
 	mTimeQ->CancelTimer(timeid);
 }
 

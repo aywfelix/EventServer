@@ -9,7 +9,9 @@ using namespace SeFNetProto;
 bool NetClientBase::Init()
 {
 	mpNetClientModule = new SeFNetClient();
+	mpNetClientModule->Init();
 	mpNetClientModule->AddReceiveCallBack(EServerType::SERVER_TYPE_MASTER, MASTER_REPORT_SERVER_INFO_TO_SERVER, this, &NetClientBase::OnMasterMessage);
+	
 	return true;
 }
 
@@ -30,6 +32,7 @@ void NetClientBase::OnSocketNodeEvent(const socket_t nFd, const SE_NET_EVENT nEv
 	{
 		if (pServerData)
 		{
+			pServerData->SockFd = nFd;
 			int nServerId = pServerData->ServerId;
 			mpNetClientModule->SendPBByServerId(nServerId, REPORT_CLIENT_INFO_TO_SERVER, &mServerReport);
 			LOG_INFO("%s server connect to %s server ok", mServerReport.server_name(), pServerData->name);
@@ -84,7 +87,7 @@ void NetClientBase::AddConnectMaster()
 	if (this->GetServerType() != EServerType::SERVER_TYPE_MASTER)
 	{
 		ConnectData xServerData;
-		xServerData.ServerId = g_pJsonConfig->m_Root["MasterServer"]["NodeID"].asInt();
+		xServerData.ServerId = g_pJsonConfig->m_Root["MasterServer"]["NodeId"].asInt();
 		xServerData.ServerType = EServerType::SERVER_TYPE_MASTER;
 		xServerData.Ip = g_pJsonConfig->m_Root["MasterServer"]["NodeIp"].asString();
 		xServerData.Port = g_pJsonConfig->m_Root["MasterServer"]["NodePort"].asInt();

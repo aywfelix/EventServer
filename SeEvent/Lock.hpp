@@ -7,8 +7,8 @@
 
 typedef std::recursive_mutex RecursiveMutex;
 typedef std::mutex Mutex;
-typedef std::lock_guard<Mutex> LockGuard;
-typedef std::unique_lock<Mutex> LockUnique;
+typedef std::lock_guard<std::mutex> GuardLock;
+typedef std::unique_lock<std::mutex> UniqueLock;
 
 typedef std::condition_variable Condition;
 

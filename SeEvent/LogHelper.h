@@ -13,6 +13,7 @@
 #include "FileHelper.h"
 #include "SePlatForm.h"
 #include "Util.h"
+#include "CommDef.h"
 
 enum eLogLevel
 {
@@ -85,8 +86,8 @@ public:
 	
 	void Start();
 	void Stop();
-	bool LoadInfoFromCfg(std::string& logcfg);
-	bool LoadInfoFromCfg(const char* logcfg);
+	bool LoadLogCfg(std::string& logcfg);
+	bool LoadLogCfg(const char* logcfg);
 	int GetLevel() { return m_level; }
 
 	LogStream& Stream(int level, const char* file, const char* func, int line);
@@ -133,6 +134,7 @@ extern std::unique_ptr<LogHelper> g_pLog;
 
 #define INIT_SFLOG(a) do{\
 g_pLog = std::make_unique<LogHelper>();\
+g_pLog->LoadLogCfg(LOG_CFG_PATH);\
 g_pLog->Init(a);\
 g_pLog->Start();\
 }while (0);

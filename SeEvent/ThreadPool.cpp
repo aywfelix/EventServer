@@ -22,7 +22,7 @@ void ThreadPool::Run(const Task& f)
 	{
 		return f();
 	}
-	LockUnique Lock(m_Mutex);
+	UniqueLock Lock(m_Mutex);
 	while(IsFull())
 	{
 		m_NotFullCond.wait(Lock);
@@ -38,7 +38,7 @@ void ThreadPool::Run(Task&& f)
 	{
 		return f();
 	}
-	LockUnique Lock(m_Mutex);
+	UniqueLock Lock(m_Mutex);
 	while(IsFull())
 	{
 		m_NotFullCond.wait(Lock);
@@ -49,7 +49,7 @@ void ThreadPool::Run(Task&& f)
 #include <iostream>
 void ThreadPool::Stop()
 {
-	LockUnique Lock(m_Mutex);
+	UniqueLock Lock(m_Mutex);
 	m_bRunning = false;
 	m_NotEmptyCond.notify_all();
 	for(auto it = m_vThreads.begin();it != m_vThreads.end();)
@@ -61,7 +61,7 @@ void ThreadPool::Stop()
 
 size_t ThreadPool::GetTaskQueueSize()
 {
-	LockUnique Lock(m_Mutex);
+	UniqueLock Lock(m_Mutex);
 	return m_dTaskQueue.size();
 }
 
@@ -83,7 +83,7 @@ void ThreadPool::ThreadFunc()
 
 ThreadPool::Task ThreadPool::TaskTake()
 {
-	LockUnique Lock(m_Mutex);
+	UniqueLock Lock(m_Mutex);
 	while(m_dTaskQueue.empty() && m_bRunning)
 	{
 		m_NotEmptyCond.wait(Lock);

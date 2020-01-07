@@ -25,9 +25,9 @@ bool FileC::Close()
 	return true;
 }
 
-bool FileC::Write(const void* ptr, size_t size, size_t count)
+bool FileC::Write(const char* ptr, size_t size, size_t count)
 {
-	if (fwrite(ptr, size, count, mFp) != count)
+	if (fwrite((const void*)ptr, size, count, mFp) != count)
 	{
 		return false;
 	}
@@ -41,6 +41,11 @@ bool FileC::Read(void* buf, size_t size, size_t count)
 		return false;
 	}
 	return true;
+}
+
+void FileC::SeekEnd()
+{
+	fseek(mFp, 0, SEEK_END);
 }
 
 long FileC::FileSize()
@@ -83,4 +88,9 @@ long FileCpp::FileSize()
 	mfs.seekg(0, std::ios::end);
 	long size = mfs.tellg();
 	return size;
+}
+
+void FileCpp::SeekEnd()
+{
+	mfs.seekg(0, std::ios::end);
 }
