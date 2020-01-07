@@ -171,9 +171,9 @@ void SeNet::AcceptClient()
 			AddSession(pSocket);
 			mEventOp->SetMaxFd(connfd);
 #ifdef _WIN32
-			mEventOp->AddEvent(connfd, EV_READ | EV_WRITE);
+			mEventOp->AddEvent(connfd, EV_READ);
 #else
-			mEventOp->AddEvent(connfd, EV_READ | EV_WRITE);
+			mEventOp->AddEvent(connfd, EV_READ);
 #endif
 			LOG_INFO("accept client connect ...%d", connfd);
 			continue;

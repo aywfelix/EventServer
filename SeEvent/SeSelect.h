@@ -24,4 +24,6 @@ public:
 protected:
 private:
 	SeSelectOp mSelectOp;
+	std::vector<socket_t> mRFd;
+	std::vector<socket_t> mWFd;
 };

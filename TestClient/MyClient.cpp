@@ -50,8 +50,6 @@ int main()
 	INIT_SFLOG("TestClient");
 	CLOG_DEBUG << "aaaaaaaaaaaaaaaa" << CLOG_END;
 
-	g_pLog->LoadInfoFromCfg("../Config/log.cfg");
-
 	std::cout << GetTimeS() << std::endl;
 	std::cout << time(0) << std::endl;
 	std::cout << (int)(GetTimeS()/60) << std::endl;
