@@ -12,12 +12,12 @@ hiredis_pool::hiredis_pool(int n, const char* ip, unsigned int port)
 	for (int i = 0; i < n; ++i)
 	{
 		redis_ctx = redisConnectWithTimeout(m_ip, m_port, m_timeout);
-		if (redis_ctx)
+		if (redis_ctx && redis_ctx->err == 0)
 		{
 			m_hiredis_pool.emplace_back(redis_ctx);
 			redisEnableKeepAlive(redis_ctx);
 		}
-		else
+		else if(redis_ctx)
 		{
 			LOG_DEBUG("hiredis: connect redis error, %d", redis_ctx->err);
 			break;
@@ -51,7 +51,7 @@ redisContext* hiredis_pool::malloc()
 	if (m_hiredis_pool.empty())
 	{
 		redis_ctx = redisConnectWithTimeout(m_ip, m_port, m_timeout);
-		if (redis_ctx == nullptr)
+		if (redis_ctx && redis_ctx->err !=0)
 		{
 			LOG_ERR("connect redis error, %d", redis_ctx->err);
 			return nullptr;
