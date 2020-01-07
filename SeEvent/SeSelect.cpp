@@ -31,7 +31,6 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 	int ret = 0;
 	memcpy(&mSelectOp._rfds, &mSelectOp.rfds, sizeof(fd_set));
 	memcpy(&mSelectOp._wfds, &mSelectOp.wfds, sizeof(fd_set));
-
 	ret = select((int)mMaxFd + 1,&mSelectOp._rfds, &mSelectOp._wfds, NULL, tv);
 	if (ret == -1)
 	{

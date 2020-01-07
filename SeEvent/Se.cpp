@@ -121,7 +121,14 @@ void SeNet::AddSession(Socket* pSocket)
 	if (pSession == nullptr)
 		return;
 	pSession->SetSocket(pSocket);
-	mSessions.emplace(pSocket->GetFd(), pSession);
+	if (!mbServer)
+	{
+		mSessions.emplace(0, pSession);
+	}
+	else 
+	{
+		mSessions.emplace(pSocket->GetFd(), pSession);
+	}
 	// connect event
 	mEventCB(pSocket->GetFd(), SE_NET_EVENT_CONNECTED, this);
 }
@@ -143,7 +150,6 @@ void SeNet::CloseSession(Session* pSession)
 	{
 		// close connect event
 		mEventCB(fd, SE_NET_EVENT_EOF, this);
-
 		mSessions.erase(fd);
 		mEventOp->DelEvent(fd, EV_READ | EV_WRITE);
 		g_pSessionPool->DelSession(pSession);
@@ -165,9 +171,9 @@ void SeNet::AcceptClient()
 			AddSession(pSocket);
 			mEventOp->SetMaxFd(connfd);
 #ifdef _WIN32
-			mEventOp->AddEvent(connfd, EV_READ);
+			mEventOp->AddEvent(connfd, EV_READ | EV_WRITE);
 #else
-			mEventOp->AddEvent(connfd, EV_READ);
+			mEventOp->AddEvent(connfd, EV_READ | EV_WRITE);
 #endif
 			LOG_INFO("accept client connect ...%d", connfd);
 			continue;
@@ -299,35 +305,35 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 			break;
 		}
 		auto activemq = mEventOp->GetActiveEvents();
+
 		// do with activemq
 		for (auto it = activemq.begin(); it != activemq.end(); it++)
 		{
 			if ((it->second & EV_READ) && (mSocket->GetFd() == it->first) && mbServer)
 			{
 				AcceptClient();
+				continue;
 			}
-			else
+			Session* pSession = GetSession(it->first);
+			if (pSession == nullptr)
 			{
-				Session* pSession = GetSession(it->first);
-				if (pSession == nullptr)
-				{
-					LOG_WARN("eventloop session is null, socket==%d", it->first);
-					continue;
-				}
+				LOG_WARN("eventloop session is null, socket==%d", it->first);
+				continue;
+			}
 
-				if (it->second & EV_READ)
-				{
-					EventRead(pSession);
-				}
-				if (it->second & EV_WRITE)
-				{
-					EventWrite(pSession);
-				}
-				if (it->second & EV_CLOSED)
-				{
-					LOG_INFO("close event trigger....%d", it->first);
-					CloseSession(pSession);
-				}
+			if (it->second & EV_READ)
+			{
+				EventRead(pSession);
+			}
+			if (it->second & EV_WRITE)
+			{
+				EventWrite(pSession);
+				LOG_INFO("write event trigger....%d", it->first);
+			}
+			if (it->second & EV_CLOSED)
+			{
+				LOG_INFO("close event trigger....%d", it->first);
+				CloseSession(pSession);
 			}
 		}
 		activemq.clear();
@@ -355,7 +361,8 @@ void SeNet::SendMsg(socket_t fd, const char* msg, int len)
 	if (it != mSessions.end())
 	{
 		it->second->Send(msg, len);
-		fd = it->second->GetSocket()->GetFd();
+		if(!mbServer)
+			fd = it->second->GetSocket()->GetFd();
 		mEventOp->AddEvent(fd, EV_WRITE);
 	}
 }

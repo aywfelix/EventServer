@@ -174,7 +174,7 @@ void SeFNetClient::SendByServerId(int nServerId, const int nMsgID, const char* m
 	{
 		return;
 	}
-	it->second.pNet->SendMsg(it->second.SockFd, nMsgID, msg, len);
+	it->second.pNet->SendMsg(0, nMsgID, msg, len);
 }
 void SeFNetClient::SendByServerIds(std::vector<int>& nServerIds, const int nMsgID, const char* msg, int len)
 {
@@ -202,7 +202,7 @@ void SeFNetClient::SendToAll(const int nMsgID, const char* msg, int len)
 	{
 		if (it.second.pNet.get())
 		{
-			it.second.pNet->SendMsg(it.second.SockFd, nMsgID, msg, len);
+			it.second.pNet->SendMsg(0, nMsgID, msg, len);
 		}
 	}
 }
@@ -213,7 +213,7 @@ void SeFNetClient::SendPBToAll(const int nMsgID, ::google::protobuf::Message* pM
 		if (it.second.pNet.get())
 		{
 			std::string strMsg = pMsg->SerializeAsString();
-			it.second.pNet->SendMsg(it.second.SockFd, nMsgID, strMsg.c_str(), strMsg.length());
+			it.second.pNet->SendMsg(0, nMsgID, strMsg.c_str(), strMsg.length());
 		}
 	}
 }
