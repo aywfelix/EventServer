@@ -141,8 +141,11 @@
     <ClInclude Include="ClientModule\ModuleWorld.h" />
     <ClInclude Include="ClientProto\Chat.pb.h" />
     <ClInclude Include="ClientProto\ClientPublic.pb.h" />
+    <ClInclude Include="CommDef.h" />
     <ClInclude Include="concurrentqueue.h" />
     <ClInclude Include="ConcurrentQueue.hpp" />
+    <ClInclude Include="DesignTable\Activity.hpp" />
+    <ClInclude Include="DesignTable\TableMgr.h" />
     <ClInclude Include="FileHelper.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="JsonConfig.h" />
@@ -197,6 +200,7 @@
     <ClCompile Include="CityHash\city.cc" />
     <ClCompile Include="ClientProto\Chat.pb.cc" />
     <ClCompile Include="ClientProto\ClientPublic.pb.cc" />
+    <ClCompile Include="DesignTable\TableMgr.cpp" />
     <ClCompile Include="FileHelper.cpp" />
     <ClCompile Include="JsonConfig.cpp" />
     <ClCompile Include="jsoncpp.cpp" />

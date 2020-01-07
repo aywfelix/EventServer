@@ -195,6 +195,15 @@
     <ClInclude Include="MariaCpp\mariacpp\uri.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="DesignTable\Activity.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DesignTable\TableMgr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CommDef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SeEpoll.cpp">
@@ -333,6 +342,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="MariaCpp\src\uri.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DesignTable\TableMgr.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
