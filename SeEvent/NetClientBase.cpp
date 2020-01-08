@@ -34,7 +34,7 @@ void NetClientBase::OnSocketNodeEvent(const socket_t nFd, const SE_NET_EVENT nEv
 			pServerData->SockFd = nFd;
 			int nServerId = pServerData->ServerId;
 			mpNetClientModule->SendPBByServerId(nServerId, REPORT_CLIENT_INFO_TO_SERVER, &mServerReport);
-			LOG_INFO("%s server connect to %s server ok", mServerReport.server_name(), pServerData->name);
+			LOG_INFO("%s server connect to %s server ok", mServerReport.server_name().c_str(), (pServerData->name).c_str());
 		}
 	}
 	else
@@ -42,7 +42,7 @@ void NetClientBase::OnSocketNodeEvent(const socket_t nFd, const SE_NET_EVENT nEv
 		LOG_ERR("connect close!!!");
 		if (pServerData)
 		{
-			LOG_ERR("%s server connect to %s server failed", mServerReport.server_name(), pServerData->name);
+			LOG_ERR("%s server connect to %s server failed", mServerReport.server_name().c_str(), (pServerData->name).c_str());
 		}
 	}
 }
