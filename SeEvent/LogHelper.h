@@ -99,11 +99,10 @@ private:
 	bool CreateLog();
 private:
 	ConcurrentQueue<std::string> m_queue;
-	int m_level{ 1 };
 	std::string m_LogPath;
 	std::ostringstream moss;
 	std::thread m_thread;
-
+	int m_level;
 	LogStream stream;
 	
 	int m_RollType;

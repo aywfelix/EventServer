@@ -66,13 +66,18 @@ void NetServerBase::OnReportToServer(const socket_t nFd, const int nMsgID, const
 	}
 
 	pServerData->fd = nFd;
-	*(pServerData->ServerInfo) = report;
-	mmClientNodes.erase(report.server_id());
+	pServerData->ServerInfo = std::make_shared<SeFNetProto::ServerReport>(report);
+	auto it = mmClientNodes.find(report.server_id());
+	if (it != mmClientNodes.end())
+	{
+		mmClientNodes.erase(it);
+	}
+	
 	mmClientNodes.emplace(report.server_id(), pServerData);
 	AfterReportToServer(pServerData);  // 被子类重新接口
 	LOG_INFO("report server info from %d", report.server_id());
 }
-void NetServerBase::AfterReportToServer(ServerDataPtr pReportServerData)
+void NetServerBase::AfterReportToServer(ServerDataPtr& pReportServerData)
 {
 
 }

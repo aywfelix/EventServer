@@ -70,7 +70,7 @@ bool LogHelper::SendLog()
 	if (m_queue.TryPopQ(info))
 	{
 #ifdef DEBUG
-		std::cout << info << std::endl; // Ä¬ÈÏÊä³ö
+		std::cout << info << std::endl; 
 #endif
 		mFileC.Write(info.c_str(), sizeof(char), info.length());
 	}
@@ -114,7 +114,7 @@ void LogHelper::Log(int level, const char* file, const char* func, int line, con
 	vsnprintf(content, sizeof(content) - 1, fmt, ap);
 	va_end(ap);
 
-#ifndef DEBUG
+#ifdef DEBUG
 	if (level == E_LOG_FATAL || level == E_LOG_ERR)
 	{
 		moss << "\x1b[31m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m";  //red

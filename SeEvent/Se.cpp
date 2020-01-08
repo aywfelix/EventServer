@@ -36,15 +36,7 @@ void SeEventOp::SetMaxFd(socket_t fd)
 
 void SeEventOp::SetActiveEvent(socket_t fd, int mask)
 {
-	auto it = mActiveEvents.find(fd);
-	if (it == mActiveEvents.end())
-	{
-		mActiveEvents[fd] = mask;
-	}
-	else
-	{
-		it->second = mask;
-	}
+	mActiveEvents[fd] = mask;
 }
 
 std::map<socket_t, int>& SeEventOp::GetActiveEvents()
@@ -70,9 +62,13 @@ void SeNet::InitEventOp()
 		return;
 	}
 	mEventOp->Init();
-#if SF_PLATFORM == SF_PLATFORM_WIN
+#if defined SF_PLATFORM_WIN
 	WSADATA wsa_data;
-	WSAStartup(0x0201, &wsa_data);
+	if (WSAStartup(MAKEWORD(2, 2), &wsa_data)!=0)
+	{
+		AssertEx(0, "windows init socket api error");
+		return;
+	}
 #endif
 	mbStop = false;
 	mSocket = new Socket;
@@ -135,6 +131,14 @@ void SeNet::AddSession(Socket* pSocket)
 
 Session* SeNet::GetSession(socket_t fd)
 {
+	if (mSessions.empty())
+	{
+		return nullptr;
+	}
+	if (!mbServer)
+	{
+		fd = 0;
+	}
 	auto it = mSessions.find(fd);
 	if (it == mSessions.end())
 	{
@@ -194,11 +198,6 @@ void SeNet::EventRead(Session* pSession)
 	{
 		char* pRecvBuf = pSession->GetRecvBuf(nRecvLeft);
 		int ret = ::recv(fd, pRecvBuf, nRecvLeft, 0);
-#ifdef DEBUG
-		char tmpbuf[1024] = { 0 };
-		pSession->GetSocketRecvBuf().ReadAll(tmpbuf);
-		LOG_INFO("socket recv from peer content %s", tmpbuf);
-#endif
 		if (ret < 0)
 		{
 			if (errno == EINTR)
@@ -212,7 +211,6 @@ void SeNet::EventRead(Session* pSession)
 			}
 			else if (errno == 0)
 			{
-				LOG_WARN("socket recv ok, err %s", strerror(errno));
 				break;
 			}
 			LOG_WARN("socket recv error! err code %d, %s", errno, strerror(errno));
@@ -221,16 +219,15 @@ void SeNet::EventRead(Session* pSession)
 		}
 		else if (ret == 0)
 		{
-			if (errno == ECONNRESET)
-			{
-				LOG_INFO("================================================");
-			}
 			LOG_WARN("connection peer closed! err code %d, %s", errno, strerror(errno));
 			CloseSession(pSession);
 			break;
 		}
 		nRecvLeft -= ret;
-		LOG_INFO("socket recv %d byte of content %s", ret, pRecvBuf);
+		if (ret > 0)
+		{
+			LOG_INFO("socket recv %d byte of content %s", ret, pRecvBuf);
+		}
 		pSession->PostRecvData(ret);
 
 		for (;;)
@@ -309,7 +306,7 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 		// do with activemq
 		for (auto it = activemq.begin(); it != activemq.end(); it++)
 		{
-			if ((it->second & EV_READ) && (mSocket->GetFd() == it->first) && mbServer)
+			if (mbServer && (it->second & EV_READ) && (mSocket->GetFd() == it->first))
 			{
 				AcceptClient();
 				continue;
@@ -320,7 +317,6 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 				LOG_WARN("eventloop session is null, socket==%d", it->first);
 				continue;
 			}
-
 			if (it->second & EV_READ)
 			{
 				EventRead(pSession);
@@ -328,7 +324,6 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 			if (it->second & EV_WRITE)
 			{
 				EventWrite(pSession);
-				LOG_INFO("write event trigger....%d", it->first);
 			}
 			if (it->second & EV_CLOSED)
 			{

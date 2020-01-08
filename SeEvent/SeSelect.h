@@ -22,8 +22,7 @@ public:
 	virtual bool Dispatch(struct timeval* tv);
 	virtual bool Clear();
 protected:
+
 private:
 	SeSelectOp mSelectOp;
-	std::vector<socket_t> mRFd;
-	std::vector<socket_t> mWFd;
 };

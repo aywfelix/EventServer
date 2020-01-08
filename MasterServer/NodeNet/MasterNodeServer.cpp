@@ -35,18 +35,13 @@ void MasterNodeServer::SyncNodeDataToAll(EServerType nType)
 		{
 			continue;
 		}
-		ServerDataPtr pServerData = it->second;
-		pReport = (pServerData->ServerInfo).get();
+		pReport->CopyFrom(*(it->second->ServerInfo));
 	}
-
-	for (auto it = mmClientNodes.begin(); it != mmClientNodes.end(); it++)
+	if (report_list.server_info_size() > 0)
 	{
-		ServerReport* pReport = report_list.add_server_info();
-		if (pReport == nullptr)
+		for (auto it = mmClientNodes.begin(); it != mmClientNodes.end(); it++)
 		{
-			continue;
+			mpNetModule->SendPBMsg(it->second->fd, MASTER_REPORT_SERVER_INFO_TO_SERVER, &report_list);
 		}
-		ServerDataPtr pServerData = it->second;
-		mpNetModule->SendPBMsg(it->second->fd, MASTER_REPORT_SERVER_INFO_TO_SERVER, &report_list);
 	}
 }

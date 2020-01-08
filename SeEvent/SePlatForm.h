@@ -1,13 +1,10 @@
 
-#define SF_PLATFORM_WIN 1
-#define SF_PLATFORM_LINUX 2
-
 #define __WIN32__
 
 #if defined(__WIN32__) || defined(_WIN32) || defined(__WIN64) || defined(__WIN64__) || defined(WIN32) || defined(WIN64)
-#define SF_PLATFORM SF_PLATFORM_WIN
+#define SF_PLATFORM_WIN
 #elif defined(linux) || defined(__linux__) || defined(__LINUX) || defined(__LINUX__)
-#define SF_PLATFORM SF_PLATFORM_LINUX
+#define SF_PLATFORM_LINUX
 #endif
 
 #ifdef _WIN32
@@ -26,6 +23,7 @@
 #include <arpa/inet.h>
 #include <net/if.h>
 #include <ifaddrs.h>
+#include <sys/resource.h>
 #endif
 
 #include <cerrno>
@@ -37,6 +35,7 @@
 #include <cstdint>
 #include <sys/stat.h>
 #include <sys/types.h>
+
 
 typedef uint8_t		UINT8;
 typedef uint16_t	UINT16;
@@ -100,7 +99,7 @@ typedef DWORD		TID;
 typedef pthread_t	TID;
 #endif
 
-#if SF_PLATFORM == SF_PLATFORM_WIN
+#ifdef SF_PLATFORM_WIN
 #define SPRINTF sprintf_s
 #define SFSTRICMP stricmp
 #define SFSLEEP(s) Sleep(s) //millisecond
@@ -117,8 +116,10 @@ typedef pthread_t	TID;
 
 #define		tvsnprintf		vsnprintf
 #define		tsnprintf		snprintf
+void SetResource();
 #endif
 
 int SocketCloseOnExec(socket_t fd);
 
 TID CurrentThreadId();
+

@@ -16,9 +16,9 @@
 bool GatePlayerServer::Init()
 {
 	m_pNetModule = new SeFNet();
-	//m_pNetModule->AddEventCallBack(this, &GatePlayerServer::OnSocketClientEvent);
-	//m_pNetModule->AddReceiveCallBack(this, &GatePlayerServer::OnOtherMessage);
-	//m_pNetModule->AddReceiveCallBack(ModuleChat::RPC_CHAT_CHAT_REQ, this, &GatePlayerServer::OnOtherMessage);
+	m_pNetModule->AddEventCallBack(this, &GatePlayerServer::OnSocketClientEvent);
+	m_pNetModule->AddReceiveCallBack(this, &GatePlayerServer::OnOtherMessage);
+	m_pNetModule->AddReceiveCallBack(ModuleChat::RPC_CHAT_CHAT_REQ, this, &GatePlayerServer::OnOtherMessage);
 	//init server info
 	Json::Value GatePlayerServerConf = g_pJsonConfig->m_Root["GatePlayerServer"];
 	if (!m_pNetModule->InitNet(GatePlayerServerConf["NodePort"].asUInt()))
@@ -64,9 +64,10 @@ void GatePlayerServer::OnClientConnected(const socket_t nFd)
 		CLOG_ERR << "GatePlayerServer: create player error" << CLOG_END;
 		return;
 	}
-	g_pClientPlayerMgr->AddPlayerIDMap(nFd, pPlayer);
+	g_pClientPlayerMgr->AddPlayerIDMap(pPlayer->GetMemId(), pPlayer);
+	g_pClientPlayerMgr->AddPlayerSockMap(nFd, pPlayer);
 	CLOG_INFO << "GatePlayerServer: create player ok Sockfd:" << nFd << CLOG_END;
-}
+} 
 
 void GatePlayerServer::OnClientDisconnect(const socket_t nFd)
 {
@@ -93,7 +94,7 @@ void GatePlayerServer::OnOtherMessage(const socket_t nFd, const int msgid, const
 
 	int moduleId = GetModuleID(msgid);
 
-	ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayer(nFd);
+	ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayerByFd(nFd);
 	if (pPlayer == nullptr)
 	{
 		return;

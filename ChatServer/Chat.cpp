@@ -16,7 +16,7 @@ void Chat::Init()
 {
 	g_pServerThread.reset(new ChatServerThread());
 	g_pPacketMgr.reset(new PacketMgr);
-
+	g_pSessionPool = std::make_unique<SessionPool>();
 	InitManager();
 }
 

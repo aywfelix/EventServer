@@ -11,7 +11,6 @@ using namespace SeFNetProto;
 bool Client::Init()
 {
 	m_pNetClientModule = new SeFNetClient();
-	m_pNetClientModule->Init();
 	m_pNetClientModule->AddEventCallBack(EServerType::SERVER_TYPE_GATE, this, &Client::OnSocketEvent);
 	m_pNetClientModule->AddReceiveCallBack(EServerType::SERVER_TYPE_GATE, this, &Client::OnMessage);
 	
@@ -23,13 +22,13 @@ bool Client::Init()
 void Client::ConnectServer()
 {
 	//set gate server info
-	ConnectData xServerData;
-	xServerData.ServerId = g_pJsonConfig->m_Root["GatePlayerServer"]["NodeId"].asInt();
-	xServerData.Port = g_pJsonConfig->m_Root["GatePlayerServer"]["NodePort"].asInt();
-	xServerData.name = g_pJsonConfig->m_Root["GatePlayerServer"]["NodeName"].asString();
-	xServerData.Ip = g_pJsonConfig->m_Root["GatePlayerServer"]["NodeIp"].asString();
-	xServerData.ServerType = EServerType::SERVER_TYPE_GATE;
-	m_pNetClientModule->AddServer(xServerData);
+	ConnectDataPtr ServerData = std::make_shared<ConnectData>();
+	ServerData->ServerId = g_pJsonConfig->m_Root["GatePlayerServer"]["NodeId"].asInt();
+	ServerData->Port = g_pJsonConfig->m_Root["GatePlayerServer"]["NodePort"].asInt();
+	ServerData->name = g_pJsonConfig->m_Root["GatePlayerServer"]["NodeName"].asString();
+	ServerData->Ip = g_pJsonConfig->m_Root["GatePlayerServer"]["NodeIp"].asString();
+	ServerData->ServerType = EServerType::SERVER_TYPE_GATE;
+	m_pNetClientModule->AddServer(ServerData);
 }
 
 bool Client::Loop()

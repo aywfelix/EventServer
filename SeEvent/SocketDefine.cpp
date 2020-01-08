@@ -2,7 +2,7 @@
 
 int GetReadableSizeOnSocket(socket_t fd)
 {
-#if SF_PLATFORM == SF_PLATFORM_WIN
+#ifdef SF_PLATFORM_WIN
 	u_long readn = DEFAULT_SOCKET_READ_LEN;
 	if (IoctlSocket(fd, FIONREAD, &readn) < 0)
 		return -1;

@@ -52,7 +52,7 @@ void ChatNodeClient::OnGateRouteChat(const socket_t nFd, const int msgid, const 
 	ConnectDataPtr pServerData = GetServerNetInfo(nFd);
 	if (!pServerData)
 	{
-		return; //TODO pServerData allways null
+		return;
 	}
 	//parse the packet
 	Packet* pRecvPacket = g_pPacketMgr->CreatePakcet(xData.msg_id(), xData.msg_body().c_str(), xData.msg_body().length());

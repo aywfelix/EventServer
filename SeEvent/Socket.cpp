@@ -1,4 +1,3 @@
-
 #include "Socket.h"
 #include "Assertx.h"
 
@@ -11,7 +10,7 @@ void Socket::SetSocket(socket_t sock, struct sockaddr_in& addr)
 
 void Socket::SetNonBlock()
 {
-#if SF_PLATFORM == SF_PLATFORM_WIN
+#if defined SF_PLATFORM_WIN
 	ULONG ul = 1;
 	ioctlsocket(m_fd, FIONBIO, &ul);
 #else
@@ -93,7 +92,7 @@ int Socket::Recv(char* buf, int len)
 
 void Socket::SetNodelay()
 {
-#if SF_PLATFORM == SF_PLATFORM_LINUX
+#if defined SF_PLATFORM_LINUX
 	const int optval = 1;
 	setsockopt(m_fd, SOL_SOCKET, TCP_NODELAY, (const char*)&optval, sizeof(optval));
 #endif	
@@ -105,7 +104,7 @@ void Socket::SetKeepAlive(INT32 interval)
 	setsockopt(m_fd, SOL_SOCKET, SO_KEEPALIVE, (const char*)&val, sizeof(val));
 	val = interval;
 
-#if SF_PLATFORM == SF_PLATFORM_LINUX
+#ifdef SF_PLATFORM_LINUX
 	setsockopt(m_fd, IPPROTO_TCP, TCP_KEEPIDLE, &val, sizeof(val));
 	val = interval / 3;
 	if (val == 0) val = 1;

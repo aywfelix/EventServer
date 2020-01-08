@@ -11,9 +11,10 @@
 class SeFNetClient
 {
 public:
-	void Init();
+	SeFNetClient();
+	~SeFNetClient();
 
-	void AddServer(const ConnectData& info);
+	void AddServer(ConnectDataPtr& info);
 	void Execute(LOOP_RUN_TYPE run);
 
 	// add call back
@@ -55,12 +56,12 @@ private:
 	void AddReceiveCallBack(EServerType eType, UINT32 nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr);
 	void AddReceiveCallBack(EServerType eType, NET_RECEIVE_FUNCTOR_PTR functorPtr);
 	void AddEventCallBack(EServerType eType, NET_EVENT_FUNCTOR_PTR functorPtr);
-	void OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);
-	void OnSocketConnect(const socket_t nFd, SeNet* pNet);
-	void OnSocketDisConnect(const socket_t nFd, SeNet* pNet);
+	//void OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);
+	//void OnSocketConnect(const socket_t nFd, SeNet* pNet);
+	//void OnSocketDisConnect(const socket_t nFd, SeNet* pNet);
 	void ProcessExecute(LOOP_RUN_TYPE run);
 	void ProcessAddConnect();
-	void InitCallBacks(ConnectData& data);
+	void InitCallBacks(ConnectDataPtr& data);
 private:
 	struct CallBack
 	{
@@ -72,8 +73,8 @@ private:
 	// ServerType callback
 	std::map<int, CallBack> mmCallBack;
 
-	std::list<ConnectData> mTemplist;
+	std::list<ConnectDataPtr> mTemplist;
 	// serverid connect data
-	std::map<int, ConnectData> mConnecServers;
+	std::map<int, ConnectDataPtr> mConnecServers;
 };
 

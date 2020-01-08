@@ -10,19 +10,27 @@ bool SeSelect::InitOp()
 
 bool SeSelect::AddEvent(socket_t fd, int mask)
 {
-	if (mask & EV_READ) 
+	if (mask & EV_READ)
+	{
 		FD_SET(fd, &mSelectOp.rfds);
-	if (mask & EV_WRITE) 
+	}
+	if (mask & EV_WRITE)
+	{
 		FD_SET(fd, &mSelectOp.wfds);
+	}
 	return true;
 }
 
 bool SeSelect::DelEvent(socket_t fd, int mask)
 {
-	if (mask & EV_READ) 
+	if (mask & EV_READ)
+	{
 		FD_CLR(fd, &mSelectOp.rfds);
-	if (mask & EV_WRITE) 
+	}
+	if (mask & EV_WRITE)
+	{
 		FD_CLR(fd, &mSelectOp.wfds);
+	}
 	return true;
 }
 
@@ -31,6 +39,7 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 	int ret = 0;
 	memcpy(&mSelectOp._rfds, &mSelectOp.rfds, sizeof(fd_set));
 	memcpy(&mSelectOp._wfds, &mSelectOp.wfds, sizeof(fd_set));
+
 	ret = select((int)mMaxFd + 1,&mSelectOp._rfds, &mSelectOp._wfds, NULL, tv);
 	if (ret == -1)
 	{
@@ -42,10 +51,7 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 		return true;
 	}
 	if (ret > 0) {
-		socket_t rFd = mSelectOp._rfds.fd_array[0];
-		socket_t wFd = mSelectOp._wfds.fd_array[0];
-		socket_t iter = rFd > wFd ? wFd : rFd;
-		for (; iter <= mMaxFd; iter++)
+		for (socket_t iter = 0; iter <= mMaxFd; iter++)
 		{
 			int mask = 0;
 			if (FD_ISSET(iter, &mSelectOp._rfds))

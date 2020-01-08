@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClInclude Include="Assertx.h" />
     <ClInclude Include="blockingconcurrentqueue.h" />
+    <ClInclude Include="BlockQueue.hpp" />
     <ClInclude Include="CityHash\city.h" />
     <ClInclude Include="CityHash\citycrc.h" />
     <ClInclude Include="ClientModule\ModuleChat.h" />

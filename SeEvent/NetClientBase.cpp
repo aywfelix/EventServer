@@ -9,7 +9,6 @@ using namespace SeFNetProto;
 bool NetClientBase::Init()
 {
 	mpNetClientModule = new SeFNetClient();
-	mpNetClientModule->Init();
 	mpNetClientModule->AddReceiveCallBack(EServerType::SERVER_TYPE_MASTER, MASTER_REPORT_SERVER_INFO_TO_SERVER, this, &NetClientBase::OnMasterMessage);
 	
 	return true;
@@ -50,26 +49,26 @@ void NetClientBase::OnSocketNodeEvent(const socket_t nFd, const SE_NET_EVENT nEv
 
 void NetClientBase::OnMasterMessage(const socket_t nFd, const int nMsgID, const char* msg, const UINT32 nLen)
 {
-	ServerReportList* report_list = nullptr;
-	report_list->ParseFromArray(msg, nLen);
-	if (report_list == nullptr)
+	ServerReportList report_list;
+	report_list.ParseFromArray(msg, nLen);
+	if (report_list.server_info_size() == 0)
 	{
 		return;
 	}
-	ConnectData xServerData;
-	for (int i = 0; i < report_list->server_info_size(); ++i)
+	ConnectDataPtr ServerData = std::make_shared<ConnectData>();
+	for (int i = 0; i < report_list.server_info_size(); ++i)
 	{
-		const ServerReport& server_info = report_list->server_info(i);
+		const ServerReport& server_info = report_list.server_info(i);
 		for (auto serverType : mConnectType)
 		{
 			if (server_info.server_type() == serverType)
 			{
-				xServerData.ServerId = server_info.server_id();
-				xServerData.Port = server_info.server_port();
-				xServerData.name = server_info.server_name();
-				xServerData.Ip = server_info.server_ip();
-				xServerData.ServerType = EServerType(server_info.server_type());
-				mpNetClientModule->AddServer(xServerData);
+				ServerData->ServerId = server_info.server_id();
+				ServerData->Port = server_info.server_port();
+				ServerData->name = server_info.server_name();
+				ServerData->Ip = server_info.server_ip();
+				ServerData->ServerType = EServerType(server_info.server_type());
+				mpNetClientModule->AddServer(ServerData);
 			}
 		}
 	}
@@ -86,12 +85,12 @@ void NetClientBase::AddConnectMaster()
 {
 	if (this->GetServerType() != EServerType::SERVER_TYPE_MASTER)
 	{
-		ConnectData xServerData;
-		xServerData.ServerId = g_pJsonConfig->m_Root["MasterServer"]["NodeId"].asInt();
-		xServerData.ServerType = EServerType::SERVER_TYPE_MASTER;
-		xServerData.Ip = g_pJsonConfig->m_Root["MasterServer"]["NodeIp"].asString();
-		xServerData.Port = g_pJsonConfig->m_Root["MasterServer"]["NodePort"].asInt();
-		xServerData.name = g_pJsonConfig->m_Root["MasterServer"]["NodeName"].asString();
-		mpNetClientModule->AddServer(xServerData);
+		ConnectDataPtr ServerData = std::make_shared<ConnectData>();
+		ServerData->ServerId = g_pJsonConfig->m_Root["MasterServer"]["NodeId"].asInt();
+		ServerData->ServerType = EServerType::SERVER_TYPE_MASTER;
+		ServerData->Ip = g_pJsonConfig->m_Root["MasterServer"]["NodeIp"].asString();
+		ServerData->Port = g_pJsonConfig->m_Root["MasterServer"]["NodePort"].asInt();
+		ServerData->name = g_pJsonConfig->m_Root["MasterServer"]["NodeName"].asString();
+		mpNetClientModule->AddServer(ServerData);
 	}
 }

@@ -2,7 +2,7 @@
 
 int SocketCloseOnExec(socket_t fd)
 {
-#if !defined(_WIN32)
+#ifdef SF_PLATFORM_LINUX
     int flags;
     if ((flags = fcntl(fd, F_GETFD, NULL)) < 0)
     {
@@ -23,7 +23,7 @@ int SocketCloseOnExec(socket_t fd)
 
 
 
-#ifdef _WIN32
+#ifdef SF_PLATFORM_WIN
 int SocketGetError(socket_t sock)
 {
     int optval, optvallen = sizeof(optval);
@@ -67,3 +67,18 @@ TID CurrentThreadId()
 	return pthread_self();
 #endif
 }
+
+#ifdef SF_PLATFORM_LINUX
+void SetResource()
+{
+	if(getrlimit(RLIMIT_CORE, &rlim)==0) 
+	{
+		rlim_new.rlim_cur = rlim_new.rlim_max = RLIM_INFINITY;
+		if (setrlimit(RLIMIT_CORE, &rlim_new) != 0) 
+		{
+			rlim_new.rlim_cur = rlim_new.rlim_max = rlim.rlim_max;
+			(void)setrlimit(RLIMIT_CORE, &rlim_new);
+		}
+	}
+}
+#endif

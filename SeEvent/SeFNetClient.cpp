@@ -1,36 +1,42 @@
 #include "SeFNetClient.h"
 #include "LogHelper.h"
 
-void SeFNetClient::Init()
+
+SeFNetClient::SeFNetClient()
 {
-	for (int eType=0; eType <EServerType::SERVER_TYPE_MAX;++eType)
+	for (int eType = 0; eType < EServerType::SERVER_TYPE_MAX; ++eType)
 	{
 		CallBack cb;
 		mmCallBack.emplace(eType, cb);
 	}
 }
 
-void SeFNetClient::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
+SeFNetClient::~SeFNetClient()
 {
-	if (nEvent & SE_NET_EVENT_CONNECTED)
-	{
-		OnSocketConnect(nFd, pNet);
-	}
-	else
-	{
-		OnSocketDisConnect(nFd, pNet);
-	}
+	mmCallBack.clear();
 }
 
-void SeFNetClient::OnSocketConnect(const socket_t nFd, SeNet* pNet)
-{
-	LOG_INFO("connect server ok, socket(%d)", nFd);
-}
-
-void SeFNetClient::OnSocketDisConnect(const socket_t nFd, SeNet* pNet)
-{
-	LOG_WARN("disconnect, socket(%d)", nFd);
-}
+//void SeFNetClient::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
+//{
+//	if (nEvent & SE_NET_EVENT_CONNECTED)
+//	{
+//		OnSocketConnect(nFd, pNet);
+//	}
+//	else
+//	{
+//		OnSocketDisConnect(nFd, pNet);
+//	}
+//}
+//
+//void SeFNetClient::OnSocketConnect(const socket_t nFd, SeNet* pNet)
+//{
+//	LOG_INFO("connect server ok, socket(%d)", nFd);
+//}
+//
+//void SeFNetClient::OnSocketDisConnect(const socket_t nFd, SeNet* pNet)
+//{
+//	LOG_WARN("disconnect, socket(%d)", nFd);
+//}
 
 void SeFNetClient::AddReceiveCallBack(EServerType eType, NET_RECEIVE_FUNCTOR_PTR functorPtr)
 {
@@ -72,7 +78,7 @@ void SeFNetClient::RemoveReceiveCallBack(EServerType eType, UINT32 nMsgId)
 	mmCallBack[eType].mReceiveCallBack.erase(nMsgId);
 }
 
-void SeFNetClient::AddServer(const ConnectData& info)
+void SeFNetClient::AddServer(ConnectDataPtr& info)
 {
 	mTemplist.emplace_back(info);
 }
@@ -87,30 +93,29 @@ void SeFNetClient::ProcessExecute(LOOP_RUN_TYPE run)
 {
 	for (auto& it : mConnecServers)
 	{
-		ConnectState state = it.second.ConnState;
+		ConnectState state = it.second->ConnState;
 		switch (state)
 		{
 		case ConnectState::DISCONNECT:
-			if (it.second.pNet->InitNet(it.second.Ip.c_str(), it.second.Port))
+			if (it.second->pNet->InitNet(it.second->Ip.c_str(), it.second->Port))
 			{
-				it.second.ConnState = ConnectState::NORMAL;
-				InitCallBacks(it.second);
+				it.second->ConnState = ConnectState::NORMAL;
 			}
 			break;
 		case ConnectState::NORMAL:
-			it.second.pNet->Execute(run);
+			it.second->pNet->Execute(run);
 			break;
 		case ConnectState::RECONNECT:
-			it.second.ConnState = ConnectState::CONNECTING;
-			it.second.pNet = std::make_shared<SeFNet>();
-			if (it.second.pNet->InitNet(it.second.Ip.c_str(), it.second.Port))
+			it.second->ConnState = ConnectState::CONNECTING;
+			it.second->pNet = std::make_shared<SeFNet>();
+			InitCallBacks(it.second);
+			if (it.second->pNet->InitNet(it.second->Ip.c_str(), it.second->Port))
 			{
-				it.second.ConnState = ConnectState::NORMAL;
-				InitCallBacks(it.second);
+				it.second->ConnState = ConnectState::NORMAL;
 			}
 			else
 			{
-				it.second.ConnState = ConnectState::DISCONNECT;
+				it.second->ConnState = ConnectState::DISCONNECT;
 			}
 			break;
 		default:
@@ -126,43 +131,43 @@ void SeFNetClient::ProcessAddConnect()
 		return;
 	}
 
-	for (auto conn : mTemplist)
+	for (auto& connPtr : mTemplist)
 	{
-		auto it = mConnecServers.find(conn.ServerId);
+		auto it = mConnecServers.find(connPtr->ServerId);
 		if (it == mConnecServers.end())
 		{
-			conn.ConnState = ConnectState::CONNECTING;
-			conn.pNet = std::make_shared<SeFNet>();
-			InitCallBacks(conn);
-			mConnecServers.emplace(conn.ServerId, conn);
-			if (conn.pNet->InitNet(conn.Ip.c_str(), conn.Port))
+			connPtr->ConnState = ConnectState::CONNECTING;
+			connPtr->pNet = std::make_shared<SeFNet>();
+			InitCallBacks(connPtr);
+			mConnecServers.emplace(connPtr->ServerId, connPtr);
+			if (connPtr->pNet->InitNet(connPtr->Ip.c_str(), connPtr->Port))
 			{
-				conn.ConnState = ConnectState::NORMAL;
+				connPtr->ConnState = ConnectState::NORMAL;
 			}
 			else
 			{
-				conn.ConnState = ConnectState::DISCONNECT;
+				connPtr->ConnState = ConnectState::DISCONNECT;
 			}
 		}
 	}
 	mTemplist.clear();
 }
 
-void SeFNetClient::InitCallBacks(ConnectData& data)
+void SeFNetClient::InitCallBacks(ConnectDataPtr& data)
 {
 	for (auto& it : mmCallBack)
 	{
 		for (auto& receivecb : it.second.mReceiveCallBack)
 		{
-			data.pNet->AddReceiveCallBack(receivecb.first, receivecb.second);
+			data->pNet->AddReceiveCallBack(receivecb.first, receivecb.second);
 		}
 		for (auto& receivecb : it.second.mCallBackList)
 		{
-			data.pNet->AddReceiveCallBack(receivecb);
+			data->pNet->AddReceiveCallBack(receivecb);
 		}
 		for (auto& eventcb : it.second.mEventCallBackList)
 		{
-			data.pNet->AddEventCallBack(eventcb);
+			data->pNet->AddEventCallBack(eventcb);
 		}
 	}
 }
@@ -174,7 +179,7 @@ void SeFNetClient::SendByServerId(int nServerId, const int nMsgID, const char* m
 	{
 		return;
 	}
-	it->second.pNet->SendMsg(0, nMsgID, msg, len);
+	it->second->pNet->SendMsg(0, nMsgID, msg, len);
 }
 void SeFNetClient::SendByServerIds(std::vector<int>& nServerIds, const int nMsgID, const char* msg, int len)
 {
@@ -200,9 +205,9 @@ void SeFNetClient::SendToAll(const int nMsgID, const char* msg, int len)
 {
 	for (auto& it : mConnecServers)
 	{
-		if (it.second.pNet.get())
+		if (it.second->pNet.get())
 		{
-			it.second.pNet->SendMsg(0, nMsgID, msg, len);
+			it.second->pNet->SendMsg(0, nMsgID, msg, len);
 		}
 	}
 }
@@ -210,10 +215,10 @@ void SeFNetClient::SendPBToAll(const int nMsgID, ::google::protobuf::Message* pM
 {
 	for (auto& it : mConnecServers)
 	{
-		if (it.second.pNet.get())
+		if (it.second->pNet.get())
 		{
 			std::string strMsg = pMsg->SerializeAsString();
-			it.second.pNet->SendMsg(0, nMsgID, strMsg.c_str(), strMsg.length());
+			it.second->pNet->SendMsg(0, nMsgID, strMsg.c_str(), strMsg.length());
 		}
 	}
 }
@@ -225,8 +230,8 @@ ConnectDataPtr SeFNetClient::GetServerNetInfo(const int nServerID)
 	{
 		return nullptr;
 	}
-	ConnectDataPtr connect = std::make_shared<ConnectData>(it->second);
-	return connect;
+
+	return it->second;
 }
 
 ConnectDataPtr SeFNetClient::GetServerNetInfo(const SeNet* pNet)
@@ -234,10 +239,9 @@ ConnectDataPtr SeFNetClient::GetServerNetInfo(const SeNet* pNet)
 	auto it = mConnecServers.begin();
 	for (;it != mConnecServers.end(); it++)
 	{
-		if (it->second.pNet->GetNet() == pNet)
+		if (it->second->pNet->GetNet() == pNet)
 		{
-			ConnectDataPtr connect = std::make_shared<ConnectData>(it->second);
-			return connect;
+			return it->second;
 		}
 	}
 	return nullptr;

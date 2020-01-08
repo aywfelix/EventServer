@@ -2,13 +2,13 @@
 
 #include "SePlatForm.h"
 
-#if SF_PLATFORM == SF_PLATFORM_WIN
+#ifdef SF_PLATFORM_WIN
 #include <WS2tcpip.h>
 #define GETERROR	WSAGetLastError()
 #define IoctlSocket(s,c,a) ioctlsocket(s,c,a)
 #define CONNINPRROGRESS	WSAEWOULDBLOCK
 typedef int	socklen_t;
-#elif SF_PLATFORM == SF_PLATFORM_LINUX
+#else
 #include <sys/socket.h>
 #include <netinet.h>
 #include <unistd.h>

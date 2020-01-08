@@ -113,7 +113,6 @@ private:
 	void SendMsg(socket_t fd, const char* msg, int len);
 	void SendMsg(std::vector<socket_t>& fdlist, const char* msg, int len);
 	void SendToAllClients(const char* msg, int len);
-
 	
 private:
 	bool mbStop;

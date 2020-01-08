@@ -17,7 +17,7 @@ public:
 	ServerDataPtr GetClientNodeData(int nServerId);
 
 	virtual void OnReportToServer(const socket_t nFd, const int nMsgID, const char* msg, const uint32_t nLen);
-	virtual void AfterReportToServer(ServerDataPtr pReportServerData);
+	virtual void AfterReportToServer(ServerDataPtr& pReportServerData);
 
 protected:
 	SeFNet* mpNetModule;
