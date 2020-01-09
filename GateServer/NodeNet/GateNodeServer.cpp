@@ -78,9 +78,7 @@ void GateNodeServer::OnChatRouteBack(socket_t nFd, const int msgid, const char* 
 	{
 		return;
 	}
-
 	uint64_t playerId = xData.player_id();
-
 	if (ModuleChat::RPC_CHAT_CHAT_REQ == xData.msg_id())
 	{
 		ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayerByID(playerId);

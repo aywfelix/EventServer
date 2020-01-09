@@ -5,7 +5,7 @@
 
 void GateNodeClient::InitHelper()
 {
-	mpNetClientModule->AddEventCallBack(SERVER_TYPE_MASTER, this, &GateNodeClient::OnSocketEvent);
+	mpNetClientModule->AddEventCallBack(EServerType::SERVER_TYPE_MASTER, this, &GateNodeClient::OnSocketEvent);
 	SetServerInfoReport();
 	AddConnectServer();
 }
@@ -19,7 +19,7 @@ void GateNodeClient::SetServerInfoReport()
 	mServerReport.set_server_port(g_pJsonConfig->m_ServerConf["NodePort"].asInt());
 	mServerReport.set_server_max_online(2000);
 	mServerReport.set_server_state(SeFNetProto::EServerState::EST_NORMAL);
-	mServerReport.set_server_type(SERVER_TYPE_GATE);
+	mServerReport.set_server_type(EServerType::SERVER_TYPE_GATE);
 }
 
 void GateNodeClient::AddConnectServer()

@@ -28,6 +28,7 @@ void Client::ConnectServer()
 	ServerData->name = g_pJsonConfig->m_Root["GatePlayerServer"]["NodeName"].asString();
 	ServerData->Ip = g_pJsonConfig->m_Root["GatePlayerServer"]["NodeIp"].asString();
 	ServerData->ServerType = EServerType::SERVER_TYPE_GATE;
+	ServerData->ConnState = ConnectState::CONNECTING;
 	m_pNetClientModule->AddServer(ServerData);
 }
 

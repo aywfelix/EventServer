@@ -16,8 +16,9 @@ public:
 
 	virtual void OnSocketNodeEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);
 
-	ConnectDataPtr GetServerNetInfo(const int nServerID);
+	ConnectDataPtr GetServerNetInfo(const int& nServerID);
 	ConnectDataPtr GetServerNetInfo(const SeNet* pNet);
+	ConnectDataPtr GetServerNetInfo(const socket_t& nFd);
 
 	virtual EServerType GetServerType()
 	{

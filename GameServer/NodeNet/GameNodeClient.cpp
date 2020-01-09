@@ -28,8 +28,8 @@ void GameNodeClient::SetServerInfoReport()
 void GameNodeClient::AddConnectServer()
 {
 	AddConnectMaster();
-    mConnectType.emplace_back(SERVER_TYPE_WORLD);
-	mConnectType.emplace_back(SERVER_TYPE_GATE);
+	mConnectType.push_back(EServerType::SERVER_TYPE_WORLD);
+	mConnectType.push_back(EServerType::SERVER_TYPE_GATE);
 }
 
 

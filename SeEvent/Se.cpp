@@ -106,7 +106,8 @@ bool SeNet::InitClient(const char* ip, UINT port)
 	}
 	mSocket->SetSocketOptions();
 	AddSession(mSocket);
-	LOG_INFO("init client ....%d", mSocket->GetFd());
+	// connect event
+	mEventCB(mSocket->GetFd(), SE_NET_EVENT_CONNECTED, this);
 	mbServer = false;
 	return true;
 }
@@ -125,8 +126,7 @@ void SeNet::AddSession(Socket* pSocket)
 	{
 		mSessions.emplace(pSocket->GetFd(), pSession);
 	}
-	// connect event
-	mEventCB(pSocket->GetFd(), SE_NET_EVENT_CONNECTED, this);
+
 }
 
 Session* SeNet::GetSession(socket_t fd)
@@ -179,6 +179,7 @@ void SeNet::AcceptClient()
 #else
 			mEventOp->AddEvent(connfd, EV_READ);
 #endif
+			mEventCB(connfd, SE_NET_EVENT_CONNECTED, this);
 			LOG_INFO("accept client connect ...%d", connfd);
 			continue;
 		}
@@ -189,11 +190,11 @@ void SeNet::AcceptClient()
 void SeNet::EventRead(Session* pSession)
 {
 	socket_t fd = pSession->GetSocket()->GetFd();
-	LOG_INFO("read event trigger....%d", fd);
+	//LOG_INFO("read event trigger....%d", fd);
 	// if socket cache is readable then read data
 	int nRecvSize = GetReadableSizeOnSocket(fd);
 	int nRecvLeft = nRecvSize;
-	LOG_INFO("can read data len==%d", nRecvSize);
+	//LOG_INFO("can read data len==%d", nRecvSize);
 	for (; nRecvLeft >= 0;)
 	{
 		char* pRecvBuf = pSession->GetRecvBuf(nRecvLeft);
@@ -226,7 +227,7 @@ void SeNet::EventRead(Session* pSession)
 		nRecvLeft -= ret;
 		if (ret > 0)
 		{
-			LOG_INFO("socket recv %d byte of content %s", ret, pRecvBuf);
+			//LOG_INFO("socket recv %d byte of content %s", ret, pRecvBuf);
 		}
 		pSession->PostRecvData(ret);
 
@@ -274,7 +275,7 @@ bool SeNet::Dismantle(Session* pSession)
 void SeNet::EventWrite(Session* pSession)
 {
 	socket_t fd = pSession->GetSocket()->GetFd();
-	LOG_INFO("write event trigger....%d", fd);
+	//LOG_INFO("write event trigger....%d", fd);
 	int nSendSize = 0;
 	char* pSendBuf = pSession->GetSendBuf(nSendSize);
 	while (pSession && pSendBuf)
@@ -285,7 +286,7 @@ void SeNet::EventWrite(Session* pSession)
 			break;
 		}
 		pSession->PostSendData(ret);
-		LOG_INFO("socket write to socket....%d len, content %s", ret, pSendBuf);
+		//LOG_INFO("socket write to socket....%d len, content %s", ret, pSendBuf);
 		nSendSize = 0;
 		pSendBuf = pSession->GetSendBuf(nSendSize);
 	}

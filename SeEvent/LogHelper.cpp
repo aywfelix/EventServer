@@ -60,13 +60,13 @@ void LogHelper::ThreadLoop()
 	{
 		CreateLog();
 		SendLog();
-		SFSLEEP(10);
+		SFSLEEP(50);
 	}
 }
 
 bool LogHelper::SendLog()
 {
-	std::string info;
+	std::string info = "";
 	if (m_queue.TryPopQ(info))
 	{
 #ifdef DEBUG

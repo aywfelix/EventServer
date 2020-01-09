@@ -50,8 +50,9 @@ public:
 	void SendPBToAll(const int nMsgID, ::google::protobuf::Message* pMsg);
 
 	// 
-	ConnectDataPtr GetServerNetInfo(const int nServerID);
+	ConnectDataPtr GetServerNetInfo(const int& nServerID);
 	ConnectDataPtr GetServerNetInfo(const SeNet* pNet);
+	ConnectDataPtr GetServerNetInfo(const socket_t& nFd);
 private:
 	void AddReceiveCallBack(EServerType eType, UINT32 nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr);
 	void AddReceiveCallBack(EServerType eType, NET_RECEIVE_FUNCTOR_PTR functorPtr);

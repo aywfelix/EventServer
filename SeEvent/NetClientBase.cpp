@@ -14,7 +14,7 @@ bool NetClientBase::Init()
 	return true;
 }
 
-ConnectDataPtr NetClientBase::GetServerNetInfo(const int nServerID)
+ConnectDataPtr NetClientBase::GetServerNetInfo(const int& nServerID)
 {
 	return mpNetClientModule->GetServerNetInfo(nServerID);
 }
@@ -24,26 +24,26 @@ ConnectDataPtr NetClientBase::GetServerNetInfo(const SeNet* pNet)
 	return mpNetClientModule->GetServerNetInfo(pNet);
 }
 
+ConnectDataPtr NetClientBase::GetServerNetInfo(const socket_t& nFd)
+{
+	return mpNetClientModule->GetServerNetInfo(nFd);
+}
+
 void NetClientBase::OnSocketNodeEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
 {
-	ConnectDataPtr pServerData = mpNetClientModule->GetServerNetInfo(pNet);
+	ConnectDataPtr pConnData = mpNetClientModule->GetServerNetInfo(pNet);
 	if (nEvent == SE_NET_EVENT_CONNECTED)
 	{
-		if (pServerData)
+		if (pConnData)
 		{
-			pServerData->SockFd = nFd;
-			int nServerId = pServerData->ServerId;
-			mpNetClientModule->SendPBByServerId(nServerId, REPORT_CLIENT_INFO_TO_SERVER, &mServerReport);
-			LOG_INFO("%s server connect to %s server ok", mServerReport.server_name().c_str(), (pServerData->name).c_str());
+			pConnData->SockFd = nFd;
+			mpNetClientModule->SendPBByServerId(pConnData->ServerId, REPORT_CLIENT_INFO_TO_SERVER, &mServerReport);
+			LOG_INFO("%s server report info to %s server", mServerReport.server_name().c_str(), (pConnData->name).c_str());
 		}
 	}
 	else
 	{
-		LOG_ERR("connect close!!!");
-		if (pServerData)
-		{
-			LOG_ERR("%s server connect to %s server failed", mServerReport.server_name().c_str(), (pServerData->name).c_str());
-		}
+		LOG_ERR("%s server client disconnected!!!", mServerReport.server_name().c_str());
 	}
 }
 
@@ -59,7 +59,7 @@ void NetClientBase::OnMasterMessage(const socket_t nFd, const int nMsgID, const 
 	for (int i = 0; i < report_list.server_info_size(); ++i)
 	{
 		const ServerReport& server_info = report_list.server_info(i);
-		for (auto serverType : mConnectType)
+		for (auto& serverType : mConnectType)
 		{
 			if (server_info.server_type() == serverType)
 			{
@@ -68,7 +68,9 @@ void NetClientBase::OnMasterMessage(const socket_t nFd, const int nMsgID, const 
 				ServerData->name = server_info.server_name();
 				ServerData->Ip = server_info.server_ip();
 				ServerData->ServerType = EServerType(server_info.server_type());
+				ServerData->ConnState = ConnectState::CONNECTING;
 				mpNetClientModule->AddServer(ServerData);
+				CLOG_INFO << "OnMasterMessage: " << "add connect server info" << CLOG_END;
 			}
 		}
 	}
@@ -91,6 +93,7 @@ void NetClientBase::AddConnectMaster()
 		ServerData->Ip = g_pJsonConfig->m_Root["MasterServer"]["NodeIp"].asString();
 		ServerData->Port = g_pJsonConfig->m_Root["MasterServer"]["NodePort"].asInt();
 		ServerData->name = g_pJsonConfig->m_Root["MasterServer"]["NodeName"].asString();
+		ServerData->ConnState = ConnectState::CONNECTING;
 		mpNetClientModule->AddServer(ServerData);
 	}
 }

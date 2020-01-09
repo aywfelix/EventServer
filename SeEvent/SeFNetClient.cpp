@@ -136,13 +136,13 @@ void SeFNetClient::ProcessAddConnect()
 		auto it = mConnecServers.find(connPtr->ServerId);
 		if (it == mConnecServers.end())
 		{
-			connPtr->ConnState = ConnectState::CONNECTING;
 			connPtr->pNet = std::make_shared<SeFNet>();
 			InitCallBacks(connPtr);
 			mConnecServers.emplace(connPtr->ServerId, connPtr);
 			if (connPtr->pNet->InitNet(connPtr->Ip.c_str(), connPtr->Port))
 			{
 				connPtr->ConnState = ConnectState::NORMAL;
+				CLOG_INFO << "connect to server " << connPtr->name << " ok!!!" << CLOG_END;
 			}
 			else
 			{
@@ -223,7 +223,7 @@ void SeFNetClient::SendPBToAll(const int nMsgID, ::google::protobuf::Message* pM
 	}
 }
 
-ConnectDataPtr SeFNetClient::GetServerNetInfo(const int nServerID)
+ConnectDataPtr SeFNetClient::GetServerNetInfo(const int& nServerID)
 {
 	auto it = mConnecServers.find(nServerID);
 	if (it == mConnecServers.end())
@@ -236,13 +236,22 @@ ConnectDataPtr SeFNetClient::GetServerNetInfo(const int nServerID)
 
 ConnectDataPtr SeFNetClient::GetServerNetInfo(const SeNet* pNet)
 {
-	auto it = mConnecServers.begin();
-	for (;it != mConnecServers.end(); it++)
+	for (auto it = mConnecServers.begin();it != mConnecServers.end(); it++)
 	{
 		if (it->second->pNet->GetNet() == pNet)
 		{
 			return it->second;
 		}
+	}
+	return nullptr;
+}
+
+ConnectDataPtr SeFNetClient::GetServerNetInfo(const socket_t& nFd)
+{
+	for (auto it = mConnecServers.begin(); it != mConnecServers.end(); it++)
+	{
+		if (it->second->SockFd == nFd)
+			return it->second;
 	}
 	return nullptr;
 }

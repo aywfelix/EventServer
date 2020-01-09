@@ -28,7 +28,7 @@ void DBNodeClient::SetServerInfoReport()
 void DBNodeClient::AddConnectServer()
 {
 	AddConnectMaster();
-	mConnectType.emplace_back(SERVER_TYPE_GATE);
+	mConnectType.push_back(SERVER_TYPE_GATE);
 }
 
 void DBNodeClient::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)

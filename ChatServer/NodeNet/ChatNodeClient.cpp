@@ -27,13 +27,13 @@ void ChatNodeClient::SetServerInfoReport()
 	mServerReport.set_server_port(g_pJsonConfig->m_ServerConf["NodePort"].asInt());
 	mServerReport.set_server_max_online(2000);
 	mServerReport.set_server_state(EServerState::EST_NORMAL);
-	mServerReport.set_server_type(SERVER_TYPE_CHAT);
+	mServerReport.set_server_type(EServerType::SERVER_TYPE_CHAT);
 }
 
 void ChatNodeClient::AddConnectServer()
 {
 	AddConnectMaster();
-	mConnectType.emplace_back(SERVER_TYPE_GATE);
+	mConnectType.push_back(EServerType::SERVER_TYPE_GATE);
 }
 
 
@@ -71,13 +71,10 @@ void ChatNodeClient::OnGateRouteChat(const socket_t nFd, const int msgid, const 
 
 }
 
-void ChatNodeClient::SendToGate(const int GameID, uint64_t playerId, uint32_t msg_id, ::google::protobuf::Message* pMsg)
+void ChatNodeClient::SendToGate(const int& GameID, uint64_t playerId, uint32_t msg_id, ::google::protobuf::Message* pMsg)
 {
-	std::string send_msg;
-
 	ChatToGatePacket chattogate;
-	pMsg->SerializeToString(&send_msg);
-	chattogate.Clear();
+	std::string send_msg = pMsg->SerializeAsString();
 	chattogate.set_msg_id(msg_id);
 	chattogate.set_msg_body(send_msg);
 	chattogate.set_player_id(playerId);

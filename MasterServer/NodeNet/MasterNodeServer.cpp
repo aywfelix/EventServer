@@ -21,7 +21,7 @@ void MasterNodeServer::AfterReportToServer(ServerDataPtr& pReportServerData)
 {
 	EServerType nExcludeType = (EServerType)pReportServerData->ServerInfo->server_type();
 	SyncNodeDataToAll(nExcludeType);  // 对应连接类型
-	LOG_INFO("sync node server info : %s", pReportServerData->ServerInfo->server_name());
+	LOG_INFO("sync node server info : %s", pReportServerData->ServerInfo->server_name().c_str());
 }
 
 void MasterNodeServer::SyncNodeDataToAll(EServerType nType)
