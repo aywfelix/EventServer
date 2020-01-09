@@ -41,9 +41,10 @@ void NetServerBase::OnClientDisconnect(const socket_t nFd)
 		if (it->second->fd == nFd)
 		{
 			nServerId = it->second->ServerInfo->server_id();
+			mmClientNodes.erase(nServerId);
+			break;
 		}
 	}
-	mmClientNodes.erase(nServerId);
 }
 
 ServerDataPtr NetServerBase::GetClientNodeData(int nServerId)
@@ -64,7 +65,7 @@ void NetServerBase::OnReportToServer(const socket_t nFd, const int nMsgID, const
 	{
 		return;
 	}
-
+	Assert(report.server_id() != 0);
 	pServerData->fd = nFd;
 	pServerData->ServerInfo = std::make_shared<SeFNetProto::ServerReport>(report);
 	mmClientNodes.emplace(report.server_id(), pServerData);

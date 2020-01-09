@@ -11,7 +11,6 @@
 #include "SeEpoll.h"
 #include "SeFINet.h"
 
-
 bool SeEventOp::Init()
 {
 	mMaxFd = INVALID_SOCKET;
@@ -50,7 +49,7 @@ bool SeEventOp::Dispatch()
 }
 
 
-void SeNet::InitEventOp()
+void SeNet::InitSeNet()
 {
 #ifdef _WIN32
 	mEventOp = new SeSelect();
@@ -67,7 +66,6 @@ void SeNet::InitEventOp()
 	if (WSAStartup(MAKEWORD(2, 2), &wsa_data)!=0)
 	{
 		AssertEx(0, "windows init socket api error");
-		return;
 	}
 #endif
 	mbStop = false;
@@ -79,24 +77,24 @@ void SeNet::InitEventOp()
 #else
 	mEventOp->AddEvent(mSocket->GetFd(), EV_READ);
 #endif
+	LOG_INFO("init senet socket %d", mSocket->GetFd());
 }
 
 bool SeNet::InitServer(UINT port)
 {
-	InitEventOp();
+	InitSeNet();
 	mbServer = true;
 	if (!mSocket->Listen(port))
 	{
-		return false;
+		AssertEx(0, "Server listen error");
 	}
 	mSocket->SetSocketOptions();
-	LOG_INFO("init server ok ....%d", mSocket->GetFd());
 	return true;
 }
 
 bool SeNet::InitClient(const char* ip, UINT port)
 {
-	InitEventOp();
+	InitSeNet();
 	if (!mSocket->Connect(ip, port))
 	{
 		LOG_WARN("init client error, can not connect server....");
@@ -126,7 +124,6 @@ void SeNet::AddSession(Socket* pSocket)
 	{
 		mSessions.emplace(pSocket->GetFd(), pSession);
 	}
-
 }
 
 Session* SeNet::GetSession(socket_t fd)
@@ -187,14 +184,32 @@ void SeNet::AcceptClient()
 	}
 }
 
+void SeNet::EventWrite(Session* pSession)
+{
+	socket_t fd = pSession->GetSocket()->GetFd();
+	//LOG_INFO("write event trigger....%d", fd);
+	int nSendSize = 0;
+	char* pSendBuf = pSession->GetSendBuf(nSendSize);
+	while (pSession && pSendBuf)
+	{
+		int ret = ::send(fd, pSendBuf, nSendSize, 0);
+		if (ret <= 0)
+		{
+			break;
+		}
+		pSession->PostSendData(ret);
+		nSendSize = 0;
+		pSendBuf = pSession->GetSendBuf(nSendSize);
+	}
+	mEventOp->DelEvent(fd, EV_WRITE);
+}
+
 void SeNet::EventRead(Session* pSession)
 {
 	socket_t fd = pSession->GetSocket()->GetFd();
 	//LOG_INFO("read event trigger....%d", fd);
-	// if socket cache is readable then read data
 	int nRecvSize = GetReadableSizeOnSocket(fd);
 	int nRecvLeft = nRecvSize;
-	//LOG_INFO("can read data len==%d", nRecvSize);
 	for (; nRecvLeft >= 0;)
 	{
 		char* pRecvBuf = pSession->GetRecvBuf(nRecvLeft);
@@ -225,10 +240,6 @@ void SeNet::EventRead(Session* pSession)
 			break;
 		}
 		nRecvLeft -= ret;
-		if (ret > 0)
-		{
-			//LOG_INFO("socket recv %d byte of content %s", ret, pRecvBuf);
-		}
 		pSession->PostRecvData(ret);
 
 		for (;;)
@@ -261,7 +272,7 @@ bool SeNet::Dismantle(Session* pSession)
 		int nRead = nPacketLen + MSG_HEAD_LEN;
 		char *pMsgBuf = new char[nRead];
 		pSession->Read(pMsgBuf, nRead);
-		// 回调协议处理接口
+
 		if (mRecvCB)
 		{
 			mRecvCB(pSession->GetSocket()->GetFd(), MsgHead.GetMsgID(), pMsgBuf + MSG_HEAD_LEN, MsgHead.GetBodyLength());
@@ -270,27 +281,6 @@ bool SeNet::Dismantle(Session* pSession)
 		return true;
 	}
 	return false;
-}
-
-void SeNet::EventWrite(Session* pSession)
-{
-	socket_t fd = pSession->GetSocket()->GetFd();
-	//LOG_INFO("write event trigger....%d", fd);
-	int nSendSize = 0;
-	char* pSendBuf = pSession->GetSendBuf(nSendSize);
-	while (pSession && pSendBuf)
-	{
-		int ret = ::send(fd, pSendBuf, nSendSize, 0);
-		if (ret <= 0)
-		{
-			break;
-		}
-		pSession->PostSendData(ret);
-		//LOG_INFO("socket write to socket....%d len, content %s", ret, pSendBuf);
-		nSendSize = 0;
-		pSendBuf = pSession->GetSendBuf(nSendSize);
-	}
-	mEventOp->DelEvent(fd, EV_WRITE);
 }
 
 void SeNet::StartLoop(LOOP_RUN_TYPE run)
@@ -315,7 +305,6 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 			Session* pSession = GetSession(it->first);
 			if (pSession == nullptr)
 			{
-				LOG_WARN("eventloop session is null, socket==%d", it->first);
 				continue;
 			}
 			if (it->second & EV_READ)
@@ -343,12 +332,17 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 void SeNet::StopLoop()
 {
 	mEventOp->Clear();
+	delete mEventOp;
+	mEventOp = nullptr;
 	mbStop = true;
 	mSocket->CloseSocket();
 	for (auto it : mSessions)
 	{
 		g_pSessionPool->DelSession(it.second);
 	}
+#ifdef _WIN32
+	WSACleanup();
+#endif
 }
 
 void SeNet::SendMsg(socket_t fd, const char* msg, int len)
@@ -462,6 +456,5 @@ bool SeNet::ReceivePB(const int nMsgID, const char* msg, const UINT32 nLen, goog
 	{
 		return false;
 	}
-	pData->ParseFromArray(msg, nLen);
-	return true;
+	return pData->ParseFromArray(msg, nLen);
 }

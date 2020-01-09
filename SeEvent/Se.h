@@ -19,7 +19,7 @@
 #define EV_WRITE 4
 #define EV_CLOSED 8
 
-#define TIMEOUT 1
+
 
 enum LOOP_RUN_TYPE
 {
@@ -98,7 +98,7 @@ public:
 
 	Session* GetSession(socket_t fd);
 private:
-	void InitEventOp();
+	void InitSeNet();
 	void AddSession(Socket* pSocket);
 	
 	void CloseSession(Session* pSession);

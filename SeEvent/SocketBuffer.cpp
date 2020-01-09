@@ -11,6 +11,10 @@ void SocketBuffer::Init()
 void SocketBuffer::Write(const char* data, int size)
 {
 	BufferChain* chain = GetWriteChain(size);
+	if (m_oBuffer.last_datap == nullptr)
+	{
+		m_oBuffer.last_datap = chain;
+	}
 	memcpy(chain->buffer + chain->write_pos, data, size);
 	chain->write_pos += size;
 	m_oBuffer.total_len += size;  // data len
@@ -41,7 +45,7 @@ void SocketBuffer::Read(char* buf, int size)
 		chain->read_pos += can_read_len;
 		if (chain->read_pos == chain->write_pos)
 		{
-			memset(chain->buffer, 0, chain->buffer_len);
+			memset(chain->buffer, 0, chain->buffer_len);  // 清掉老的缓存数据
 			chain->read_pos = chain->write_pos = 0;
 			chain = chain->next;
 			m_oBuffer.last_datap = chain;
@@ -114,9 +118,10 @@ char* SocketBuffer::PullUp()  // 将链中数据放到第一个链中并返回头指针
 
 BufferChain* SocketBuffer::GetWriteChain(int size)
 {
-	// 写入原则，(应该从最后一个是否有空闲空间写入数据，但是为了socket直接读取，不用拷贝，暂时不能这么做)
-	// 1、查找前面已经空闲一个大小最为合适的空链表写入
-	// 2、如果空的链表的长度大于（能够写入size的大小）的2倍以上则写入一个新链表
+	// 写入原则
+	// 1、应该从最后一个是否有空闲空间写入数据
+	// 2、查找前面已经空闲一个大小最为合适的空链表写入
+	// 3、如果空的链表的长度大于（能够写入size的大小）的2倍以上则写入一个新链表
 	if (m_oBuffer.last && m_oBuffer.last->Left() >= size)
 	{
 		return m_oBuffer.last;
@@ -170,7 +175,7 @@ void SocketBuffer::InsertNewChain(BufferChain* chain)
 	{
 		m_oBuffer.first = chain;
 		m_oBuffer.last = chain;
-		m_oBuffer.last_datap = chain;
+		//m_oBuffer.last_datap = chain;
 	}
 	else
 	{

@@ -14,6 +14,8 @@ bool Session::Clear()
 		delete m_pSocket;
 		m_pSocket = nullptr;
 	}
+	m_SendBuffer.Clear();
+	m_RecvBuffer.Clear();
 	return true;
 }
 

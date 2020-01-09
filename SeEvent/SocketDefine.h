@@ -38,5 +38,7 @@ const int PROTOCOL_UDP = 2;
 #define SOCKET_BUFFER_SIZE 50*1024
 #define SOCKET_KEEP_ALIVE_INTERVAL 15
 
+#define TIMEOUT 1
+
 // 可以从socket读出的字节数
 int GetReadableSizeOnSocket(socket_t fd);

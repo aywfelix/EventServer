@@ -37,6 +37,7 @@ void NetClientBase::OnSocketNodeEvent(const socket_t nFd, const SE_NET_EVENT nEv
 		if (pConnData)
 		{
 			pConnData->SockFd = nFd;
+			Assert(mServerReport.server_id() != 0);
 			mpNetClientModule->SendPBByServerId(pConnData->ServerId, REPORT_CLIENT_INFO_TO_SERVER, &mServerReport);
 			LOG_INFO("%s server report info to %s server", mServerReport.server_name().c_str(), (pConnData->name).c_str());
 		}
@@ -64,13 +65,17 @@ void NetClientBase::OnMasterMessage(const socket_t nFd, const int nMsgID, const 
 			if (server_info.server_type() == serverType)
 			{
 				ServerData->ServerId = server_info.server_id();
+				if (ServerData->ServerId == 0)
+				{
+					LOG_ERR("ServerId is 0, why ?");
+					continue;
+				}
 				ServerData->Port = server_info.server_port();
 				ServerData->name = server_info.server_name();
 				ServerData->Ip = server_info.server_ip();
 				ServerData->ServerType = EServerType(server_info.server_type());
 				ServerData->ConnState = ConnectState::CONNECTING;
 				mpNetClientModule->AddServer(ServerData);
-				CLOG_INFO << "OnMasterMessage: " << "add connect server info" << CLOG_END;
 			}
 		}
 	}

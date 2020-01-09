@@ -68,7 +68,6 @@ void ChatNodeClient::OnGateRouteChat(const socket_t nFd, const int msgid, const 
 	pPlayer->m_PlayerId = xData.player_id();
 	pPlayer->m_ServerId = pServerData->ServerId;
 	int ret = msgHandle(pPlayer, pRecvPacket);  //process msg logic
-
 }
 
 void ChatNodeClient::SendToGate(const int& GameID, uint64_t playerId, uint32_t msg_id, ::google::protobuf::Message* pMsg)

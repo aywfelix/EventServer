@@ -45,11 +45,12 @@ public:
 	char* GetRecvBuf(int size)
 	{
 		BufferChain* chain = GetWriteChain(size);
-		if (chain)
+		Assert(chain != nullptr);
+		if (m_oBuffer.last_datap == nullptr)
 		{
-			return chain->buffer + chain->write_pos;
+			m_oBuffer.last_datap = chain;
 		}
-		return nullptr;
+		return chain->buffer + chain->write_pos;
 	}
 
 	void PostRecvData(int size)

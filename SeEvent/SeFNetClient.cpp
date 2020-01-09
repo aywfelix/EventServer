@@ -138,6 +138,7 @@ void SeFNetClient::ProcessAddConnect()
 		{
 			connPtr->pNet = std::make_shared<SeFNet>();
 			InitCallBacks(connPtr);
+			Assert(connPtr->ServerId != 0);
 			mConnecServers.emplace(connPtr->ServerId, connPtr);
 			if (connPtr->pNet->InitNet(connPtr->Ip.c_str(), connPtr->Port))
 			{

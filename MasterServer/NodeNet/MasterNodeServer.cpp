@@ -44,4 +44,10 @@ void MasterNodeServer::SyncNodeDataToAll(EServerType nType)
 			mpNetModule->SendPBMsg(it->second->fd, MASTER_REPORT_SERVER_INFO_TO_SERVER, &report_list);
 		}
 	}
+	LOG_INFO("SyncNodeDataToAll=======================================================");
+	for (int i = 0; i < report_list.server_info_size(); i++)
+	{
+		LOG_INFO("SyncNodeDataToAll: server_id %d", report_list.server_info(i).server_id());
+	}
+	LOG_INFO("SyncNodeDataToAll=======================================================");
 }
