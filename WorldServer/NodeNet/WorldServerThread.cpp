@@ -14,6 +14,6 @@ void WorldServerThread::ThreadLoop()
     while(IsActive())
     {
         m_NodeServer.Loop();
-		SFSLEEP(10);
+		SFSLEEP(LOOP_TIMEOUT);
     }
 }

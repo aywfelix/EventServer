@@ -10,6 +10,7 @@
 #include <fstream>
 #include "ThreadBase.h"
 #include "ConcurrentQueue.hpp"
+//#include "BlockQueue.hpp"
 #include "FileHelper.h"
 #include "SePlatForm.h"
 #include "Util.h"
@@ -92,6 +93,7 @@ public:
 
 	LogStream& Stream(int level, const char* file, const char* func, int line);
 	ConcurrentQueue<std::string>& GetQueue() { return m_queue; }
+	//Queue<std::string>& GetQueue() {return m_queue;}
 private:
 	void ThreadLoop();
 	bool SendLog();
@@ -99,6 +101,7 @@ private:
 	bool CreateLog();
 private:
 	ConcurrentQueue<std::string> m_queue;
+	//Queue<std::string> m_queue;
 	std::string m_LogPath;
 	std::ostringstream moss;
 	std::thread m_thread;

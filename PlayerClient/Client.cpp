@@ -37,7 +37,7 @@ bool Client::Loop()
 	while (1)
 	{
 		m_pNetClientModule->Execute(LOOP_RUN_NONBLOCK);
-		SFSLEEP(10);
+		SFSLEEP(LOOP_TIMEOUT);
 	}
 }
 

@@ -17,6 +17,6 @@ void ChatServerThread::ThreadLoop()
 	while (IsActive())
 	{
 		m_ChatClient.Loop();
-		SFSLEEP(10);
+		SFSLEEP(LOOP_TIMEOUT);
 	}
 }

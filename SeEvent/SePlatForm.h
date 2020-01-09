@@ -123,3 +123,5 @@ int SocketCloseOnExec(socket_t fd);
 
 TID CurrentThreadId();
 
+#define LOOP_TIMEOUT 30   // event loop 30ms
+

@@ -7,7 +7,7 @@ using namespace libconfig;
 class LibConfig{
 public:
 	LibConfig() {  }
-	~LibConfig() { cfg.clear(); }
+	~LibConfig() {  }
     static LibConfig& Instance()
     {
         static LibConfig instance;

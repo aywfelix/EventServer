@@ -15,6 +15,6 @@ void DBServerThread::ThreadLoop()
     {
         m_NodeServer.Loop();
 		m_NodeClient.Loop();
-		SFSLEEP(10);
+		SFSLEEP(LOOP_TIMEOUT);
     }
 }

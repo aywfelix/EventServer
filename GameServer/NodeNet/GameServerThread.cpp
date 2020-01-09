@@ -15,7 +15,7 @@ void GameServerThread::ThreadLoop()
 	while (IsActive())
 	{
 		m_GameClient.Loop();
-		SFSLEEP(10);
+		SFSLEEP(LOOP_TIMEOUT);
 	}
 	
 }

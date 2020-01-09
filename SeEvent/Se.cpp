@@ -16,8 +16,8 @@ bool SeEventOp::Init()
 	mMaxFd = INVALID_SOCKET;
 	// init timeval
 	gettimeofday(&mtv, nullptr);
-	mtv.tv_sec = TIMEOUT;
-	mtv.tv_usec = 0;
+	mtv.tv_sec = 0;
+	mtv.tv_usec = LOOP_TIMEOUT*1000;
 	this->InitOp();
 	return true;
 }

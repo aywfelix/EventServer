@@ -23,6 +23,6 @@ void GateServerThread::ThreadLoop()
         m_NodeServer.Loop();
 		m_NodeClient.Loop();
 		m_PlayerServer.Loop();
-		SFSLEEP(10);
+		SFSLEEP(LOOP_TIMEOUT);
     }
 }
