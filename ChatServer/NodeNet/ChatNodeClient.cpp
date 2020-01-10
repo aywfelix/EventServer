@@ -56,18 +56,16 @@ void ChatNodeClient::OnGateRouteChat(const socket_t nFd, const int msgid, const 
 	}
 	//parse the packet
 	Packet* pRecvPacket = g_pPacketMgr->CreatePakcet(xData.msg_id(), xData.msg_body().c_str(), xData.msg_body().length());
-	AutoFree<Packet> freeRecvPacket(pRecvPacket);
 
 	MsgHandle msgHandle = g_pPacketMgr->GetMsgHandle(xData.msg_id());
 	if (msgHandle == nullptr)
 	{
 		return;
 	}
-	ChatPlayer* pPlayer = new ChatPlayer;
-	AutoFree<Player> freePlayer(pPlayer);
-	pPlayer->m_PlayerId = xData.player_id();
-	pPlayer->m_ServerId = pServerData->ServerId;
-	int ret = msgHandle(pPlayer, pRecvPacket);  //process msg logic
+	ChatPlayer chatPlayer;
+	chatPlayer.m_PlayerId = xData.player_id();
+	chatPlayer.m_ServerId = pServerData->ServerId;
+	int ret = msgHandle(&chatPlayer, pRecvPacket);  //process msg logic
 }
 
 void ChatNodeClient::SendToGate(const int& GameID, uint64_t playerId, uint32_t msg_id, ::google::protobuf::Message* pMsg)

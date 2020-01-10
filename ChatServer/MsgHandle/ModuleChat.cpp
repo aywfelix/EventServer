@@ -1,14 +1,11 @@
 #include "ClientModule/ModuleChat.h"
 #include "Packet/Player.h"
 #include "LogHelper.h"
+#include "Assertx.h"
 
 int ModuleChat::ChatReq(Player* pPlayer, Packet* pPacket)
 {
-	if (!pPlayer && !pPacket)
-	{
-		return -1;
-	}
-	
+	Assert(pPlayer && pPacket);
 	auto pMsg = (Chat_ChatReq*)pPacket->pMsg;
 	const std::string msg = pMsg->chat_msg();
 

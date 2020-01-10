@@ -10,10 +10,7 @@ class Packet
 public:
 	Packet() {}
 	Packet(int msgid, ::google::protobuf::Message* msg) : msg_id(msgid), pMsg(msg) {}
-	~Packet()
-	{
-		DELETE_PTR(pMsg);
-	}
+
 	int msg_id{ -1 };
 	::google::protobuf::Message* pMsg{ nullptr };
 };
@@ -30,19 +27,14 @@ class CPacket : public PPacket
 public:
 	Packet* CreatePacket(int msg_id, const char* msg, int msglen)
 	{
-		T* pMsg = new T;
-		Packet* packet = new Packet;
-		if (pMsg == nullptr || packet == nullptr)
-		{
-			return nullptr;
-		}
-		pMsg->ParseFromArray(msg, msglen);
-		packet->msg_id = msg_id;
-		packet->pMsg = pMsg;
-		return packet;
+		m_t.ParseFromArray(msg, msglen);
+		m_packet.msg_id = msg_id;
+		m_packet.pMsg = &m_t;
+		return &m_packet;
 	}
-
 private:
+	T m_t;
+	Packet m_packet;
 };
 
 

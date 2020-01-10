@@ -4,9 +4,7 @@
 std::unique_ptr<PacketMgr> g_pPacketMgr = nullptr;
 
 PacketMgr::PacketMgr()
-{
-	Clear();
-}
+{}
 PacketMgr::~PacketMgr()
 {
 	for (auto it : m_mPackets)
