@@ -42,7 +42,7 @@ bool ClientPlayer::OnModuleGameMessage(const int msgid, const char* msg, uint32_
 bool ClientPlayer::OnModuleChatMessage(const int msgid, const char* msg, uint32_t nLen)
 {
 	GateToChatPacket gatetochat;
-	gatetochat.set_player_id(mPlayerId); // TODO Ä¬ÈÏÍæ¼ÒidÎª1
+	gatetochat.set_player_id(mPlayerId);
 	gatetochat.set_msg_id(msgid);
 	gatetochat.set_msg_body(msg, nLen);
 	g_pServerThread->NodeServer().SentPackToChat(GATE_ROUTE_TO_CHAT, gatetochat);

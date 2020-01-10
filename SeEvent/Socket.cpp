@@ -10,7 +10,7 @@ void Socket::SetSocket(socket_t sock, struct sockaddr_in& addr)
 
 void Socket::SetNonBlock()
 {
-#if defined SF_PLATFORM_WIN
+#ifdef SF_PLATFORM_WIN
 	ULONG ul = 1;
 	ioctlsocket(m_fd, FIONBIO, &ul);
 #else
@@ -21,7 +21,7 @@ void Socket::SetNonBlock()
 
 void Socket::CreateFd()
 {
-	m_fd = socket(AF_INET, SOCK_STREAM, 0);
+	m_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	Assert(m_fd > 0);
 }
 
@@ -37,14 +37,21 @@ void Socket::CloseSocket()
 	m_fd = INVALID_SOCKET;
 }
 
+void Socket::BindAddr(struct sockaddr_in& addr, UINT port, const char* ip)
+{
+	m_port = port;
+	addr.sin_family = AF_INET;
+	addr.sin_port = m_port;
+	if (ip != nullptr)
+		inet_pton(AF_INET, ip, &addr.sin_addr);
+	else
+		addr.sin_addr.s_addr = htonl(INADDR_ANY);
+	//m_sockAddr.sin_addr.s_addr = inet_addr("192.168.43.38");
+}
 
 bool Socket::Listen(UINT port)
 {
-	m_port = port;
-	m_sockAddr.sin_family = AF_INET;
-	m_sockAddr.sin_port = m_port;
-	m_sockAddr.sin_addr.s_addr = htonl(INADDR_ANY);
-	//m_sockAddr.sin_addr.s_addr = inet_addr("192.168.43.38");
+	BindAddr(m_sockAddr, port);
 	if (bind(m_fd, (const sockaddr*)&m_sockAddr, sizeof(m_sockAddr)) < 0)
 	{
 		return false;
@@ -133,4 +140,27 @@ void Socket::SetSocketOptions()
 	SetNodelay();
 	SetKeepAlive(SOCKET_KEEP_ALIVE_INTERVAL);
 	SetBufferSize(SOCKET_BUFFER_SIZE, SOCKET_BUFFER_SIZE);
+}
+
+void Socket::CreateUDPFd()
+{
+	m_fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+	Assert(m_fd > 0);
+}
+
+int Socket::RecvFrom(char* buf, int len)
+{
+	int addr_len = sizeof(struct sockaddr_in);
+	return recvfrom(m_fd, buf, len, 0, (struct sockaddr*)&m_sockAddr, &addr_len);
+}
+
+int Socket::SendTo(const char* buf, int len, const struct sockaddr& addr)
+{
+	return sendto(m_fd, buf, len, 0, &addr, sizeof(addr));
+}
+
+void Socket::SetBroadCast()
+{
+	const int on = 1;
+	setsockopt(m_fd, SOL_SOCKET, SO_BROADCAST, (const char*)&on, sizeof(on));
 }

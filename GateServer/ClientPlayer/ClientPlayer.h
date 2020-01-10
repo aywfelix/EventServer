@@ -14,7 +14,7 @@ public:
 	virtual bool Clear();
 	int GetId();
 	socket_t GetSockFd();
-	UINT64 GetPlayerId() { return mPlayerId; }
+	UINT64 GetPlayerId() { return mPlayerId; }   // Ä¬ÈÏplayeridÎªmemid
 	void SetSceneId(int sceneId) { mSceneId = sceneId; }
 	void SetLastSceneId(int sceneId) { mLastSceneId = sceneId; }
 	void SetSession(Session* pSession) { mSession = pSession; }

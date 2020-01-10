@@ -8,8 +8,6 @@ class Socket
 public:
 
 	void SetSocket(socket_t sock, struct sockaddr_in& addr);
-
-
 	void CreateFd();
 	void CloseSocket();
 
@@ -22,10 +20,16 @@ public:
 	int Send(const char* buf, int len);
 	int Recv(char* buf, int len);
 
-	// TODO udp
+	// udp
+	void CreateUDPFd();
+	int RecvFrom(char* buf, int len);
+	int SendTo(const char* buf, int len, const struct sockaddr& addr);
+	void SetBroadCast();
+
 	socket_t GetFd() { return m_fd; }
 	void SetSocketOptions();
 private:
+	void BindAddr(struct sockaddr_in& addr, UINT port, const char* ip = "127.0.0.1");
 	void SetNonBlock();
 	// set socket options
 	void SetReUseAddr();

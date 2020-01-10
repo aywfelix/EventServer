@@ -28,8 +28,7 @@ int SocketGetError(socket_t sock)
     int err = WSAGetLastError();
     if (err == WSAEWOULDBLOCK && sock >= 0)
     {
-        if (getsockopt(sock, SOL_SOCKET, SO_ERROR, (char *)&optval,
-                       &optvallen))
+        if (getsockopt(sock, SOL_SOCKET, SO_ERROR, (char *)&optval,&optvallen))
             return err;
         if (optval)
             return optval;
