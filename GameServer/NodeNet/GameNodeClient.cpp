@@ -2,27 +2,27 @@
 #include "JsonConfig.h"
 #include "SeFNetClient.h"
 
-using namespace SeFNetProto;
+
 
 void GameNodeClient::InitHelper()
 {
-    mpNetClientModule->AddEventCallBack(EServerType::SERVER_TYPE_MASTER, this, &GameNodeClient::OnSocketEvent);
-	mpNetClientModule->AddEventCallBack(EServerType::SERVER_TYPE_WORLD, this, &GameNodeClient::OnSocketEvent);
-	mpNetClientModule->AddEventCallBack(EServerType::SERVER_TYPE_GATE, this, &GameNodeClient::OnSocketEvent);
-	SetServerInfoReport();
+    mNetCliModule->AddEventCallBack(EServerType::SERVER_TYPE_MASTER, this, &GameNodeClient::OnSocketEvent);
+	mNetCliModule->AddEventCallBack(EServerType::SERVER_TYPE_WORLD, this, &GameNodeClient::OnSocketEvent);
+	mNetCliModule->AddEventCallBack(EServerType::SERVER_TYPE_GATE, this, &GameNodeClient::OnSocketEvent);
+	SetReportInfo();
 	AddConnectServer();
 }
 
-void GameNodeClient::SetServerInfoReport()
+void GameNodeClient::SetReportInfo()
 {
-	mServerReport.set_server_id(g_pJsonConfig->m_ServerConf["NodeId"].asInt());
-	mServerReport.set_server_name(g_pJsonConfig->m_ServerConf["NodeName"].asString());
-	mServerReport.set_server_cur_count(0);
-	mServerReport.set_server_ip(g_pJsonConfig->m_ServerConf["NodeIp"].asString());
-	mServerReport.set_server_port(g_pJsonConfig->m_ServerConf["NodePort"].asInt());
-	mServerReport.set_server_max_online(2000);
-	mServerReport.set_server_state(EServerState::EST_NORMAL);
-	mServerReport.set_server_type(EServerType::SERVER_TYPE_GAME);
+	mServerInfo.set_server_id(g_JsonConfig->m_ServerConf["NodeId"].asInt());
+	mServerInfo.set_server_name(g_JsonConfig->m_ServerConf["NodeName"].asString());
+	mServerInfo.set_server_cur_count(0);
+	mServerInfo.set_server_ip(g_JsonConfig->m_ServerConf["NodeIp"].asString());
+	mServerInfo.set_server_port(g_JsonConfig->m_ServerConf["NodePort"].asInt());
+	mServerInfo.set_server_max_online(2000);
+	mServerInfo.set_server_state(EServerState::EST_NORMAL);
+	mServerInfo.set_server_type(EServerType::SERVER_TYPE_GAME);
 }
 
 void GameNodeClient::AddConnectServer()

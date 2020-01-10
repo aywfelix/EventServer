@@ -2,27 +2,27 @@
 #include "JsonConfig.h"
 #include "SeFNetClient.h"
 
-using namespace SeFNetProto;
+
 
 void DBNodeClient::InitHelper()
 {
-	mpNetClientModule->AddEventCallBack(EServerType::SERVER_TYPE_MASTER, this, &DBNodeClient::OnSocketEvent);
-	mpNetClientModule->AddEventCallBack(EServerType::SERVER_TYPE_GATE, this, &DBNodeClient::OnSocketEvent); // world服连接master服务
+	mNetCliModule->AddEventCallBack(EServerType::SERVER_TYPE_MASTER, this, &DBNodeClient::OnSocketEvent);
+	mNetCliModule->AddEventCallBack(EServerType::SERVER_TYPE_GATE, this, &DBNodeClient::OnSocketEvent); // world服连接master服务
 
-	SetServerInfoReport();
+	SetReportInfo();
 	AddConnectServer();
 }
 
-void DBNodeClient::SetServerInfoReport()
+void DBNodeClient::SetReportInfo()
 {
-	mServerReport.set_server_id(g_pJsonConfig->m_ServerConf["NodeId"].asInt());
-	mServerReport.set_server_name(g_pJsonConfig->m_ServerConf["NodeName"].asString());
-	mServerReport.set_server_cur_count(0);
-	mServerReport.set_server_ip(g_pJsonConfig->m_ServerConf["NodeIp"].asString());
-	mServerReport.set_server_port(g_pJsonConfig->m_ServerConf["NodePort"].asInt());
-	mServerReport.set_server_max_online(5000);
-	mServerReport.set_server_state(EServerState::EST_NORMAL);
-	mServerReport.set_server_type(EServerType::SERVER_TYPE_DB);
+	mServerInfo.set_server_id(g_JsonConfig->m_ServerConf["NodeId"].asInt());
+	mServerInfo.set_server_name(g_JsonConfig->m_ServerConf["NodeName"].asString());
+	mServerInfo.set_server_cur_count(0);
+	mServerInfo.set_server_ip(g_JsonConfig->m_ServerConf["NodeIp"].asString());
+	mServerInfo.set_server_port(g_JsonConfig->m_ServerConf["NodePort"].asInt());
+	mServerInfo.set_server_max_online(5000);
+	mServerInfo.set_server_state(EServerState::EST_NORMAL);
+	mServerInfo.set_server_type(EServerType::SERVER_TYPE_DB);
 }
 
 void DBNodeClient::AddConnectServer()

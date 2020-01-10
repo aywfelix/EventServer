@@ -78,37 +78,27 @@ void SeFNet::SendMsg(std::vector<socket_t>& fdlist, const int nMsgID, const char
 {
 	mNet->SendProtoMsg(fdlist, nMsgID, msg, len);
 }
-void SeFNet::SendToAllMsg(const int nMsgID, const char* msg, int len)
+void SeFNet::SendToAll(const int nMsgID, const char* msg, int len)
 {
 	mNet->SendProtoMsg(nMsgID, msg, len);
 }
 
-void SeFNet::SendPBMsg(const socket_t fd, const int nMsgID, ::google::protobuf::Message* pMsg)
+void SeFNet::SendPbMsg(const socket_t fd, const int nMsgID, ::google::protobuf::Message* pMsg)
 {
 	std::string strMsg = pMsg->SerializeAsString();
-	if (strMsg.empty())
-	{
-		return;
-	}
+	if (strMsg.empty()) return;
 	mNet->SendProtoMsg(fd, nMsgID, strMsg.c_str(), strMsg.length());
 }
-void SeFNet::SendPBMsg(std::vector<socket_t>& fdlist, const int nMsgID, ::google::protobuf::Message* pMsg)
+void SeFNet::SendPbMsg(std::vector<socket_t>& fdlist, const int nMsgID, ::google::protobuf::Message* pMsg)
 {
 	std::string strMsg = pMsg->SerializeAsString();
-	if (strMsg.empty())
-	{
-		return;
-	}
+	if (strMsg.empty()) return;
+
 	mNet->SendProtoMsg(fdlist, nMsgID, strMsg.c_str(), strMsg.length());
 }
 void SeFNet::SendPBToAllMsg(const int nMsgID, ::google::protobuf::Message* pMsg)
 {
 	std::string strMsg = pMsg->SerializeAsString();
-	if (strMsg.empty())
-	{
-		return;
-	}
+	if (strMsg.empty()) return;
 	mNet->SendProtoMsg(nMsgID, strMsg.c_str(), strMsg.length());
 }
-
-

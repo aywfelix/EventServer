@@ -50,8 +50,8 @@ private:
 class LogStream : public NullStream
 {
 public:
-	LogStream();
-	~LogStream();
+	LogStream() {}
+	~LogStream() {}
 
 	void Init(int level, const char* file, const char* func, int line);
 	void Clear();
@@ -79,8 +79,8 @@ public:
 
 class LogHelper {
 public:
-	LogHelper();
-	~LogHelper();
+	LogHelper(){}
+	~LogHelper(){}
 
 	bool Init(std::string servername = "");
 	void Log(int level, const char* file, const char* func, int line, const char* fmt, ...);
@@ -107,6 +107,7 @@ private:
 	std::thread m_thread;
 	int m_level;
 	LogStream stream;
+	bool mStop{ false };
 	
 	int m_RollType;
 	std::string m_LogName;
@@ -140,3 +141,8 @@ g_pLog->LoadLogCfg(LOG_CFG_PATH);\
 g_pLog->Init(a);\
 g_pLog->Start();\
 }while (0);
+
+#define STOP_SFLOG() do{\
+g_pLog->Stop();\
+}while (0);
+

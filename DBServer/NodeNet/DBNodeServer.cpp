@@ -5,10 +5,10 @@
 
 bool DBNodeServer::InitHelper()
 {
-	mpNetModule->AddReceiveCallBack(this, &DBNodeServer::OtherMessage);
+	mNetServModule->AddReceiveCallBack(this, &DBNodeServer::OtherMessage);
 
 	//init server info
-	if (!mpNetModule->InitNet(g_pJsonConfig->m_ServerConf["NodePort"].asUInt()))
+	if (!mNetServModule->InitNet(g_JsonConfig->m_ServerConf["NodePort"].asUInt()))
 	{
 		LOG_ERR("init DBNodeServer failed");
 		return false;

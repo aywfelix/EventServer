@@ -46,11 +46,11 @@ int main()
 	OnHookSignal();
 
 	//server config
-	g_pJsonConfig.reset(new JsonConfig());
-	g_pJsonConfig->Load("../Config/ServerConf.json");
-	g_pJsonConfig->m_ServerConf = g_pJsonConfig->m_Root["DBServer"];
+	g_JsonConfig.reset(new JsonConfig());
+	g_JsonConfig->Load("../Config/ServerConf.json");
+	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root["DBServer"];
 	//mariadb config
-	g_pJsonConfig->m_dbConf = g_pJsonConfig->m_Root["MariaDB"];
+	g_JsonConfig->m_dbConf = g_JsonConfig->m_Root["MariaDB"];
 
 	DB db;
 	db.Init();

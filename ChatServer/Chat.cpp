@@ -28,6 +28,7 @@ void Chat::Start()
 void Chat::Stop()
 {
 	g_pServerThread->Stop();
+	
 }
 
 void Chat::InitManager()

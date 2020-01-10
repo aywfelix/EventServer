@@ -7,5 +7,5 @@ class MasterNodeServer : public NetServerBase{
 public:
     bool InitHelper();
     void AfterReportToServer(ServerDataPtr& pReportServerData);
-    void SyncNodeDataToAll(EServerType nType);
+    void SyncNodeDataToAll();
 };

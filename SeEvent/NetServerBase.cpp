@@ -3,13 +3,11 @@
 #include "LogHelper.h"
 #include "SeFNet.h"
 
-using namespace SeFNetProto;
-
 bool NetServerBase::Init()
 {
-	mpNetModule = new SeFNet();
-	mpNetModule->AddEventCallBack(this, &NetServerBase::OnClientSocketEvent);
-	mpNetModule->AddReceiveCallBack(REPORT_CLIENT_INFO_TO_SERVER, this, &NetServerBase::OnReportToServer);
+	mNetServModule = new SeFNet();
+	mNetServModule->AddEventCallBack(this, &NetServerBase::OnClientSocketEvent);
+	mNetServModule->AddReceiveCallBack(REPORT_CLIENT_INFO_TO_SERVER, this, &NetServerBase::OnReportToServer);
 	return true;
 }
 
@@ -35,13 +33,12 @@ void NetServerBase::OnClientConnected(const socket_t nFd)
 void NetServerBase::OnClientDisconnect(const socket_t nFd)
 {
 	LOG_INFO("client %d disconnected", nFd);
-	int nServerId = -1;
-	for (auto it = mmClientNodes.begin(); it != mmClientNodes.end(); it++)
+	for (auto it = mmServNodes.begin(); it != mmServNodes.end(); it++)
 	{
 		if (it->second->fd == nFd)
 		{
-			nServerId = it->second->ServerInfo->server_id();
-			mmClientNodes.erase(nServerId);
+			auto nServerId = it->second->ServerInfo->server_id();
+			mmServNodes.erase(nServerId);
 			break;
 		}
 	}
@@ -49,8 +46,8 @@ void NetServerBase::OnClientDisconnect(const socket_t nFd)
 
 ServerDataPtr NetServerBase::GetClientNodeData(int nServerId)
 {
-	auto it = mmClientNodes.find(nServerId);
-	if (it == mmClientNodes.end())
+	auto it = mmServNodes.find(nServerId);
+	if (it == mmServNodes.end())
 	{
 		return nullptr;
 	}
@@ -60,27 +57,24 @@ ServerDataPtr NetServerBase::GetClientNodeData(int nServerId)
 void NetServerBase::OnReportToServer(const socket_t nFd, const int nMsgID, const char* msg, const uint32_t nLen)
 {
 	ServerDataPtr pServerData = std::make_shared<ServerData>();
-	SeFNetProto::ServerReport report;
+	ServerReport report;
 	if (!SeNet::ReceivePB(nMsgID, msg, nLen, &report))
 	{
 		return;
 	}
-	Assert(report.server_id() != 0);
 	pServerData->fd = nFd;
-	pServerData->ServerInfo = std::make_shared<SeFNetProto::ServerReport>(report);
-	mmClientNodes.emplace(report.server_id(), pServerData);
-	for (auto& it : mmClientNodes)
+	pServerData->ServerInfo = std::make_shared<ServerReport>(report);
+	mmServNodes.emplace(report.server_id(), pServerData);
+	for (auto& it : mmServNodes)
 	{
 		LOG_INFO("clients(%d : %s)", it.first, it.second->ServerInfo->server_name().c_str());
 	}
 	AfterReportToServer(pServerData);  // 被子类重新接口
 }
 void NetServerBase::AfterReportToServer(ServerDataPtr& pReportServerData)
-{
-
-}
+{}
 
 void NetServerBase::Loop()
 {
-	mpNetModule->Execute(LOOP_RUN_TYPE::LOOP_RUN_NONBLOCK);
+	mNetServModule->Execute(LOOP_RUN_TYPE::LOOP_RUN_NONBLOCK);
 }

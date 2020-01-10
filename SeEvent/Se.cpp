@@ -49,17 +49,14 @@ bool SeEventOp::Dispatch()
 }
 
 
-void SeNet::InitSeNet()
+Socket* SeNet::InitSeNet()
 {
 #ifdef _WIN32
 	mEventOp = new SeSelect();
 #else
 	mEventOp = new SeEpoll();
 #endif
-	if (mEventOp == nullptr)
-	{
-		return;
-	}
+	Assert(mEventOp != nullptr);
 	mEventOp->Init();
 #if defined SF_PLATFORM_WIN
 	WSADATA wsa_data;
@@ -69,21 +66,24 @@ void SeNet::InitSeNet()
 	}
 #endif
 	mbStop = false;
-	mSocket = new Socket;
-	mSocket->CreateFd();
-	mEventOp->SetMaxFd(mSocket->GetFd());
+	Socket* pSocket = new Socket;
+	Assert(pSocket != nullptr);
+	pSocket->CreateFd();
+	mEventOp->SetMaxFd(pSocket->GetFd());
 #ifdef _WIN32
-	mEventOp->AddEvent(mSocket->GetFd(), EV_READ);
+	mEventOp->AddEvent(pSocket->GetFd(), EV_READ);
 #else
-	mEventOp->AddEvent(mSocket->GetFd(), EV_READ);
+	mEventOp->AddEvent(pSocket->GetFd(), EV_READ);
 #endif
-	LOG_INFO("init senet socket %d", mSocket->GetFd());
+	LOG_INFO("create socket %d", pSocket->GetFd());
+	if (mbServer) mSocket = pSocket;
+	return pSocket;
 }
 
 bool SeNet::InitServer(UINT port)
 {
-	InitSeNet();
 	mbServer = true;
+	InitSeNet();
 	if (!mSocket->Listen(port))
 	{
 		AssertEx(0, "Server listen error");
@@ -94,18 +94,19 @@ bool SeNet::InitServer(UINT port)
 
 bool SeNet::InitClient(const char* ip, UINT port)
 {
-	InitSeNet();
-	if (!mSocket->Connect(ip, port))
+	mbServer = false;
+	Socket* pSocket = InitSeNet();
+	if (!pSocket->Connect(ip, port))
 	{
 		LOG_WARN("init client error, can not connect server....");
 		// close connect event
-		mEventCB(mSocket->GetFd(), SE_NET_EVENT_TIMEOUT, this);
+		mEventCB(pSocket->GetFd(), SE_NET_EVENT_TIMEOUT, this);
 		return false;
 	}
-	mSocket->SetSocketOptions();
-	AddSession(mSocket);
+	pSocket->SetSocketOptions();
+	AddSession(pSocket);
 	// connect event
-	mEventCB(mSocket->GetFd(), SE_NET_EVENT_CONNECTED, this);
+	mEventCB(pSocket->GetFd(), SE_NET_EVENT_CONNECTED, this);
 	mbServer = false;
 	return true;
 }
@@ -113,48 +114,31 @@ bool SeNet::InitClient(const char* ip, UINT port)
 void SeNet::AddSession(Socket* pSocket)
 {
 	Session* pSession = g_pSessionPool->NewSession();
-	if (pSession == nullptr)
-		return;
+	if (pSession == nullptr) return;
 	pSession->SetSocket(pSocket);
-	if (!mbServer)
-	{
+	if (!mbServer) 
 		mSessions.emplace(0, pSession);
-	}
 	else 
-	{
 		mSessions.emplace(pSocket->GetFd(), pSession);
-	}
 }
 
 Session* SeNet::GetSession(socket_t fd)
 {
-	if (mSessions.empty())
-	{
-		return nullptr;
-	}
-	if (!mbServer)
-	{
-		fd = 0;
-	}
+	if (mSessions.empty()) return nullptr;
+	if (!mbServer) { return mSessions[0]; }
 	auto it = mSessions.find(fd);
-	if (it == mSessions.end())
-	{
-		return nullptr;
-	}
-	return it->second;
+	if (it != mSessions.end()) return it->second;
+	return nullptr;
 }
 
 void SeNet::CloseSession(Session* pSession)
 {
 	socket_t fd = pSession->GetSocket()->GetFd();
-	if (fd > 0)
-	{
-		// close connect event
-		mEventCB(fd, SE_NET_EVENT_EOF, this);
-		mSessions.erase(fd);
-		mEventOp->DelEvent(fd, EV_READ | EV_WRITE);
-		g_pSessionPool->DelSession(pSession);
-	}
+	// close connect event
+	mEventCB(fd, SE_NET_EVENT_EOF, this);
+	mSessions.erase(fd);
+	mEventOp->DelEvent(fd, EV_READ | EV_WRITE);
+	g_pSessionPool->DelSession(pSession);
 }
 
 void SeNet::AcceptClient()
@@ -190,12 +174,15 @@ void SeNet::EventWrite(Session* pSession)
 	//LOG_INFO("write event trigger....%d", fd);
 	int nSendSize = 0;
 	char* pSendBuf = pSession->GetSendBuf(nSendSize);
-	while (pSession && pSendBuf)
+	while (pSession && pSendBuf && nSendSize >0)
 	{
 		int ret = ::send(fd, pSendBuf, nSendSize, 0);
-		if (ret <= 0)
+		if (ret < 0)
 		{
-			break;
+			int err = SocketGetError(fd);
+			if (SOCKET_ERR_RW_RETRIABLE(err)) break;
+			LOG_WARN("socket send error! err code %d, %s", errno, strerror(errno));
+			CloseSession(pSession);
 		}
 		pSession->PostSendData(ret);
 		nSendSize = 0;
@@ -216,24 +203,19 @@ void SeNet::EventRead(Session* pSession)
 		int ret = ::recv(fd, pRecvBuf, nRecvLeft, 0);
 		if (ret < 0)
 		{
-			if (errno == EINTR)
+			int err = SocketGetError(fd);
+			if (SOCKET_ERR_RW_RETRIABLE(err)) break;
+			if (SOCKET_ERR_CONNECT_REFUSED(err))
 			{
-				continue;
-			}
-			if (errno == EAGAIN || errno == EWOULDBLOCK)
-			{
-				LOG_INFO("socket recv data finish!");
-				break;
-			}
-			else if (errno == 0)
-			{
-				break;
+				LOG_WARN("connection peer closed! err code %d, %s", errno, strerror(errno));
+				CloseSession(pSession);
+				return;
 			}
 			LOG_WARN("socket recv error! err code %d, %s", errno, strerror(errno));
 			CloseSession(pSession);
-			break;
+			return;
 		}
-		else if (ret == 0)
+		else if (ret == 0)  // read eof
 		{
 			LOG_WARN("connection peer closed! err code %d, %s", errno, strerror(errno));
 			CloseSession(pSession);
@@ -245,15 +227,9 @@ void SeNet::EventRead(Session* pSession)
 		for (;;)
 		{
 			// 进行数据解包
-			if (!Dismantle(pSession))
-			{
-				break;
-			}
+			if (!Dismantle(pSession)) break;
 		}
-		if (nRecvLeft == 0)
-		{
-			break;
-		}
+		if (nRecvLeft == 0) break;
 	}
 }
 
@@ -303,10 +279,8 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 				continue;
 			}
 			Session* pSession = GetSession(it->first);
-			if (pSession == nullptr)
-			{
-				continue;
-			}
+			if (pSession == nullptr) continue;
+
 			if (it->second & EV_READ)
 			{
 				EventRead(pSession);
@@ -322,10 +296,7 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 			}
 		}
 		activemq.clear();
-		if (run == LOOP_RUN_NONBLOCK)
-		{
-			break;
-		}
+		if (run == LOOP_RUN_NONBLOCK) break;
 	}
 }
 
@@ -335,7 +306,12 @@ void SeNet::StopLoop()
 	delete mEventOp;
 	mEventOp = nullptr;
 	mbStop = true;
-	mSocket->CloseSocket();
+	if (mSocket)
+	{
+		mSocket->CloseSocket();
+		delete mSocket;
+		mSocket = nullptr;
+	}
 	for (auto it : mSessions)
 	{
 		g_pSessionPool->DelSession(it.second);
@@ -351,8 +327,7 @@ void SeNet::SendMsg(socket_t fd, const char* msg, int len)
 	if (it != mSessions.end())
 	{
 		it->second->Send(msg, len);
-		if(!mbServer)
-			fd = it->second->GetSocket()->GetFd();
+		if(!mbServer) fd = it->second->GetSocket()->GetFd();
 		mEventOp->AddEvent(fd, EV_WRITE);
 	}
 }
@@ -381,10 +356,8 @@ void SeNet::SendMsg(std::vector<socket_t>& fdlist, const char* msg, int len)
 
 void SeNet::SendToAllClients(const char* msg, int len)
 {
-	if (!mbServer)
-	{
-		return;
-	}
+	if (!mbServer) return;
+
 	for (auto& it : mSessions)
 	{
 		it.second->Send(msg, len);
@@ -452,9 +425,6 @@ bool SeNet::ReceivePB(const int nMsgID, const std::string& strMsg, google::proto
 
 bool SeNet::ReceivePB(const int nMsgID, const char* msg, const UINT32 nLen, google::protobuf::Message* pData)
 {
-	if (msg == nullptr)
-	{
-		return false;
-	}
+	if (msg == nullptr) return false;
 	return pData->ParseFromArray(msg, nLen);
 }

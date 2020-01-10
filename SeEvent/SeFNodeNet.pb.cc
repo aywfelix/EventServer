@@ -15,7 +15,6 @@
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 extern PROTOBUF_INTERNAL_EXPORT_SeFNodeNet_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ServerReport_SeFNodeNet_2eproto;
-namespace SeFNetProto {
 class ServerReportDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ServerReport> _instance;
@@ -100,16 +99,15 @@ class DBToWorldPacketDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DBToWorldPacket> _instance;
 } _DBToWorldPacket_default_instance_;
-}  // namespace SeFNetProto
 static void InitDefaultsscc_info_ChatToGamePacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_ChatToGamePacket_default_instance_;
-    new (ptr) ::SeFNetProto::ChatToGamePacket();
+    void* ptr = &::_ChatToGamePacket_default_instance_;
+    new (ptr) ::ChatToGamePacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::ChatToGamePacket::InitAsDefaultInstance();
+  ::ChatToGamePacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ChatToGamePacket_SeFNodeNet_2eproto =
@@ -119,11 +117,11 @@ static void InitDefaultsscc_info_ChatToGatePacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_ChatToGatePacket_default_instance_;
-    new (ptr) ::SeFNetProto::ChatToGatePacket();
+    void* ptr = &::_ChatToGatePacket_default_instance_;
+    new (ptr) ::ChatToGatePacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::ChatToGatePacket::InitAsDefaultInstance();
+  ::ChatToGatePacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ChatToGatePacket_SeFNodeNet_2eproto =
@@ -133,11 +131,11 @@ static void InitDefaultsscc_info_DBToWorldPacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_DBToWorldPacket_default_instance_;
-    new (ptr) ::SeFNetProto::DBToWorldPacket();
+    void* ptr = &::_DBToWorldPacket_default_instance_;
+    new (ptr) ::DBToWorldPacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::DBToWorldPacket::InitAsDefaultInstance();
+  ::DBToWorldPacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_DBToWorldPacket_SeFNodeNet_2eproto =
@@ -147,11 +145,11 @@ static void InitDefaultsscc_info_GameToChatPacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_GameToChatPacket_default_instance_;
-    new (ptr) ::SeFNetProto::GameToChatPacket();
+    void* ptr = &::_GameToChatPacket_default_instance_;
+    new (ptr) ::GameToChatPacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::GameToChatPacket::InitAsDefaultInstance();
+  ::GameToChatPacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GameToChatPacket_SeFNodeNet_2eproto =
@@ -161,11 +159,11 @@ static void InitDefaultsscc_info_GameToGatePacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_GameToGatePacket_default_instance_;
-    new (ptr) ::SeFNetProto::GameToGatePacket();
+    void* ptr = &::_GameToGatePacket_default_instance_;
+    new (ptr) ::GameToGatePacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::GameToGatePacket::InitAsDefaultInstance();
+  ::GameToGatePacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GameToGatePacket_SeFNodeNet_2eproto =
@@ -175,11 +173,11 @@ static void InitDefaultsscc_info_GameToWorldPacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_GameToWorldPacket_default_instance_;
-    new (ptr) ::SeFNetProto::GameToWorldPacket();
+    void* ptr = &::_GameToWorldPacket_default_instance_;
+    new (ptr) ::GameToWorldPacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::GameToWorldPacket::InitAsDefaultInstance();
+  ::GameToWorldPacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GameToWorldPacket_SeFNodeNet_2eproto =
@@ -189,11 +187,11 @@ static void InitDefaultsscc_info_GateToChatPacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_GateToChatPacket_default_instance_;
-    new (ptr) ::SeFNetProto::GateToChatPacket();
+    void* ptr = &::_GateToChatPacket_default_instance_;
+    new (ptr) ::GateToChatPacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::GateToChatPacket::InitAsDefaultInstance();
+  ::GateToChatPacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GateToChatPacket_SeFNodeNet_2eproto =
@@ -203,11 +201,11 @@ static void InitDefaultsscc_info_GateToGamePacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_GateToGamePacket_default_instance_;
-    new (ptr) ::SeFNetProto::GateToGamePacket();
+    void* ptr = &::_GateToGamePacket_default_instance_;
+    new (ptr) ::GateToGamePacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::GateToGamePacket::InitAsDefaultInstance();
+  ::GateToGamePacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GateToGamePacket_SeFNodeNet_2eproto =
@@ -217,11 +215,11 @@ static void InitDefaultsscc_info_GateToLoginPacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_GateToLoginPacket_default_instance_;
-    new (ptr) ::SeFNetProto::GateToLoginPacket();
+    void* ptr = &::_GateToLoginPacket_default_instance_;
+    new (ptr) ::GateToLoginPacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::GateToLoginPacket::InitAsDefaultInstance();
+  ::GateToLoginPacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GateToLoginPacket_SeFNodeNet_2eproto =
@@ -231,11 +229,11 @@ static void InitDefaultsscc_info_GateToWorldPacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_GateToWorldPacket_default_instance_;
-    new (ptr) ::SeFNetProto::GateToWorldPacket();
+    void* ptr = &::_GateToWorldPacket_default_instance_;
+    new (ptr) ::GateToWorldPacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::GateToWorldPacket::InitAsDefaultInstance();
+  ::GateToWorldPacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GateToWorldPacket_SeFNodeNet_2eproto =
@@ -245,11 +243,11 @@ static void InitDefaultsscc_info_LoginToGatePacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_LoginToGatePacket_default_instance_;
-    new (ptr) ::SeFNetProto::LoginToGatePacket();
+    void* ptr = &::_LoginToGatePacket_default_instance_;
+    new (ptr) ::LoginToGatePacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::LoginToGatePacket::InitAsDefaultInstance();
+  ::LoginToGatePacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_LoginToGatePacket_SeFNodeNet_2eproto =
@@ -259,11 +257,11 @@ static void InitDefaultsscc_info_LoginToWorldPacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_LoginToWorldPacket_default_instance_;
-    new (ptr) ::SeFNetProto::LoginToWorldPacket();
+    void* ptr = &::_LoginToWorldPacket_default_instance_;
+    new (ptr) ::LoginToWorldPacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::LoginToWorldPacket::InitAsDefaultInstance();
+  ::LoginToWorldPacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_LoginToWorldPacket_SeFNodeNet_2eproto =
@@ -273,11 +271,11 @@ static void InitDefaultsscc_info_MasterToNodePacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_MasterToNodePacket_default_instance_;
-    new (ptr) ::SeFNetProto::MasterToNodePacket();
+    void* ptr = &::_MasterToNodePacket_default_instance_;
+    new (ptr) ::MasterToNodePacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::MasterToNodePacket::InitAsDefaultInstance();
+  ::MasterToNodePacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_MasterToNodePacket_SeFNodeNet_2eproto =
@@ -287,11 +285,11 @@ static void InitDefaultsscc_info_NodeToMasterPacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_NodeToMasterPacket_default_instance_;
-    new (ptr) ::SeFNetProto::NodeToMasterPacket();
+    void* ptr = &::_NodeToMasterPacket_default_instance_;
+    new (ptr) ::NodeToMasterPacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::NodeToMasterPacket::InitAsDefaultInstance();
+  ::NodeToMasterPacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_NodeToMasterPacket_SeFNodeNet_2eproto =
@@ -302,11 +300,11 @@ static void InitDefaultsscc_info_ServerHeartBeat_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_ServerHeartBeat_default_instance_;
-    new (ptr) ::SeFNetProto::ServerHeartBeat();
+    void* ptr = &::_ServerHeartBeat_default_instance_;
+    new (ptr) ::ServerHeartBeat();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::ServerHeartBeat::InitAsDefaultInstance();
+  ::ServerHeartBeat::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ServerHeartBeat_SeFNodeNet_2eproto =
@@ -316,11 +314,11 @@ static void InitDefaultsscc_info_ServerReport_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_ServerReport_default_instance_;
-    new (ptr) ::SeFNetProto::ServerReport();
+    void* ptr = &::_ServerReport_default_instance_;
+    new (ptr) ::ServerReport();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::ServerReport::InitAsDefaultInstance();
+  ::ServerReport::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ServerReport_SeFNodeNet_2eproto =
@@ -330,11 +328,11 @@ static void InitDefaultsscc_info_ServerReportList_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_ServerReportList_default_instance_;
-    new (ptr) ::SeFNetProto::ServerReportList();
+    void* ptr = &::_ServerReportList_default_instance_;
+    new (ptr) ::ServerReportList();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::ServerReportList::InitAsDefaultInstance();
+  ::ServerReportList::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ServerReportList_SeFNodeNet_2eproto =
@@ -345,11 +343,11 @@ static void InitDefaultsscc_info_WorldToDBPacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_WorldToDBPacket_default_instance_;
-    new (ptr) ::SeFNetProto::WorldToDBPacket();
+    void* ptr = &::_WorldToDBPacket_default_instance_;
+    new (ptr) ::WorldToDBPacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::WorldToDBPacket::InitAsDefaultInstance();
+  ::WorldToDBPacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_WorldToDBPacket_SeFNodeNet_2eproto =
@@ -359,11 +357,11 @@ static void InitDefaultsscc_info_WorldToGamePacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_WorldToGamePacket_default_instance_;
-    new (ptr) ::SeFNetProto::WorldToGamePacket();
+    void* ptr = &::_WorldToGamePacket_default_instance_;
+    new (ptr) ::WorldToGamePacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::WorldToGamePacket::InitAsDefaultInstance();
+  ::WorldToGamePacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_WorldToGamePacket_SeFNodeNet_2eproto =
@@ -373,11 +371,11 @@ static void InitDefaultsscc_info_WorldToGatePacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_WorldToGatePacket_default_instance_;
-    new (ptr) ::SeFNetProto::WorldToGatePacket();
+    void* ptr = &::_WorldToGatePacket_default_instance_;
+    new (ptr) ::WorldToGatePacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::WorldToGatePacket::InitAsDefaultInstance();
+  ::WorldToGatePacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_WorldToGatePacket_SeFNodeNet_2eproto =
@@ -387,11 +385,11 @@ static void InitDefaultsscc_info_WorldToLoginPacket_SeFNodeNet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::SeFNetProto::_WorldToLoginPacket_default_instance_;
-    new (ptr) ::SeFNetProto::WorldToLoginPacket();
+    void* ptr = &::_WorldToLoginPacket_default_instance_;
+    new (ptr) ::WorldToLoginPacket();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::SeFNetProto::WorldToLoginPacket::InitAsDefaultInstance();
+  ::WorldToLoginPacket::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_WorldToLoginPacket_SeFNodeNet_2eproto =
@@ -403,280 +401,278 @@ static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_s
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_SeFNodeNet_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerReport, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::ServerReport, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerReport, server_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerReport, server_name_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerReport, server_ip_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerReport, server_port_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerReport, server_max_online_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerReport, server_cur_count_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerReport, server_state_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerReport, server_type_),
+  PROTOBUF_FIELD_OFFSET(::ServerReport, server_id_),
+  PROTOBUF_FIELD_OFFSET(::ServerReport, server_name_),
+  PROTOBUF_FIELD_OFFSET(::ServerReport, server_ip_),
+  PROTOBUF_FIELD_OFFSET(::ServerReport, server_port_),
+  PROTOBUF_FIELD_OFFSET(::ServerReport, server_max_online_),
+  PROTOBUF_FIELD_OFFSET(::ServerReport, server_cur_count_),
+  PROTOBUF_FIELD_OFFSET(::ServerReport, server_state_),
+  PROTOBUF_FIELD_OFFSET(::ServerReport, server_type_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerReportList, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::ServerReportList, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerReportList, server_info_),
+  PROTOBUF_FIELD_OFFSET(::ServerReportList, server_info_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerHeartBeat, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::ServerHeartBeat, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ServerHeartBeat, count_),
+  PROTOBUF_FIELD_OFFSET(::ServerHeartBeat, count_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::NodeToMasterPacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::NodeToMasterPacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::NodeToMasterPacket, server_info_),
+  PROTOBUF_FIELD_OFFSET(::NodeToMasterPacket, server_info_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::MasterToNodePacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::MasterToNodePacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::MasterToNodePacket, result_),
+  PROTOBUF_FIELD_OFFSET(::MasterToNodePacket, result_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToLoginPacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::GateToLoginPacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToLoginPacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToLoginPacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToLoginPacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::GateToLoginPacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::GateToLoginPacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::GateToLoginPacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::LoginToGatePacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::LoginToGatePacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::LoginToGatePacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::LoginToGatePacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::LoginToGatePacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::LoginToGatePacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::LoginToGatePacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::LoginToGatePacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToGamePacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::GateToGamePacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToGamePacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToGamePacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToGamePacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::GateToGamePacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::GateToGamePacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::GateToGamePacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GameToGatePacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::GameToGatePacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GameToGatePacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GameToGatePacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GameToGatePacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::GameToGatePacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::GameToGatePacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::GameToGatePacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToChatPacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::GateToChatPacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToChatPacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToChatPacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToChatPacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::GateToChatPacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::GateToChatPacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::GateToChatPacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ChatToGatePacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::ChatToGatePacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ChatToGatePacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ChatToGatePacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ChatToGatePacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::ChatToGatePacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::ChatToGatePacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::ChatToGatePacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToGatePacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::WorldToGatePacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToGatePacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToGatePacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToGatePacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::WorldToGatePacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::WorldToGatePacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::WorldToGatePacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToWorldPacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::GateToWorldPacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToWorldPacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToWorldPacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GateToWorldPacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::GateToWorldPacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::GateToWorldPacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::GateToWorldPacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GameToChatPacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::GameToChatPacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GameToChatPacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GameToChatPacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GameToChatPacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::GameToChatPacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::GameToChatPacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::GameToChatPacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ChatToGamePacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::ChatToGamePacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ChatToGamePacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ChatToGamePacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::ChatToGamePacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::ChatToGamePacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::ChatToGamePacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::ChatToGamePacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GameToWorldPacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::GameToWorldPacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GameToWorldPacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GameToWorldPacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::GameToWorldPacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::GameToWorldPacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::GameToWorldPacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::GameToWorldPacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToGamePacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::WorldToGamePacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToGamePacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToGamePacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToGamePacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::WorldToGamePacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::WorldToGamePacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::WorldToGamePacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::LoginToWorldPacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::LoginToWorldPacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::LoginToWorldPacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::LoginToWorldPacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::LoginToWorldPacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::LoginToWorldPacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::LoginToWorldPacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::LoginToWorldPacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToLoginPacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::WorldToLoginPacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToLoginPacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToLoginPacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToLoginPacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::WorldToLoginPacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::WorldToLoginPacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::WorldToLoginPacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToDBPacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::WorldToDBPacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToDBPacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToDBPacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::WorldToDBPacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::WorldToDBPacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::WorldToDBPacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::WorldToDBPacket, msg_body_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::DBToWorldPacket, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::DBToWorldPacket, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::DBToWorldPacket, player_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::DBToWorldPacket, msg_id_),
-  PROTOBUF_FIELD_OFFSET(::SeFNetProto::DBToWorldPacket, msg_body_),
+  PROTOBUF_FIELD_OFFSET(::DBToWorldPacket, player_id_),
+  PROTOBUF_FIELD_OFFSET(::DBToWorldPacket, msg_id_),
+  PROTOBUF_FIELD_OFFSET(::DBToWorldPacket, msg_body_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::SeFNetProto::ServerReport)},
-  { 13, -1, sizeof(::SeFNetProto::ServerReportList)},
-  { 19, -1, sizeof(::SeFNetProto::ServerHeartBeat)},
-  { 25, -1, sizeof(::SeFNetProto::NodeToMasterPacket)},
-  { 31, -1, sizeof(::SeFNetProto::MasterToNodePacket)},
-  { 37, -1, sizeof(::SeFNetProto::GateToLoginPacket)},
-  { 45, -1, sizeof(::SeFNetProto::LoginToGatePacket)},
-  { 53, -1, sizeof(::SeFNetProto::GateToGamePacket)},
-  { 61, -1, sizeof(::SeFNetProto::GameToGatePacket)},
-  { 69, -1, sizeof(::SeFNetProto::GateToChatPacket)},
-  { 77, -1, sizeof(::SeFNetProto::ChatToGatePacket)},
-  { 85, -1, sizeof(::SeFNetProto::WorldToGatePacket)},
-  { 93, -1, sizeof(::SeFNetProto::GateToWorldPacket)},
-  { 101, -1, sizeof(::SeFNetProto::GameToChatPacket)},
-  { 109, -1, sizeof(::SeFNetProto::ChatToGamePacket)},
-  { 117, -1, sizeof(::SeFNetProto::GameToWorldPacket)},
-  { 125, -1, sizeof(::SeFNetProto::WorldToGamePacket)},
-  { 133, -1, sizeof(::SeFNetProto::LoginToWorldPacket)},
-  { 141, -1, sizeof(::SeFNetProto::WorldToLoginPacket)},
-  { 149, -1, sizeof(::SeFNetProto::WorldToDBPacket)},
-  { 157, -1, sizeof(::SeFNetProto::DBToWorldPacket)},
+  { 0, -1, sizeof(::ServerReport)},
+  { 13, -1, sizeof(::ServerReportList)},
+  { 19, -1, sizeof(::ServerHeartBeat)},
+  { 25, -1, sizeof(::NodeToMasterPacket)},
+  { 31, -1, sizeof(::MasterToNodePacket)},
+  { 37, -1, sizeof(::GateToLoginPacket)},
+  { 45, -1, sizeof(::LoginToGatePacket)},
+  { 53, -1, sizeof(::GateToGamePacket)},
+  { 61, -1, sizeof(::GameToGatePacket)},
+  { 69, -1, sizeof(::GateToChatPacket)},
+  { 77, -1, sizeof(::ChatToGatePacket)},
+  { 85, -1, sizeof(::WorldToGatePacket)},
+  { 93, -1, sizeof(::GateToWorldPacket)},
+  { 101, -1, sizeof(::GameToChatPacket)},
+  { 109, -1, sizeof(::ChatToGamePacket)},
+  { 117, -1, sizeof(::GameToWorldPacket)},
+  { 125, -1, sizeof(::WorldToGamePacket)},
+  { 133, -1, sizeof(::LoginToWorldPacket)},
+  { 141, -1, sizeof(::WorldToLoginPacket)},
+  { 149, -1, sizeof(::WorldToDBPacket)},
+  { 157, -1, sizeof(::DBToWorldPacket)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_ServerReport_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_ServerReportList_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_ServerHeartBeat_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_NodeToMasterPacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_MasterToNodePacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_GateToLoginPacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_LoginToGatePacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_GateToGamePacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_GameToGatePacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_GateToChatPacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_ChatToGatePacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_WorldToGatePacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_GateToWorldPacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_GameToChatPacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_ChatToGamePacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_GameToWorldPacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_WorldToGamePacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_LoginToWorldPacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_WorldToLoginPacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_WorldToDBPacket_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::SeFNetProto::_DBToWorldPacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_ServerReport_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_ServerReportList_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_ServerHeartBeat_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_NodeToMasterPacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_MasterToNodePacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_GateToLoginPacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_LoginToGatePacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_GateToGamePacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_GameToGatePacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_GateToChatPacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_ChatToGatePacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_WorldToGatePacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_GateToWorldPacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_GameToChatPacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_ChatToGamePacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_GameToWorldPacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_WorldToGamePacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_LoginToWorldPacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_WorldToLoginPacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_WorldToDBPacket_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_DBToWorldPacket_default_instance_),
 };
 
 const char descriptor_table_protodef_SeFNodeNet_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\020SeFNodeNet.proto\022\013SeFNetProto\032\022ServerP"
-  "ublic.proto\"\331\001\n\014ServerReport\022\021\n\tserver_i"
-  "d\030\001 \001(\005\022\023\n\013server_name\030\002 \001(\014\022\021\n\tserver_i"
-  "p\030\003 \001(\014\022\023\n\013server_port\030\004 \001(\005\022\031\n\021server_m"
-  "ax_online\030\005 \001(\005\022\030\n\020server_cur_count\030\006 \001("
-  "\005\022/\n\014server_state\030\007 \001(\0162\031.SeFNetProto.ES"
-  "erverState\022\023\n\013server_type\030\010 \001(\005\"B\n\020Serve"
-  "rReportList\022.\n\013server_info\030\001 \003(\0132\031.SeFNe"
-  "tProto.ServerReport\" \n\017ServerHeartBeat\022\r"
-  "\n\005count\030\001 \001(\005\"D\n\022NodeToMasterPacket\022.\n\013s"
-  "erver_info\030\001 \001(\0132\031.SeFNetProto.ServerRep"
-  "ort\"$\n\022MasterToNodePacket\022\016\n\006result\030\001 \001("
-  "\005\"H\n\021GateToLoginPacket\022\021\n\tplayer_id\030\001 \001("
-  "\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\"H\n\021L"
-  "oginToGatePacket\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006m"
-  "sg_id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\"G\n\020GateToG"
-  "amePacket\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_id\030\002"
-  " \001(\r\022\020\n\010msg_body\030\003 \001(\014\"G\n\020GameToGatePack"
-  "et\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n"
-  "\010msg_body\030\003 \001(\014\"G\n\020GateToChatPacket\022\021\n\tp"
+  "\n\020SeFNodeNet.proto\032\022ServerPublic.proto\"\315"
+  "\001\n\014ServerReport\022\021\n\tserver_id\030\001 \001(\005\022\023\n\013se"
+  "rver_name\030\002 \001(\014\022\021\n\tserver_ip\030\003 \001(\014\022\023\n\013se"
+  "rver_port\030\004 \001(\005\022\031\n\021server_max_online\030\005 \001"
+  "(\005\022\030\n\020server_cur_count\030\006 \001(\005\022#\n\014server_s"
+  "tate\030\007 \001(\0162\r.EServerState\022\023\n\013server_type"
+  "\030\010 \001(\005\"6\n\020ServerReportList\022\"\n\013server_inf"
+  "o\030\001 \003(\0132\r.ServerReport\" \n\017ServerHeartBea"
+  "t\022\r\n\005count\030\001 \001(\005\"8\n\022NodeToMasterPacket\022\""
+  "\n\013server_info\030\001 \001(\0132\r.ServerReport\"$\n\022Ma"
+  "sterToNodePacket\022\016\n\006result\030\001 \001(\005\"H\n\021Gate"
+  "ToLoginPacket\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_"
+  "id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\"H\n\021LoginToGat"
+  "ePacket\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_id\030\002 \001"
+  "(\r\022\020\n\010msg_body\030\003 \001(\014\"G\n\020GateToGamePacket"
+  "\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010m"
+  "sg_body\030\003 \001(\014\"G\n\020GameToGatePacket\022\021\n\tpla"
+  "yer_id\030\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010msg_body"
+  "\030\003 \001(\014\"G\n\020GateToChatPacket\022\021\n\tplayer_id\030"
+  "\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\""
+  "G\n\020ChatToGatePacket\022\021\n\tplayer_id\030\001 \001(\004\022\016"
+  "\n\006msg_id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\"H\n\021Worl"
+  "dToGatePacket\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_"
+  "id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\"H\n\021GateToWorl"
+  "dPacket\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_id\030\002 \001"
+  "(\r\022\020\n\010msg_body\030\003 \001(\014\"G\n\020GameToChatPacket"
+  "\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010m"
+  "sg_body\030\003 \001(\014\"G\n\020ChatToGamePacket\022\021\n\tpla"
+  "yer_id\030\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010msg_body"
+  "\030\003 \001(\014\"H\n\021GameToWorldPacket\022\021\n\tplayer_id"
+  "\030\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014"
+  "\"H\n\021WorldToGamePacket\022\021\n\tplayer_id\030\001 \001(\004"
+  "\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\"I\n\022Lo"
+  "ginToWorldPacket\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006m"
+  "sg_id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\"I\n\022WorldTo"
+  "LoginPacket\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_id"
+  "\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\"F\n\017WorldToDBPac"
+  "ket\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020"
+  "\n\010msg_body\030\003 \001(\014\"F\n\017DBToWorldPacket\022\021\n\tp"
   "layer_id\030\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010msg_bo"
-  "dy\030\003 \001(\014\"G\n\020ChatToGatePacket\022\021\n\tplayer_i"
-  "d\030\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001("
-  "\014\"H\n\021WorldToGatePacket\022\021\n\tplayer_id\030\001 \001("
-  "\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\"H\n\021G"
-  "ateToWorldPacket\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006m"
-  "sg_id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\"G\n\020GameToC"
-  "hatPacket\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_id\030\002"
-  " \001(\r\022\020\n\010msg_body\030\003 \001(\014\"G\n\020ChatToGamePack"
-  "et\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n"
-  "\010msg_body\030\003 \001(\014\"H\n\021GameToWorldPacket\022\021\n\t"
-  "player_id\030\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010msg_b"
-  "ody\030\003 \001(\014\"H\n\021WorldToGamePacket\022\021\n\tplayer"
-  "_id\030\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010msg_body\030\003 "
-  "\001(\014\"I\n\022LoginToWorldPacket\022\021\n\tplayer_id\030\001"
-  " \001(\004\022\016\n\006msg_id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\"I"
-  "\n\022WorldToLoginPacket\022\021\n\tplayer_id\030\001 \001(\004\022"
-  "\016\n\006msg_id\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\"F\n\017Wor"
-  "ldToDBPacket\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_i"
-  "d\030\002 \001(\r\022\020\n\010msg_body\030\003 \001(\014\"F\n\017DBToWorldPa"
-  "cket\022\021\n\tplayer_id\030\001 \001(\004\022\016\n\006msg_id\030\002 \001(\r\022"
-  "\020\n\010msg_body\030\003 \001(\014*Z\n\014EServerState\022\r\n\tEST"
-  "_CRASH\020\000\022\016\n\nEST_NORMAL\020\001\022\014\n\010EST_BUSY\020\002\022\014"
-  "\n\010EST_FIRE\020\003\022\017\n\013EST_MAINTEN\020\004*\336\004\n\017Server"
-  "NodeMsgID\022\026\n\022SERVER_NODE_MSG_ID\020\000\022\030\n\023GAT"
-  "E_ROUTE_TO_LOGIN\020\221N\022\030\n\023LOGIN_ROUTE_TO_GA"
-  "TE\020\222N\022\027\n\022GATE_ROUTE_TO_GAME\020\223N\022\027\n\022GAME_R"
-  "OUTE_TO_GATE\020\224N\022\027\n\022GATE_ROUTE_TO_CHAT\020\225N"
-  "\022\027\n\022CHAT_ROUTE_TO_GATE\020\226N\022\030\n\023WORLD_ROUTE"
-  "_TO_GATE\020\227N\022\030\n\023GATE_ROUTE_TO_WORLD\020\230N\022\027\n"
-  "\022GAME_ROUTE_TO_CHAT\020\231N\022\027\n\022CHAT_ROUTE_TO_"
-  "GAME\020\232N\022\030\n\023GAME_ROUTE_TO_WORLD\020\233N\022\030\n\023WOR"
-  "LD_ROUTE_TO_GAME\020\234N\022\031\n\024LOGIN_ROUTE_TO_WO"
-  "RLD\020\235N\022\031\n\024WORLD_ROUTE_TO_LOGIN\020\236N\022\026\n\021WOR"
-  "LD_ROUTE_TO_DB\020\237N\022\026\n\021DB_ROUTE_TO_WORLD\020\240"
-  "N\022\031\n\024PLAYER_ROUTE_TO_GATE\020\241N\022\031\n\024GATE_ROU"
-  "TE_TO_PLAYER\020\242N\022\030\n\023GAME_PLAYER_OFFLINE\020\303"
-  "N\022!\n\034REPORT_CLIENT_INFO_TO_SERVER\020\306N\022(\n#"
-  "MASTER_REPORT_SERVER_INFO_TO_SERVER\020\305Nb\006"
-  "proto3"
+  "dy\030\003 \001(\014*Z\n\014EServerState\022\r\n\tEST_CRASH\020\000\022"
+  "\016\n\nEST_NORMAL\020\001\022\014\n\010EST_BUSY\020\002\022\014\n\010EST_FIR"
+  "E\020\003\022\017\n\013EST_MAINTEN\020\004*\336\004\n\017ServerNodeMsgID"
+  "\022\026\n\022SERVER_NODE_MSG_ID\020\000\022\030\n\023GATE_ROUTE_T"
+  "O_LOGIN\020\221N\022\030\n\023LOGIN_ROUTE_TO_GATE\020\222N\022\027\n\022"
+  "GATE_ROUTE_TO_GAME\020\223N\022\027\n\022GAME_ROUTE_TO_G"
+  "ATE\020\224N\022\027\n\022GATE_ROUTE_TO_CHAT\020\225N\022\027\n\022CHAT_"
+  "ROUTE_TO_GATE\020\226N\022\030\n\023WORLD_ROUTE_TO_GATE\020"
+  "\227N\022\030\n\023GATE_ROUTE_TO_WORLD\020\230N\022\027\n\022GAME_ROU"
+  "TE_TO_CHAT\020\231N\022\027\n\022CHAT_ROUTE_TO_GAME\020\232N\022\030"
+  "\n\023GAME_ROUTE_TO_WORLD\020\233N\022\030\n\023WORLD_ROUTE_"
+  "TO_GAME\020\234N\022\031\n\024LOGIN_ROUTE_TO_WORLD\020\235N\022\031\n"
+  "\024WORLD_ROUTE_TO_LOGIN\020\236N\022\026\n\021WORLD_ROUTE_"
+  "TO_DB\020\237N\022\026\n\021DB_ROUTE_TO_WORLD\020\240N\022\031\n\024PLAY"
+  "ER_ROUTE_TO_GATE\020\241N\022\031\n\024GATE_ROUTE_TO_PLA"
+  "YER\020\242N\022\030\n\023GAME_PLAYER_OFFLINE\020\303N\022!\n\034REPO"
+  "RT_CLIENT_INFO_TO_SERVER\020\306N\022(\n#MASTER_RE"
+  "PORT_SERVER_INFO_TO_SERVER\020\305Nb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_SeFNodeNet_2eproto_deps[1] = {
   &::descriptor_table_ServerPublic_2eproto,
@@ -707,7 +703,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_SeF
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_SeFNodeNet_2eproto_once;
 static bool descriptor_table_SeFNodeNet_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_SeFNodeNet_2eproto = {
-  &descriptor_table_SeFNodeNet_2eproto_initialized, descriptor_table_protodef_SeFNodeNet_2eproto, "SeFNodeNet.proto", 2366,
+  &descriptor_table_SeFNodeNet_2eproto_initialized, descriptor_table_protodef_SeFNodeNet_2eproto, "SeFNodeNet.proto", 2317,
   &descriptor_table_SeFNodeNet_2eproto_once, descriptor_table_SeFNodeNet_2eproto_sccs, descriptor_table_SeFNodeNet_2eproto_deps, 21, 1,
   schemas, file_default_instances, TableStruct_SeFNodeNet_2eproto::offsets,
   file_level_metadata_SeFNodeNet_2eproto, 21, file_level_enum_descriptors_SeFNodeNet_2eproto, file_level_service_descriptors_SeFNodeNet_2eproto,
@@ -715,7 +711,6 @@ const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_SeFNod
 
 // Force running AddDescriptors() at dynamic initialization time.
 static bool dynamic_init_dummy_SeFNodeNet_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_SeFNodeNet_2eproto), true);
-namespace SeFNetProto {
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EServerState_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_SeFNodeNet_2eproto);
   return file_level_enum_descriptors_SeFNodeNet_2eproto[0];
@@ -779,7 +774,7 @@ class ServerReport::_Internal {
 ServerReport::ServerReport()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.ServerReport)
+  // @@protoc_insertion_point(constructor:ServerReport)
 }
 ServerReport::ServerReport(const ServerReport& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -796,7 +791,7 @@ ServerReport::ServerReport(const ServerReport& from)
   ::memcpy(&server_id_, &from.server_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&server_type_) -
     reinterpret_cast<char*>(&server_id_)) + sizeof(server_type_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.ServerReport)
+  // @@protoc_insertion_point(copy_constructor:ServerReport)
 }
 
 void ServerReport::SharedCtor() {
@@ -809,7 +804,7 @@ void ServerReport::SharedCtor() {
 }
 
 ServerReport::~ServerReport() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.ServerReport)
+  // @@protoc_insertion_point(destructor:ServerReport)
   SharedDtor();
 }
 
@@ -828,7 +823,7 @@ const ServerReport& ServerReport::default_instance() {
 
 
 void ServerReport::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.ServerReport)
+// @@protoc_insertion_point(message_clear_start:ServerReport)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -890,12 +885,12 @@ const char* ServerReport::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .SeFNetProto.EServerState server_state = 7;
+      // .EServerState server_state = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
-          _internal_set_server_state(static_cast<::SeFNetProto::EServerState>(val));
+          _internal_set_server_state(static_cast<::EServerState>(val));
         } else goto handle_unusual;
         continue;
       // int32 server_type = 8;
@@ -927,7 +922,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* ServerReport::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.ServerReport)
+  // @@protoc_insertion_point(serialize_to_array_start:ServerReport)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -967,7 +962,7 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(6, this->_internal_server_cur_count(), target);
   }
 
-  // .SeFNetProto.EServerState server_state = 7;
+  // .EServerState server_state = 7;
   if (this->server_state() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
@@ -984,12 +979,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.ServerReport)
+  // @@protoc_insertion_point(serialize_to_array_end:ServerReport)
   return target;
 }
 
 size_t ServerReport::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.ServerReport)
+// @@protoc_insertion_point(message_byte_size_start:ServerReport)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1038,7 +1033,7 @@ size_t ServerReport::ByteSizeLong() const {
         this->_internal_server_cur_count());
   }
 
-  // .SeFNetProto.EServerState server_state = 7;
+  // .EServerState server_state = 7;
   if (this->server_state() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_server_state());
@@ -1061,22 +1056,22 @@ size_t ServerReport::ByteSizeLong() const {
 }
 
 void ServerReport::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.ServerReport)
+// @@protoc_insertion_point(generalized_merge_from_start:ServerReport)
   GOOGLE_DCHECK_NE(&from, this);
   const ServerReport* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ServerReport>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.ServerReport)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ServerReport)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.ServerReport)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:ServerReport)
     MergeFrom(*source);
   }
 }
 
 void ServerReport::MergeFrom(const ServerReport& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.ServerReport)
+// @@protoc_insertion_point(class_specific_merge_from_start:ServerReport)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1111,14 +1106,14 @@ void ServerReport::MergeFrom(const ServerReport& from) {
 }
 
 void ServerReport::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.ServerReport)
+// @@protoc_insertion_point(generalized_copy_from_start:ServerReport)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void ServerReport::CopyFrom(const ServerReport& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.ServerReport)
+// @@protoc_insertion_point(class_specific_copy_from_start:ServerReport)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1159,14 +1154,14 @@ class ServerReportList::_Internal {
 ServerReportList::ServerReportList()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.ServerReportList)
+  // @@protoc_insertion_point(constructor:ServerReportList)
 }
 ServerReportList::ServerReportList(const ServerReportList& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr),
       server_info_(from.server_info_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.ServerReportList)
+  // @@protoc_insertion_point(copy_constructor:ServerReportList)
 }
 
 void ServerReportList::SharedCtor() {
@@ -1174,7 +1169,7 @@ void ServerReportList::SharedCtor() {
 }
 
 ServerReportList::~ServerReportList() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.ServerReportList)
+  // @@protoc_insertion_point(destructor:ServerReportList)
   SharedDtor();
 }
 
@@ -1191,7 +1186,7 @@ const ServerReportList& ServerReportList::default_instance() {
 
 
 void ServerReportList::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.ServerReportList)
+// @@protoc_insertion_point(message_clear_start:ServerReportList)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1207,7 +1202,7 @@ const char* ServerReportList::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // repeated .SeFNetProto.ServerReport server_info = 1;
+      // repeated .ServerReport server_info = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr -= 1;
@@ -1241,11 +1236,11 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* ServerReportList::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.ServerReportList)
+  // @@protoc_insertion_point(serialize_to_array_start:ServerReportList)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .SeFNetProto.ServerReport server_info = 1;
+  // repeated .ServerReport server_info = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_server_info_size()); i < n; i++) {
     target = stream->EnsureSpace(target);
@@ -1257,19 +1252,19 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.ServerReportList)
+  // @@protoc_insertion_point(serialize_to_array_end:ServerReportList)
   return target;
 }
 
 size_t ServerReportList::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.ServerReportList)
+// @@protoc_insertion_point(message_byte_size_start:ServerReportList)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .SeFNetProto.ServerReport server_info = 1;
+  // repeated .ServerReport server_info = 1;
   total_size += 1UL * this->_internal_server_info_size();
   for (const auto& msg : this->server_info_) {
     total_size +=
@@ -1286,22 +1281,22 @@ size_t ServerReportList::ByteSizeLong() const {
 }
 
 void ServerReportList::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.ServerReportList)
+// @@protoc_insertion_point(generalized_merge_from_start:ServerReportList)
   GOOGLE_DCHECK_NE(&from, this);
   const ServerReportList* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ServerReportList>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.ServerReportList)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ServerReportList)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.ServerReportList)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:ServerReportList)
     MergeFrom(*source);
   }
 }
 
 void ServerReportList::MergeFrom(const ServerReportList& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.ServerReportList)
+// @@protoc_insertion_point(class_specific_merge_from_start:ServerReportList)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1311,14 +1306,14 @@ void ServerReportList::MergeFrom(const ServerReportList& from) {
 }
 
 void ServerReportList::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.ServerReportList)
+// @@protoc_insertion_point(generalized_copy_from_start:ServerReportList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void ServerReportList::CopyFrom(const ServerReportList& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.ServerReportList)
+// @@protoc_insertion_point(class_specific_copy_from_start:ServerReportList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1350,14 +1345,14 @@ class ServerHeartBeat::_Internal {
 ServerHeartBeat::ServerHeartBeat()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.ServerHeartBeat)
+  // @@protoc_insertion_point(constructor:ServerHeartBeat)
 }
 ServerHeartBeat::ServerHeartBeat(const ServerHeartBeat& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   count_ = from.count_;
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.ServerHeartBeat)
+  // @@protoc_insertion_point(copy_constructor:ServerHeartBeat)
 }
 
 void ServerHeartBeat::SharedCtor() {
@@ -1365,7 +1360,7 @@ void ServerHeartBeat::SharedCtor() {
 }
 
 ServerHeartBeat::~ServerHeartBeat() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.ServerHeartBeat)
+  // @@protoc_insertion_point(destructor:ServerHeartBeat)
   SharedDtor();
 }
 
@@ -1382,7 +1377,7 @@ const ServerHeartBeat& ServerHeartBeat::default_instance() {
 
 
 void ServerHeartBeat::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.ServerHeartBeat)
+// @@protoc_insertion_point(message_clear_start:ServerHeartBeat)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1427,7 +1422,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* ServerHeartBeat::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.ServerHeartBeat)
+  // @@protoc_insertion_point(serialize_to_array_start:ServerHeartBeat)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1441,12 +1436,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.ServerHeartBeat)
+  // @@protoc_insertion_point(serialize_to_array_end:ServerHeartBeat)
   return target;
 }
 
 size_t ServerHeartBeat::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.ServerHeartBeat)
+// @@protoc_insertion_point(message_byte_size_start:ServerHeartBeat)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1470,22 +1465,22 @@ size_t ServerHeartBeat::ByteSizeLong() const {
 }
 
 void ServerHeartBeat::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.ServerHeartBeat)
+// @@protoc_insertion_point(generalized_merge_from_start:ServerHeartBeat)
   GOOGLE_DCHECK_NE(&from, this);
   const ServerHeartBeat* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ServerHeartBeat>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.ServerHeartBeat)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ServerHeartBeat)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.ServerHeartBeat)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:ServerHeartBeat)
     MergeFrom(*source);
   }
 }
 
 void ServerHeartBeat::MergeFrom(const ServerHeartBeat& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.ServerHeartBeat)
+// @@protoc_insertion_point(class_specific_merge_from_start:ServerHeartBeat)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1497,14 +1492,14 @@ void ServerHeartBeat::MergeFrom(const ServerHeartBeat& from) {
 }
 
 void ServerHeartBeat::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.ServerHeartBeat)
+// @@protoc_insertion_point(generalized_copy_from_start:ServerHeartBeat)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void ServerHeartBeat::CopyFrom(const ServerHeartBeat& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.ServerHeartBeat)
+// @@protoc_insertion_point(class_specific_copy_from_start:ServerHeartBeat)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1528,33 +1523,33 @@ void ServerHeartBeat::InternalSwap(ServerHeartBeat* other) {
 // ===================================================================
 
 void NodeToMasterPacket::InitAsDefaultInstance() {
-  ::SeFNetProto::_NodeToMasterPacket_default_instance_._instance.get_mutable()->server_info_ = const_cast< ::SeFNetProto::ServerReport*>(
-      ::SeFNetProto::ServerReport::internal_default_instance());
+  ::_NodeToMasterPacket_default_instance_._instance.get_mutable()->server_info_ = const_cast< ::ServerReport*>(
+      ::ServerReport::internal_default_instance());
 }
 class NodeToMasterPacket::_Internal {
  public:
-  static const ::SeFNetProto::ServerReport& server_info(const NodeToMasterPacket* msg);
+  static const ::ServerReport& server_info(const NodeToMasterPacket* msg);
 };
 
-const ::SeFNetProto::ServerReport&
+const ::ServerReport&
 NodeToMasterPacket::_Internal::server_info(const NodeToMasterPacket* msg) {
   return *msg->server_info_;
 }
 NodeToMasterPacket::NodeToMasterPacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.NodeToMasterPacket)
+  // @@protoc_insertion_point(constructor:NodeToMasterPacket)
 }
 NodeToMasterPacket::NodeToMasterPacket(const NodeToMasterPacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from._internal_has_server_info()) {
-    server_info_ = new ::SeFNetProto::ServerReport(*from.server_info_);
+    server_info_ = new ::ServerReport(*from.server_info_);
   } else {
     server_info_ = nullptr;
   }
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.NodeToMasterPacket)
+  // @@protoc_insertion_point(copy_constructor:NodeToMasterPacket)
 }
 
 void NodeToMasterPacket::SharedCtor() {
@@ -1563,7 +1558,7 @@ void NodeToMasterPacket::SharedCtor() {
 }
 
 NodeToMasterPacket::~NodeToMasterPacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.NodeToMasterPacket)
+  // @@protoc_insertion_point(destructor:NodeToMasterPacket)
   SharedDtor();
 }
 
@@ -1581,7 +1576,7 @@ const NodeToMasterPacket& NodeToMasterPacket::default_instance() {
 
 
 void NodeToMasterPacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.NodeToMasterPacket)
+// @@protoc_insertion_point(message_clear_start:NodeToMasterPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1600,7 +1595,7 @@ const char* NodeToMasterPacket::_InternalParse(const char* ptr, ::PROTOBUF_NAMES
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // .SeFNetProto.ServerReport server_info = 1;
+      // .ServerReport server_info = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_server_info(), ptr);
@@ -1629,11 +1624,11 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* NodeToMasterPacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.NodeToMasterPacket)
+  // @@protoc_insertion_point(serialize_to_array_start:NodeToMasterPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .SeFNetProto.ServerReport server_info = 1;
+  // .ServerReport server_info = 1;
   if (this->has_server_info()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1645,19 +1640,19 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.NodeToMasterPacket)
+  // @@protoc_insertion_point(serialize_to_array_end:NodeToMasterPacket)
   return target;
 }
 
 size_t NodeToMasterPacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.NodeToMasterPacket)
+// @@protoc_insertion_point(message_byte_size_start:NodeToMasterPacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .SeFNetProto.ServerReport server_info = 1;
+  // .ServerReport server_info = 1;
   if (this->has_server_info()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -1674,41 +1669,41 @@ size_t NodeToMasterPacket::ByteSizeLong() const {
 }
 
 void NodeToMasterPacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.NodeToMasterPacket)
+// @@protoc_insertion_point(generalized_merge_from_start:NodeToMasterPacket)
   GOOGLE_DCHECK_NE(&from, this);
   const NodeToMasterPacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<NodeToMasterPacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.NodeToMasterPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:NodeToMasterPacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.NodeToMasterPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:NodeToMasterPacket)
     MergeFrom(*source);
   }
 }
 
 void NodeToMasterPacket::MergeFrom(const NodeToMasterPacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.NodeToMasterPacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:NodeToMasterPacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.has_server_info()) {
-    _internal_mutable_server_info()->::SeFNetProto::ServerReport::MergeFrom(from._internal_server_info());
+    _internal_mutable_server_info()->::ServerReport::MergeFrom(from._internal_server_info());
   }
 }
 
 void NodeToMasterPacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.NodeToMasterPacket)
+// @@protoc_insertion_point(generalized_copy_from_start:NodeToMasterPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void NodeToMasterPacket::CopyFrom(const NodeToMasterPacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.NodeToMasterPacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:NodeToMasterPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1740,14 +1735,14 @@ class MasterToNodePacket::_Internal {
 MasterToNodePacket::MasterToNodePacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.MasterToNodePacket)
+  // @@protoc_insertion_point(constructor:MasterToNodePacket)
 }
 MasterToNodePacket::MasterToNodePacket(const MasterToNodePacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   result_ = from.result_;
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.MasterToNodePacket)
+  // @@protoc_insertion_point(copy_constructor:MasterToNodePacket)
 }
 
 void MasterToNodePacket::SharedCtor() {
@@ -1755,7 +1750,7 @@ void MasterToNodePacket::SharedCtor() {
 }
 
 MasterToNodePacket::~MasterToNodePacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.MasterToNodePacket)
+  // @@protoc_insertion_point(destructor:MasterToNodePacket)
   SharedDtor();
 }
 
@@ -1772,7 +1767,7 @@ const MasterToNodePacket& MasterToNodePacket::default_instance() {
 
 
 void MasterToNodePacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.MasterToNodePacket)
+// @@protoc_insertion_point(message_clear_start:MasterToNodePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1817,7 +1812,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* MasterToNodePacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.MasterToNodePacket)
+  // @@protoc_insertion_point(serialize_to_array_start:MasterToNodePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1831,12 +1826,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.MasterToNodePacket)
+  // @@protoc_insertion_point(serialize_to_array_end:MasterToNodePacket)
   return target;
 }
 
 size_t MasterToNodePacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.MasterToNodePacket)
+// @@protoc_insertion_point(message_byte_size_start:MasterToNodePacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1860,22 +1855,22 @@ size_t MasterToNodePacket::ByteSizeLong() const {
 }
 
 void MasterToNodePacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.MasterToNodePacket)
+// @@protoc_insertion_point(generalized_merge_from_start:MasterToNodePacket)
   GOOGLE_DCHECK_NE(&from, this);
   const MasterToNodePacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<MasterToNodePacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.MasterToNodePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:MasterToNodePacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.MasterToNodePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:MasterToNodePacket)
     MergeFrom(*source);
   }
 }
 
 void MasterToNodePacket::MergeFrom(const MasterToNodePacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.MasterToNodePacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:MasterToNodePacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1887,14 +1882,14 @@ void MasterToNodePacket::MergeFrom(const MasterToNodePacket& from) {
 }
 
 void MasterToNodePacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.MasterToNodePacket)
+// @@protoc_insertion_point(generalized_copy_from_start:MasterToNodePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void MasterToNodePacket::CopyFrom(const MasterToNodePacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.MasterToNodePacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:MasterToNodePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1926,7 +1921,7 @@ class GateToLoginPacket::_Internal {
 GateToLoginPacket::GateToLoginPacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.GateToLoginPacket)
+  // @@protoc_insertion_point(constructor:GateToLoginPacket)
 }
 GateToLoginPacket::GateToLoginPacket(const GateToLoginPacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -1939,7 +1934,7 @@ GateToLoginPacket::GateToLoginPacket(const GateToLoginPacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.GateToLoginPacket)
+  // @@protoc_insertion_point(copy_constructor:GateToLoginPacket)
 }
 
 void GateToLoginPacket::SharedCtor() {
@@ -1951,7 +1946,7 @@ void GateToLoginPacket::SharedCtor() {
 }
 
 GateToLoginPacket::~GateToLoginPacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.GateToLoginPacket)
+  // @@protoc_insertion_point(destructor:GateToLoginPacket)
   SharedDtor();
 }
 
@@ -1969,7 +1964,7 @@ const GateToLoginPacket& GateToLoginPacket::default_instance() {
 
 
 void GateToLoginPacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.GateToLoginPacket)
+// @@protoc_insertion_point(message_clear_start:GateToLoginPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -2031,7 +2026,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* GateToLoginPacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.GateToLoginPacket)
+  // @@protoc_insertion_point(serialize_to_array_start:GateToLoginPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2057,12 +2052,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.GateToLoginPacket)
+  // @@protoc_insertion_point(serialize_to_array_end:GateToLoginPacket)
   return target;
 }
 
 size_t GateToLoginPacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.GateToLoginPacket)
+// @@protoc_insertion_point(message_byte_size_start:GateToLoginPacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -2100,22 +2095,22 @@ size_t GateToLoginPacket::ByteSizeLong() const {
 }
 
 void GateToLoginPacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.GateToLoginPacket)
+// @@protoc_insertion_point(generalized_merge_from_start:GateToLoginPacket)
   GOOGLE_DCHECK_NE(&from, this);
   const GateToLoginPacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GateToLoginPacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.GateToLoginPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GateToLoginPacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.GateToLoginPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GateToLoginPacket)
     MergeFrom(*source);
   }
 }
 
 void GateToLoginPacket::MergeFrom(const GateToLoginPacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.GateToLoginPacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:GateToLoginPacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -2134,14 +2129,14 @@ void GateToLoginPacket::MergeFrom(const GateToLoginPacket& from) {
 }
 
 void GateToLoginPacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.GateToLoginPacket)
+// @@protoc_insertion_point(generalized_copy_from_start:GateToLoginPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void GateToLoginPacket::CopyFrom(const GateToLoginPacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.GateToLoginPacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:GateToLoginPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -2176,7 +2171,7 @@ class LoginToGatePacket::_Internal {
 LoginToGatePacket::LoginToGatePacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.LoginToGatePacket)
+  // @@protoc_insertion_point(constructor:LoginToGatePacket)
 }
 LoginToGatePacket::LoginToGatePacket(const LoginToGatePacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -2189,7 +2184,7 @@ LoginToGatePacket::LoginToGatePacket(const LoginToGatePacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.LoginToGatePacket)
+  // @@protoc_insertion_point(copy_constructor:LoginToGatePacket)
 }
 
 void LoginToGatePacket::SharedCtor() {
@@ -2201,7 +2196,7 @@ void LoginToGatePacket::SharedCtor() {
 }
 
 LoginToGatePacket::~LoginToGatePacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.LoginToGatePacket)
+  // @@protoc_insertion_point(destructor:LoginToGatePacket)
   SharedDtor();
 }
 
@@ -2219,7 +2214,7 @@ const LoginToGatePacket& LoginToGatePacket::default_instance() {
 
 
 void LoginToGatePacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.LoginToGatePacket)
+// @@protoc_insertion_point(message_clear_start:LoginToGatePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -2281,7 +2276,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* LoginToGatePacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.LoginToGatePacket)
+  // @@protoc_insertion_point(serialize_to_array_start:LoginToGatePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2307,12 +2302,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.LoginToGatePacket)
+  // @@protoc_insertion_point(serialize_to_array_end:LoginToGatePacket)
   return target;
 }
 
 size_t LoginToGatePacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.LoginToGatePacket)
+// @@protoc_insertion_point(message_byte_size_start:LoginToGatePacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -2350,22 +2345,22 @@ size_t LoginToGatePacket::ByteSizeLong() const {
 }
 
 void LoginToGatePacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.LoginToGatePacket)
+// @@protoc_insertion_point(generalized_merge_from_start:LoginToGatePacket)
   GOOGLE_DCHECK_NE(&from, this);
   const LoginToGatePacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<LoginToGatePacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.LoginToGatePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:LoginToGatePacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.LoginToGatePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:LoginToGatePacket)
     MergeFrom(*source);
   }
 }
 
 void LoginToGatePacket::MergeFrom(const LoginToGatePacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.LoginToGatePacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:LoginToGatePacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -2384,14 +2379,14 @@ void LoginToGatePacket::MergeFrom(const LoginToGatePacket& from) {
 }
 
 void LoginToGatePacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.LoginToGatePacket)
+// @@protoc_insertion_point(generalized_copy_from_start:LoginToGatePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void LoginToGatePacket::CopyFrom(const LoginToGatePacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.LoginToGatePacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:LoginToGatePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -2426,7 +2421,7 @@ class GateToGamePacket::_Internal {
 GateToGamePacket::GateToGamePacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.GateToGamePacket)
+  // @@protoc_insertion_point(constructor:GateToGamePacket)
 }
 GateToGamePacket::GateToGamePacket(const GateToGamePacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -2439,7 +2434,7 @@ GateToGamePacket::GateToGamePacket(const GateToGamePacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.GateToGamePacket)
+  // @@protoc_insertion_point(copy_constructor:GateToGamePacket)
 }
 
 void GateToGamePacket::SharedCtor() {
@@ -2451,7 +2446,7 @@ void GateToGamePacket::SharedCtor() {
 }
 
 GateToGamePacket::~GateToGamePacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.GateToGamePacket)
+  // @@protoc_insertion_point(destructor:GateToGamePacket)
   SharedDtor();
 }
 
@@ -2469,7 +2464,7 @@ const GateToGamePacket& GateToGamePacket::default_instance() {
 
 
 void GateToGamePacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.GateToGamePacket)
+// @@protoc_insertion_point(message_clear_start:GateToGamePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -2531,7 +2526,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* GateToGamePacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.GateToGamePacket)
+  // @@protoc_insertion_point(serialize_to_array_start:GateToGamePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2557,12 +2552,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.GateToGamePacket)
+  // @@protoc_insertion_point(serialize_to_array_end:GateToGamePacket)
   return target;
 }
 
 size_t GateToGamePacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.GateToGamePacket)
+// @@protoc_insertion_point(message_byte_size_start:GateToGamePacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -2600,22 +2595,22 @@ size_t GateToGamePacket::ByteSizeLong() const {
 }
 
 void GateToGamePacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.GateToGamePacket)
+// @@protoc_insertion_point(generalized_merge_from_start:GateToGamePacket)
   GOOGLE_DCHECK_NE(&from, this);
   const GateToGamePacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GateToGamePacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.GateToGamePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GateToGamePacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.GateToGamePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GateToGamePacket)
     MergeFrom(*source);
   }
 }
 
 void GateToGamePacket::MergeFrom(const GateToGamePacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.GateToGamePacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:GateToGamePacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -2634,14 +2629,14 @@ void GateToGamePacket::MergeFrom(const GateToGamePacket& from) {
 }
 
 void GateToGamePacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.GateToGamePacket)
+// @@protoc_insertion_point(generalized_copy_from_start:GateToGamePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void GateToGamePacket::CopyFrom(const GateToGamePacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.GateToGamePacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:GateToGamePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -2676,7 +2671,7 @@ class GameToGatePacket::_Internal {
 GameToGatePacket::GameToGatePacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.GameToGatePacket)
+  // @@protoc_insertion_point(constructor:GameToGatePacket)
 }
 GameToGatePacket::GameToGatePacket(const GameToGatePacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -2689,7 +2684,7 @@ GameToGatePacket::GameToGatePacket(const GameToGatePacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.GameToGatePacket)
+  // @@protoc_insertion_point(copy_constructor:GameToGatePacket)
 }
 
 void GameToGatePacket::SharedCtor() {
@@ -2701,7 +2696,7 @@ void GameToGatePacket::SharedCtor() {
 }
 
 GameToGatePacket::~GameToGatePacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.GameToGatePacket)
+  // @@protoc_insertion_point(destructor:GameToGatePacket)
   SharedDtor();
 }
 
@@ -2719,7 +2714,7 @@ const GameToGatePacket& GameToGatePacket::default_instance() {
 
 
 void GameToGatePacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.GameToGatePacket)
+// @@protoc_insertion_point(message_clear_start:GameToGatePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -2781,7 +2776,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* GameToGatePacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.GameToGatePacket)
+  // @@protoc_insertion_point(serialize_to_array_start:GameToGatePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2807,12 +2802,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.GameToGatePacket)
+  // @@protoc_insertion_point(serialize_to_array_end:GameToGatePacket)
   return target;
 }
 
 size_t GameToGatePacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.GameToGatePacket)
+// @@protoc_insertion_point(message_byte_size_start:GameToGatePacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -2850,22 +2845,22 @@ size_t GameToGatePacket::ByteSizeLong() const {
 }
 
 void GameToGatePacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.GameToGatePacket)
+// @@protoc_insertion_point(generalized_merge_from_start:GameToGatePacket)
   GOOGLE_DCHECK_NE(&from, this);
   const GameToGatePacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GameToGatePacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.GameToGatePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameToGatePacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.GameToGatePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameToGatePacket)
     MergeFrom(*source);
   }
 }
 
 void GameToGatePacket::MergeFrom(const GameToGatePacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.GameToGatePacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:GameToGatePacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -2884,14 +2879,14 @@ void GameToGatePacket::MergeFrom(const GameToGatePacket& from) {
 }
 
 void GameToGatePacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.GameToGatePacket)
+// @@protoc_insertion_point(generalized_copy_from_start:GameToGatePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void GameToGatePacket::CopyFrom(const GameToGatePacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.GameToGatePacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:GameToGatePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -2926,7 +2921,7 @@ class GateToChatPacket::_Internal {
 GateToChatPacket::GateToChatPacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.GateToChatPacket)
+  // @@protoc_insertion_point(constructor:GateToChatPacket)
 }
 GateToChatPacket::GateToChatPacket(const GateToChatPacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -2939,7 +2934,7 @@ GateToChatPacket::GateToChatPacket(const GateToChatPacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.GateToChatPacket)
+  // @@protoc_insertion_point(copy_constructor:GateToChatPacket)
 }
 
 void GateToChatPacket::SharedCtor() {
@@ -2951,7 +2946,7 @@ void GateToChatPacket::SharedCtor() {
 }
 
 GateToChatPacket::~GateToChatPacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.GateToChatPacket)
+  // @@protoc_insertion_point(destructor:GateToChatPacket)
   SharedDtor();
 }
 
@@ -2969,7 +2964,7 @@ const GateToChatPacket& GateToChatPacket::default_instance() {
 
 
 void GateToChatPacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.GateToChatPacket)
+// @@protoc_insertion_point(message_clear_start:GateToChatPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -3031,7 +3026,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* GateToChatPacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.GateToChatPacket)
+  // @@protoc_insertion_point(serialize_to_array_start:GateToChatPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -3057,12 +3052,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.GateToChatPacket)
+  // @@protoc_insertion_point(serialize_to_array_end:GateToChatPacket)
   return target;
 }
 
 size_t GateToChatPacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.GateToChatPacket)
+// @@protoc_insertion_point(message_byte_size_start:GateToChatPacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -3100,22 +3095,22 @@ size_t GateToChatPacket::ByteSizeLong() const {
 }
 
 void GateToChatPacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.GateToChatPacket)
+// @@protoc_insertion_point(generalized_merge_from_start:GateToChatPacket)
   GOOGLE_DCHECK_NE(&from, this);
   const GateToChatPacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GateToChatPacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.GateToChatPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GateToChatPacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.GateToChatPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GateToChatPacket)
     MergeFrom(*source);
   }
 }
 
 void GateToChatPacket::MergeFrom(const GateToChatPacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.GateToChatPacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:GateToChatPacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -3134,14 +3129,14 @@ void GateToChatPacket::MergeFrom(const GateToChatPacket& from) {
 }
 
 void GateToChatPacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.GateToChatPacket)
+// @@protoc_insertion_point(generalized_copy_from_start:GateToChatPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void GateToChatPacket::CopyFrom(const GateToChatPacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.GateToChatPacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:GateToChatPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -3176,7 +3171,7 @@ class ChatToGatePacket::_Internal {
 ChatToGatePacket::ChatToGatePacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.ChatToGatePacket)
+  // @@protoc_insertion_point(constructor:ChatToGatePacket)
 }
 ChatToGatePacket::ChatToGatePacket(const ChatToGatePacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -3189,7 +3184,7 @@ ChatToGatePacket::ChatToGatePacket(const ChatToGatePacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.ChatToGatePacket)
+  // @@protoc_insertion_point(copy_constructor:ChatToGatePacket)
 }
 
 void ChatToGatePacket::SharedCtor() {
@@ -3201,7 +3196,7 @@ void ChatToGatePacket::SharedCtor() {
 }
 
 ChatToGatePacket::~ChatToGatePacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.ChatToGatePacket)
+  // @@protoc_insertion_point(destructor:ChatToGatePacket)
   SharedDtor();
 }
 
@@ -3219,7 +3214,7 @@ const ChatToGatePacket& ChatToGatePacket::default_instance() {
 
 
 void ChatToGatePacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.ChatToGatePacket)
+// @@protoc_insertion_point(message_clear_start:ChatToGatePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -3281,7 +3276,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* ChatToGatePacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.ChatToGatePacket)
+  // @@protoc_insertion_point(serialize_to_array_start:ChatToGatePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -3307,12 +3302,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.ChatToGatePacket)
+  // @@protoc_insertion_point(serialize_to_array_end:ChatToGatePacket)
   return target;
 }
 
 size_t ChatToGatePacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.ChatToGatePacket)
+// @@protoc_insertion_point(message_byte_size_start:ChatToGatePacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -3350,22 +3345,22 @@ size_t ChatToGatePacket::ByteSizeLong() const {
 }
 
 void ChatToGatePacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.ChatToGatePacket)
+// @@protoc_insertion_point(generalized_merge_from_start:ChatToGatePacket)
   GOOGLE_DCHECK_NE(&from, this);
   const ChatToGatePacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ChatToGatePacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.ChatToGatePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ChatToGatePacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.ChatToGatePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:ChatToGatePacket)
     MergeFrom(*source);
   }
 }
 
 void ChatToGatePacket::MergeFrom(const ChatToGatePacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.ChatToGatePacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:ChatToGatePacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -3384,14 +3379,14 @@ void ChatToGatePacket::MergeFrom(const ChatToGatePacket& from) {
 }
 
 void ChatToGatePacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.ChatToGatePacket)
+// @@protoc_insertion_point(generalized_copy_from_start:ChatToGatePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void ChatToGatePacket::CopyFrom(const ChatToGatePacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.ChatToGatePacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:ChatToGatePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -3426,7 +3421,7 @@ class WorldToGatePacket::_Internal {
 WorldToGatePacket::WorldToGatePacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.WorldToGatePacket)
+  // @@protoc_insertion_point(constructor:WorldToGatePacket)
 }
 WorldToGatePacket::WorldToGatePacket(const WorldToGatePacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -3439,7 +3434,7 @@ WorldToGatePacket::WorldToGatePacket(const WorldToGatePacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.WorldToGatePacket)
+  // @@protoc_insertion_point(copy_constructor:WorldToGatePacket)
 }
 
 void WorldToGatePacket::SharedCtor() {
@@ -3451,7 +3446,7 @@ void WorldToGatePacket::SharedCtor() {
 }
 
 WorldToGatePacket::~WorldToGatePacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.WorldToGatePacket)
+  // @@protoc_insertion_point(destructor:WorldToGatePacket)
   SharedDtor();
 }
 
@@ -3469,7 +3464,7 @@ const WorldToGatePacket& WorldToGatePacket::default_instance() {
 
 
 void WorldToGatePacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.WorldToGatePacket)
+// @@protoc_insertion_point(message_clear_start:WorldToGatePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -3531,7 +3526,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* WorldToGatePacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.WorldToGatePacket)
+  // @@protoc_insertion_point(serialize_to_array_start:WorldToGatePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -3557,12 +3552,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.WorldToGatePacket)
+  // @@protoc_insertion_point(serialize_to_array_end:WorldToGatePacket)
   return target;
 }
 
 size_t WorldToGatePacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.WorldToGatePacket)
+// @@protoc_insertion_point(message_byte_size_start:WorldToGatePacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -3600,22 +3595,22 @@ size_t WorldToGatePacket::ByteSizeLong() const {
 }
 
 void WorldToGatePacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.WorldToGatePacket)
+// @@protoc_insertion_point(generalized_merge_from_start:WorldToGatePacket)
   GOOGLE_DCHECK_NE(&from, this);
   const WorldToGatePacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<WorldToGatePacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.WorldToGatePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:WorldToGatePacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.WorldToGatePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:WorldToGatePacket)
     MergeFrom(*source);
   }
 }
 
 void WorldToGatePacket::MergeFrom(const WorldToGatePacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.WorldToGatePacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:WorldToGatePacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -3634,14 +3629,14 @@ void WorldToGatePacket::MergeFrom(const WorldToGatePacket& from) {
 }
 
 void WorldToGatePacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.WorldToGatePacket)
+// @@protoc_insertion_point(generalized_copy_from_start:WorldToGatePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void WorldToGatePacket::CopyFrom(const WorldToGatePacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.WorldToGatePacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:WorldToGatePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -3676,7 +3671,7 @@ class GateToWorldPacket::_Internal {
 GateToWorldPacket::GateToWorldPacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.GateToWorldPacket)
+  // @@protoc_insertion_point(constructor:GateToWorldPacket)
 }
 GateToWorldPacket::GateToWorldPacket(const GateToWorldPacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -3689,7 +3684,7 @@ GateToWorldPacket::GateToWorldPacket(const GateToWorldPacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.GateToWorldPacket)
+  // @@protoc_insertion_point(copy_constructor:GateToWorldPacket)
 }
 
 void GateToWorldPacket::SharedCtor() {
@@ -3701,7 +3696,7 @@ void GateToWorldPacket::SharedCtor() {
 }
 
 GateToWorldPacket::~GateToWorldPacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.GateToWorldPacket)
+  // @@protoc_insertion_point(destructor:GateToWorldPacket)
   SharedDtor();
 }
 
@@ -3719,7 +3714,7 @@ const GateToWorldPacket& GateToWorldPacket::default_instance() {
 
 
 void GateToWorldPacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.GateToWorldPacket)
+// @@protoc_insertion_point(message_clear_start:GateToWorldPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -3781,7 +3776,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* GateToWorldPacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.GateToWorldPacket)
+  // @@protoc_insertion_point(serialize_to_array_start:GateToWorldPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -3807,12 +3802,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.GateToWorldPacket)
+  // @@protoc_insertion_point(serialize_to_array_end:GateToWorldPacket)
   return target;
 }
 
 size_t GateToWorldPacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.GateToWorldPacket)
+// @@protoc_insertion_point(message_byte_size_start:GateToWorldPacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -3850,22 +3845,22 @@ size_t GateToWorldPacket::ByteSizeLong() const {
 }
 
 void GateToWorldPacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.GateToWorldPacket)
+// @@protoc_insertion_point(generalized_merge_from_start:GateToWorldPacket)
   GOOGLE_DCHECK_NE(&from, this);
   const GateToWorldPacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GateToWorldPacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.GateToWorldPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GateToWorldPacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.GateToWorldPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GateToWorldPacket)
     MergeFrom(*source);
   }
 }
 
 void GateToWorldPacket::MergeFrom(const GateToWorldPacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.GateToWorldPacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:GateToWorldPacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -3884,14 +3879,14 @@ void GateToWorldPacket::MergeFrom(const GateToWorldPacket& from) {
 }
 
 void GateToWorldPacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.GateToWorldPacket)
+// @@protoc_insertion_point(generalized_copy_from_start:GateToWorldPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void GateToWorldPacket::CopyFrom(const GateToWorldPacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.GateToWorldPacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:GateToWorldPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -3926,7 +3921,7 @@ class GameToChatPacket::_Internal {
 GameToChatPacket::GameToChatPacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.GameToChatPacket)
+  // @@protoc_insertion_point(constructor:GameToChatPacket)
 }
 GameToChatPacket::GameToChatPacket(const GameToChatPacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -3939,7 +3934,7 @@ GameToChatPacket::GameToChatPacket(const GameToChatPacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.GameToChatPacket)
+  // @@protoc_insertion_point(copy_constructor:GameToChatPacket)
 }
 
 void GameToChatPacket::SharedCtor() {
@@ -3951,7 +3946,7 @@ void GameToChatPacket::SharedCtor() {
 }
 
 GameToChatPacket::~GameToChatPacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.GameToChatPacket)
+  // @@protoc_insertion_point(destructor:GameToChatPacket)
   SharedDtor();
 }
 
@@ -3969,7 +3964,7 @@ const GameToChatPacket& GameToChatPacket::default_instance() {
 
 
 void GameToChatPacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.GameToChatPacket)
+// @@protoc_insertion_point(message_clear_start:GameToChatPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -4031,7 +4026,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* GameToChatPacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.GameToChatPacket)
+  // @@protoc_insertion_point(serialize_to_array_start:GameToChatPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -4057,12 +4052,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.GameToChatPacket)
+  // @@protoc_insertion_point(serialize_to_array_end:GameToChatPacket)
   return target;
 }
 
 size_t GameToChatPacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.GameToChatPacket)
+// @@protoc_insertion_point(message_byte_size_start:GameToChatPacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -4100,22 +4095,22 @@ size_t GameToChatPacket::ByteSizeLong() const {
 }
 
 void GameToChatPacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.GameToChatPacket)
+// @@protoc_insertion_point(generalized_merge_from_start:GameToChatPacket)
   GOOGLE_DCHECK_NE(&from, this);
   const GameToChatPacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GameToChatPacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.GameToChatPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameToChatPacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.GameToChatPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameToChatPacket)
     MergeFrom(*source);
   }
 }
 
 void GameToChatPacket::MergeFrom(const GameToChatPacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.GameToChatPacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:GameToChatPacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -4134,14 +4129,14 @@ void GameToChatPacket::MergeFrom(const GameToChatPacket& from) {
 }
 
 void GameToChatPacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.GameToChatPacket)
+// @@protoc_insertion_point(generalized_copy_from_start:GameToChatPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void GameToChatPacket::CopyFrom(const GameToChatPacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.GameToChatPacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:GameToChatPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -4176,7 +4171,7 @@ class ChatToGamePacket::_Internal {
 ChatToGamePacket::ChatToGamePacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.ChatToGamePacket)
+  // @@protoc_insertion_point(constructor:ChatToGamePacket)
 }
 ChatToGamePacket::ChatToGamePacket(const ChatToGamePacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -4189,7 +4184,7 @@ ChatToGamePacket::ChatToGamePacket(const ChatToGamePacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.ChatToGamePacket)
+  // @@protoc_insertion_point(copy_constructor:ChatToGamePacket)
 }
 
 void ChatToGamePacket::SharedCtor() {
@@ -4201,7 +4196,7 @@ void ChatToGamePacket::SharedCtor() {
 }
 
 ChatToGamePacket::~ChatToGamePacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.ChatToGamePacket)
+  // @@protoc_insertion_point(destructor:ChatToGamePacket)
   SharedDtor();
 }
 
@@ -4219,7 +4214,7 @@ const ChatToGamePacket& ChatToGamePacket::default_instance() {
 
 
 void ChatToGamePacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.ChatToGamePacket)
+// @@protoc_insertion_point(message_clear_start:ChatToGamePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -4281,7 +4276,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* ChatToGamePacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.ChatToGamePacket)
+  // @@protoc_insertion_point(serialize_to_array_start:ChatToGamePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -4307,12 +4302,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.ChatToGamePacket)
+  // @@protoc_insertion_point(serialize_to_array_end:ChatToGamePacket)
   return target;
 }
 
 size_t ChatToGamePacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.ChatToGamePacket)
+// @@protoc_insertion_point(message_byte_size_start:ChatToGamePacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -4350,22 +4345,22 @@ size_t ChatToGamePacket::ByteSizeLong() const {
 }
 
 void ChatToGamePacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.ChatToGamePacket)
+// @@protoc_insertion_point(generalized_merge_from_start:ChatToGamePacket)
   GOOGLE_DCHECK_NE(&from, this);
   const ChatToGamePacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ChatToGamePacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.ChatToGamePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ChatToGamePacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.ChatToGamePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:ChatToGamePacket)
     MergeFrom(*source);
   }
 }
 
 void ChatToGamePacket::MergeFrom(const ChatToGamePacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.ChatToGamePacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:ChatToGamePacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -4384,14 +4379,14 @@ void ChatToGamePacket::MergeFrom(const ChatToGamePacket& from) {
 }
 
 void ChatToGamePacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.ChatToGamePacket)
+// @@protoc_insertion_point(generalized_copy_from_start:ChatToGamePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void ChatToGamePacket::CopyFrom(const ChatToGamePacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.ChatToGamePacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:ChatToGamePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -4426,7 +4421,7 @@ class GameToWorldPacket::_Internal {
 GameToWorldPacket::GameToWorldPacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.GameToWorldPacket)
+  // @@protoc_insertion_point(constructor:GameToWorldPacket)
 }
 GameToWorldPacket::GameToWorldPacket(const GameToWorldPacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -4439,7 +4434,7 @@ GameToWorldPacket::GameToWorldPacket(const GameToWorldPacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.GameToWorldPacket)
+  // @@protoc_insertion_point(copy_constructor:GameToWorldPacket)
 }
 
 void GameToWorldPacket::SharedCtor() {
@@ -4451,7 +4446,7 @@ void GameToWorldPacket::SharedCtor() {
 }
 
 GameToWorldPacket::~GameToWorldPacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.GameToWorldPacket)
+  // @@protoc_insertion_point(destructor:GameToWorldPacket)
   SharedDtor();
 }
 
@@ -4469,7 +4464,7 @@ const GameToWorldPacket& GameToWorldPacket::default_instance() {
 
 
 void GameToWorldPacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.GameToWorldPacket)
+// @@protoc_insertion_point(message_clear_start:GameToWorldPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -4531,7 +4526,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* GameToWorldPacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.GameToWorldPacket)
+  // @@protoc_insertion_point(serialize_to_array_start:GameToWorldPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -4557,12 +4552,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.GameToWorldPacket)
+  // @@protoc_insertion_point(serialize_to_array_end:GameToWorldPacket)
   return target;
 }
 
 size_t GameToWorldPacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.GameToWorldPacket)
+// @@protoc_insertion_point(message_byte_size_start:GameToWorldPacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -4600,22 +4595,22 @@ size_t GameToWorldPacket::ByteSizeLong() const {
 }
 
 void GameToWorldPacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.GameToWorldPacket)
+// @@protoc_insertion_point(generalized_merge_from_start:GameToWorldPacket)
   GOOGLE_DCHECK_NE(&from, this);
   const GameToWorldPacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GameToWorldPacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.GameToWorldPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameToWorldPacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.GameToWorldPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameToWorldPacket)
     MergeFrom(*source);
   }
 }
 
 void GameToWorldPacket::MergeFrom(const GameToWorldPacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.GameToWorldPacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:GameToWorldPacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -4634,14 +4629,14 @@ void GameToWorldPacket::MergeFrom(const GameToWorldPacket& from) {
 }
 
 void GameToWorldPacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.GameToWorldPacket)
+// @@protoc_insertion_point(generalized_copy_from_start:GameToWorldPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void GameToWorldPacket::CopyFrom(const GameToWorldPacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.GameToWorldPacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:GameToWorldPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -4676,7 +4671,7 @@ class WorldToGamePacket::_Internal {
 WorldToGamePacket::WorldToGamePacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.WorldToGamePacket)
+  // @@protoc_insertion_point(constructor:WorldToGamePacket)
 }
 WorldToGamePacket::WorldToGamePacket(const WorldToGamePacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -4689,7 +4684,7 @@ WorldToGamePacket::WorldToGamePacket(const WorldToGamePacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.WorldToGamePacket)
+  // @@protoc_insertion_point(copy_constructor:WorldToGamePacket)
 }
 
 void WorldToGamePacket::SharedCtor() {
@@ -4701,7 +4696,7 @@ void WorldToGamePacket::SharedCtor() {
 }
 
 WorldToGamePacket::~WorldToGamePacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.WorldToGamePacket)
+  // @@protoc_insertion_point(destructor:WorldToGamePacket)
   SharedDtor();
 }
 
@@ -4719,7 +4714,7 @@ const WorldToGamePacket& WorldToGamePacket::default_instance() {
 
 
 void WorldToGamePacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.WorldToGamePacket)
+// @@protoc_insertion_point(message_clear_start:WorldToGamePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -4781,7 +4776,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* WorldToGamePacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.WorldToGamePacket)
+  // @@protoc_insertion_point(serialize_to_array_start:WorldToGamePacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -4807,12 +4802,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.WorldToGamePacket)
+  // @@protoc_insertion_point(serialize_to_array_end:WorldToGamePacket)
   return target;
 }
 
 size_t WorldToGamePacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.WorldToGamePacket)
+// @@protoc_insertion_point(message_byte_size_start:WorldToGamePacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -4850,22 +4845,22 @@ size_t WorldToGamePacket::ByteSizeLong() const {
 }
 
 void WorldToGamePacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.WorldToGamePacket)
+// @@protoc_insertion_point(generalized_merge_from_start:WorldToGamePacket)
   GOOGLE_DCHECK_NE(&from, this);
   const WorldToGamePacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<WorldToGamePacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.WorldToGamePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:WorldToGamePacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.WorldToGamePacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:WorldToGamePacket)
     MergeFrom(*source);
   }
 }
 
 void WorldToGamePacket::MergeFrom(const WorldToGamePacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.WorldToGamePacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:WorldToGamePacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -4884,14 +4879,14 @@ void WorldToGamePacket::MergeFrom(const WorldToGamePacket& from) {
 }
 
 void WorldToGamePacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.WorldToGamePacket)
+// @@protoc_insertion_point(generalized_copy_from_start:WorldToGamePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void WorldToGamePacket::CopyFrom(const WorldToGamePacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.WorldToGamePacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:WorldToGamePacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -4926,7 +4921,7 @@ class LoginToWorldPacket::_Internal {
 LoginToWorldPacket::LoginToWorldPacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.LoginToWorldPacket)
+  // @@protoc_insertion_point(constructor:LoginToWorldPacket)
 }
 LoginToWorldPacket::LoginToWorldPacket(const LoginToWorldPacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -4939,7 +4934,7 @@ LoginToWorldPacket::LoginToWorldPacket(const LoginToWorldPacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.LoginToWorldPacket)
+  // @@protoc_insertion_point(copy_constructor:LoginToWorldPacket)
 }
 
 void LoginToWorldPacket::SharedCtor() {
@@ -4951,7 +4946,7 @@ void LoginToWorldPacket::SharedCtor() {
 }
 
 LoginToWorldPacket::~LoginToWorldPacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.LoginToWorldPacket)
+  // @@protoc_insertion_point(destructor:LoginToWorldPacket)
   SharedDtor();
 }
 
@@ -4969,7 +4964,7 @@ const LoginToWorldPacket& LoginToWorldPacket::default_instance() {
 
 
 void LoginToWorldPacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.LoginToWorldPacket)
+// @@protoc_insertion_point(message_clear_start:LoginToWorldPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -5031,7 +5026,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* LoginToWorldPacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.LoginToWorldPacket)
+  // @@protoc_insertion_point(serialize_to_array_start:LoginToWorldPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -5057,12 +5052,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.LoginToWorldPacket)
+  // @@protoc_insertion_point(serialize_to_array_end:LoginToWorldPacket)
   return target;
 }
 
 size_t LoginToWorldPacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.LoginToWorldPacket)
+// @@protoc_insertion_point(message_byte_size_start:LoginToWorldPacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -5100,22 +5095,22 @@ size_t LoginToWorldPacket::ByteSizeLong() const {
 }
 
 void LoginToWorldPacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.LoginToWorldPacket)
+// @@protoc_insertion_point(generalized_merge_from_start:LoginToWorldPacket)
   GOOGLE_DCHECK_NE(&from, this);
   const LoginToWorldPacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<LoginToWorldPacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.LoginToWorldPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:LoginToWorldPacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.LoginToWorldPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:LoginToWorldPacket)
     MergeFrom(*source);
   }
 }
 
 void LoginToWorldPacket::MergeFrom(const LoginToWorldPacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.LoginToWorldPacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:LoginToWorldPacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -5134,14 +5129,14 @@ void LoginToWorldPacket::MergeFrom(const LoginToWorldPacket& from) {
 }
 
 void LoginToWorldPacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.LoginToWorldPacket)
+// @@protoc_insertion_point(generalized_copy_from_start:LoginToWorldPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void LoginToWorldPacket::CopyFrom(const LoginToWorldPacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.LoginToWorldPacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:LoginToWorldPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -5176,7 +5171,7 @@ class WorldToLoginPacket::_Internal {
 WorldToLoginPacket::WorldToLoginPacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.WorldToLoginPacket)
+  // @@protoc_insertion_point(constructor:WorldToLoginPacket)
 }
 WorldToLoginPacket::WorldToLoginPacket(const WorldToLoginPacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -5189,7 +5184,7 @@ WorldToLoginPacket::WorldToLoginPacket(const WorldToLoginPacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.WorldToLoginPacket)
+  // @@protoc_insertion_point(copy_constructor:WorldToLoginPacket)
 }
 
 void WorldToLoginPacket::SharedCtor() {
@@ -5201,7 +5196,7 @@ void WorldToLoginPacket::SharedCtor() {
 }
 
 WorldToLoginPacket::~WorldToLoginPacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.WorldToLoginPacket)
+  // @@protoc_insertion_point(destructor:WorldToLoginPacket)
   SharedDtor();
 }
 
@@ -5219,7 +5214,7 @@ const WorldToLoginPacket& WorldToLoginPacket::default_instance() {
 
 
 void WorldToLoginPacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.WorldToLoginPacket)
+// @@protoc_insertion_point(message_clear_start:WorldToLoginPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -5281,7 +5276,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* WorldToLoginPacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.WorldToLoginPacket)
+  // @@protoc_insertion_point(serialize_to_array_start:WorldToLoginPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -5307,12 +5302,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.WorldToLoginPacket)
+  // @@protoc_insertion_point(serialize_to_array_end:WorldToLoginPacket)
   return target;
 }
 
 size_t WorldToLoginPacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.WorldToLoginPacket)
+// @@protoc_insertion_point(message_byte_size_start:WorldToLoginPacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -5350,22 +5345,22 @@ size_t WorldToLoginPacket::ByteSizeLong() const {
 }
 
 void WorldToLoginPacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.WorldToLoginPacket)
+// @@protoc_insertion_point(generalized_merge_from_start:WorldToLoginPacket)
   GOOGLE_DCHECK_NE(&from, this);
   const WorldToLoginPacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<WorldToLoginPacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.WorldToLoginPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:WorldToLoginPacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.WorldToLoginPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:WorldToLoginPacket)
     MergeFrom(*source);
   }
 }
 
 void WorldToLoginPacket::MergeFrom(const WorldToLoginPacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.WorldToLoginPacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:WorldToLoginPacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -5384,14 +5379,14 @@ void WorldToLoginPacket::MergeFrom(const WorldToLoginPacket& from) {
 }
 
 void WorldToLoginPacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.WorldToLoginPacket)
+// @@protoc_insertion_point(generalized_copy_from_start:WorldToLoginPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void WorldToLoginPacket::CopyFrom(const WorldToLoginPacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.WorldToLoginPacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:WorldToLoginPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -5426,7 +5421,7 @@ class WorldToDBPacket::_Internal {
 WorldToDBPacket::WorldToDBPacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.WorldToDBPacket)
+  // @@protoc_insertion_point(constructor:WorldToDBPacket)
 }
 WorldToDBPacket::WorldToDBPacket(const WorldToDBPacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -5439,7 +5434,7 @@ WorldToDBPacket::WorldToDBPacket(const WorldToDBPacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.WorldToDBPacket)
+  // @@protoc_insertion_point(copy_constructor:WorldToDBPacket)
 }
 
 void WorldToDBPacket::SharedCtor() {
@@ -5451,7 +5446,7 @@ void WorldToDBPacket::SharedCtor() {
 }
 
 WorldToDBPacket::~WorldToDBPacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.WorldToDBPacket)
+  // @@protoc_insertion_point(destructor:WorldToDBPacket)
   SharedDtor();
 }
 
@@ -5469,7 +5464,7 @@ const WorldToDBPacket& WorldToDBPacket::default_instance() {
 
 
 void WorldToDBPacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.WorldToDBPacket)
+// @@protoc_insertion_point(message_clear_start:WorldToDBPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -5531,7 +5526,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* WorldToDBPacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.WorldToDBPacket)
+  // @@protoc_insertion_point(serialize_to_array_start:WorldToDBPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -5557,12 +5552,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.WorldToDBPacket)
+  // @@protoc_insertion_point(serialize_to_array_end:WorldToDBPacket)
   return target;
 }
 
 size_t WorldToDBPacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.WorldToDBPacket)
+// @@protoc_insertion_point(message_byte_size_start:WorldToDBPacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -5600,22 +5595,22 @@ size_t WorldToDBPacket::ByteSizeLong() const {
 }
 
 void WorldToDBPacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.WorldToDBPacket)
+// @@protoc_insertion_point(generalized_merge_from_start:WorldToDBPacket)
   GOOGLE_DCHECK_NE(&from, this);
   const WorldToDBPacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<WorldToDBPacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.WorldToDBPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:WorldToDBPacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.WorldToDBPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:WorldToDBPacket)
     MergeFrom(*source);
   }
 }
 
 void WorldToDBPacket::MergeFrom(const WorldToDBPacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.WorldToDBPacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:WorldToDBPacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -5634,14 +5629,14 @@ void WorldToDBPacket::MergeFrom(const WorldToDBPacket& from) {
 }
 
 void WorldToDBPacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.WorldToDBPacket)
+// @@protoc_insertion_point(generalized_copy_from_start:WorldToDBPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void WorldToDBPacket::CopyFrom(const WorldToDBPacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.WorldToDBPacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:WorldToDBPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -5676,7 +5671,7 @@ class DBToWorldPacket::_Internal {
 DBToWorldPacket::DBToWorldPacket()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:SeFNetProto.DBToWorldPacket)
+  // @@protoc_insertion_point(constructor:DBToWorldPacket)
 }
 DBToWorldPacket::DBToWorldPacket(const DBToWorldPacket& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -5689,7 +5684,7 @@ DBToWorldPacket::DBToWorldPacket(const DBToWorldPacket& from)
   ::memcpy(&player_id_, &from.player_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&msg_id_) -
     reinterpret_cast<char*>(&player_id_)) + sizeof(msg_id_));
-  // @@protoc_insertion_point(copy_constructor:SeFNetProto.DBToWorldPacket)
+  // @@protoc_insertion_point(copy_constructor:DBToWorldPacket)
 }
 
 void DBToWorldPacket::SharedCtor() {
@@ -5701,7 +5696,7 @@ void DBToWorldPacket::SharedCtor() {
 }
 
 DBToWorldPacket::~DBToWorldPacket() {
-  // @@protoc_insertion_point(destructor:SeFNetProto.DBToWorldPacket)
+  // @@protoc_insertion_point(destructor:DBToWorldPacket)
   SharedDtor();
 }
 
@@ -5719,7 +5714,7 @@ const DBToWorldPacket& DBToWorldPacket::default_instance() {
 
 
 void DBToWorldPacket::Clear() {
-// @@protoc_insertion_point(message_clear_start:SeFNetProto.DBToWorldPacket)
+// @@protoc_insertion_point(message_clear_start:DBToWorldPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -5781,7 +5776,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* DBToWorldPacket::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:SeFNetProto.DBToWorldPacket)
+  // @@protoc_insertion_point(serialize_to_array_start:DBToWorldPacket)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -5807,12 +5802,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:SeFNetProto.DBToWorldPacket)
+  // @@protoc_insertion_point(serialize_to_array_end:DBToWorldPacket)
   return target;
 }
 
 size_t DBToWorldPacket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SeFNetProto.DBToWorldPacket)
+// @@protoc_insertion_point(message_byte_size_start:DBToWorldPacket)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -5850,22 +5845,22 @@ size_t DBToWorldPacket::ByteSizeLong() const {
 }
 
 void DBToWorldPacket::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SeFNetProto.DBToWorldPacket)
+// @@protoc_insertion_point(generalized_merge_from_start:DBToWorldPacket)
   GOOGLE_DCHECK_NE(&from, this);
   const DBToWorldPacket* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<DBToWorldPacket>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SeFNetProto.DBToWorldPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DBToWorldPacket)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SeFNetProto.DBToWorldPacket)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DBToWorldPacket)
     MergeFrom(*source);
   }
 }
 
 void DBToWorldPacket::MergeFrom(const DBToWorldPacket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SeFNetProto.DBToWorldPacket)
+// @@protoc_insertion_point(class_specific_merge_from_start:DBToWorldPacket)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -5884,14 +5879,14 @@ void DBToWorldPacket::MergeFrom(const DBToWorldPacket& from) {
 }
 
 void DBToWorldPacket::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SeFNetProto.DBToWorldPacket)
+// @@protoc_insertion_point(generalized_copy_from_start:DBToWorldPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void DBToWorldPacket::CopyFrom(const DBToWorldPacket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SeFNetProto.DBToWorldPacket)
+// @@protoc_insertion_point(class_specific_copy_from_start:DBToWorldPacket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -5916,70 +5911,69 @@ void DBToWorldPacket::InternalSwap(DBToWorldPacket* other) {
 
 
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace SeFNetProto
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::SeFNetProto::ServerReport* Arena::CreateMaybeMessage< ::SeFNetProto::ServerReport >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::ServerReport >(arena);
+template<> PROTOBUF_NOINLINE ::ServerReport* Arena::CreateMaybeMessage< ::ServerReport >(Arena* arena) {
+  return Arena::CreateInternal< ::ServerReport >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::ServerReportList* Arena::CreateMaybeMessage< ::SeFNetProto::ServerReportList >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::ServerReportList >(arena);
+template<> PROTOBUF_NOINLINE ::ServerReportList* Arena::CreateMaybeMessage< ::ServerReportList >(Arena* arena) {
+  return Arena::CreateInternal< ::ServerReportList >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::ServerHeartBeat* Arena::CreateMaybeMessage< ::SeFNetProto::ServerHeartBeat >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::ServerHeartBeat >(arena);
+template<> PROTOBUF_NOINLINE ::ServerHeartBeat* Arena::CreateMaybeMessage< ::ServerHeartBeat >(Arena* arena) {
+  return Arena::CreateInternal< ::ServerHeartBeat >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::NodeToMasterPacket* Arena::CreateMaybeMessage< ::SeFNetProto::NodeToMasterPacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::NodeToMasterPacket >(arena);
+template<> PROTOBUF_NOINLINE ::NodeToMasterPacket* Arena::CreateMaybeMessage< ::NodeToMasterPacket >(Arena* arena) {
+  return Arena::CreateInternal< ::NodeToMasterPacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::MasterToNodePacket* Arena::CreateMaybeMessage< ::SeFNetProto::MasterToNodePacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::MasterToNodePacket >(arena);
+template<> PROTOBUF_NOINLINE ::MasterToNodePacket* Arena::CreateMaybeMessage< ::MasterToNodePacket >(Arena* arena) {
+  return Arena::CreateInternal< ::MasterToNodePacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::GateToLoginPacket* Arena::CreateMaybeMessage< ::SeFNetProto::GateToLoginPacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::GateToLoginPacket >(arena);
+template<> PROTOBUF_NOINLINE ::GateToLoginPacket* Arena::CreateMaybeMessage< ::GateToLoginPacket >(Arena* arena) {
+  return Arena::CreateInternal< ::GateToLoginPacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::LoginToGatePacket* Arena::CreateMaybeMessage< ::SeFNetProto::LoginToGatePacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::LoginToGatePacket >(arena);
+template<> PROTOBUF_NOINLINE ::LoginToGatePacket* Arena::CreateMaybeMessage< ::LoginToGatePacket >(Arena* arena) {
+  return Arena::CreateInternal< ::LoginToGatePacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::GateToGamePacket* Arena::CreateMaybeMessage< ::SeFNetProto::GateToGamePacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::GateToGamePacket >(arena);
+template<> PROTOBUF_NOINLINE ::GateToGamePacket* Arena::CreateMaybeMessage< ::GateToGamePacket >(Arena* arena) {
+  return Arena::CreateInternal< ::GateToGamePacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::GameToGatePacket* Arena::CreateMaybeMessage< ::SeFNetProto::GameToGatePacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::GameToGatePacket >(arena);
+template<> PROTOBUF_NOINLINE ::GameToGatePacket* Arena::CreateMaybeMessage< ::GameToGatePacket >(Arena* arena) {
+  return Arena::CreateInternal< ::GameToGatePacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::GateToChatPacket* Arena::CreateMaybeMessage< ::SeFNetProto::GateToChatPacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::GateToChatPacket >(arena);
+template<> PROTOBUF_NOINLINE ::GateToChatPacket* Arena::CreateMaybeMessage< ::GateToChatPacket >(Arena* arena) {
+  return Arena::CreateInternal< ::GateToChatPacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::ChatToGatePacket* Arena::CreateMaybeMessage< ::SeFNetProto::ChatToGatePacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::ChatToGatePacket >(arena);
+template<> PROTOBUF_NOINLINE ::ChatToGatePacket* Arena::CreateMaybeMessage< ::ChatToGatePacket >(Arena* arena) {
+  return Arena::CreateInternal< ::ChatToGatePacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::WorldToGatePacket* Arena::CreateMaybeMessage< ::SeFNetProto::WorldToGatePacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::WorldToGatePacket >(arena);
+template<> PROTOBUF_NOINLINE ::WorldToGatePacket* Arena::CreateMaybeMessage< ::WorldToGatePacket >(Arena* arena) {
+  return Arena::CreateInternal< ::WorldToGatePacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::GateToWorldPacket* Arena::CreateMaybeMessage< ::SeFNetProto::GateToWorldPacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::GateToWorldPacket >(arena);
+template<> PROTOBUF_NOINLINE ::GateToWorldPacket* Arena::CreateMaybeMessage< ::GateToWorldPacket >(Arena* arena) {
+  return Arena::CreateInternal< ::GateToWorldPacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::GameToChatPacket* Arena::CreateMaybeMessage< ::SeFNetProto::GameToChatPacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::GameToChatPacket >(arena);
+template<> PROTOBUF_NOINLINE ::GameToChatPacket* Arena::CreateMaybeMessage< ::GameToChatPacket >(Arena* arena) {
+  return Arena::CreateInternal< ::GameToChatPacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::ChatToGamePacket* Arena::CreateMaybeMessage< ::SeFNetProto::ChatToGamePacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::ChatToGamePacket >(arena);
+template<> PROTOBUF_NOINLINE ::ChatToGamePacket* Arena::CreateMaybeMessage< ::ChatToGamePacket >(Arena* arena) {
+  return Arena::CreateInternal< ::ChatToGamePacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::GameToWorldPacket* Arena::CreateMaybeMessage< ::SeFNetProto::GameToWorldPacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::GameToWorldPacket >(arena);
+template<> PROTOBUF_NOINLINE ::GameToWorldPacket* Arena::CreateMaybeMessage< ::GameToWorldPacket >(Arena* arena) {
+  return Arena::CreateInternal< ::GameToWorldPacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::WorldToGamePacket* Arena::CreateMaybeMessage< ::SeFNetProto::WorldToGamePacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::WorldToGamePacket >(arena);
+template<> PROTOBUF_NOINLINE ::WorldToGamePacket* Arena::CreateMaybeMessage< ::WorldToGamePacket >(Arena* arena) {
+  return Arena::CreateInternal< ::WorldToGamePacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::LoginToWorldPacket* Arena::CreateMaybeMessage< ::SeFNetProto::LoginToWorldPacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::LoginToWorldPacket >(arena);
+template<> PROTOBUF_NOINLINE ::LoginToWorldPacket* Arena::CreateMaybeMessage< ::LoginToWorldPacket >(Arena* arena) {
+  return Arena::CreateInternal< ::LoginToWorldPacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::WorldToLoginPacket* Arena::CreateMaybeMessage< ::SeFNetProto::WorldToLoginPacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::WorldToLoginPacket >(arena);
+template<> PROTOBUF_NOINLINE ::WorldToLoginPacket* Arena::CreateMaybeMessage< ::WorldToLoginPacket >(Arena* arena) {
+  return Arena::CreateInternal< ::WorldToLoginPacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::WorldToDBPacket* Arena::CreateMaybeMessage< ::SeFNetProto::WorldToDBPacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::WorldToDBPacket >(arena);
+template<> PROTOBUF_NOINLINE ::WorldToDBPacket* Arena::CreateMaybeMessage< ::WorldToDBPacket >(Arena* arena) {
+  return Arena::CreateInternal< ::WorldToDBPacket >(arena);
 }
-template<> PROTOBUF_NOINLINE ::SeFNetProto::DBToWorldPacket* Arena::CreateMaybeMessage< ::SeFNetProto::DBToWorldPacket >(Arena* arena) {
-  return Arena::CreateInternal< ::SeFNetProto::DBToWorldPacket >(arena);
+template<> PROTOBUF_NOINLINE ::DBToWorldPacket* Arena::CreateMaybeMessage< ::DBToWorldPacket >(Arena* arena) {
+  return Arena::CreateInternal< ::DBToWorldPacket >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

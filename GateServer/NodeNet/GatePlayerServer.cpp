@@ -20,7 +20,7 @@ bool GatePlayerServer::Init()
 	m_pNetModule->AddReceiveCallBack(this, &GatePlayerServer::OnOtherMessage);
 	m_pNetModule->AddReceiveCallBack(ModuleChat::RPC_CHAT_CHAT_REQ, this, &GatePlayerServer::OnOtherMessage);
 	//init server info
-	Json::Value GatePlayerServerConf = g_pJsonConfig->m_Root["GatePlayerServer"];
+	Json::Value GatePlayerServerConf = g_JsonConfig->m_Root["GatePlayerServer"];
 	if (!m_pNetModule->InitNet(GatePlayerServerConf["NodePort"].asUInt()))
 	{
 		CLOG_ERR << "init GatePlayerServer failed" << CLOG_END;
@@ -72,12 +72,9 @@ void GatePlayerServer::OnClientConnected(const socket_t nFd)
 void GatePlayerServer::OnClientDisconnect(const socket_t nFd)
 {
 	ClientPlayer* player = g_pClientPlayerMgr->GetPlayerByFd(nFd);
-	if (player == nullptr)
-	{
-		return;
-	}
+	if (player == nullptr) return;
 	g_pClientPlayerMgr->DelPlayer(player);
-	CLOG_INFO << "GatePlayerServer: player quit" << nFd << CLOG_END;
+	CLOG_INFO << "GatePlayerServer: playerid:" << player->GetPlayerId() <<" off line"<<CLOG_END;
 }
 
 int GatePlayerServer::GetModuleID(const int msgid)
@@ -87,18 +84,12 @@ int GatePlayerServer::GetModuleID(const int msgid)
 
 void GatePlayerServer::OnOtherMessage(const socket_t nFd, const int msgid, const char* msg, const uint32_t nLen)
 {
-	if (msgid <= 0)
-	{
-		return;
-	}
-
+	if (msgid <= 0) return;
 	int moduleId = GetModuleID(msgid);
 
 	ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayerByFd(nFd);
-	if (pPlayer == nullptr)
-	{
-		return;
-	}
+	if (pPlayer == nullptr) return;
+
 	switch (moduleId)
 	{
 	case ModuleGate::MODULE_ID_GATE:
@@ -132,29 +123,19 @@ void GatePlayerServer::SentToClient(const int nMsgID, const std::string& msg, co
 	m_pNetModule->SendMsg(nFd, nMsgID, msg.c_str(), msg.length());
 }
 
-void GatePlayerServer::SentToClient(const int nMsgID, google::protobuf::Message& xData, socket_t nFd)
+void GatePlayerServer::SentToClient(const int nMsgID, google::protobuf::Message& xData, const socket_t nFd)
 {
-	m_pNetModule->SendPBMsg(nFd, nMsgID, &xData);
+	m_pNetModule->SendPbMsg(nFd, nMsgID, &xData);
 }
 
 void GatePlayerServer::SentToAllClient(const int nMsgID, const std::string& msg)
 {
-	m_pNetModule->SendToAllMsg(nMsgID, msg.c_str(), msg.length());
+	m_pNetModule->SendToAll(nMsgID, msg.c_str(), msg.length());
 }
 
 void GatePlayerServer::SetClientServerNode(socket_t client_fd, ServerDataPtr& ptr)
 {
 	ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayer(client_fd);
-	if (pPlayer != nullptr)
-	{
-		//pPlayer->AttachServerData(spServerData);
-		return;
-
-	}
-	else
-	{
-		return;
-	}
 }
 
 void GatePlayerServer::KickPlayer(const socket_t nFd)

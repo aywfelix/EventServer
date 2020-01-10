@@ -12,7 +12,7 @@ public:
 	virtual void OnClientSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);
 	virtual void OnClientConnected(const socket_t nFd);
 	virtual void OnClientDisconnect(const socket_t nFd);
-	SeFNet* GetNetModule() { return mpNetModule; }
+	SeFNet* GetNetModule() { return mNetServModule; }
 
 	ServerDataPtr GetClientNodeData(int nServerId);
 
@@ -20,8 +20,8 @@ public:
 	virtual void AfterReportToServer(ServerDataPtr& pReportServerData);
 
 protected:
-	SeFNet* mpNetModule;
+	SeFNet* mNetServModule;
 	// serverid serverdata
-	std::map<int, ServerDataPtr> mmClientNodes;
+	std::map<int, ServerDataPtr> mmServNodes;
 };
 

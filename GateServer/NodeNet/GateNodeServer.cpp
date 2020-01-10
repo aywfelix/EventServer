@@ -10,16 +10,14 @@
 #include "GateServerThread.h"
 #include "SeFNet.h"
 
-using namespace SeFNetProto;
-
 bool GateNodeServer::InitHelper()
 {
-	mpNetModule->AddReceiveCallBack(this, &GateNodeServer::OtherMessage);
-	mpNetModule->AddReceiveCallBack(LOGIN_ROUTE_TO_GATE, this, &GateNodeServer::OnLoginRouteBack);
-	mpNetModule->AddReceiveCallBack(CHAT_ROUTE_TO_GATE, this, &GateNodeServer::OnChatRouteBack);
+	mNetServModule->AddReceiveCallBack(this, &GateNodeServer::OtherMessage);
+	mNetServModule->AddReceiveCallBack(LOGIN_ROUTE_TO_GATE, this, &GateNodeServer::OnLoginRouteBack);
+	mNetServModule->AddReceiveCallBack(CHAT_ROUTE_TO_GATE, this, &GateNodeServer::OnChatRouteBack);
 
 	//init server info
-	if (!mpNetModule->InitNet(g_pJsonConfig->m_ServerConf["NodePort"].asUInt()))
+	if (!mNetServModule->InitNet(g_JsonConfig->m_ServerConf["NodePort"].asUInt()))
 	{
 		LOG_ERR("init GateNodeServer failed");
 		return false;
@@ -46,7 +44,7 @@ bool GateNodeServer::SentPackToChat(const int msgid, google::protobuf::Message& 
 	ServerDataPtr pServerData = nullptr;
 	std::vector<ServerDataPtr> typed_list;
 
-	for (auto& it : mmClientNodes)
+	for (auto& it : mmServNodes)
 	{
 		pServerData = it.second;
 		if (pServerData->ServerInfo->server_type() == EServerType::SERVER_TYPE_CHAT)
@@ -59,7 +57,7 @@ bool GateNodeServer::SentPackToChat(const int msgid, google::protobuf::Message& 
 		CLOG_ERR << "GateNodeServer::SentPackToChat Send ERROR!!!!";
 		return false;
 	}
-	mpNetModule->SendPBMsg(typed_list[0]->fd, msgid, &xData);
+	mNetServModule->SendPbMsg(typed_list[0]->fd, msgid, &xData);
 	return true;
 }
 bool GateNodeServer::SentPackToWorld(const int msgid, google::protobuf::Message& xData)
@@ -74,24 +72,17 @@ void GateNodeServer::OnLoginRouteBack(socket_t nFd, const int msgid, const char*
 void GateNodeServer::OnChatRouteBack(socket_t nFd, const int msgid, const char* msg, const uint32_t nLen)
 {
 	ChatToGatePacket xData;
-	if (!SeNet::ReceivePB(msgid, msg, nLen, &xData))
-	{
-		return;
-	}
+	if (!SeNet::ReceivePB(msgid, msg, nLen, &xData)) return;
+
 	uint64_t playerId = xData.player_id();
 	if (ModuleChat::RPC_CHAT_CHAT_REQ == xData.msg_id())
 	{
 		ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayerByID(playerId);
-		if (pPlayer == nullptr)
-		{
-			return;
-		}
+		if (pPlayer == nullptr) return;
 
 		socket_t nPlayerSock = pPlayer->GetSockFd();
-		if (nPlayerSock == -1)
-		{
-			return;
-		}
+		if (nPlayerSock == -1) return;
+
 		g_pServerThread->PlayerServer().SentToClient(xData.msg_id(), xData.msg_body(), nPlayerSock);
 	}
 

@@ -5,10 +5,10 @@
 
 bool WorldNodeServer::InitHelper()
 {
-	mpNetModule->AddReceiveCallBack(this, &WorldNodeServer::OtherMessage);
+	mNetServModule->AddReceiveCallBack(this, &WorldNodeServer::OtherMessage);
 
 	//init server info
-	if (!mpNetModule->InitNet(g_pJsonConfig->m_ServerConf["NodePort"].asUInt()))
+	if (!mNetServModule->InitNet(g_JsonConfig->m_ServerConf["NodePort"].asUInt()))
 	{
 		LOG_ERR("init WorldServer failed");
 		return false;

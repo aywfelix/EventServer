@@ -3,12 +3,10 @@
 #include "LogHelper.h"
 #include "SeFNodeNet.pb.h"
 
-using namespace SeFNetProto;
-
 bool MasterNodeServer::InitHelper()
 {
 	//init server info
-	if (!mpNetModule->InitNet(g_pJsonConfig->m_ServerConf["NodePort"].asUInt()))
+	if (!mNetServModule->InitNet(g_JsonConfig->m_ServerConf["NodePort"].asUInt()))
 	{
 		LOG_ERR("init MasterNodeServer failed");
 		return false;
@@ -19,35 +17,32 @@ bool MasterNodeServer::InitHelper()
 
 void MasterNodeServer::AfterReportToServer(ServerDataPtr& pReportServerData)
 {
-	EServerType nExcludeType = (EServerType)pReportServerData->ServerInfo->server_type();
-	SyncNodeDataToAll(nExcludeType);  // 对应连接类型
-	LOG_INFO("sync node server info : %s", pReportServerData->ServerInfo->server_name().c_str());
+	SyncNodeDataToAll();  // 对应连接类型
 }
 
-void MasterNodeServer::SyncNodeDataToAll(EServerType nType)
+void MasterNodeServer::SyncNodeDataToAll()
 {
 	ServerReportList report_list;
-	//std::map<int, ServerDataPtr> mmClientNodes;
-	for (auto it = mmClientNodes.begin(); it != mmClientNodes.end(); it++)
+	//std::map<int, ServerDataPtr> mmServNodes;
+	for (auto it = mmServNodes.begin(); it != mmServNodes.end(); it++)
 	{
 		ServerReport* pReport = report_list.add_server_info();
-		if (pReport == nullptr)
-		{
-			continue;
-		}
+		if (pReport == nullptr) continue;
 		pReport->CopyFrom(*(it->second->ServerInfo));
 	}
 	if (report_list.server_info_size() > 0)
 	{
-		for (auto it = mmClientNodes.begin(); it != mmClientNodes.end(); it++)
+		for (auto it = mmServNodes.begin(); it != mmServNodes.end(); it++)
 		{
-			mpNetModule->SendPBMsg(it->second->fd, MASTER_REPORT_SERVER_INFO_TO_SERVER, &report_list);
+			mNetServModule->SendPbMsg(it->second->fd, MASTER_REPORT_SERVER_INFO_TO_SERVER, &report_list);
 		}
+
+		LOG_INFO("==============================================");
+		for (int i = 0; i < report_list.server_info_size(); i++)
+		{
+			ServerReport pReport = report_list.server_info(i);
+			LOG_INFO("(%d : %s)", pReport.server_id(), pReport.server_name().c_str());
+		}
+		LOG_INFO("==============================================");
 	}
-	//LOG_INFO("SyncNodeDataToAll=======================================================");
-	//for (int i = 0; i < report_list.server_info_size(); i++)
-	//{
-	//	LOG_INFO("SyncNodeDataToAll: server_id %d", report_list.server_info(i).server_id());
-	//}
-	//LOG_INFO("SyncNodeDataToAll=======================================================");
 }

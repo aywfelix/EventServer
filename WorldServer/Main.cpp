@@ -45,9 +45,9 @@ int main()
 {
 	OnHookSignal();
 
-	g_pJsonConfig.reset(new JsonConfig());
-	g_pJsonConfig->Load("../Config/ServerConf.json");
-	g_pJsonConfig->m_ServerConf = g_pJsonConfig->m_Root["WorldServer"];
+	g_JsonConfig.reset(new JsonConfig());
+	g_JsonConfig->Load("../Config/ServerConf.json");
+	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root["WorldServer"];
 
 	World world;
 	world.Init();

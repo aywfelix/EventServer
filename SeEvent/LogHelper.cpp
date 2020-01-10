@@ -9,10 +9,6 @@
 
 std::unique_ptr<LogHelper> g_pLog = nullptr;
 
-LogHelper::LogHelper() {}
-LogHelper::~LogHelper(){}
-
-
 bool LogHelper::Init(std::string servername)
 {
 	m_ServerName = servername;
@@ -58,6 +54,7 @@ void LogHelper::ThreadLoop()
 {
 	for (;;)
 	{
+		if (mStop) break;
 		CreateLog();
 		SendLog();
 		SFSLEEP(50);
@@ -80,11 +77,13 @@ bool LogHelper::SendLog()
 
 void LogHelper::Start()
 {
+	mStop = false;
 	m_thread = std::thread(std::bind(&LogHelper::ThreadLoop, this));
 }
 
 void LogHelper::Stop()
 {
+	mStop = true;
 	mFileC.Close();
 	if (m_thread.joinable())
 	{
@@ -103,6 +102,8 @@ void LogHelper::Log(int level, const char* file, const char* func, int line, con
 	{
 		return;
 	}
+	moss.clear();
+	moss.str("");
 	// time
 	char time_stamp[32];
 	memset(time_stamp, '\0', sizeof(time_stamp));
@@ -138,7 +139,6 @@ void LogHelper::Log(int level, const char* file, const char* func, int line, con
 #endif
 	moss << "\n";
 	m_queue.PutQ(moss.str());
-	moss.str("");
 }
 
 bool LogHelper::LoadLogCfg(std::string& logcfg)
@@ -176,11 +176,10 @@ LogStream& LogHelper::Stream(int level, const char* file, const char* func, int 
 	return stream;
 }
 
-LogStream::LogStream(){}
-LogStream::~LogStream(){}
-
 void LogStream::Init(int level, const char* file, const char* func, int line)
 {
+	moss.clear();
+	moss.str("");
 	m_level = level;
 	m_file = file;
 	m_func = func;
@@ -213,7 +212,6 @@ void LogStream::Clear()
 {
 	if (m_level < g_pLog->GetLevel())
 	{
-		moss.clear();
 		m_level = 1;
 		m_file = nullptr;
 		m_func = nullptr;
@@ -238,8 +236,6 @@ void LogStream::Clear()
 	}
 	moss << "\n";
 	g_pLog->GetQueue().PutQ(moss.str());
-	moss.clear();
-	moss.str("");
 	m_level = 1;
 	m_file = nullptr;
 	m_func = nullptr;

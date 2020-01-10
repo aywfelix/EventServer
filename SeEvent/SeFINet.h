@@ -173,7 +173,7 @@ struct ConnectData
 // 服务器保存连接的客户端信息 客户端上报的信息
 struct ServerData
 {
-	std::shared_ptr<SeFNetProto::ServerReport> ServerInfo;
+	std::shared_ptr<ServerReport> ServerInfo;
 	socket_t fd;
 };
 

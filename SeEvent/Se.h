@@ -68,7 +68,7 @@ protected:
 class SeNet
 {
 public:
-	SeNet(){}
+
 	SeNet(NET_RECEIVE_FUNCTOR& receiveCb, NET_EVENT_FUNCTOR& eventCb)
 	{
 		mRecvCB = receiveCb;
@@ -98,7 +98,7 @@ public:
 
 	Session* GetSession(socket_t fd);
 private:
-	void InitSeNet();
+	Socket* InitSeNet();
 	void AddSession(Socket* pSocket);
 	
 	void CloseSession(Session* pSession);
@@ -115,9 +115,9 @@ private:
 	void SendToAllClients(const char* msg, int len);
 	
 private:
-	bool mbStop;
-	SeEventOp* mEventOp;
-	Socket* mSocket;
+	bool mbStop{false};
+	SeEventOp* mEventOp{nullptr};
+	Socket* mSocket{nullptr};
 	std::map<socket_t, Session*> mSessions;  // 如果是服务器端，sessions保存所有连接，如果是客户端则只有一个session保存
 	bool mbServer{ false };
 

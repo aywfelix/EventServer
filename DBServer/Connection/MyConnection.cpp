@@ -17,9 +17,9 @@ MyConnection::~MyConnection()
 
 bool MyConnection::ConnectToDB()
 {
-	const char* uri = g_pJsonConfig->m_dbConf["uri"].asCString();
-	const char* user = g_pJsonConfig->m_dbConf["root"].asCString();
-	const char* passwd = g_pJsonConfig->m_dbConf["passwd"].asCString();
+	const char* uri = g_JsonConfig->m_dbConf["uri"].asCString();
+	const char* user = g_JsonConfig->m_dbConf["root"].asCString();
+	const char* passwd = g_JsonConfig->m_dbConf["passwd"].asCString();
 	try
 	{
 		m_Conn.connect(MariaCpp::Uri(uri), user, passwd);

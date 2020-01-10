@@ -5,7 +5,7 @@
 #include "Socket.h"
 #include "LogHelper.h"
 
-using namespace SeFNetProto;
+
 
 bool ClientPlayer::Init()
 {

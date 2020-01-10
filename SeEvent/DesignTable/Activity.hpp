@@ -96,13 +96,13 @@ public:
 	bool LoadJson(const std::string& jsonFile)
 	{
 		std::string loadfile = std::string(TABLE_PATH).append(jsonFile.c_str());
-		if (!g_pJsonConfig->Load(loadfile.c_str()))
+		if (!g_JsonConfig->Load(loadfile.c_str()))
 		{
 			CLOG_ERR << "load table Activity error" <<CLOG_END;
 			return false;
 		}
 
-		for (auto it = g_pJsonConfig->m_Root.begin(); it != g_pJsonConfig->m_Root.end(); ++it)
+		for (auto it = g_JsonConfig->m_Root.begin(); it != g_JsonConfig->m_Root.end(); ++it)
 		{
 			try
 			{

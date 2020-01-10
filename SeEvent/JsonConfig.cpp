@@ -5,7 +5,7 @@
 
 #include "JsonConfig.h"
 
-std::unique_ptr<JsonConfig> g_pJsonConfig = nullptr;
+std::unique_ptr<JsonConfig> g_JsonConfig = nullptr;
 
 bool JsonConfig::Load(const char *jsonFile)
 {

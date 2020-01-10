@@ -16,28 +16,6 @@ SeFNetClient::~SeFNetClient()
 	mmCallBack.clear();
 }
 
-//void SeFNetClient::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
-//{
-//	if (nEvent & SE_NET_EVENT_CONNECTED)
-//	{
-//		OnSocketConnect(nFd, pNet);
-//	}
-//	else
-//	{
-//		OnSocketDisConnect(nFd, pNet);
-//	}
-//}
-//
-//void SeFNetClient::OnSocketConnect(const socket_t nFd, SeNet* pNet)
-//{
-//	LOG_INFO("connect server ok, socket(%d)", nFd);
-//}
-//
-//void SeFNetClient::OnSocketDisConnect(const socket_t nFd, SeNet* pNet)
-//{
-//	LOG_WARN("disconnect, socket(%d)", nFd);
-//}
-
 void SeFNetClient::AddReceiveCallBack(EServerType eType, NET_RECEIVE_FUNCTOR_PTR functorPtr)
 {
 	auto it = mmCallBack.find(eType);
@@ -189,12 +167,12 @@ void SeFNetClient::SendByServerIds(std::vector<int>& nServerIds, const int nMsgI
 		SendByServerId(it, nMsgID, msg, len);
 	}
 }
-void SeFNetClient::SendPBByServerId(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg)
+void SeFNetClient::SendPbByServId(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg)
 {
 	std::string strMsg = pMsg->SerializeAsString();
 	SendByServerId(nServerId, nMsgID, strMsg.c_str(), strMsg.length());
 }
-void SeFNetClient::SendPBByServerIds(std::vector<int>& nServerIds, const int nMsgID, ::google::protobuf::Message* pMsg)
+void SeFNetClient::SendPbByServIds(std::vector<int>& nServerIds, const int nMsgID, ::google::protobuf::Message* pMsg)
 {
 	for (auto& it : nServerIds)
 	{

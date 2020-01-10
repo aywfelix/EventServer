@@ -5,7 +5,7 @@
 class ChatNodeClient : public NetClientBase {
 public:
     void InitHelper();
-    void SetServerInfoReport();
+    void SetReportInfo();
     void AddConnectServer();
 	void OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);
 	void OnGateRouteChat(const socket_t nFd, const int msgid, const char* msg, const uint32_t msglen);

@@ -44,8 +44,8 @@ public:
 	// send msg
 	void SendByServerId(int nServerId, const int nMsgID, const char* msg, int len);
 	void SendByServerIds(std::vector<int>& nServerIds, const int nMsgID, const char* msg, int len);
-	void SendPBByServerId(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg);
-	void SendPBByServerIds(std::vector<int>& nServerIds, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendPbByServId(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendPbByServIds(std::vector<int>& nServerIds, const int nMsgID, ::google::protobuf::Message* pMsg);
 	void SendToAll(const int nMsgID, const char* msg, int len);
 	void SendPBToAll(const int nMsgID, ::google::protobuf::Message* pMsg);
 
@@ -57,9 +57,6 @@ private:
 	void AddReceiveCallBack(EServerType eType, UINT32 nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr);
 	void AddReceiveCallBack(EServerType eType, NET_RECEIVE_FUNCTOR_PTR functorPtr);
 	void AddEventCallBack(EServerType eType, NET_EVENT_FUNCTOR_PTR functorPtr);
-	//void OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);
-	//void OnSocketConnect(const socket_t nFd, SeNet* pNet);
-	//void OnSocketDisConnect(const socket_t nFd, SeNet* pNet);
 	void ProcessExecute(LOOP_RUN_TYPE run);
 	void ProcessAddConnect();
 	void InitCallBacks(ConnectDataPtr& data);

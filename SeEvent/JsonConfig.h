@@ -13,4 +13,4 @@ public:
 	Json::Value m_dbConf;
 };
 
-extern std::unique_ptr<JsonConfig>  g_pJsonConfig;
+extern std::unique_ptr<JsonConfig>  g_JsonConfig;

@@ -9,7 +9,7 @@ class NetClientBase
 public:
 	virtual bool Init();
 	virtual void InitHelper() = 0;
-	virtual void SetServerInfoReport() = 0;
+	virtual void SetReportInfo() = 0;
 	virtual void AddConnectServer() = 0;
 	virtual void OnMasterMessage(const socket_t nFd, const int nMsgID, const char* msg, const UINT32 nLen);
 	virtual void Loop();
@@ -22,13 +22,13 @@ public:
 
 	virtual EServerType GetServerType()
 	{
-		return (EServerType)mServerReport.server_type();
+		return (EServerType)mServerInfo.server_type();
 	}
 	virtual void AddConnectMaster();
 
 protected:
-	SeFNetClient* mpNetClientModule{ nullptr };
-	SeFNetProto::ServerReport mServerReport;
+	SeFNetClient* mNetCliModule{ nullptr };
+	ServerReport mServerInfo;
 	std::vector<EServerType> mConnectType;
 };
 

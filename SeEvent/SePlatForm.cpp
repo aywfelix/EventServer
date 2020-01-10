@@ -21,8 +21,6 @@ int SocketCloseOnExec(socket_t fd)
     return 0;
 }
 
-
-
 #ifdef SF_PLATFORM_WIN
 int SocketGetError(socket_t sock)
 {

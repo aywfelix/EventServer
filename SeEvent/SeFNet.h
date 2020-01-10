@@ -47,15 +47,11 @@ public:
 	// send msg
 	void SendMsg(const socket_t fd, const int nMsgID, const char* msg, int len);
 	void SendMsg(std::vector<socket_t>& fdlist, const int nMsgID, const char* msg, int len);
-	void SendToAllMsg(const int nMsgID, const char* msg, int len);
+	void SendToAll(const int nMsgID, const char* msg, int len);
 
-	void SendPBMsg(const socket_t fd, const int nMsgID, ::google::protobuf::Message* pMsg);
-	void SendPBMsg(std::vector<socket_t>& fdlist, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendPbMsg(const socket_t fd, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendPbMsg(std::vector<socket_t>& fdlist, const int nMsgID, ::google::protobuf::Message* pMsg);
 	void SendPBToAllMsg(const int nMsgID, ::google::protobuf::Message* pMsg);
-	// receive msg
-	//bool ReceivePB(const int nMsgID, const std::string& strMsg, google::protobuf::Message* pMsg);
-	//bool ReceivePB(const int nMsgID, const char* msg, const UINT32 nLen, google::protobuf::Message* pData);
-
 	//
 	SeNet* GetNet() { return mNet; }
 private:

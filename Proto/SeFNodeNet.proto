@@ -1,7 +1,5 @@
 syntax = "proto3";
-
 import "ServerPublic.proto";
-package SeFNetProto; 
 
 enum EServerState
 {
@@ -14,7 +12,6 @@ enum EServerState
 
 message ServerReport
 {
-	
 	int32	server_id = 1;
 	bytes	server_name = 2;
 	bytes	server_ip = 3;
@@ -70,7 +67,6 @@ enum ServerNodeMsgID
 	GAME_PLAYER_OFFLINE = 10051;
 	REPORT_CLIENT_INFO_TO_SERVER = 10054;
 	MASTER_REPORT_SERVER_INFO_TO_SERVER = 10053;
-	
 }
 
 message NodeToMasterPacket

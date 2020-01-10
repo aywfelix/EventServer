@@ -89,13 +89,13 @@ typedef unsigned int    UINT32;
 
 
 #ifdef _WIN32
-#define SE_SOCKET_ERROR() WSAGetLastError()
+#define MY_SOCKET_ERROR() WSAGetLastError()
 int SocketGetError(socket_t fd);
 int gettimeofday(struct timeval* tp, void* tzp);
 typedef DWORD		TID;
 #else
-#define SE_SOCKET_ERROR() (errno)
-#define SocketGetError(socket_t fd) (errno)
+#define MY_SOCKET_ERROR() (errno)
+#define SocketGetError(sock) (errno)
 typedef pthread_t	TID;
 #endif
 
@@ -117,6 +117,50 @@ typedef pthread_t	TID;
 #define		tvsnprintf		vsnprintf
 #define		tsnprintf		snprintf
 void SetResource();
+#endif
+
+// socket error
+#ifdef SF_PLATFORM_WIN
+#define SOCKET_ERR_IS_EAGAIN(e) \
+	((e) == WSAEWOULDBLOCK || (e) == EAGAIN)
+
+#define SOCKET_ERR_RW_RETRIABLE(e)					\
+	((e) == WSAEWOULDBLOCK ||					\
+	    (e) == WSAEINTR)
+
+#define SOCKET_ERR_CONNECT_RETRIABLE(e)					\
+	((e) == WSAEWOULDBLOCK ||					\
+	    (e) == WSAEINTR ||						\
+	    (e) == WSAEINPROGRESS ||					\
+	    (e) == WSAEINVAL)
+
+#define SOCKET_ERR_ACCEPT_RETRIABLE(e)			\
+	SOCKET_ERR_RW_RETRIABLE(e)
+
+#define SOCKET_ERR_CONNECT_REFUSED(e)					\
+	((e) == WSAECONNREFUSED)
+#else
+#if EAGAIN == EWOULDBLOCK
+#define SOCKET_ERR_IS_EAGAIN(e) \
+	((e) == EAGAIN)
+#else
+#define SOCKET_ERR_IS_EAGAIN(e) \
+	((e) == EAGAIN || (e) == EWOULDBLOCK)
+#endif
+/* True iff e is an error that means a read/write operation can be retried. */
+#define SOCKET_ERR_RW_RETRIABLE(e)				\
+	((e) == EINTR || SOCKET_ERR_IS_EAGAIN(e))
+/* True iff e is an error that means an connect can be retried. */
+#define SOCKET_ERR_CONNECT_RETRIABLE(e)			\
+	((e) == EINTR || (e) == EINPROGRESS)
+/* True iff e is an error that means a accept can be retried. */
+#define SOCKET_ERR_ACCEPT_RETRIABLE(e)			\
+	((e) == EINTR || SOCKET_ERR_IS_EAGAIN(e) || (e) == ECONNABORTED)
+
+/* True iff e is an error that means the connection was refused */
+#define SOCKET_ERR_CONNECT_REFUSED(e)					\
+	((e) == ECONNREFUSED)
+
 #endif
 
 int SocketCloseOnExec(socket_t fd);
