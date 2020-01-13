@@ -242,10 +242,10 @@ bool SeNet::Dismantle(Session* pSession)
 		pSession->ReadProtoHead(headbuf, MSG_HEAD_LEN);
 		NetMsgHead MsgHead;
 		MsgHead.DeCode(headbuf);
-		int nPacketLen = MsgHead.GetBodyLength();
-		if (nTotal < (MSG_HEAD_LEN + nPacketLen))
+		int nMsgBodyLen = MsgHead.GetBodyLength();
+		if (nTotal < (MSG_HEAD_LEN + nMsgBodyLen))
 			return false;
-		int nRead = nPacketLen + MSG_HEAD_LEN;
+		int nRead = nMsgBodyLen + MSG_HEAD_LEN;
 		char *pMsgBuf = new char[nRead];
 		pSession->Read(pMsgBuf, nRead);
 

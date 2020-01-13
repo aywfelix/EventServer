@@ -27,10 +27,10 @@
     <ClCompile Include="NodeNet\ChatServerThread.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Chat.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="Chat.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

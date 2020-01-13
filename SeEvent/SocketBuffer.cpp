@@ -2,8 +2,7 @@
 
 void SocketBuffer::Init()
 {
-	m_oBuffer.first = m_oBuffer.last = nullptr;
-	m_oBuffer.last_datap = nullptr;
+	m_oBuffer.first = m_oBuffer.last = m_oBuffer.datap = nullptr;
 	m_oBuffer.total_len = 0;
 	m_oBuffer.chain_num = 0;
 }
@@ -11,10 +10,8 @@ void SocketBuffer::Init()
 void SocketBuffer::Write(const char* data, int size)
 {
 	BufferChain* chain = GetWriteChain(size);
-	if (m_oBuffer.last_datap == nullptr)
-	{
-		m_oBuffer.last_datap = chain;
-	}
+	if (m_oBuffer.datap == nullptr) m_oBuffer.datap = chain;
+
 	memcpy(chain->buffer + chain->write_pos, data, size);
 	chain->write_pos += size;
 	m_oBuffer.total_len += size;  // data len
@@ -22,22 +19,16 @@ void SocketBuffer::Write(const char* data, int size)
 
 void SocketBuffer::Read(char* buf, int size)
 {
-	if (size > m_oBuffer.total_len)
-		size = m_oBuffer.total_len;
-	if (size == 0)
-	{
-		return;
-	}
+	if (size > m_oBuffer.total_len) size = m_oBuffer.total_len;
+	if (size == 0) return;
+
 	int read_len = 0;
 	int can_read_len = 0;
-	BufferChain* chain = m_oBuffer.last_datap;
+	BufferChain* chain = m_oBuffer.datap;
 	while (size > 0 && chain)
 	{
 		can_read_len = chain->write_pos - chain->read_pos;
-		if (can_read_len >= size)
-		{
-			can_read_len = size;
-		}
+		if (can_read_len >= size) can_read_len = size;
 		memcpy(buf + read_len, chain->buffer + chain->read_pos, can_read_len);
 		m_oBuffer.total_len -= can_read_len;
 		read_len += can_read_len;
@@ -45,39 +36,29 @@ void SocketBuffer::Read(char* buf, int size)
 		chain->read_pos += can_read_len;
 		if (chain->read_pos == chain->write_pos)
 		{
-			memset(chain->buffer, 0, chain->buffer_len);  // 清掉老的缓存数据
 			chain->read_pos = chain->write_pos = 0;
 			chain = chain->next;
-			m_oBuffer.last_datap = chain;
+			m_oBuffer.datap = chain;
 		}
 	}
 }
 
 void SocketBuffer::ReadProtoHead(char* buf, int size)
 {
-	if (m_oBuffer.total_len <= size)
-	{
-		return;  // 尽量保证读到完整协议
-	}
+	if (m_oBuffer.total_len <= size) return;  // 尽量保证读到完整协议
+
 	int read_len = 0;
 	int can_read_len = 0;
-	BufferChain* chain = m_oBuffer.last_datap;
+	BufferChain* chain = m_oBuffer.datap;
 	while (size > 0 && chain)
 	{
 		can_read_len = chain->write_pos - chain->read_pos;
-		if (can_read_len >= size)
-		{
-			can_read_len = size;
-		}
+		if (can_read_len >= size) can_read_len = size;
 		memcpy(buf + read_len, chain->buffer + chain->read_pos, can_read_len);
 		read_len += can_read_len;
 		size -= can_read_len;
 		int pos = chain->read_pos + can_read_len;
-		if (pos == chain->write_pos)
-		{
-			chain = chain->next;
-			m_oBuffer.last_datap = chain;
-		}
+		if (pos == chain->write_pos) chain = chain->next;
 	}
 }
 
@@ -91,9 +72,7 @@ void SocketBuffer::Clear()
 		delete first;
 		first = next;
 	}
-	m_oBuffer.first = nullptr;
-	m_oBuffer.last_datap = nullptr;
-	m_oBuffer.last = nullptr;
+	m_oBuffer.first = m_oBuffer.last = m_oBuffer.datap = nullptr;
 }
 
 BufferChain* SocketBuffer::NewChain(int size)
@@ -105,8 +84,7 @@ BufferChain* SocketBuffer::NewChain(int size)
 	memset(chain->buffer, 0, size);
 	chain->read_pos = chain->write_pos = 0;
 	chain->buffer_len = size;
-	chain->next = nullptr;
-	chain->prev = nullptr;
+	chain->next = chain->prev = nullptr;
 	InsertNewChain(chain);
 	return chain;
 }
@@ -128,26 +106,23 @@ BufferChain* SocketBuffer::GetWriteChain(int size)
 	}
 	BufferChain* chain = m_oBuffer.first;
 	BufferChain* wait = nullptr;
-	int min_len = 0;
-	while (chain && chain->IsEmpty() && chain->buffer_len >= size)
+	while (chain && chain->IsEmpty())
 	{
-		if (min_len == 0)
+		if (chain->buffer_len >= size)
 		{
-			min_len = chain->buffer_len;
-			wait = chain;
-		}
-		else if (min_len > chain->buffer_len)
-		{
-			min_len = chain->buffer_len;
-			wait = chain;
+			if (wait == nullptr) wait = chain;
+			else if (wait->buffer_len > chain->buffer_len) wait = chain;
 		}
 		chain = chain->next;
 	}
 	int alloc_size = GetAllocSize(size);
-	if (min_len >0 && min_len <= (alloc_size << 1))
+	if (wait && wait->buffer_len <= (alloc_size << 1))
 	{
-		// 需要调整链表的位置到最后
-		AjustChain(wait);
+		if (m_oBuffer.chain_num > 1)
+		{// 需要调整链表的位置到最后
+			AjustChain(wait);
+			return wait;
+		}
 		return wait;
 	}
 	return NewChain(alloc_size);
@@ -161,10 +136,7 @@ int SocketBuffer::GetAllocSize(int size)
 {
 	int alloc_size = 0;
 	alloc_size = MIN_BUFFER_SIZE;
-	while (alloc_size < size)
-	{
-		alloc_size <<= 1;
-	}
+	while (alloc_size < size) alloc_size <<= 1;
 	Assert(alloc_size < MAX_BUFFER_SIZE);
 	return alloc_size;
 }
@@ -175,7 +147,6 @@ void SocketBuffer::InsertNewChain(BufferChain* chain)
 	{
 		m_oBuffer.first = chain;
 		m_oBuffer.last = chain;
-		//m_oBuffer.last_datap = chain;
 	}
 	else
 	{
@@ -196,7 +167,7 @@ void SocketBuffer::AjustChain(BufferChain* chain)
 	else
 	{
 		m_oBuffer.first = chain->next;
-		chain->next->prev = nullptr;
+		chain->next->prev = m_oBuffer.first;
 	}
 	m_oBuffer.last->next = chain;
 	chain->prev = m_oBuffer.last;

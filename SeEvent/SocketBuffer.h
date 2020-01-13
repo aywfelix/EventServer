@@ -10,9 +10,9 @@ struct BufferChain
 	int read_pos;
 	int write_pos;
 	int buffer_len;
-	char* buffer;
-	struct BufferChain* prev;
-	struct BufferChain* next;
+	char* buffer{nullptr};
+	struct BufferChain* prev{nullptr};
+	struct BufferChain* next{nullptr};
 	int DataLen() { return (write_pos - read_pos); }
 	int Left() { return buffer_len - write_pos; }
 	bool IsEmpty() { return write_pos == 0 || write_pos==read_pos; }
@@ -22,7 +22,7 @@ struct BufferChainMgr
 {
 	struct BufferChain* first;
 	struct BufferChain* last;
-	struct BufferChain* last_datap; // 指向最后保存数据的缓存链
+	struct BufferChain* datap; // 指向保存数据的缓存链
 	int total_len;
 	int chain_num{ 0 };
 };
@@ -46,9 +46,9 @@ public:
 	{
 		BufferChain* chain = GetWriteChain(size);
 		Assert(chain != nullptr);
-		if (m_oBuffer.last_datap == nullptr)
+		if (m_oBuffer.datap == nullptr)
 		{
-			m_oBuffer.last_datap = chain;
+			m_oBuffer.datap = chain;
 		}
 		return chain->buffer + chain->write_pos;
 	}
@@ -61,10 +61,10 @@ public:
 
 	char* GetSendBuf(int& size)
 	{
-		if (m_oBuffer.last_datap)
+		if (m_oBuffer.datap)
 		{
-			size = m_oBuffer.last_datap->DataLen();
-			return m_oBuffer.last_datap->buffer + m_oBuffer.last_datap->read_pos;
+			size = m_oBuffer.datap->DataLen();
+			return m_oBuffer.datap->buffer + m_oBuffer.datap->read_pos;
 		}
 		return nullptr;
 	}
@@ -72,18 +72,16 @@ public:
 	void PostSendData(int size)
 	{
 		m_oBuffer.total_len -= size;
-		m_oBuffer.last_datap->read_pos += size;
-		if (m_oBuffer.last_datap->IsEmpty())
+		m_oBuffer.datap->read_pos += size;
+		if (m_oBuffer.datap->IsEmpty())
 		{
-			m_oBuffer.last_datap = m_oBuffer.last_datap->next;
+			m_oBuffer.datap->read_pos = m_oBuffer.datap->write_pos = 0;
+			m_oBuffer.datap = m_oBuffer.datap->next;
 		}
 	}
 
 	int TotalLen();
-	BufferChainMgr& GetChainMgr()
-	{
-		return m_oBuffer;
-	}
+	BufferChainMgr& GetChainMgr() { return m_oBuffer; }
 
 #ifdef DEBUG
 	void ReadAll(char* buf)

@@ -28,11 +28,11 @@ public:
 	Packet* CreatePacket(int msg_id, const char* msg, int msglen)
 	{
 		m_t.ParseFromArray(msg, msglen);
-		m_packet->msg_id = msg_id;
-		m_packet->pMsg = &m_t;
-		return m_packet;
+		m_packet.msg_id = msg_id;
+		m_packet.pMsg = &m_t;
+		return &m_packet;
 	}
 private:
 	T m_t;
-	Packet *m_packet;
+	Packet m_packet;
 };
