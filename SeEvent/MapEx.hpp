@@ -163,30 +163,30 @@ template<typename T, typename TD>
 class ConsistentHashEx : public MapEx<T, TD>
 {
 public:
-	void insert(const T& name, const TD& data)
+	void insert(const T& name, TD& data)
 	{
-		auto iter = m_mapex.find(name);
-		if (iter == m_mapex.end())
+		auto iter = MapEx<T, TD>::m_mapex.find(name);
+		if (iter == MapEx<T, TD>::m_mapex.end())
 		{
-			m_mapex.emplace(name, std::shared_ptr<TD>(data));
+			MapEx<T, TD>::m_mapex.emplace(name, std::make_shared<TD>(data));
 			m_consistenthash.insert(name);
 		}
 	}
-	void insert(const T& name, const std::shared_ptr<TD>& data)
+	void insert(const T& name, std::shared_ptr<TD>& data)
 	{
-		auto iter = m_mapex.find(name);
-		if (iter == m_mapex.end())
+		auto iter = MapEx<T, TD>::m_mapex.find(name);
+		if (iter == MapEx<T, TD>::m_mapex.end())
 		{
-			m_mapex.emplace(name, data);
+			MapEx<T, TD>::m_mapex.emplace(name, data);
 			m_consistenthash.insert(name);
 		}
 	}
 	void remove(const T& name)
 	{
-		auto iter = m_mapex.find(name);
-		if (iter != m_mapex.end())
+		auto iter = MapEx<T, TD>::m_mapex.find(name);
+		if (iter != MapEx<T, TD>::m_mapex.end())
 		{
-			m_mapex.erase(iter);
+			MapEx<T, TD>::m_mapex.erase(iter);
 			m_consistenthash.erase(name);
 		}
 	}
@@ -196,8 +196,8 @@ public:
 		VirtualNode<T> vnode;
 		if (m_consistenthash.get_random_node(vnode))
 		{
-			auto iter = m_mapex.find(vnode.m_data);
-			if (iter != m_mapex.end())
+			auto iter = MapEx<T, TD>::m_mapex.find(vnode.m_data);
+			if (iter != MapEx<T, TD>::m_mapex.end())
 			{
 				return iter->second;
 			}
@@ -209,8 +209,8 @@ public:
 		VirtualNode<T> vnode;
 		if (m_consistenthash.get_node(vnode))
 		{
-			auto iter = m_mapex.find(vnode.m_data);
-			if (iter != m_mapex.end())
+			auto iter = MapEx<T, TD>::m_mapex.find(vnode.m_data);
+			if (iter != MapEx<T, TD>::m_mapex.end())
 			{
 				return iter->second;
 			}
@@ -222,8 +222,8 @@ public:
 		VirtualNode<T> vnode;
 		if (m_consistenthash.get_node(name, vnode))
 		{
-			auto iter = m_mapex.find(vnode.m_data);
-			if (iter != m_mapex.end())
+			auto iter = MapEx<T, TD>::m_mapex.find(vnode.m_data);
+			if (iter != MapEx<T, TD>::m_mapex.end())
 			{
 				return iter->second;
 			}
@@ -232,7 +232,7 @@ public:
 	}
 	void clear()
 	{
-		m_mapex.clear();
+		MapEx<T, TD>::m_mapex.clear();
 		m_consistenthash.clear();
 	}
 private:

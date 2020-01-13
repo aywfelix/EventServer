@@ -7,8 +7,8 @@
 int main()
 {
 	//SF_Test::TestRedis();
-	SF_Test::TestSplit();
-	SF_Test::TestWriteLog();
+	//SF_Test::TestSplit();
+	//SF_Test::TestWriteLog();
 	SF_Test::TestConsistent();
 
 	std::vector<int> num = { 10,20,30,30,20,10,10,20 };
@@ -17,9 +17,9 @@ int main()
 	//std::for_each(num.begin(), num.end(), [](int& n) {
 	//	std::cout << n << " ";
 	//	});
-	for (auto it : num)
-	{
-		std::cout << it << " ";
-	}
+	//for (auto it : num)
+	//{
+	//	std::cout << it << " ";
+	//}
 	return 0;
 }

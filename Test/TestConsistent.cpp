@@ -2,54 +2,58 @@
 #include "MapEx.hpp"
 #include <iostream>
 
-class data_t
+class server_t
 {
 public:
-	int data;
+	server_t(int id, std::string name):m_id(id),m_name(name){}
+	int m_id;
+	std::string m_name;
 };
-using data_ptr = std::shared_ptr<data_t>;
+using data_ptr = std::shared_ptr<server_t>;
 
 void SF_Test::TestConsistent()
 {
 
-	//Map<int, data_t> mm;
-	//data_t data1; data1.data = 1;
+	//Map<int, server_t> mm;
+	//server_t data1; data1.data = 1;
 	//mm.insert(1, &data1);
-	//data_t* data2 = mm.get_value(1);
+	//server_t* data2 = mm.get_value(1);
 	//std::cout << data2->data << std::endl;
 
-	ConsistentHashEx<int, data_t> hashmap;
+	ConsistentHashEx<int, server_t> hashmap;
 
-	data_t data1; data1.data = 1;
-	data_t data2; data2.data = 2;
-	data_t data3; data3.data = 3;
-	data_t data4; data4.data = 4;
-	data_t data5; data5.data = 5;
-	data_t data6; data6.data = 6;
-	data_t data7; data7.data = 7;
-	data_t data8; data8.data = 8;
-	data_t data9; data9.data = 9;
-	hashmap.insert(1, data1);
-	hashmap.insert(2, data2);
-	hashmap.insert(3, data3);
-	hashmap.insert(4, data4);
-	hashmap.insert(5, data5);
-	hashmap.insert(6, data6);
-	hashmap.insert(7, data7);
-	hashmap.insert(8, data8);
-	hashmap.insert(9, data9);
+	server_t server1(1, "server1");
+	server_t server2(2, "server2");
+	server_t server3(3, "server3");
+	server_t server4(4, "server4");
+	server_t server5(5, "server5");
+	server_t server6(6, "server6");
+	server_t server7(7, "server7");
+	server_t server8(8, "server8");
+	server_t server9(9, "server9");
 
-	data_ptr ptr1 = hashmap.get_server_by_key(2);
-	if (ptr1) std::cout << ptr1->data << std::endl;
+	hashmap.insert(1, server1);
+	hashmap.insert(2, server2);
+	hashmap.insert(3, server3);
+	hashmap.insert(4, server4);
+	hashmap.insert(5, server5);
+	hashmap.insert(6, server6);
+	hashmap.insert(7, server7);
+	hashmap.insert(8, server8);
+	hashmap.insert(9, server9);
 
-	data_ptr ptr2 = hashmap.get_server_consistent();
-	std::cout << ptr2->data << std::endl;
+	data_ptr ptr = nullptr;
+	ptr = hashmap.get_server_by_key('aaa');
+	if (ptr) std::cout << ptr->m_name<< std::endl;
 
-	data_ptr ptr3 = hashmap.get_server_random();
-	std::cout << ptr3->data << std::endl;
+	ptr = hashmap.get_server_consistent();
+	if(ptr) std::cout << ptr->m_name << std::endl;
+
+	ptr = hashmap.get_server_random();
+	if (ptr) std::cout << ptr->m_name << std::endl;
 
 	hashmap.remove(8);
 
-	data_ptr ptr4 = hashmap.get_server_by_key(8);
-	if(ptr4) std::cout << ptr4->data << std::endl;
+	ptr = hashmap.get_server_by_key(8);
+	if(ptr) std::cout << ptr->m_name << std::endl;
 }

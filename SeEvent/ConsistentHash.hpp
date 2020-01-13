@@ -45,19 +45,20 @@ public:
 			insert(vnode);
 		}
 	}
-	void insert(const VirtualNode<T>& vnode)
+	void insert(VirtualNode<T>& vnode)
 	{
 		uint32_t hash = get_hash(vnode);
-		if (m_nodes.find(hash) == m_nodes.end()) m_nodes.emplace(hash, vnode);
+		if (m_nodes.find(hash) == m_nodes.end()) 
+			m_nodes.emplace(hash, vnode);
 	}
 
-	bool exist(const VirtualNode<T>& vnode)
+	bool exist(VirtualNode<T>& vnode)
 	{
 		uint32_t hash = get_hash(vnode);
 		if (m_nodes.find(hash) == m_nodes.end()) return false;
 		return true;
 	}
-	void erase(const VirtualNode<T>& vnode)
+	void erase(VirtualNode<T>& vnode)
 	{
 		uint32_t hash = get_hash(vnode);
 		if (m_nodes.find(hash) == m_nodes.end()) return;
@@ -96,7 +97,7 @@ private:
 		vnode = it->second;
 		return true;
 	}
-	uint32_t get_hash(const VirtualNode<T>& node)
+	uint32_t get_hash(VirtualNode<T>& node)
 	{
 		std::string node_str = node.tostr();
 		uint32_t hash = CityHash32(node_str.c_str(), node_str.length());
