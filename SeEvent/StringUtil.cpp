@@ -60,21 +60,18 @@ bool StringUtil::EndsWith(const std::string& str, const std::string& suffix) {
 	return (str.substr(str.length() - suffix.length()) == suffix);
 }
 
-std::string& StringUtil::Ltrim(std::string& str) { // NOLINT
-	//std::string::iterator it = find_if(str.begin(), str.end(), std::not1(std::ptr_fun(::isspace)));
-	//str.erase(str.begin(), it);
+std::string& StringUtil::Ltrim(std::string& str) {
+	str.erase(str.find_last_not_of(" ") + 1);
 	return str;
 }
 
-std::string& StringUtil::Rtrim(std::string& str) { // NOLINT
-	//std::string::reverse_iterator it = find_if(str.rbegin(),
-	//    str.rend(), std::not1(std::ptr_fun(::isspace)));
-
-	//str.erase(it.base(), str.end());
+std::string& StringUtil::Rtrim(std::string& str) {
+	str.erase(0, str.find_first_not_of(" "));
 	return str;
 }
 
-std::string& StringUtil::Trim(std::string& str) { // NOLINT
+std::string& StringUtil::Trim(std::string& str) {
+	if (str.empty()) return str;
 	return Rtrim(Ltrim(str));
 }
 

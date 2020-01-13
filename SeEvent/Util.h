@@ -85,3 +85,14 @@ public:
 private:
 	T* m_t;
 };
+
+template <typename T>
+T StringToNum(const std::string& str)
+{
+	std::istringstream iss(str);
+	T num;
+	iss >> num;
+	return num;
+}
+
+std::string& StringTrim(std::string& s);
