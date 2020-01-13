@@ -27,6 +27,9 @@
     <ClCompile Include="TestWriteLog.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="TestConsistent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SF_Test.h">

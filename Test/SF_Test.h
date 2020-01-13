@@ -6,5 +6,6 @@ public:
 	static void TestRedis();
 	static void TestSplit();
 	static void TestWriteLog();
+	static void TestConsistent();
 };
 

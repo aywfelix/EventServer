@@ -48,8 +48,7 @@ public:
 	void SendPbByServIds(std::vector<int>& nServerIds, const int nMsgID, ::google::protobuf::Message* pMsg);
 	void SendToAll(const int nMsgID, const char* msg, int len);
 	void SendPBToAll(const int nMsgID, ::google::protobuf::Message* pMsg);
-
-	// 
+	// get server info
 	ConnectDataPtr GetServerNetInfo(const int& nServerID);
 	ConnectDataPtr GetServerNetInfo(const SeNet* pNet);
 	ConnectDataPtr GetServerNetInfo(const socket_t& nFd);
@@ -62,8 +61,7 @@ private:
 	void InitCallBacks(ConnectDataPtr& data);
 private:
 	struct CallBack
-	{
-		// msgid handle function
+	{// msgid handle function
 		std::map<int, NET_RECEIVE_FUNCTOR_PTR> mReceiveCallBack;
 		std::list<NET_RECEIVE_FUNCTOR_PTR> mCallBackList;
 		std::list<NET_EVENT_FUNCTOR_PTR> mEventCallBackList;
@@ -73,6 +71,6 @@ private:
 
 	std::list<ConnectDataPtr> mTemplist;
 	// serverid connect data
-	std::map<int, ConnectDataPtr> mConnecServers;
+	std::map<int, ConnectDataPtr> mConnecServers; // 
 };
 

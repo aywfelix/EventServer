@@ -87,6 +87,7 @@
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>..\libs</AdditionalLibraryDirectories>
       <AdditionalDependencies>SeEvent.lib;libconfig++.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocd.lib;hiredis.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -132,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SF_Test.cpp" />
+    <ClCompile Include="TestConsistent.cpp" />
     <ClCompile Include="TestRedis.cpp" />
     <ClCompile Include="TestSplit.cpp" />
     <ClCompile Include="TestWriteLog.cpp" />

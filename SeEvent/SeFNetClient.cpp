@@ -104,10 +104,7 @@ void SeFNetClient::ProcessExecute(LOOP_RUN_TYPE run)
 
 void SeFNetClient::ProcessAddConnect()
 {
-	if (mTemplist.empty())
-	{
-		return;
-	}
+	if (mTemplist.empty()) return;
 
 	for (auto& connPtr : mTemplist)
 	{
@@ -154,10 +151,8 @@ void SeFNetClient::InitCallBacks(ConnectDataPtr& data)
 void SeFNetClient::SendByServerId(int nServerId, const int nMsgID, const char* msg, int len)
 {
 	auto it = mConnecServers.find(nServerId);
-	if (it == mConnecServers.end())
-	{
-		return;
-	}
+	if (it == mConnecServers.end()) return;
+
 	it->second->pNet->SendMsg(0, nMsgID, msg, len);
 }
 void SeFNetClient::SendByServerIds(std::vector<int>& nServerIds, const int nMsgID, const char* msg, int len)
@@ -205,10 +200,7 @@ void SeFNetClient::SendPBToAll(const int nMsgID, ::google::protobuf::Message* pM
 ConnectDataPtr SeFNetClient::GetServerNetInfo(const int& nServerID)
 {
 	auto it = mConnecServers.find(nServerID);
-	if (it == mConnecServers.end())
-	{
-		return nullptr;
-	}
+	if (it == mConnecServers.end()) return nullptr;
 
 	return it->second;
 }

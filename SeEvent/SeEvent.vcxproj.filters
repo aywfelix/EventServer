@@ -207,6 +207,12 @@
     <ClInclude Include="Packet\Packet.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ConsistentHash.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MapEx.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SeEpoll.cpp">

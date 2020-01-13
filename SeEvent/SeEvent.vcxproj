@@ -145,6 +145,7 @@
     <ClInclude Include="CommDef.h" />
     <ClInclude Include="concurrentqueue.h" />
     <ClInclude Include="ConcurrentQueue.hpp" />
+    <ClInclude Include="ConsistentHash.hpp" />
     <ClInclude Include="DesignTable\Activity.hpp" />
     <ClInclude Include="DesignTable\TableMgr.h" />
     <ClInclude Include="FileHelper.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="LibConfig.hpp" />
     <ClInclude Include="Lock.hpp" />
     <ClInclude Include="LogHelper.h" />
+    <ClInclude Include="MapEx.hpp" />
     <ClInclude Include="MariaCpp\mariacpp\bits\bind.hpp" />
     <ClInclude Include="MariaCpp\mariacpp\connection.hpp" />
     <ClInclude Include="MariaCpp\mariacpp\exception.hpp" />
