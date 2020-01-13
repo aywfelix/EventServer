@@ -121,7 +121,6 @@ BufferChain* SocketBuffer::GetWriteChain(int size)
 		if (m_oBuffer.chain_num > 1)
 		{// 需要调整链表的位置到最后
 			AjustChain(wait);
-			return wait;
 		}
 		return wait;
 	}
