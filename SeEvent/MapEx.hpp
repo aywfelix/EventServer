@@ -70,91 +70,91 @@ class MapEx
 public:
 	MapEx() {}
 	~MapEx() {}
-	std::size_t size() { return m_map.size(); }
-	bool is_empty() { return m_map.empty(); }
-	void clear() { m_map.clear(); }
+	std::size_t size() { return m_mapex.size(); }
+	bool is_empty() { return m_mapex.empty(); }
+	void clear() { m_mapex.clear(); }
 	void insert(const T& key, const TD& data)
 	{
 		TD_PTR TD_PTR = std::make_shared<TD>(data);
-		if (m_map.find(key) == m_map.end()) m_map.emplace(key, TD_PTR);
+		if (m_mapex.find(key) == m_mapex.end()) m_mapex.emplace(key, TD_PTR);
 	}
 	void insert(const T& key, TD_PTR& TD_PTR)
 	{
-		if (m_map.find(key) == m_map.end()) m_map.emplace(key, TD_PTR);
+		if (m_mapex.find(key) == m_mapex.end()) m_mapex.emplace(key, TD_PTR);
 	}
 	void erase(const T& key)
 	{
-		m_map.erase(key);
+		m_mapex.erase(key);
 	}
 	void get_value(const T& key, TD& data)
 	{
-		if (m_map.find(key) == m_map.end()) return;
-		data = m_map[key];
+		if (m_mapex.find(key) == m_mapex.end()) return;
+		data = m_mapex[key];
 	}
 	void get_value(const T& key, TD_PTR& TD_PTR)
 	{
-		if (m_map.find(key) == m_map.end()) return;
-		TD_PTR = TD_PTR(m_map[key]);
+		if (m_mapex.find(key) == m_mapex.end()) return;
+		TD_PTR = TD_PTR(m_mapex[key]);
 	}
-	TD* first()
+	TD* first_nude()
 	{
-		if (m_map.size() == 0) return nullptr;
-		m_iter = m_map.begin();
-		if (m_iter == m_map.end()) return nullptr;
+		if (m_mapex.size() == 0) return nullptr;
+		m_iter = m_mapex.begin();
+		if (m_iter == m_mapex.end()) return nullptr;
 		return (m_iter->second).get();
 	}
 	TD_PTR first()
 	{
-		if (m_map.size() == 0) return nullptr;
-		m_iter = m_map.begin();
-		if (m_iter == m_map.end()) return nullptr;
+		if (m_mapex.size() == 0) return nullptr;
+		m_iter = m_mapex.begin();
+		if (m_iter == m_mapex.end()) return nullptr;
 		return m_iter->second;
 	}
-	TD* next()
+	TD* next_nude()
 	{
 		m_iter++;
-		if (m_iter == m_map.end()) return nullptr;
+		if (m_iter == m_mapex.end()) return nullptr;
 		return (m_iter->second).get();
 	}
 	TD_PTR next()
 	{
 		m_iter++;
-		if (m_iter == m_map.end()) return nullptr;
+		if (m_iter == m_mapex.end()) return nullptr;
 		return m_iter->second;
 	}
-	TD* first(T& key)
+	TD* first_nude(T& key)
 	{
-		if (m_map.size() == 0) return nullptr;
-		m_iter = m_map.begin();
-		if (m_iter == m_map.end()) return nullptr;
+		if (m_mapex.size() == 0) return nullptr;
+		m_iter = m_mapex.begin();
+		if (m_iter == m_mapex.end()) return nullptr;
 		key = m_iter->first;
 		return (m_iter->second).get();
 	}
 	TD_PTR first(T& key)
 	{
-		if (m_map.size() == 0) return nullptr;
-		m_iter = m_map.begin();
-		if (m_iter == m_map.end()) return nullptr;
+		if (m_mapex.size() == 0) return nullptr;
+		m_iter = m_mapex.begin();
+		if (m_iter == m_mapex.end()) return nullptr;
 		key = m_iter->first;
 		return m_iter->second;
 	}
-	TD* next(T& key)
+	TD* next_nude(T& key)
 	{
 		m_iter++;
-		if (m_iter == m_map.end()) return nullptr;
+		if (m_iter == m_mapex.end()) return nullptr;
 		key = m_iter->first;
 		return (m_iter->second).get();
 	}
 	TD_PTR next(T& key)
 	{
 		m_iter++;
-		if (m_iter == m_map.end()) return nullptr;
+		if (m_iter == m_mapex.end()) return nullptr;
 		key = m_iter->first;
 		return m_iter->second;
 	}
 
 protected:
-	mapex_t m_mapex;
+	typename mapex_t m_mapex;
 	typename mapex_t::iterator m_iter;
 };
 
