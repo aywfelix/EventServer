@@ -2,8 +2,9 @@
 #include "SeEpoll.h"
 #include "SePlatForm.h"
 #include "Session.h"
+#include "Assertx.h"
 
-#ifndef _WIN32
+#ifdef SF_PLATFORM_LINUX
 
 SeEpoll::SeEpoll()
 {
@@ -20,12 +21,12 @@ bool SeEpoll::InitOp()
     if (mEpollOp.epfd == -1)
     {
         mEpollOp.epfd = epoll_create(32000);
-        if (mEpollOp.epfd == -1)
-        {
-            fprintf(stderr, "create epoll error\n");
-			SocketCloseOnExec(mEpollOp.epfd);
-            return false;
-        }
+   //     if (mEpollOp.epfd == -1)
+   //     {
+   //         fprintf(stderr, "create epoll error\n");
+			//SocketCloseOnExec(mEpollOp.epfd);
+   //         return false;
+   //     }
     }
     mEpollOp.events = new epoll_event[EPOLL_EVENT_NUM];
     if (mEpollOp.events == nullptr)

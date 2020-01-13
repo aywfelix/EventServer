@@ -129,9 +129,6 @@
     <ClInclude Include="NetClientBase.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Packet\Packet.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Packet\PacketMgr.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -205,6 +202,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="BlockQueue.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Packet\Packet.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -296,9 +296,6 @@
     <ClCompile Include="Packet\Packet.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Packet\PacketMgr.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Packet\Player.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -348,6 +345,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="DesignTable\TableMgr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Packet\PacketMgr.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
