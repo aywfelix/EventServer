@@ -5,7 +5,7 @@
 
 #include "Se.h"
 #include "SeFINet.h"
-
+#include "MapEx.hpp"
 
 // 这是一个socket客户端管理类
 class SeFNetClient
@@ -42,12 +42,17 @@ public:
 	// remove call back
 	void RemoveReceiveCallBack(EServerType eType, UINT32 nMsgId);
 	// send msg
-	void SendByServerId(int nServerId, const int nMsgID, const char* msg, int len);
-	void SendByServerIds(std::vector<int>& nServerIds, const int nMsgID, const char* msg, int len);
+	void SendByServId(int nServerId, const int nMsgID, const char* msg, int len);
+	void SendByServIds(std::vector<int>& nServerIds, const int nMsgID, const char* msg, int len);
 	void SendPbByServId(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg);
 	void SendPbByServIds(std::vector<int>& nServerIds, const int nMsgID, ::google::protobuf::Message* pMsg);
 	void SendToAll(const int nMsgID, const char* msg, int len);
 	void SendPBToAll(const int nMsgID, ::google::protobuf::Message* pMsg);
+	
+	void SendByServType(EServerType type, const int nMsgID, const char* msg, int len);
+	void SendByServTypes(std::vector<EServerType>& types, const int nMsgID, const char* msg, int len);
+	void SendPbByServType(EServerType type, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendPbByServTypes(std::vector<EServerType>& types, const int nMsgID, ::google::protobuf::Message* pMsg);
 	// get server info
 	ConnectDataPtr GetServerNetInfo(const int& nServerID);
 	ConnectDataPtr GetServerNetInfo(const SeNet* pNet);
@@ -72,5 +77,7 @@ private:
 	std::list<ConnectDataPtr> mTemplist;
 	// serverid connect data
 	std::map<int, ConnectDataPtr> mConnecServers; // 
+	// server type    serverid  connect data
+	std::map<int, ConsistentHashEx<int, ConnectDataPtr>> mConsistentServers;
 };
 

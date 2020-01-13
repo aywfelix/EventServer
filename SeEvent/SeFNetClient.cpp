@@ -148,31 +148,31 @@ void SeFNetClient::InitCallBacks(ConnectDataPtr& data)
 	}
 }
 
-void SeFNetClient::SendByServerId(int nServerId, const int nMsgID, const char* msg, int len)
+void SeFNetClient::SendByServId(int nServerId, const int nMsgID, const char* msg, int len)
 {
 	auto it = mConnecServers.find(nServerId);
 	if (it == mConnecServers.end()) return;
 
 	it->second->pNet->SendMsg(0, nMsgID, msg, len);
 }
-void SeFNetClient::SendByServerIds(std::vector<int>& nServerIds, const int nMsgID, const char* msg, int len)
+void SeFNetClient::SendByServIds(std::vector<int>& nServerIds, const int nMsgID, const char* msg, int len)
 {
 	for (auto& it : nServerIds)
 	{
-		SendByServerId(it, nMsgID, msg, len);
+		SendByServId(it, nMsgID, msg, len);
 	}
 }
 void SeFNetClient::SendPbByServId(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg)
 {
 	std::string strMsg = pMsg->SerializeAsString();
-	SendByServerId(nServerId, nMsgID, strMsg.c_str(), strMsg.length());
+	SendByServId(nServerId, nMsgID, strMsg.c_str(), strMsg.length());
 }
 void SeFNetClient::SendPbByServIds(std::vector<int>& nServerIds, const int nMsgID, ::google::protobuf::Message* pMsg)
 {
 	for (auto& it : nServerIds)
 	{
 		std::string strMsg = pMsg->SerializeAsString();
-		SendByServerId(it, nMsgID, strMsg.c_str(), strMsg.length());
+		SendByServId(it, nMsgID, strMsg.c_str(), strMsg.length());
 	}
 }
 void SeFNetClient::SendToAll(const int nMsgID, const char* msg, int len)
@@ -195,6 +195,23 @@ void SeFNetClient::SendPBToAll(const int nMsgID, ::google::protobuf::Message* pM
 			it.second->pNet->SendMsg(0, nMsgID, strMsg.c_str(), strMsg.length());
 		}
 	}
+}
+
+void SeFNetClient::SendByServType(EServerType type, const int nMsgID, const char* msg, int len)
+{
+
+}
+void SeFNetClient::SendByServTypes(std::vector<EServerType>& types, const int nMsgID, const char* msg, int len)
+{
+
+}
+void SeFNetClient::SendPbByServType(EServerType type, const int nMsgID, ::google::protobuf::Message* pMsg)
+{
+
+}
+void SeFNetClient::SendPbByServTypes(std::vector<EServerType>& types, const int nMsgID, ::google::protobuf::Message* pMsg)
+{
+
 }
 
 ConnectDataPtr SeFNetClient::GetServerNetInfo(const int& nServerID)

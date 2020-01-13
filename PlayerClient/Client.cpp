@@ -52,7 +52,7 @@ void Client::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet*
 		chat_msg.set_channel(1);
 		chat_msg.set_chat_msg("this is test msg to chat server!!!");
 		chat_msg.SerializeToString(&send_msg);
-		m_pNetClientModule->SendByServerId(m_ServerId, (const uint16_t)(ModuleChat::RPC_CHAT_CHAT_REQ), send_msg.c_str(), send_msg.length());
+		m_pNetClientModule->SendByServId(m_ServerId, (const uint16_t)(ModuleChat::RPC_CHAT_CHAT_REQ), send_msg.c_str(), send_msg.length());
 	}
 }
 
