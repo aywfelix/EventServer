@@ -1,4 +1,4 @@
-#include "Se.h"
+#include "SeNet.h"
 #include "SeEpoll.h"
 #include "SePlatForm.h"
 #include "Session.h"
@@ -38,7 +38,7 @@ bool SeEpoll::InitOp()
 
 bool SeEpoll::AddEvent(socket_t fd, int mask)
 {
-	UINT32 events = 0;
+	uint32_t events = 0;
 	if (mask & EV_READ)
 	{
 		events = EPOLLET | EPOLLONESHOT | EPOLLIN;

@@ -1,9 +1,9 @@
 #pragma once
 
 #include "SeFINet.h"
-#include "NetServerBase.h"
+#include "SeFServerBase.h"
 
-class MasterNodeServer : public NetServerBase{
+class MasterNodeServer : public SeFServerBase{
 public:
     bool InitHelper();
     void AfterReportToServer(ServerDataPtr& pReportServerData);

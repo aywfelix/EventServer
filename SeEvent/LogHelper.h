@@ -112,7 +112,7 @@ private:
 	int m_RollType;
 	std::string m_LogName;
 	std::string m_ServerName;
-	INT64 m_LastTime;
+	int64_t m_LastTime;
 	FileC mFileC;
 
 	TimeOut m_TimeOut;

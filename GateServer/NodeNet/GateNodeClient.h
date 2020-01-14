@@ -1,9 +1,9 @@
 #pragma once
 
-#include "NetClientBase.h"
+#include "SeFClientBase.h"
 
 class SeNet;
-class GateNodeClient : public NetClientBase{
+class GateNodeClient : public SeFClientBase{
 public:
     void InitHelper();
     void SetReportInfo();

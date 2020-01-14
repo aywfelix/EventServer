@@ -1,8 +1,8 @@
 #pragma once
-#include "NetClientBase.h"
-#include "JsonConfig.h"
 
-class WorldNodeClient : public NetClientBase{
+#include "SeFClientBase.h"
+
+class WorldNodeClient : public SeFClientBase{
 public:
     void InitHelper();
     void SetReportInfo();

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "NetServerBase.h"
+#include "SeFServerBase.h"
 
-class DBNodeServer : public NetServerBase{
+class DBNodeServer : public SeFServerBase{
 public:
     virtual bool InitHelper();
     virtual void OnClientDisconnect(const socket_t nFd) {}

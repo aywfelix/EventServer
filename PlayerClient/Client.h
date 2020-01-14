@@ -1,7 +1,7 @@
 #pragma once
 
-#include "NetClientBase.h"
-#include "Se.h"
+#include "SeFClientBase.h"
+#include "SeNet.h"
 #include <vector>
 
 

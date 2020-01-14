@@ -1,17 +1,18 @@
-#include "NetServerBase.h"
+#include "SeFServerBase.h"
 #include "SeFNodeNet.pb.h"
 #include "LogHelper.h"
 #include "SeFNet.h"
+#include "SeNet.h"
 
-bool NetServerBase::Init()
+bool SeFServerBase::Init()
 {
 	mNetServModule = new SeFNet();
-	mNetServModule->AddEventCallBack(this, &NetServerBase::OnClientSocketEvent);
-	mNetServModule->AddReceiveCallBack(REPORT_CLIENT_INFO_TO_SERVER, this, &NetServerBase::OnReportToServer);
+	mNetServModule->AddEventCallBack(this, &SeFServerBase::OnClientSocketEvent);
+	mNetServModule->AddReceiveCallBack(REPORT_CLIENT_INFO_TO_SERVER, this, &SeFServerBase::OnReportToServer);
 	return true;
 }
 
-void NetServerBase::OnClientSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
+void SeFServerBase::OnClientSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
 {
 	switch (nEvent)
 	{
@@ -26,11 +27,11 @@ void NetServerBase::OnClientSocketEvent(const socket_t nFd, const SE_NET_EVENT n
 		break;
 	}
 }
-void NetServerBase::OnClientConnected(const socket_t nFd)
+void SeFServerBase::OnClientConnected(const socket_t nFd)
 {
 	LOG_INFO("client %d connected ok", nFd);
 }
-void NetServerBase::OnClientDisconnect(const socket_t nFd)
+void SeFServerBase::OnClientDisconnect(const socket_t nFd)
 {
 	LOG_INFO("client %d disconnected", nFd);
 	for (auto it = mmServNodes.begin(); it != mmServNodes.end(); it++)
@@ -44,7 +45,7 @@ void NetServerBase::OnClientDisconnect(const socket_t nFd)
 	}
 }
 
-ServerDataPtr NetServerBase::GetClientNodeData(int nServerId)
+ServerDataPtr SeFServerBase::GetClientNodeData(int nServerId)
 {
 	auto it = mmServNodes.find(nServerId);
 	if (it == mmServNodes.end())
@@ -54,7 +55,7 @@ ServerDataPtr NetServerBase::GetClientNodeData(int nServerId)
 	return it->second;
 }
 
-void NetServerBase::OnReportToServer(const socket_t nFd, const int nMsgID, const char* msg, const uint32_t nLen)
+void SeFServerBase::OnReportToServer(const socket_t nFd, const int nMsgID, const char* msg, const uint32_t nLen)
 {
 	ServerDataPtr pServerData = std::make_shared<ServerData>();
 	ServerReport report;
@@ -71,10 +72,10 @@ void NetServerBase::OnReportToServer(const socket_t nFd, const int nMsgID, const
 	}
 	AfterReportToServer(pServerData);  // 被子类重新接口
 }
-void NetServerBase::AfterReportToServer(ServerDataPtr& pReportServerData)
+void SeFServerBase::AfterReportToServer(ServerDataPtr& pReportServerData)
 {}
 
-void NetServerBase::Loop()
+void SeFServerBase::Loop()
 {
 	mNetServModule->Execute(LOOP_RUN_TYPE::LOOP_RUN_NONBLOCK);
 }

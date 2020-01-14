@@ -3,6 +3,7 @@
 #include "Client.h"
 #include "LogHelper.h"
 #include "SePlatForm.h"
+#include "Session.h"
 
 int main()
 {

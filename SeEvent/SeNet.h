@@ -7,44 +7,12 @@
 #include <functional>
 #include <string>
 
-#include "SePlatForm.h"
+#include "SocketDefine.h"
 #include "google/protobuf/message.h"
+#include "SeFINet.h"
 
-#define SE_OK 0
-#define SE_ERR -1
-
-#define EV_NONE 0
-#define EV_TIMEOUT 1
-#define EV_READ	2
-#define EV_WRITE 4
-#define EV_CLOSED 8
-
-
-
-enum LOOP_RUN_TYPE
-{
-	LOOP_RUN_BLOCK = 1,
-	LOOP_RUN_NONBLOCK = 2,
-};
-
-enum SE_NET_EVENT
-{
-	SE_NET_EVENT_EOF = 0x10,	/**< eof file reached */
-	SE_NET_EVENT_ERROR = 0x20,	/**< unrecoverable error encountered */
-	SE_NET_EVENT_TIMEOUT = 0x40,	/**< user-specified timeout reached */
-	SE_NET_EVENT_CONNECTED = 0x80,	/**< connect operation finished. */
-};
-
-class SeNet;
 class Socket;
 class Session;
-
-using NET_RECEIVE_FUNCTOR = std::function<void(const socket_t nFd, const int nMsgId, const char* pMsg, const uint32_t nLen)>;
-using NET_RECEIVE_FUNCTOR_PTR = std::shared_ptr<NET_RECEIVE_FUNCTOR>;
-
-using NET_EVENT_FUNCTOR = std::function<void(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)>;
-using NET_EVENT_FUNCTOR_PTR = std::shared_ptr<NET_EVENT_FUNCTOR>;
-
 
 class SeEventOp
 {
@@ -75,13 +43,13 @@ public:
 		mEventCB = eventCb;
 	}
 	template<typename BaseType>
-	SeNet(BaseType* pBaseType, void (BaseType::* HandleReceive)(const socket_t, const int, const char*, const UINT32), void (BaseType::* HandleEvent)(const socket_t, const SE_NET_EVENT, SeNet*))
+	SeNet(BaseType* pBaseType, void (BaseType::* HandleReceive)(const socket_t, const int, const char*, const uint32_t), void (BaseType::* HandleEvent)(const socket_t, const SE_NET_EVENT, SeNet*))
 	{
 		mRecvCB = std::bind(HandleReceive, pBaseType, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
 		mEventCB = std::bind(HandleEvent, pBaseType, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 	}
-	bool InitServer(UINT port);
-	bool InitClient(const char* ip, UINT port);
+	bool InitServer(uint32_t port);
+	bool InitClient(const char* ip, uint32_t port);
 	void StartLoop(LOOP_RUN_TYPE run);
 	void StopLoop();
 
@@ -91,7 +59,7 @@ public:
 	void SendProtoMsg(const int nMsgID, const char* msg, int len);
 	// recv pb msg
 	static bool ReceivePB(const int nMsgID, const std::string& strMsg, google::protobuf::Message* pMsg);
-	static bool ReceivePB(const int nMsgID, const char* msg, const UINT32 nLen, google::protobuf::Message* pData);
+	static bool ReceivePB(const int nMsgID, const char* msg, const uint32_t nLen, google::protobuf::Message* pData);
 	// close or kick socket
 	void CloseClient(socket_t fd);
 	void CloseAllClient();

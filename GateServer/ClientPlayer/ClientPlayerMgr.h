@@ -7,7 +7,6 @@
 #include "ClientPlayer.h"
 
 class Session;
-
 using clientplayer_pool_t = MemPool<ClientPlayer>;
 class ClientPlayerMgr 
 {
@@ -18,8 +17,8 @@ public:
 	void DelPlayer(ClientPlayer* player);
 	ClientPlayer* GetPlayer(int memId);
 
-	void AddPlayerIDMap(UINT64 playerId, ClientPlayer* player);
-	ClientPlayer* GetPlayerByID(UINT64 playerId);
+	void AddPlayerIDMap(uint64_t playerId, ClientPlayer* player);
+	ClientPlayer* GetPlayerByID(uint64_t playerId);
 
 	void AddPlayerSockMap(socket_t nFd, ClientPlayer* player);
 	ClientPlayer* GetPlayerByFd(socket_t nFd);
@@ -29,7 +28,7 @@ private:
 	//SocketId ClientPlayer
 	std::map<socket_t, ClientPlayer*> mPlayerSockMap;
 	//PlayerId ClientPlayer
-	std::map<UINT64, ClientPlayer*> mPlayerIDMap;
+	std::map<uint64_t, ClientPlayer*> mPlayerIDMap;
 };
 
 extern std::unique_ptr<ClientPlayerMgr> g_pClientPlayerMgr;

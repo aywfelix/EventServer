@@ -12,10 +12,10 @@ public:
 	void CloseSocket();
 
 	// server
-	bool Listen(UINT port);
+	bool Listen(uint32_t port);
 	bool Accept(socket_t& connfd, struct sockaddr_in& addr);
 	// client
-	bool Connect(const char* ip, UINT port);
+	bool Connect(const char* ip, uint32_t port);
 
 	int Send(const char* buf, int len);
 	int Recv(char* buf, int len);
@@ -29,16 +29,16 @@ public:
 	socket_t GetFd() { return m_fd; }
 	void SetSocketOptions();
 private:
-	void BindAddr(struct sockaddr_in& addr, UINT port, const char* ip = "127.0.0.1");
+	void BindAddr(struct sockaddr_in& addr, uint32_t port, const char* ip = "127.0.0.1");
 	void SetNonBlock();
 	// set socket options
 	void SetReUseAddr();
 	void SetNodelay();
-	void SetKeepAlive(INT32 interval = 15);  // 15 seconds
-	void SetBufferSize(UINT32 send_size, UINT32 recv_size);
+	void SetKeepAlive(uint32_t interval = 15);  // 15 seconds
+	void SetBufferSize(uint32_t send_size, uint32_t recv_size);
 private:
 	const char* m_ip;
-	UINT m_port;
+	uint32_t m_port;
 	socket_t m_fd;
 	struct sockaddr_in m_sockAddr;
 };

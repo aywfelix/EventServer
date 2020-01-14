@@ -1,15 +1,14 @@
 #pragma once
 
 #include "hiredis.h"
+#include "SePlatForm.h"
 #include <string>
 #include <memory>
 #include <deque>
 #include <mutex>
 
-#ifdef _WIN32
-#include "win32.h"
-#pragma comment(lib, "ws2_32.lib")
-#endif
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //using hiredis_t = std::shared_ptr<hiredis>;

@@ -1,33 +1,33 @@
-#include "NetClientBase.h"
-#include "SeFNodeNet.pb.h"
+#include "SeFClientBase.h"
 #include "LogHelper.h"
 #include "SeFNetClient.h"
 #include "JsonConfig.h"
+#include "SeNet.h"
 
-bool NetClientBase::Init()
+bool SeFClientBase::Init()
 {
 	mNetCliModule = new SeFNetClient();
-	mNetCliModule->AddReceiveCallBack(EServerType::SERVER_TYPE_MASTER, MASTER_REPORT_SERVER_INFO_TO_SERVER, this, &NetClientBase::OnMasterMessage);
+	mNetCliModule->AddReceiveCallBack(EServerType::SERVER_TYPE_MASTER, MASTER_REPORT_SERVER_INFO_TO_SERVER, this, &SeFClientBase::OnMasterMessage);
 	
 	return true;
 }
 
-ConnectDataPtr NetClientBase::GetServerNetInfo(const int& nServerID)
+ConnectDataPtr SeFClientBase::GetServerNetInfo(const int& nServerID)
 {
 	return mNetCliModule->GetServerNetInfo(nServerID);
 }
 
-ConnectDataPtr NetClientBase::GetServerNetInfo(const SeNet* pNet)
+ConnectDataPtr SeFClientBase::GetServerNetInfo(const SeNet* pNet)
 {
 	return mNetCliModule->GetServerNetInfo(pNet);
 }
 
-ConnectDataPtr NetClientBase::GetServerNetInfo(const socket_t& nFd)
+ConnectDataPtr SeFClientBase::GetServerNetInfo(const socket_t& nFd)
 {
 	return mNetCliModule->GetServerNetInfo(nFd);
 }
 
-void NetClientBase::OnSocketNodeEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
+void SeFClientBase::OnSocketNodeEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
 {
 	ConnectDataPtr pConnData = mNetCliModule->GetServerNetInfo(pNet);
 	if (nEvent == SE_NET_EVENT_CONNECTED && pConnData)
@@ -42,7 +42,7 @@ void NetClientBase::OnSocketNodeEvent(const socket_t nFd, const SE_NET_EVENT nEv
 	}
 }
 
-void NetClientBase::OnMasterMessage(const socket_t nFd, const int nMsgID, const char* msg, const UINT32 nLen)
+void SeFClientBase::OnMasterMessage(const socket_t nFd, const int nMsgID, const char* msg, const uint32_t nLen)
 {
 	if (mConnectType.empty()) return;
 	ServerReportList report_list;
@@ -73,13 +73,13 @@ void NetClientBase::OnMasterMessage(const socket_t nFd, const int nMsgID, const 
 }
 
 
-void NetClientBase::Loop()
+void SeFClientBase::Loop()
 {
 	mNetCliModule->Execute(LOOP_RUN_NONBLOCK);
 }
 
 
-void NetClientBase::AddConnectMaster()
+void SeFClientBase::AddConnectMaster()
 {
 	if (this->GetServerType() != EServerType::SERVER_TYPE_MASTER)
 	{

@@ -25,7 +25,7 @@ bool LogHelper::Init(std::string servername)
 
 bool LogHelper::CreateLog()
 {
-	INT64 now = time(0);
+	int64_t now = time(0);
 	switch (m_RollType)
 	{
 	case E_ROLL_HOUR:

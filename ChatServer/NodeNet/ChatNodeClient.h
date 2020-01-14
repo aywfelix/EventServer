@@ -1,8 +1,8 @@
 #pragma once
 
-#include "NetClientBase.h"
+#include "SeFClientBase.h"
 
-class ChatNodeClient : public NetClientBase {
+class ChatNodeClient : public SeFClientBase {
 public:
     void InitHelper();
     void SetReportInfo();

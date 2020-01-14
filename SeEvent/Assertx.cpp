@@ -1,6 +1,6 @@
 #include "Assertx.h"
 
-void __assert__(const char* file, UINT line, const char* func, const char* expr)
+void __assert__(const char* file, uint32_t line, const char* func, const char* expr)
 {
 	char out_msg[1024] = { 0 };
 	sprintf_s(out_msg, 1023, "[%s][%d][%s][%s]", file, line, func, expr);
@@ -13,7 +13,7 @@ void __assert__(const char* file, UINT line, const char* func, const char* expr)
 #endif
 }
 
-void __assertex__(const char* file, UINT line, const char* func, const char* expr, const char* msg)
+void __assertex__(const char* file, uint32_t line, const char* func, const char* expr, const char* msg)
 {
 	char out_msg[1024] = { 0 };
 	sprintf_s(out_msg, 1023, "[%s][%d][%s][%s]\n[%s]", file, line, func, expr, msg);

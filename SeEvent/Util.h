@@ -24,8 +24,8 @@ bool StrConvert(const std::string& str, TYPE& value)
 std::string TimeToDate(Time_t t);
 Time_t DateToTime(const std::string& date);
 Time_t GetDigitDate(Time_t t);
-INT64 GetTimeS();
-INT64 GetTimeMs();
+int64_t GetTimeS();
+int64_t GetTimeMs();
 
 std::string StringFormat(const char* fmt, ...);
 void Snprintf(char* buffer, size_t count, const char* format, ...);
@@ -48,7 +48,7 @@ public:
 			mExpired = time(0) + mInterval;
 			return true;
 		}
-		INT64 now = time(0);
+		int64_t now = time(0);
 		if (now > mExpired)
 		{
 			mExpired += mInterval;
@@ -56,7 +56,7 @@ public:
 		}
 		return false;
 	}
-	INT64 DisTimeOut()
+	int64_t DisTimeOut()
 	{
 		return mExpired - time(0);
 	}
@@ -65,7 +65,7 @@ public:
 		mInterval = interval;
 	}
 private:
-	INT64 mExpired{0};
+	int64_t mExpired{0};
 	int mInterval;
 };
 

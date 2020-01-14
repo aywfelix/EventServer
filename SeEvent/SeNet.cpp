@@ -1,4 +1,4 @@
-#include "Se.h"
+#include "SeNet.h"
 #include "Socket.h"
 #include "LogHelper.h"
 #include "Session.h"
@@ -51,7 +51,7 @@ bool SeEventOp::Dispatch()
 
 Socket* SeNet::InitSeNet()
 {
-#ifdef _WIN32
+#ifdef SF_PLATFORM_WIN
 	mEventOp = new SeSelect();
 #else
 	mEventOp = new SeEpoll();
@@ -70,7 +70,7 @@ Socket* SeNet::InitSeNet()
 	Assert(pSocket != nullptr);
 	pSocket->CreateFd();
 	mEventOp->SetMaxFd(pSocket->GetFd());
-#ifdef _WIN32
+#ifdef SF_PLATFORM_WIN
 	mEventOp->AddEvent(pSocket->GetFd(), EV_READ);
 #else
 	mEventOp->AddEvent(pSocket->GetFd(), EV_READ);
@@ -80,7 +80,7 @@ Socket* SeNet::InitSeNet()
 	return pSocket;
 }
 
-bool SeNet::InitServer(UINT port)
+bool SeNet::InitServer(uint32_t port)
 {
 	mbServer = true;
 	InitSeNet();
@@ -92,7 +92,7 @@ bool SeNet::InitServer(UINT port)
 	return true;
 }
 
-bool SeNet::InitClient(const char* ip, UINT port)
+bool SeNet::InitClient(const char* ip, uint32_t port)
 {
 	mbServer = false;
 	Socket* pSocket = InitSeNet();
@@ -155,7 +155,7 @@ void SeNet::AcceptClient()
 			pSocket->SetSocketOptions();
 			AddSession(pSocket);
 			mEventOp->SetMaxFd(connfd);
-#ifdef _WIN32
+#ifdef SF_PLATFORM_WIN
 			mEventOp->AddEvent(connfd, EV_READ);
 #else
 			mEventOp->AddEvent(connfd, EV_READ);
@@ -316,7 +316,7 @@ void SeNet::StopLoop()
 	{
 		g_pSessionPool->DelSession(it.second);
 	}
-#ifdef _WIN32
+#ifdef SF_PLATFORM_WIN
 	WSACleanup();
 #endif
 }
@@ -423,7 +423,7 @@ bool SeNet::ReceivePB(const int nMsgID, const std::string& strMsg, google::proto
 	return ReceivePB(nMsgID, strMsg.c_str(), strMsg.length(), pMsg);
 }
 
-bool SeNet::ReceivePB(const int nMsgID, const char* msg, const UINT32 nLen, google::protobuf::Message* pData)
+bool SeNet::ReceivePB(const int nMsgID, const char* msg, const uint32_t nLen, google::protobuf::Message* pData)
 {
 	if (msg == nullptr) return false;
 	return pData->ParseFromArray(msg, nLen);

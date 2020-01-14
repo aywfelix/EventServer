@@ -1,6 +1,6 @@
 #include "GateNodeClient.h"
 #include "JsonConfig.h"
-#include "Se.h"
+#include "SeNet.h"
 #include "SeFNetClient.h"
 
 void GateNodeClient::InitHelper()

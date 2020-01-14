@@ -1,17 +1,17 @@
+#include "SeFServerBase.h"
+#include "SeFINet.h"
+#include "SeFNet.h"
+
 #include "NodeNet/GatePlayerServer.h"
-#include "ClientPlayer/ClientPlayer.h"
 #include "ClientPlayer/ClientPlayerMgr.h"
+#include "LogHelper.h"
 #include "JsonConfig.h"
+#include "Session.h"
+
 #include "ClientModule/ModuleChat.h"
 #include "ClientModule/ModuleGate.h"
 #include "ClientModule/ModuleLogin.h"
 #include "ClientModule/ModuleWorld.h"
-#include "LogHelper.h"
-#include "SeFINet.h"
-#include "JsonConfig.h"
-#include "LogHelper.h"
-#include "Se.h"
-#include "Session.h"
 
 bool GatePlayerServer::Init()
 {

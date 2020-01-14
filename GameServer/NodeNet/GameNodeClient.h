@@ -1,9 +1,9 @@
 #pragma once
 
-#include "NetClientBase.h"
+#include "SeFClientBase.h"
 
 
-class GameNodeClient : public NetClientBase {
+class GameNodeClient : public SeFClientBase {
 public:
     void InitHelper();
     void SetReportInfo();

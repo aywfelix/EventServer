@@ -28,7 +28,7 @@ ClientPlayer* ClientPlayerMgr::GetPlayer(int memId)
 	return mClientPool.GetElem(memId);
 }
 
-void ClientPlayerMgr::AddPlayerIDMap(UINT64 playerId, ClientPlayer* player)
+void ClientPlayerMgr::AddPlayerIDMap(uint64_t playerId, ClientPlayer* player)
 {
 	if (player == nullptr) return;
 
@@ -38,7 +38,7 @@ void ClientPlayerMgr::AddPlayerIDMap(UINT64 playerId, ClientPlayer* player)
 		mPlayerIDMap.emplace(playerId, player);
 	}
 }
-ClientPlayer* ClientPlayerMgr::GetPlayerByID(UINT64 playerId)
+ClientPlayer* ClientPlayerMgr::GetPlayerByID(uint64_t playerId)
 {
 	auto it = mPlayerIDMap.find(playerId);
 	if (it == mPlayerIDMap.end()) return nullptr;

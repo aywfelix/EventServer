@@ -32,7 +32,7 @@ void OnHookSignal()
 {
 	signal(SIGINT, OnSignal);
 	signal(SIGTERM, OnSignal);
-#ifdef _WIN32
+#ifdef SF_PLATFORM_WIN
 	signal(SIGBREAK, OnSignal);
 #else
 	signal(SIGPIPE, OnSignal);

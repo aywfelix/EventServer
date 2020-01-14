@@ -1,7 +1,7 @@
 #pragma once
-#include "NetClientBase.h"
+#include "SeFClientBase.h"
 
-class DBNodeClient : public NetClientBase{
+class DBNodeClient : public SeFClientBase{
 public:
     void InitHelper();
     void SetReportInfo();

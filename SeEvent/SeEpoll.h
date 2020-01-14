@@ -1,6 +1,6 @@
 #pragma once
 
-#ifndef _WIN32
+#ifndef SF_PLATFORM_WIN
 #include <sys/epoll.h>
 #endif
 

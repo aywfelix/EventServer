@@ -2,6 +2,7 @@
 #include "JsonConfig.h"
 #include "LogHelper.h"
 #include "SeFNodeNet.pb.h"
+#include "SeFNet.h"
 
 bool MasterNodeServer::InitHelper()
 {

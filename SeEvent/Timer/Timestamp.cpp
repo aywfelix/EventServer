@@ -5,7 +5,7 @@ Timestamp::Timestamp()
 	Now();
 }
 
-Timestamp::Timestamp(INT64 milliseconds)
+Timestamp::Timestamp(int64_t milliseconds)
 {
 	mmilliseconds = milliseconds;
 }
@@ -20,11 +20,11 @@ Timestamp Timestamp::Now()
 {
 	struct timeval tv;
 	gettimeofday(&tv, nullptr);
-	mmilliseconds = (INT64)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	mmilliseconds = (int64_t)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
 	return Timestamp(mmilliseconds);
 }
 
 Timestamp Timestamp::AddTime(int seconds)
 {
-	return Timestamp(mmilliseconds + (INT64)seconds * 1000);
+	return Timestamp(mmilliseconds + (int64_t)seconds * 1000);
 }

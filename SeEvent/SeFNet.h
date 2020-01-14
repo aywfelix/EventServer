@@ -3,7 +3,9 @@
 #include <list>
 #include <map>
 #include <google/protobuf/message.h>
-#include "Se.h"
+#include "SeFINet.h"
+
+class SeNet;
 
 class SeFNet
 {
@@ -11,9 +13,9 @@ public:
 	void Execute(LOOP_RUN_TYPE run);
 
 	// init client
-	bool InitNet(const char* ip, UINT32 port);
+	bool InitNet(const char* ip, uint32_t port);
 	// init server 
-	bool InitNet(UINT32 port);
+	bool InitNet(uint32_t port);
 
 	// add callback
 	template<typename BaseType>
@@ -65,3 +67,17 @@ private:
 	std::list<NET_EVENT_FUNCTOR_PTR> mEventCallBackList;
 };
 
+// 客户端需要连接服务器信息
+struct ConnectData
+{
+	int ServerId;
+	int Port;
+	std::string Ip;
+	std::string name;
+	EServerType ServerType;
+	ConnectState ConnState;
+	socket_t SockFd;
+	std::shared_ptr<SeFNet> pNet;
+};
+
+using ConnectDataPtr = std::shared_ptr<ConnectData>;

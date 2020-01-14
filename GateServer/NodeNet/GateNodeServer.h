@@ -1,9 +1,9 @@
 #pragma once
 
-#include "NetServerBase.h"
+#include "SeFServerBase.h"
 
 //as server
-class GateNodeServer : public NetServerBase
+class GateNodeServer : public SeFServerBase
 {
 public:
     virtual bool InitHelper();

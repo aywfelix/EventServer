@@ -2,7 +2,7 @@
 #pragma once
 
 #include "LogHelper.h"
-#include "Se.h"
+#include "SeNet.h"
 
 class MyServer
 {

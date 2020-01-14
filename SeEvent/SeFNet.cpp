@@ -1,4 +1,5 @@
 #include "SeFNet.h"
+#include "SeNet.h"
 
 void SeFNet::Execute(LOOP_RUN_TYPE run)
 {
@@ -34,13 +35,13 @@ void SeFNet::AddEventCallBack(const NET_EVENT_FUNCTOR_PTR& cb)
 	mEventCallBackList.emplace_back(cb);
 }
 
-bool SeFNet::InitNet(const char* ip, UINT32 port)
+bool SeFNet::InitNet(const char* ip, uint32_t port)
 {
 	mNet = new SeNet(this, &SeFNet::OnReceiveNetPack, &SeFNet::OnSocketNetEvent);
 	return mNet->InitClient(ip, port);
 }
 
-bool SeFNet::InitNet(UINT32 port)
+bool SeFNet::InitNet(uint32_t port)
 {
 	mNet = new SeNet(this, &SeFNet::OnReceiveNetPack, &SeFNet::OnSocketNetEvent);
 	return mNet->InitServer(port);

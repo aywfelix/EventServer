@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Se.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="SeEpoll.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -123,12 +120,6 @@
     <ClInclude Include="SeFNet.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="NetServerBase.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="NetClientBase.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Packet\PacketMgr.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -213,6 +204,15 @@
     <ClInclude Include="MapEx.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SeNet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SeFServerBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SeFClientBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SeEpoll.cpp">
@@ -228,9 +228,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SeSelect.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Se.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Socket.cpp">
@@ -293,12 +290,6 @@
     <ClCompile Include="SeFNet.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="NetServerBase.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="NetClientBase.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Packet\Packet.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -354,6 +345,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Packet\PacketMgr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SeNet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SeFServerBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SeFClientBase.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -3,10 +3,11 @@
 #include <list>
 #include <map>
 
-#include "Se.h"
 #include "SeFINet.h"
 #include "MapEx.hpp"
+#include "SeFNet.h"
 
+class SeNet;
 // 这是一个socket客户端管理类
 class SeFNetClient
 {
@@ -19,7 +20,7 @@ public:
 
 	// add call back
 	template<typename BaseType>
-	void AddReceiveCallBack(EServerType eType, const UINT32 nMsgId, BaseType* pBase, void(BaseType::* HandleReceive)(const socket_t, const int, const char*, const uint32_t))
+	void AddReceiveCallBack(EServerType eType, const uint32_t nMsgId, BaseType* pBase, void(BaseType::* HandleReceive)(const socket_t, const int, const char*, const uint32_t))
 	{
 		NET_RECEIVE_FUNCTOR functor = std::bind(HandleReceive, pBase, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
 		NET_RECEIVE_FUNCTOR_PTR functorPtr = std::make_shared<NET_RECEIVE_FUNCTOR>(functor);
@@ -40,7 +41,7 @@ public:
 		AddEventCallBack(eType, functorPtr);
 	}
 	// remove call back
-	void RemoveReceiveCallBack(EServerType eType, UINT32 nMsgId);
+	void RemoveReceiveCallBack(EServerType eType, uint32_t nMsgId);
 	// send msg
 	void SendByServId(int nServerId, const int nMsgID, const char* msg, int len);
 	void SendByServIds(std::vector<int>& nServerIds, const int nMsgID, const char* msg, int len);
@@ -58,7 +59,7 @@ public:
 	ConnectDataPtr GetServerNetInfo(const SeNet* pNet);
 	ConnectDataPtr GetServerNetInfo(const socket_t& nFd);
 private:
-	void AddReceiveCallBack(EServerType eType, UINT32 nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr);
+	void AddReceiveCallBack(EServerType eType, uint32_t nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr);
 	void AddReceiveCallBack(EServerType eType, NET_RECEIVE_FUNCTOR_PTR functorPtr);
 	void AddEventCallBack(EServerType eType, NET_EVENT_FUNCTOR_PTR functorPtr);
 	void ProcessExecute(LOOP_RUN_TYPE run);

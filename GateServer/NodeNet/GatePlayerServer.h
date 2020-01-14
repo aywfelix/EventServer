@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SePlatForm.h"
-#include "Se.h"
+#include "SeNet.h"
 #include "SeFINet.h"
 #include <string>
 

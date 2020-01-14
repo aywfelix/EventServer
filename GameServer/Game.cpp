@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "NodeNet/GameServerThread.h"
 #include "DesignTable/TableMgr.h"
+#include "Session.h"
 
 Game::Game()
 {

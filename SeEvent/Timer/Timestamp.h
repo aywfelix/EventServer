@@ -5,11 +5,11 @@ class Timestamp
 {
 public:
 	Timestamp();
-	Timestamp(INT64 millisecond);
+	Timestamp(int64_t millisecond);
 	Timestamp(int delay);
 	Timestamp Now();
 	Timestamp AddTime(int seconds);
-	INT64 MilliSeconds() const { return mmilliseconds; }
+	int64_t MilliSeconds() const { return mmilliseconds; }
 	bool operator<=(Timestamp& timestamp) const
 	{
 		if (this == &timestamp)
@@ -42,5 +42,5 @@ public:
 	}
 	
 private:
-	INT64 mmilliseconds;
+	int64_t mmilliseconds;
 };

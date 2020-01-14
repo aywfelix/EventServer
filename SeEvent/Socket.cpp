@@ -27,7 +27,7 @@ void Socket::CreateFd()
 
 void Socket::CloseSocket()
 {
-#ifdef _WIN32
+#ifdef SF_PLATFORM_WIN
 	shutdown(m_fd, SD_BOTH);
 	closesocket(m_fd);
 #else
@@ -37,7 +37,7 @@ void Socket::CloseSocket()
 	m_fd = INVALID_SOCKET;
 }
 
-void Socket::BindAddr(struct sockaddr_in& addr, UINT port, const char* ip)
+void Socket::BindAddr(struct sockaddr_in& addr, uint32_t port, const char* ip)
 {
 	m_port = port;
 	addr.sin_family = AF_INET;
@@ -49,7 +49,7 @@ void Socket::BindAddr(struct sockaddr_in& addr, UINT port, const char* ip)
 	//m_sockAddr.sin_addr.s_addr = inet_addr("192.168.43.38");
 }
 
-bool Socket::Listen(UINT port)
+bool Socket::Listen(uint32_t port)
 {
 	BindAddr(m_sockAddr, port);
 	if (bind(m_fd, (const sockaddr*)&m_sockAddr, sizeof(m_sockAddr)) < 0)
@@ -65,7 +65,7 @@ bool Socket::Listen(UINT port)
 
 bool Socket::Accept(socket_t& connfd, struct sockaddr_in& addr)
 {
-	INT32 len = sizeof(addr);
+	int32_t len = sizeof(addr);
 	if ((connfd = accept(m_fd, (struct sockaddr*) & addr, &len)) < 0)
 	{
 		return false;
@@ -73,7 +73,7 @@ bool Socket::Accept(socket_t& connfd, struct sockaddr_in& addr)
 	return true;
 }
 
-bool Socket::Connect(const char* ip, UINT port)
+bool Socket::Connect(const char* ip, uint32_t port)
 {
 	Assert(ip != nullptr);
 	struct sockaddr_in addr;
@@ -105,7 +105,7 @@ void Socket::SetNodelay()
 #endif	
 }
 
-void Socket::SetKeepAlive(INT32 interval)
+void Socket::SetKeepAlive(uint32_t interval)
 {
 	int val = 1;
 	setsockopt(m_fd, SOL_SOCKET, SO_KEEPALIVE, (const char*)&val, sizeof(val));
@@ -121,7 +121,7 @@ void Socket::SetKeepAlive(INT32 interval)
 #endif
 }
 
-void Socket::SetBufferSize(UINT32 send_size, UINT32 recv_size)
+void Socket::SetBufferSize(uint32_t send_size, uint32_t recv_size)
 {
 	setsockopt(m_fd, SOL_SOCKET, SO_SNDBUF, (const char*)&send_size, sizeof(send_size));
 	setsockopt(m_fd, SOL_SOCKET, SO_RCVBUF, (const char*)&recv_size, sizeof(recv_size));

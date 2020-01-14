@@ -1,6 +1,8 @@
 #include "SeFNetClient.h"
 #include "LogHelper.h"
-
+#include "Assertx.h"
+#include "SeNet.h"
+#include "SeFNet.h"
 
 SeFNetClient::SeFNetClient()
 {
@@ -26,7 +28,7 @@ void SeFNetClient::AddReceiveCallBack(EServerType eType, NET_RECEIVE_FUNCTOR_PTR
 	mmCallBack[eType].mCallBackList.emplace_back(functorPtr);
 }
 
-void SeFNetClient::AddReceiveCallBack(EServerType eType, UINT32 nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr)
+void SeFNetClient::AddReceiveCallBack(EServerType eType, uint32_t nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr)
 {
 	auto it = mmCallBack.find(eType);
 	if (it == mmCallBack.end())
@@ -46,7 +48,7 @@ void SeFNetClient::AddEventCallBack(EServerType eType, NET_EVENT_FUNCTOR_PTR fun
 	mmCallBack[eType].mEventCallBackList.emplace_back(functorPtr);
 }
 
-void SeFNetClient::RemoveReceiveCallBack(EServerType eType, UINT32 nMsgId)
+void SeFNetClient::RemoveReceiveCallBack(EServerType eType, uint32_t nMsgId)
 {
 	auto it = mmCallBack.find(eType);
 	if (it == mmCallBack.end())

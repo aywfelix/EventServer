@@ -14,7 +14,7 @@ void OnSignal(int sig)
 	{
 	case SIGINT:
 	case SIGTERM:
-#ifdef _WIN32
+#ifdef SF_PLATFORM_WIN
 	case SIGBREAK:
 #else
 	case SIGPIPE:
@@ -33,7 +33,7 @@ void OnHookSignal()
 {
 	signal(SIGINT, OnSignal);
 	signal(SIGTERM, OnSignal);
-#ifdef _WIN32
+#ifdef SF_PLATFORM_WIN
 	signal(SIGBREAK, OnSignal);
 #else
 	signal(SIGPIPE, OnSignal);

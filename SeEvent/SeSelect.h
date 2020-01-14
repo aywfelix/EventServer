@@ -1,11 +1,11 @@
 #pragma once
 
-#ifndef _WIN32
+#ifdef SF_PLATFORM_LINUX
 #include <sys/select.h>
 #endif
 
 #include "SePlatForm.h"
-#include "Se.h"
+#include "SeNet.h"
 
 struct SeSelectOp
 {

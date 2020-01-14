@@ -50,12 +50,12 @@ Time_t DateToTime(const std::string& date)
 	return t;
 }
 
-INT64 GetTimeS()
+int64_t GetTimeS()
 {
 	return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }
 
-INT64 GetTimeMs()
+int64_t GetTimeMs()
 {
 	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }
