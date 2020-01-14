@@ -6,8 +6,6 @@
 #include "SeFNetClient.h"
 #include "LogHelper.h"
 
-
-
 bool Client::Init()
 {
 	m_pNetClientModule = new SeFNetClient();
