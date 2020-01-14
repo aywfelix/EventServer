@@ -1,9 +1,8 @@
+#include <signal.h>
+#include "SePlatForm.h"
 #include "JsonConfig.h"
-#include "Util.h"
 #include "Chat.h"
 #include "LogHelper.h"
-#include "SePlatForm.h"
-#include <signal.h>
 
 bool bStopServer = false;
 

@@ -149,6 +149,9 @@
     <ClInclude Include="DesignTable\Activity.hpp" />
     <ClInclude Include="DesignTable\TableMgr.h" />
     <ClInclude Include="FileHelper.h" />
+    <ClInclude Include="http\http_client.h" />
+    <ClInclude Include="http\http_server.h" />
+    <ClInclude Include="http\mongoose.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="JsonConfig.h" />
     <ClInclude Include="lexical_cast.hpp" />
@@ -205,6 +208,9 @@
     <ClCompile Include="ClientProto\ClientPublic.pb.cc" />
     <ClCompile Include="DesignTable\TableMgr.cpp" />
     <ClCompile Include="FileHelper.cpp" />
+    <ClCompile Include="http\http_client.cpp" />
+    <ClCompile Include="http\http_server.cpp" />
+    <ClCompile Include="http\mongoose.c" />
     <ClCompile Include="JsonConfig.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
     <ClCompile Include="LogHelper.cpp" />

@@ -213,6 +213,15 @@
     <ClInclude Include="SeFClientBase.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="http\http_client.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\http_server.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\mongoose.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SeEpoll.cpp">
@@ -354,6 +363,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SeFClientBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\http_client.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\http_server.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\mongoose.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

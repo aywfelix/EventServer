@@ -3,7 +3,6 @@
 #include "SeFNetClient.h"
 
 
-
 void GameNodeClient::InitHelper()
 {
     mNetCliModule->AddEventCallBack(EServerType::SERVER_TYPE_MASTER, this, &GameNodeClient::OnSocketEvent);
