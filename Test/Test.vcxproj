@@ -134,6 +134,7 @@
   <ItemGroup>
     <ClCompile Include="SF_Test.cpp" />
     <ClCompile Include="TestConsistent.cpp" />
+    <ClCompile Include="TestEncypt.cpp" />
     <ClCompile Include="TestRedis.cpp" />
     <ClCompile Include="TestSplit.cpp" />
     <ClCompile Include="TestWriteLog.cpp" />

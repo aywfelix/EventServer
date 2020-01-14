@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 class SF_Test
 {
 public:
@@ -7,5 +9,6 @@ public:
 	static void TestSplit();
 	static void TestWriteLog();
 	static void TestConsistent();
+	static void TestEncypt();
 };
 

@@ -180,7 +180,6 @@
     <ClInclude Include="SeEpoll.h" />
     <ClInclude Include="SeFNetClient.h" />
     <ClInclude Include="SeFNet.h" />
-    <ClInclude Include="SeFMsgHead.h" />
     <ClInclude Include="SeFNodeNet.pb.h" />
     <ClInclude Include="SeIOCP.h" />
     <ClInclude Include="SeKqueue.h" />
@@ -234,7 +233,6 @@
     <ClCompile Include="SeEpoll.cpp" />
     <ClCompile Include="SeFNetClient.cpp" />
     <ClCompile Include="SeFNet.cpp" />
-    <ClCompile Include="SeFMsgHead.cpp" />
     <ClCompile Include="SeFNodeNet.pb.cc" />
     <ClCompile Include="SeIOCP.cpp" />
     <ClCompile Include="SeKqueue.cpp" />

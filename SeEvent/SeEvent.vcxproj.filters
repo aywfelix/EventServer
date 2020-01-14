@@ -105,9 +105,6 @@
     <ClInclude Include="SeFINet.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SeFMsgHead.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="SeFNetClient.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -282,9 +279,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Timer\Timestamp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SeFMsgHead.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SeFNetClient.cpp">
