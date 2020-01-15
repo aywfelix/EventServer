@@ -12,6 +12,7 @@
 #include <windows.h>
 #include <winerror.h>
 #include <ws2tcpip.h>
+#include <process.h>
 #pragma comment(lib, "ws2_32.lib")
 #else
 #include <fcntl.h>
@@ -59,18 +60,16 @@ typedef DWORD		TID;
 #define SPRINTF sprintf_s
 #define SFSTRICMP stricmp
 #define SFSLEEP(s) Sleep(s) //millisecond
-#define SFGetPID() lexical_cast<std::string>(getpid())
+#define SFGetPID() _getpid()
 
 #define		tvsnprintf		_vsnprintf
 #define		tsnprintf		_snprintf
-
 #else
 typedef pthread_t	TID;
 #define SPRINTF snprintf
 #define SFSTRICMP strcasecmp
 #define SFSLEEP(s) usleep(s*1000) //millisecond
-#define SFGetPID() lexical_cast<std::string>(getpid())
-
+#define SFGetPID() getpid()
 #define		tvsnprintf		vsnprintf
 #define		tsnprintf		snprintf
 void	SetResource();

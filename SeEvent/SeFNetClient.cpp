@@ -236,11 +236,11 @@ ConnectDataPtr SeFNetClient::GetServerNetInfo(const SeNet* pNet)
 	return nullptr;
 }
 
-ConnectDataPtr SeFNetClient::GetServerNetInfo(const socket_t& nFd)
+ConnectDataPtr SeFNetClient::GetServerNetInfo(const socket_t& sock_fd)
 {
 	for (auto it = mConnecServers.begin(); it != mConnecServers.end(); it++)
 	{
-		if (it->second->SockFd == nFd)
+		if (it->second->SockFd == sock_fd)
 			return it->second;
 	}
 	return nullptr;

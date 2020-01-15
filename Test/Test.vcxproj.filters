@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SF_Test.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="TestRedis.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -33,9 +30,15 @@
     <ClCompile Include="TestEncypt.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="TestSnowFlake.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SFTest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SF_Test.h">
+    <ClInclude Include="SFTest.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

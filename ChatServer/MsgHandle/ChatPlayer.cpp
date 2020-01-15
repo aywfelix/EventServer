@@ -9,6 +9,6 @@ int ChatPlayer::SendToGate(unsigned short msg_id, ::google::protobuf::Message* p
 
 int ChatPlayer::SendToGame(unsigned short msg_id, ::google::protobuf::Message* pMsg)
 {
-	g_pServerThread->ChatServer().SendPackToGame(msg_id, *pMsg);
+	g_pServerThread->ChatServer().SendPackToGame(msg_id, pMsg);
 	return 0;
 }

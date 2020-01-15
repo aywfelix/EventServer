@@ -519,14 +519,14 @@ void Reader::skipSpaces() {
   }
 }
 
-bool Reader::match(Location pattern, int patternLength) {
-  if (end_ - current_ < patternLength)
+bool Reader::match(Location pattern, int pattermsg_length) {
+  if (end_ - current_ < pattermsg_length)
     return false;
-  int index = patternLength;
+  int index = pattermsg_length;
   while (index--)
     if (current_[index] != pattern[index])
       return false;
-  current_ += patternLength;
+  current_ += pattermsg_length;
   return true;
 }
 
@@ -1163,7 +1163,7 @@ private:
 
   bool readToken(Token& token);
   void skipSpaces();
-  bool match(Location pattern, int patternLength);
+  bool match(Location pattern, int pattermsg_length);
   bool readComment();
   bool readCStyleComment();
   bool readCppStyleComment();
@@ -1497,14 +1497,14 @@ void OurReader::skipSpaces() {
   }
 }
 
-bool OurReader::match(Location pattern, int patternLength) {
-  if (end_ - current_ < patternLength)
+bool OurReader::match(Location pattern, int pattermsg_length) {
+  if (end_ - current_ < pattermsg_length)
     return false;
-  int index = patternLength;
+  int index = pattermsg_length;
   while (index--)
     if (current_[index] != pattern[index])
       return false;
-  current_ += patternLength;
+  current_ += pattermsg_length;
   return true;
 }
 

@@ -12,8 +12,8 @@ public:
 	void ConnectServer();
 	bool Loop();
 
-	void OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);
-	void OnMessage(const socket_t nFd, const int msgid, const char* msg, const uint32_t msglen);
+	void OnSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet);
+	void OnMessage(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msglen);
 
 protected:
 	SeFNetClient* m_pNetClientModule{ nullptr };

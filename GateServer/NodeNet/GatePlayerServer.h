@@ -11,19 +11,19 @@ class GatePlayerServer
 {
 public:
 	bool Init();
-	void OnSocketClientEvent(const socket_t nFd, const SE_NET_EVENT eEvent, SeNet* pNet);
-	void OnClientConnected(const socket_t nFd);
-	void OnClientDisconnect(const socket_t nFd);
+	void OnSocketClientEvent(const socket_t sock_fd, const SE_NET_EVENT eEvent, SeNet* pNet);
+	void OnClientConnected(const socket_t sock_fd);
+	void OnClientDisconnect(const socket_t sock_fd);
 
-	void OnOtherMessage(const socket_t nFd, const int msgid, const char* msg, const uint32_t nLen);
-	void SentToClient(const int nMsgID, const std::string& msg, const socket_t nFd);
-	void SentToClient(const int nMsgID, google::protobuf::Message* xData, const socket_t nFd);
+	void OnOtherMessage(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len);
+	void SentToClient(const int nMsgID, const std::string& msg, const socket_t sock_fd);
+	void SentToClient(const int nMsgID, google::protobuf::Message* msg, const socket_t sock_fd);
 	void SentToAllClient(const int nMsgID, const std::string& msg);
 
-	void KickPlayer(const socket_t nFd);
+	void KickPlayer(const socket_t sock_fd);
 	void KickPlayerAllPlayer();
 
-	int GetModuleID(const int msgid);
+	int GetModuleID(const int msg_id);
 
 	void Loop();
 	SeFNet* GetNetModule()

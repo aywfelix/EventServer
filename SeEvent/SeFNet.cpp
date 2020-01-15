@@ -47,27 +47,27 @@ bool SeFNet::InitNet(uint32_t port)
 	return mNet->InitServer(port);
 }
 
-void SeFNet::OnReceiveNetPack(const socket_t nFd, const int nMsgId, const char* pMsg, const uint32_t nLen)
+void SeFNet::OnReceiveNetPack(const socket_t sock_fd, const int nMsgId, const char* pMsg, const uint32_t msg_len)
 {
 	auto it = mReceiveCallBack.find(nMsgId);
 	if (it != mReceiveCallBack.end())
 	{
-		it->second->operator()(nFd, nMsgId, pMsg, nLen);
+		it->second->operator()(sock_fd, nMsgId, pMsg, msg_len);
 	}
 	else
 	{
 		for (auto& it : mReceiveCallBackList)
 		{
-			it->operator()(nFd, nMsgId, pMsg, nLen);
+			it->operator()(sock_fd, nMsgId, pMsg, msg_len);
 		}
 	}
 }
 
-void SeFNet::OnSocketNetEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
+void SeFNet::OnSocketNetEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)
 {
 	for (auto& it : mEventCallBackList)
 	{
-		it->operator()(nFd, nEvent, pNet);
+		it->operator()(sock_fd, nEvent, pNet);
 	}
 }
 

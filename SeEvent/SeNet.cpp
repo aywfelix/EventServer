@@ -423,8 +423,8 @@ bool SeNet::ReceivePB(const int nMsgID, const std::string& strMsg, google::proto
 	return ReceivePB(nMsgID, strMsg.c_str(), strMsg.length(), pMsg);
 }
 
-bool SeNet::ReceivePB(const int nMsgID, const char* msg, const uint32_t nLen, google::protobuf::Message* pData)
+bool SeNet::ReceivePB(const int nMsgID, const char* msg, const uint32_t msg_len, google::protobuf::Message* pData)
 {
 	if (msg == nullptr) return false;
-	return pData->ParseFromArray(msg, nLen);
+	return pData->ParseFromArray(msg, msg_len);
 }

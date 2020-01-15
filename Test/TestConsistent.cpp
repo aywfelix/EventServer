@@ -1,4 +1,4 @@
-#include "SF_Test.h"
+#include "SFTest.h"
 #include "MapEx.hpp"
 #include <iostream>
 
@@ -11,7 +11,7 @@ public:
 };
 using data_ptr = std::shared_ptr<server_t>;
 
-void SF_Test::TestConsistent()
+void SFTest::TestConsistent()
 {
 
 	//Map<int, server_t> mm;

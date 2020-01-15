@@ -37,27 +37,27 @@ void GatePlayerServer::Loop()
 }
 
 
-void GatePlayerServer::OnSocketClientEvent(const socket_t nFd, const SE_NET_EVENT eEvent, SeNet* pNet)
+void GatePlayerServer::OnSocketClientEvent(const socket_t sock_fd, const SE_NET_EVENT eEvent, SeNet* pNet)
 {
 	switch (eEvent)
 	{
 	case SE_NET_EVENT_EOF:
 	case SE_NET_EVENT_ERROR:
 	case SE_NET_EVENT_TIMEOUT:
-		OnClientDisconnect(nFd);
+		OnClientDisconnect(sock_fd);
 		break;
 	case SE_NET_EVENT_CONNECTED:
-		OnClientConnected(nFd);
+		OnClientConnected(sock_fd);
 		break;
 	default:
 		break;
 	}
 }
 
-void GatePlayerServer::OnClientConnected(const socket_t nFd)
+void GatePlayerServer::OnClientConnected(const socket_t sock_fd)
 {
 	// bind client'id with socket id
-	Session* pSession = m_pNetModule->GetNet()->GetSession(nFd);
+	Session* pSession = m_pNetModule->GetNet()->GetSession(sock_fd);
 	ClientPlayer* pPlayer = g_pClientPlayerMgr->NewPlayer(pSession);
 	if (pSession == nullptr || pPlayer == nullptr)
 	{
@@ -65,67 +65,67 @@ void GatePlayerServer::OnClientConnected(const socket_t nFd)
 		return;
 	}
 	g_pClientPlayerMgr->AddPlayerIDMap(pPlayer->GetMemId(), pPlayer);
-	g_pClientPlayerMgr->AddPlayerSockMap(nFd, pPlayer);
-	CLOG_INFO << "GatePlayerServer: create player ok Sockfd:" << nFd << CLOG_END;
+	g_pClientPlayerMgr->AddPlayerSockMap(sock_fd, pPlayer);
+	CLOG_INFO << "GatePlayerServer: create player ok Sockfd:" << sock_fd << CLOG_END;
 } 
 
-void GatePlayerServer::OnClientDisconnect(const socket_t nFd)
+void GatePlayerServer::OnClientDisconnect(const socket_t sock_fd)
 {
-	ClientPlayer* player = g_pClientPlayerMgr->GetPlayerByFd(nFd);
+	ClientPlayer* player = g_pClientPlayerMgr->GetPlayerByFd(sock_fd);
 	if (player == nullptr) return;
 	g_pClientPlayerMgr->DelPlayer(player);
 	CLOG_INFO << "GatePlayerServer: playerid:" << player->GetPlayerId() <<" off line"<<CLOG_END;
 }
 
-int GatePlayerServer::GetModuleID(const int msgid)
+int GatePlayerServer::GetModuleID(const int msg_id)
 {
-	return int(msgid / 100);
+	return int(msg_id / 100);
 }
 
-void GatePlayerServer::OnOtherMessage(const socket_t nFd, const int msgid, const char* msg, const uint32_t nLen)
+void GatePlayerServer::OnOtherMessage(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
 {
-	if (msgid <= 0) return;
-	int moduleId = GetModuleID(msgid);
+	if (msg_id <= 0) return;
+	int moduleId = GetModuleID(msg_id);
 
-	ClientPlayer* cli_player = g_pClientPlayerMgr->GetPlayerByFd(nFd);
+	ClientPlayer* cli_player = g_pClientPlayerMgr->GetPlayerByFd(sock_fd);
 	if (cli_player == nullptr) return;
 
 	switch (moduleId)
 	{
 	case ModuleGate::MODULE_ID_GATE:
 	{
-		cli_player->OnModuleGateMessage(msgid, msg, nLen, nFd);
+		cli_player->OnModuleGateMessage(msg_id, msg, msg_len, sock_fd);
 		break;
 	}
 	case ModuleLogin::MODULE_ID_LOGIN:
 	{
-		cli_player->OnModuleLoginMessage(msgid, msg, nLen);
+		cli_player->OnModuleLoginMessage(msg_id, msg, msg_len);
 		break;
 	}
 	case ModuleChat::MODULE_ID_CHAT:
 	{
-		cli_player->OnModuleChatMessage(msgid, msg, nLen);
+		cli_player->OnModuleChatMessage(msg_id, msg, msg_len);
 		break;
 	}
 	case ModuleWorld::MODULE_ID_WORLD:
 	{
-		cli_player->OnModuleWorldMessage(msgid, msg, nLen);
+		cli_player->OnModuleWorldMessage(msg_id, msg, msg_len);
 		break;
 	}
 	default:
-		cli_player->OnModuleGameMessage(msgid, msg, nLen);
+		cli_player->OnModuleGameMessage(msg_id, msg, msg_len);
 		break;
 	}
 }
 
-void GatePlayerServer::SentToClient(const int nMsgID, const std::string& msg, const socket_t nFd)
+void GatePlayerServer::SentToClient(const int nMsgID, const std::string& msg, const socket_t sock_fd)
 {
-	m_pNetModule->SendMsg(nFd, nMsgID, msg.c_str(), msg.length());
+	m_pNetModule->SendMsg(sock_fd, nMsgID, msg.c_str(), msg.length());
 }
 
-void GatePlayerServer::SentToClient(const int nMsgID, google::protobuf::Message* xData, const socket_t nFd)
+void GatePlayerServer::SentToClient(const int nMsgID, google::protobuf::Message* msg, const socket_t sock_fd)
 {
-	m_pNetModule->SendPbMsg(nFd, nMsgID, &xData);
+	m_pNetModule->SendPbMsg(sock_fd, nMsgID, msg);
 }
 
 void GatePlayerServer::SentToAllClient(const int nMsgID, const std::string& msg)
@@ -138,9 +138,9 @@ void GatePlayerServer::SetClientServerNode(socket_t client_fd, ServerDataPtr& pt
 	ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayer(client_fd);
 }
 
-void GatePlayerServer::KickPlayer(const socket_t nFd)
+void GatePlayerServer::KickPlayer(const socket_t sock_fd)
 {
-	m_pNetModule->GetNet()->CloseClient(nFd);
+	m_pNetModule->GetNet()->CloseClient(sock_fd);
 }
 
 void GatePlayerServer::KickPlayerAllPlayer()

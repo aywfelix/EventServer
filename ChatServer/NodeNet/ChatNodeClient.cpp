@@ -36,35 +36,35 @@ void ChatNodeClient::AddConnectServer()
 	mConnectType.push_back(ServerType::SERVER_TYPE_GAME);
 }
 
-void ChatNodeClient::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
+void ChatNodeClient::OnSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)
 {
-	OnSocketNodeEvent(nFd, nEvent, pNet);
+	OnSocketNodeEvent(sock_fd, nEvent, pNet);
 }
 
-void ChatNodeClient::OnGateRouteChat(const socket_t nFd, const int msgid, const char* msg, const uint32_t msglen)
+void ChatNodeClient::OnGateRouteChat(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msglen)
 {
-	GateToChatPacket xData;
-	if (!SeNet::ReceivePB(msgid, msg, msglen, &xData))
+	GateToChatPacket gate_packet;
+	if (!SeNet::ReceivePB(msg_id, msg, msglen, &gate_packet))
 		return;
 
-	ConnectDataPtr pServerData = GetServerNetInfo(nFd);
+	ConnectDataPtr pServerData = GetServerNetInfo(sock_fd);
 	if (!pServerData)
 		return;
 
 	// parse the packet
-	Packet* pRecvPacket = g_packetmgr->CreatePakcet(xData.msg_id(), xData.msg_body().c_str(), xData.msg_body().length());
+	Packet* pRecvPacket = g_packetmgr->CreatePakcet(gate_packet.msg_id(), gate_packet.msg_body().c_str(), gate_packet.msg_body().length());
 
-	MsgHandle msgHandle = g_packetmgr->GetMsgHandle(xData.msg_id());
+	MsgHandle msgHandle = g_packetmgr->GetMsgHandle(gate_packet.msg_id());
 	if (msgHandle == nullptr)
 		return;
 
 	ChatPlayer chatPlayer;
-	chatPlayer.m_PlayerId = xData.player_id();
+	chatPlayer.m_PlayerId = gate_packet.player_id();
 	chatPlayer.m_ServerId = pServerData->ServerId;
 	int ret = msgHandle(&chatPlayer, pRecvPacket); // process msg logic
 }
 
-void ChatNodeClient::OnGameRouteChat(const socket_t nFd, const int msgid, const char* msg, const uint32_t msglen)
+void ChatNodeClient::OnGameRouteChat(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msglen)
 {
 
 }

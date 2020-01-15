@@ -32,7 +32,7 @@ void GameNodeClient::AddConnectServer()
 }
 
 
-void GameNodeClient::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
+void GameNodeClient::OnSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)
 {
-    OnSocketNodeEvent(nFd, nEvent, pNet);
+    OnSocketNodeEvent(sock_fd, nEvent, pNet);
 }

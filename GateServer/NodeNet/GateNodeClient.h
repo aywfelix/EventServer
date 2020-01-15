@@ -8,7 +8,7 @@ public:
     void InitHelper();
     void SetReportInfo();
     void AddConnectServer();
-    void OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);
+    void OnSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet);
    
 private:
 };

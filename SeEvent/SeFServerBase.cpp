@@ -12,31 +12,31 @@ bool SeFServerBase::Init()
 	return true;
 }
 
-void SeFServerBase::OnClientSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
+void SeFServerBase::OnClientSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)
 {
 	switch (nEvent)
 	{
 	case SE_NET_EVENT_CONNECTED:
-		OnClientConnected(nFd);
+		OnClientConnected(sock_fd);
 		break;
 	case SE_NET_EVENT_EOF:
 	case SE_NET_EVENT_ERROR:
 	case SE_NET_EVENT_TIMEOUT:
 	default:
-		OnClientDisconnect(nFd);
+		OnClientDisconnect(sock_fd);
 		break;
 	}
 }
-void SeFServerBase::OnClientConnected(const socket_t nFd)
+void SeFServerBase::OnClientConnected(const socket_t sock_fd)
 {
-	LOG_INFO("client %d connected ok", nFd);
+	LOG_INFO("client %d connected ok", sock_fd);
 }
-void SeFServerBase::OnClientDisconnect(const socket_t nFd)
+void SeFServerBase::OnClientDisconnect(const socket_t sock_fd)
 {
-	LOG_INFO("client %d disconnected", nFd);
+	LOG_INFO("client %d disconnected", sock_fd);
 	for (auto it = mmServNodes.begin(); it != mmServNodes.end(); it++)
 	{
-		if (it->second->fd == nFd)
+		if (it->second->fd == sock_fd)
 		{
 			auto nServerId = it->second->ServerInfo->server_id();
 			mmServNodes.erase(nServerId);
@@ -55,13 +55,13 @@ ServerDataPtr SeFServerBase::GetClientNodeData(int nServerId)
 	return it->second;
 }
 
-void SeFServerBase::OnReportToServer(const socket_t nFd, const int nMsgID, const char* msg, const uint32_t nLen)
+void SeFServerBase::OnReportToServer(const socket_t sock_fd, const int nMsgID, const char* msg, const uint32_t msg_len)
 {
 	ServerDataPtr pServerData = std::make_shared<ServerData>();
 	ServerReport report;
-	if (!SeNet::ReceivePB(nMsgID, msg, nLen, &report)) return;
+	if (!SeNet::ReceivePB(nMsgID, msg, msg_len, &report)) return;
 
-	pServerData->fd = nFd;
+	pServerData->fd = sock_fd;
 	pServerData->ServerInfo = std::make_shared<ServerReport>(report);
 	mmServNodes.emplace(report.server_id(), pServerData);
 	for (auto& it : mmServNodes)

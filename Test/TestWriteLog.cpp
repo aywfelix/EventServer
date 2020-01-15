@@ -1,10 +1,10 @@
-#include "SF_Test.h"
+#include "SFTest.h"
 
 #include "FileHelper.h"
 #include "LogHelper.h"
 #include <string>
 
-void SF_Test::TestWriteLog()
+void SFTest::TestWriteLog()
 {
 	//FileC file;
 	//std::string filename = "test.log";

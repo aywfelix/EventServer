@@ -9,7 +9,7 @@ class Packet
 {
 public:
 	Packet() {}
-	Packet(int msgid, ::google::protobuf::Message* msg) : msg_id(msgid), msg(msg) {}
+	Packet(int msg_id, ::google::protobuf::Message* msg) : msg_id(msg_id), msg(msg) {}
 
 	int msg_id{ -1 };
 	::google::protobuf::Message* msg{ nullptr };

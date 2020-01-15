@@ -219,6 +219,9 @@
     <ClInclude Include="http\mongoose.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SnowFlake.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SeEpoll.cpp">

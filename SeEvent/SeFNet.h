@@ -57,11 +57,11 @@ public:
 
 	SeNet* GetNet() { return mNet; }
 private:
-	void OnReceiveNetPack(const socket_t nFd, const int nMsgId, const char* pMsg, const uint32_t nLen);
-	void OnSocketNetEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);
+	void OnReceiveNetPack(const socket_t sock_fd, const int nMsgId, const char* pMsg, const uint32_t msg_len);
+	void OnSocketNetEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet);
 private:
 	SeNet* mNet;
-	// msgid  msghandle
+	// msg_id  msghandle
 	std::map<int, NET_RECEIVE_FUNCTOR_PTR> mReceiveCallBack;
 	std::list<NET_RECEIVE_FUNCTOR_PTR> mReceiveCallBackList;
 	std::list<NET_EVENT_FUNCTOR_PTR> mEventCallBackList;

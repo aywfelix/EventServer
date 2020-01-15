@@ -1,10 +1,10 @@
 
-#include "SF_Test.h"
+#include "SFTest.h"
 #include "LogHelper.h"
 #include "Redis/db_redis.h"
 
 
-void SF_Test::TestRedis()
+void SFTest::TestRedis()
 {
 	db_redis redis;
 	redis.init(5, "192.168.40.182", 6379);

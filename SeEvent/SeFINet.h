@@ -57,10 +57,10 @@ enum ConnectState
 	RECONNECT,
 };
 
-using NET_RECEIVE_FUNCTOR = std::function<void(const socket_t nFd, const int nMsgId, const char* pMsg, const uint32_t nLen)>;
+using NET_RECEIVE_FUNCTOR = std::function<void(const socket_t sock_fd, const int nMsgId, const char* pMsg, const uint32_t msg_len)>;
 using NET_RECEIVE_FUNCTOR_PTR = std::shared_ptr<NET_RECEIVE_FUNCTOR>;
 
-using NET_EVENT_FUNCTOR = std::function<void(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)>;
+using NET_EVENT_FUNCTOR = std::function<void(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)>;
 using NET_EVENT_FUNCTOR_PTR = std::shared_ptr<NET_EVENT_FUNCTOR>;
 
 
@@ -74,7 +74,7 @@ struct IMsgHead
 	virtual uint16_t GetMsgID() const = 0;
 	virtual void SetMsgID(uint16_t nMsgID) = 0;
 	virtual uint32_t GetBodyLength() const = 0;
-	virtual void SetBodyLength(uint32_t nLength) = 0;
+	virtual void SetBodyLength(uint32_t msg_length) = 0;
 
 	uint64_t Htonll(uint64_t nData)
 	{
@@ -180,9 +180,9 @@ public:
 		return mSize;
 	}
 
-	virtual void SetBodyLength(uint32_t nLength)
+	virtual void SetBodyLength(uint32_t msg_length)
 	{
-		mSize = nLength;
+		mSize = msg_length;
 	}
 
 private:

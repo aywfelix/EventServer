@@ -46,19 +46,19 @@ ClientPlayer* ClientPlayerMgr::GetPlayerByID(uint64_t playerId)
 	return it->second;
 }
 
-void ClientPlayerMgr::AddPlayerSockMap(socket_t nFd, ClientPlayer* player)
+void ClientPlayerMgr::AddPlayerSockMap(socket_t sock_fd, ClientPlayer* player)
 {
 	if (player == nullptr) return;
-	auto it = mPlayerSockMap.find(nFd);
+	auto it = mPlayerSockMap.find(sock_fd);
 	if (it == mPlayerSockMap.end())
 	{
-		mPlayerSockMap.emplace(nFd, player);
+		mPlayerSockMap.emplace(sock_fd, player);
 	}
 }
 
-ClientPlayer* ClientPlayerMgr::GetPlayerByFd(socket_t nFd)
+ClientPlayer* ClientPlayerMgr::GetPlayerByFd(socket_t sock_fd)
 {
-	auto it = mPlayerSockMap.find(nFd);
+	auto it = mPlayerSockMap.find(sock_fd);
 	if (it == mPlayerSockMap.end()) return nullptr;
 
 	return it->second;

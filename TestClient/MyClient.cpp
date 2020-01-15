@@ -7,14 +7,14 @@
 #include <sstream>
 using namespace std;
 
-void RecvCb(const socket_t nFd, const int nMsgId, const char* pMsg, const uint32_t nLen)
+void RecvCb(const socket_t sock_fd, const int nMsgId, const char* pMsg, const uint32_t msg_len)
 {
 	cout << pMsg << endl;
 }
 
-void EventCb(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
+void EventCb(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)
 {
-	cout << nFd << endl;
+	cout << sock_fd << endl;
 	cout << nEvent << endl;
 }
 

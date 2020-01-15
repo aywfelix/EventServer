@@ -24,20 +24,20 @@ bool GateNodeServer::InitHelper()
 	return true;
 }
 
-void GateNodeServer::OtherMessage(const socket_t nFd, const int msgid, const char* msg, const uint32_t nLen)
+void GateNodeServer::OtherMessage(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
 {
-	CLOG_DEBUG << "Gate Server recv other message msgid:" << msgid;
+	CLOG_DEBUG << "Gate Server recv other message msg_id:" << msg_id;
 }
 
-bool GateNodeServer::SendPackToLogin(const socket_t client_fd, const int msgid, const char* msg, uint32_t nLen, int nGameID, const std::string& ip)
+bool GateNodeServer::SendPackToLogin(const socket_t client_fd, const int msg_id, const char* msg, uint32_t msg_len, int game_id, const std::string& ip)
 {
 	return true;
 }
-bool GateNodeServer::SendPackToScene(const int msgid, google::protobuf::Message* xData, int nServerID)
+bool GateNodeServer::SendPackToScene(const int msg_id, google::protobuf::Message* msg, int nServerID)
 {
 	return true;
 }
-bool GateNodeServer::SentPackToChat(const int msgid, google::protobuf::Message* xData)
+bool GateNodeServer::SentPackToChat(const int msg_id, google::protobuf::Message* msg)
 {
 	ServerDataPtr pServerData = nullptr;
 	std::vector<ServerDataPtr> typed_list;
@@ -55,25 +55,25 @@ bool GateNodeServer::SentPackToChat(const int msgid, google::protobuf::Message* 
 		CLOG_ERR << "GateNodeServer::SentPackToChat Send ERROR!!!!";
 		return false;
 	}
-	mNetServModule->SendPbMsg(typed_list[0]->fd, msgid, &xData);
+	mNetServModule->SendPbMsg(typed_list[0]->fd, msg_id, msg);
 	return true;
 }
-bool GateNodeServer::SentPackToWorld(const int msgid, google::protobuf::Message* xData)
+bool GateNodeServer::SentPackToWorld(const int msg_id, google::protobuf::Message* msg)
 {
 	return true;
 }
 
-void GateNodeServer::OnLoginRouteBack(socket_t nFd, const int msgid, const char* msg, const uint32_t nLen)
+void GateNodeServer::OnLoginRouteBack(socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
 {
 }
 
-void GateNodeServer::OnChatRouteBack(socket_t nFd, const int msgid, const char* msg, const uint32_t nLen)
+void GateNodeServer::OnChatRouteBack(socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
 {
-	ChatToGatePacket xData;
-	if (!SeNet::ReceivePB(msgid, msg, nLen, &xData)) return;
+	ChatToGatePacket chat_packet;
+	if (!SeNet::ReceivePB(msg_id, msg, msg_len, &chat_packet)) return;
 
-	uint64_t playerId = xData.player_id();
-	if (ModuleChat::RPC_CHAT_CHAT_REQ == xData.msg_id())
+	uint64_t playerId = chat_packet.player_id();
+	if (ModuleChat::RPC_CHAT_CHAT_REQ == chat_packet.msg_id())
 	{
 		ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayerByID(playerId);
 		if (pPlayer == nullptr) return;
@@ -81,12 +81,12 @@ void GateNodeServer::OnChatRouteBack(socket_t nFd, const int msgid, const char* 
 		socket_t nPlayerSock = pPlayer->GetSockFd();
 		if (nPlayerSock == -1) return;
 
-		g_pServerThread->PlayerServer().SentToClient(xData.msg_id(), xData.msg_body(), nPlayerSock);
+		g_pServerThread->PlayerServer().SentToClient(chat_packet.msg_id(), chat_packet.msg_body(), nPlayerSock);
 	}
 
-	CLOG_INFO << "OnChatRouteBack and sent to client: socket_id:" << playerId << " " << xData.msg_id();
+	CLOG_INFO << "OnChatRouteBack and sent to client: socket_id:" << playerId << " " << chat_packet.msg_id();
 
 }
-void GateNodeServer::OnWorldRouteBack(socket_t nFd, const int msgid, const char *msg, const uint32_t nLen)
+void GateNodeServer::OnWorldRouteBack(socket_t sock_fd, const int msg_id, const char *msg, const uint32_t msg_len)
 {
 }

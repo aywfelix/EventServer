@@ -132,15 +132,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="SF_Test.cpp" />
+    <ClCompile Include="SFTest.cpp" />
     <ClCompile Include="TestConsistent.cpp" />
     <ClCompile Include="TestEncypt.cpp" />
     <ClCompile Include="TestRedis.cpp" />
+    <ClCompile Include="TestSnowFlake.cpp" />
     <ClCompile Include="TestSplit.cpp" />
     <ClCompile Include="TestWriteLog.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SF_Test.h" />
+    <ClInclude Include="SFTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -59,7 +59,7 @@ public:
 	void SendProtoMsg(const int nMsgID, const char* msg, int len);
 	// recv pb msg
 	static bool ReceivePB(const int nMsgID, const std::string& strMsg, google::protobuf::Message* pMsg);
-	static bool ReceivePB(const int nMsgID, const char* msg, const uint32_t nLen, google::protobuf::Message* pData);
+	static bool ReceivePB(const int nMsgID, const char* msg, const uint32_t msg_len, google::protobuf::Message* pData);
 	// close or kick socket
 	void CloseClient(socket_t fd);
 	void CloseAllClient();

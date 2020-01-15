@@ -188,6 +188,7 @@
     <ClInclude Include="SeSelect.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="SeFINet.h" />
+    <ClInclude Include="SnowFlake.hpp" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="SocketBuffer.h" />
     <ClInclude Include="SocketDefine.h" />

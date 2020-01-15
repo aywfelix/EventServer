@@ -39,7 +39,7 @@ bool Client::Loop()
 	}
 }
 
-void Client::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
+void Client::OnSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)
 {
 	if (nEvent == SE_NET_EVENT_CONNECTED)
 	{
@@ -60,7 +60,7 @@ void Client::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet*
 	}
 }
 
-void Client::OnMessage(const socket_t nFd, const int msgid, const char* msg, const uint32_t msglen)
+void Client::OnMessage(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msglen)
 {
 	Chat_ChatReply reply;
 	reply.ParseFromArray(msg, msglen);

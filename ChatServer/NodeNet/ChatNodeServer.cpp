@@ -20,24 +20,24 @@ bool ChatNodeServer::InitHelper()
 }
 
 
-bool ChatNodeServer::SendPackToGame(int nServerID, const int msgid, google::protobuf::Message* xData)
+bool ChatNodeServer::SendPackToGame(int server_id, const int msg_id, google::protobuf::Message* msg)
 {
 
 	return true;
 }
 
-bool ChatNodeServer::SendPackToGame(const int msgid, google::protobuf::Message* xData)
+bool ChatNodeServer::SendPackToGame(const int msg_id, google::protobuf::Message* msg)
 {
-	std::string send_msg = xData.SerializeAsString();
+	std::string send_msg = msg->SerializeAsString();
 	ChatToGamePacket game_packet;
-	game_packet.set_msg_id(msgid);
+	game_packet.set_msg_id(msg_id);
 	game_packet.set_msg_body(send_msg);
 	game_packet.set_player_id(0);
 	SendPbByServType(ServerType::SERVER_TYPE_GAME, CHAT_ROUTE_TO_GAME, &game_packet);
 	return true;
 }
 
-void ChatNodeServer::OnGameRouteBack(socket_t nFd, const int msgid, const char* msg, const uint32_t nLen)
+void ChatNodeServer::OnGameRouteBack(socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
 {
 }
 

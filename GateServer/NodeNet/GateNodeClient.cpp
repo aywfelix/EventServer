@@ -27,9 +27,9 @@ void GateNodeClient::AddConnectServer()
 	AddConnectMaster();
 }
 
-void GateNodeClient::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
+void GateNodeClient::OnSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)
 {
-    OnSocketNodeEvent(nFd, nEvent, pNet);
+    OnSocketNodeEvent(sock_fd, nEvent, pNet);
 }
 
 

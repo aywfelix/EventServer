@@ -19,14 +19,14 @@ public:
 	virtual bool Init();
 	virtual bool InitHelper() = 0;
 	virtual void Loop();
-	virtual void OnClientSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet);
-	virtual void OnClientConnected(const socket_t nFd);
-	virtual void OnClientDisconnect(const socket_t nFd);
+	virtual void OnClientSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet);
+	virtual void OnClientConnected(const socket_t sock_fd);
+	virtual void OnClientDisconnect(const socket_t sock_fd);
 	SeFNet* GetNetModule() { return mNetServModule; }
 
 	ServerDataPtr GetClientNodeData(int nServerId);
 
-	virtual void OnReportToServer(const socket_t nFd, const int nMsgID, const char* msg, const uint32_t nLen);
+	virtual void OnReportToServer(const socket_t sock_fd, const int nMsgID, const char* msg, const uint32_t msg_len);
 	virtual void AfterReportToServer(ServerDataPtr& pReportServerData);
 
 	void SendByServType(ServerType type, const int nMsgID, const char* msg, int len);

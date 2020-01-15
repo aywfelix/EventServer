@@ -19,8 +19,8 @@ public:
 	void AddPlayerIDMap(uint64_t playerId, ClientPlayer* player);
 	ClientPlayer* GetPlayerByID(uint64_t playerId);
 
-	void AddPlayerSockMap(socket_t nFd, ClientPlayer* player);
-	ClientPlayer* GetPlayerByFd(socket_t nFd);
+	void AddPlayerSockMap(socket_t sock_fd, ClientPlayer* player);
+	ClientPlayer* GetPlayerByFd(socket_t sock_fd);
 
 private:
 	clientplayer_pool_t mClientPool;

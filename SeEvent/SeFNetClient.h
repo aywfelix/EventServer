@@ -34,7 +34,7 @@ public:
 		AddReceiveCallBack(eType, functorPtr);
 	}
 	template<typename BaseType>
-	void AddEventCallBack(ServerType eType, BaseType* pBase, void(BaseType::* HandleEvent)(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet))
+	void AddEventCallBack(ServerType eType, BaseType* pBase, void(BaseType::* HandleEvent)(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet))
 	{
 		NET_EVENT_FUNCTOR functor = std::bind(HandleEvent, pBase, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 		NET_EVENT_FUNCTOR_PTR functorPtr = std::make_shared<NET_EVENT_FUNCTOR>(functor);
@@ -57,7 +57,7 @@ public:
 	// get server info
 	ConnectDataPtr GetServerNetInfo(const int& nServerID);
 	ConnectDataPtr GetServerNetInfo(const SeNet* pNet);
-	ConnectDataPtr GetServerNetInfo(const socket_t& nFd);
+	ConnectDataPtr GetServerNetInfo(const socket_t& sock_fd);
 private:
 	void AddReceiveCallBack(ServerType eType, uint32_t nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr);
 	void AddReceiveCallBack(ServerType eType, NET_RECEIVE_FUNCTOR_PTR functorPtr);
@@ -67,7 +67,7 @@ private:
 	void InitCallBacks(ConnectDataPtr& data);
 private:
 	struct CallBack
-	{// msgid handle function
+	{// msg_id handle function
 		std::map<int, NET_RECEIVE_FUNCTOR_PTR> mReceiveCallBack;
 		std::list<NET_RECEIVE_FUNCTOR_PTR> mCallBackList;
 		std::list<NET_EVENT_FUNCTOR_PTR> mEventCallBackList;

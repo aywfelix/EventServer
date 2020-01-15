@@ -1,4 +1,4 @@
-#include "SF_Test.h"
+#include "SFTest.h"
 #include "LogHelper.h"
 #include <vector>
 
@@ -167,7 +167,7 @@ void TEA::decrypt(const ULONG* in, ULONG* out) {
 }
 
 
-void SF_Test::TestEncypt()
+void SFTest::TestEncypt()
 {
 	//static std::string key = "2@78346zz%&*(%^bq3hrty@#1";
 	//int keylen = key.length();

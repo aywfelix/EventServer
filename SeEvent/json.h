@@ -1439,7 +1439,7 @@ private:
 
   bool readToken(Token& token);
   void skipSpaces();
-  bool match(Location pattern, int patternLength);
+  bool match(Location pattern, int pattermsg_length);
   bool readComment();
   bool readCStyleComment();
   bool readCppStyleComment();

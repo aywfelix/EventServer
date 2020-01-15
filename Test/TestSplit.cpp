@@ -1,5 +1,5 @@
 
-#include "SF_Test.h"
+#include "SFTest.h"
 #include <vector>
 #include <cstring>
 #include <string>
@@ -18,7 +18,7 @@ void Split(const std::string& str, const std::string& delim, std::vector<std::st
 	}
 }
 
-void SF_Test::TestSplit()
+void SFTest::TestSplit()
 {
 	std::vector<std::string> res;
 	std::string str = "13|4343,rdgaerg|sge,sefw,arg|se";
