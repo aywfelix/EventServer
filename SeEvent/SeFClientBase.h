@@ -23,15 +23,15 @@ public:
 	ConnectDataPtr GetServerNetInfo(const SeNet* pNet);
 	ConnectDataPtr GetServerNetInfo(const socket_t& nFd);
 
-	virtual EServerType GetServerType()
+	virtual ServerType GetServerType()
 	{
-		return (EServerType)mServerInfo.server_type();
+		return (ServerType)mServerInfo.server_type();
 	}
 	virtual void AddConnectMaster();
 
 protected:
 	SeFNetClient* mNetCliModule{ nullptr };
-	ServerReport mServerInfo;
-	std::vector<EServerType> mConnectType;
+	ServerReport mServerInfo;  // 上报master本服信息
+	std::vector<ServerType> mConnectType;
 };
 

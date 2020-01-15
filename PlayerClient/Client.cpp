@@ -9,8 +9,8 @@
 bool Client::Init()
 {
 	m_pNetClientModule = new SeFNetClient();
-	m_pNetClientModule->AddEventCallBack(EServerType::SERVER_TYPE_GATE, this, &Client::OnSocketEvent);
-	m_pNetClientModule->AddReceiveCallBack(EServerType::SERVER_TYPE_GATE, this, &Client::OnMessage);
+	m_pNetClientModule->AddEventCallBack(ServerType::SERVER_TYPE_GATE, this, &Client::OnSocketEvent);
+	m_pNetClientModule->AddReceiveCallBack(ServerType::SERVER_TYPE_GATE, this, &Client::OnMessage);
 	
 	ConnectServer();
 	m_ServerId = g_JsonConfig->m_Root["GatePlayerServer"]["NodeId"].asInt();
@@ -25,7 +25,7 @@ void Client::ConnectServer()
 	ServerData->Port = g_JsonConfig->m_Root["GatePlayerServer"]["NodePort"].asInt();
 	ServerData->name = g_JsonConfig->m_Root["GatePlayerServer"]["NodeName"].asString();
 	ServerData->Ip = g_JsonConfig->m_Root["GatePlayerServer"]["NodeIp"].asString();
-	ServerData->ServerType = EServerType::SERVER_TYPE_GATE;
+	ServerData->ServerType = ServerType::SERVER_TYPE_GATE;
 	ServerData->ConnState = ConnectState::CONNECTING;
 	m_pNetClientModule->AddServer(ServerData);
 }
@@ -47,8 +47,14 @@ void Client::OnSocketEvent(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet*
 		//send msg to gate
 		std::string send_msg;
 		Chat_ChatReq chat_msg;
-		chat_msg.set_channel(1);
-		chat_msg.set_chat_msg("this is test msg to chat server!!!");
+		chat_msg.set_channel(ChatChannelType::CHAT_CHANNEL_GM);
+		chat_msg.set_chat_msg("this is gm msg to game player");
+		chat_msg.SerializeToString(&send_msg);
+		m_pNetClientModule->SendByServId(m_ServerId, (const uint16_t)(ModuleChat::RPC_CHAT_CHAT_REQ), send_msg.c_str(), send_msg.length());
+	
+		//send msg to gate
+		chat_msg.set_channel(ChatChannelType::CHAT_CHANNEL_SYSTEM);
+		chat_msg.set_chat_msg("this is system msg to system");
 		chat_msg.SerializeToString(&send_msg);
 		m_pNetClientModule->SendByServId(m_ServerId, (const uint16_t)(ModuleChat::RPC_CHAT_CHAT_REQ), send_msg.c_str(), send_msg.length());
 	}

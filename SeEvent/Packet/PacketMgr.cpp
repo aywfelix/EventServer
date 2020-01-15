@@ -1,6 +1,6 @@
 #include "Packet/PacketMgr.h"
 
-std::unique_ptr<PacketMgr> g_pPacketMgr = nullptr;
+std::unique_ptr<PacketMgr> g_packetmgr = nullptr;
 
 PacketMgr::PacketMgr()
 {}

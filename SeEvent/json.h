@@ -1412,7 +1412,7 @@ private:
     tokenArrayEnd,
     tokenString,
     tokenNumber,
-    tokentrue,
+    tokenTrue,
     tokenFalse,
     tokenNull,
     tokenArraySeparator,

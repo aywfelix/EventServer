@@ -87,33 +87,33 @@ void GatePlayerServer::OnOtherMessage(const socket_t nFd, const int msgid, const
 	if (msgid <= 0) return;
 	int moduleId = GetModuleID(msgid);
 
-	ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayerByFd(nFd);
-	if (pPlayer == nullptr) return;
+	ClientPlayer* cli_player = g_pClientPlayerMgr->GetPlayerByFd(nFd);
+	if (cli_player == nullptr) return;
 
 	switch (moduleId)
 	{
 	case ModuleGate::MODULE_ID_GATE:
 	{
-		pPlayer->OnModuleGateMessage(msgid, msg, nLen, nFd);
+		cli_player->OnModuleGateMessage(msgid, msg, nLen, nFd);
 		break;
 	}
 	case ModuleLogin::MODULE_ID_LOGIN:
 	{
-		pPlayer->OnModuleLoginMessage(msgid, msg, nLen);
+		cli_player->OnModuleLoginMessage(msgid, msg, nLen);
 		break;
 	}
 	case ModuleChat::MODULE_ID_CHAT:
 	{
-		pPlayer->OnModuleChatMessage(msgid, msg, nLen);
+		cli_player->OnModuleChatMessage(msgid, msg, nLen);
 		break;
 	}
 	case ModuleWorld::MODULE_ID_WORLD:
 	{
-		pPlayer->OnModuleWorldMessage(msgid, msg, nLen);
+		cli_player->OnModuleWorldMessage(msgid, msg, nLen);
 		break;
 	}
 	default:
-		pPlayer->OnModuleGameMessage(msgid, msg, nLen);
+		cli_player->OnModuleGameMessage(msgid, msg, nLen);
 		break;
 	}
 }
@@ -123,7 +123,7 @@ void GatePlayerServer::SentToClient(const int nMsgID, const std::string& msg, co
 	m_pNetModule->SendMsg(nFd, nMsgID, msg.c_str(), msg.length());
 }
 
-void GatePlayerServer::SentToClient(const int nMsgID, google::protobuf::Message& xData, const socket_t nFd)
+void GatePlayerServer::SentToClient(const int nMsgID, google::protobuf::Message* xData, const socket_t nFd)
 {
 	m_pNetModule->SendPbMsg(nFd, nMsgID, &xData);
 }

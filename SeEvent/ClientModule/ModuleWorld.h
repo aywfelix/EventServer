@@ -10,7 +10,7 @@
 class Player;
 class Packet;
 
-extern std::unique_ptr<PacketMgr> g_pPacketMgr;
+extern std::unique_ptr<PacketMgr> g_packetmgr;
 
 
 class ModuleWorld

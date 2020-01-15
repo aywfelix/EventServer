@@ -5,7 +5,7 @@
 
 void GateNodeClient::InitHelper()
 {
-	mNetCliModule->AddEventCallBack(EServerType::SERVER_TYPE_MASTER, this, &GateNodeClient::OnSocketEvent);
+	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_MASTER, this, &GateNodeClient::OnSocketEvent);
 	SetReportInfo();
 	AddConnectServer();
 }
@@ -19,7 +19,7 @@ void GateNodeClient::SetReportInfo()
 	mServerInfo.set_server_port(g_JsonConfig->m_ServerConf["NodePort"].asInt());
 	mServerInfo.set_server_max_online(2000);
 	mServerInfo.set_server_state(EServerState::EST_NORMAL);
-	mServerInfo.set_server_type(EServerType::SERVER_TYPE_GATE);
+	mServerInfo.set_server_type(ServerType::SERVER_TYPE_GATE);
 }
 
 void GateNodeClient::AddConnectServer()

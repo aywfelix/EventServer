@@ -74,7 +74,6 @@ license you like.
 
 
 #include "json.h"
-#include <cassert>
 
 #ifndef JSON_IS_AMALGAMATION
 #error "Compile with -I PATH_TO_JSON_DIRECTORY"
@@ -377,7 +376,7 @@ bool Reader::readValue() {
   case tokenString:
     successful = decodeString(token);
     break;
-  case tokentrue:
+  case tokenTrue:
     {
     Value v(true);
     currentValue().swapPayload(v);
@@ -480,7 +479,7 @@ bool Reader::readToken(Token& token) {
     readNumber();
     break;
   case 't':
-    token.type_ = tokentrue;
+    token.type_ = tokenTrue;
     ok = match("rue", 3);
     break;
   case 'f':
@@ -1134,7 +1133,7 @@ private:
     tokenArrayEnd,
     tokenString,
     tokenNumber,
-    tokentrue,
+    tokenTrue,
     tokenFalse,
     tokenNull,
     tokenNaN,
@@ -1302,7 +1301,7 @@ bool OurReader::readValue() {
   case tokenString:
     successful = decodeString(token);
     break;
-  case tokentrue:
+  case tokenTrue:
     {
     Value v(true);
     currentValue().swapPayload(v);
@@ -1442,7 +1441,7 @@ bool OurReader::readToken(Token& token) {
     }
     break;
   case 't':
-    token.type_ = tokentrue;
+    token.type_ = tokenTrue;
     ok = match("rue", 3);
     break;
   case 'f':

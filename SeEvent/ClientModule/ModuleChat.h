@@ -11,7 +11,7 @@
 class Player;
 class Packet;
 
-extern std::unique_ptr<PacketMgr> g_pPacketMgr;
+extern std::unique_ptr<PacketMgr> g_packetmgr;
 
 
 class ModuleChat
@@ -28,8 +28,8 @@ public:
 public:
 	ModuleChat()
 	{
-		g_pPacketMgr->RegisterHandle(RPC_CHAT_CHAT_REQ, ModuleChat::ChatReq);
-		g_pPacketMgr->RegisterPacket(RPC_CHAT_CHAT_REQ, new CPacket<Chat_ChatReq>());
+		g_packetmgr->RegisterHandle(RPC_CHAT_CHAT_REQ, ModuleChat::ChatReq);
+		g_packetmgr->RegisterPacket(RPC_CHAT_CHAT_REQ, new CPacket<Chat_ChatReq>());
 	}
 
 	~ModuleChat() {}
@@ -43,5 +43,5 @@ public:
 
 public:
 
-	static int ChatReq(Player* pPlayer, Packet* pRecvPacket);
+	static int ChatReq(Player* player, Packet* recv_packet);
 };

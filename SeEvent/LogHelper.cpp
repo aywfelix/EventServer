@@ -86,10 +86,7 @@ void LogHelper::Stop()
 {
 	m_stop = true;
 	m_filec.Close();
-	if (m_thread.joinable())
-	{
-		m_thread.join();
-	}
+	if (m_thread.joinable()) m_thread.join();
 }
 
 void LogHelper::SetLogLevel(int level)
@@ -171,6 +168,11 @@ bool LogHelper::LoadLogCfg(const char* logcfg)
 
 LogStream& LogHelper::Stream(int level, const char* file, const char* func, int line)
 {
+	if (m_level < g_pLog->GetLevel())
+	{
+		return m_logstream;
+	}
+
 	m_logstream.Init(level, file, func, line);
 	return m_logstream;
 }
@@ -213,18 +215,11 @@ void LogStream::Init(int level, const char* file, const char* func, int line)
 
 void LogStream::Clear()
 {
-	if (m_level < g_pLog->GetLevel())
-	{
-		m_level = 1;
-		m_file = nullptr;
-		m_func = nullptr;
-		m_line = 0;
-		return;
-	}
+#ifdef DEBUG
 	if (m_level == E_LOG_FATAL || m_level == E_LOG_ERR)
 	{
 		m_oss << "\x1b[0m";  // red
-	}
+}
 	else if (m_level == E_LOG_WARN)
 	{
 		m_oss << "\x1b[0m"; // yellow
@@ -237,10 +232,7 @@ void LogStream::Clear()
 	{
 		m_oss << "\x1b[0m"; // white
 	}
+#endif // DEBUG
 	m_oss << "\n";
 	g_pLog->GetQueue().PutQ(m_oss.str());
-	m_level = 1;
-	m_file = nullptr;
-	m_func = nullptr;
-	m_line = 0;
 }

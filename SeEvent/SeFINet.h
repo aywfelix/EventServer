@@ -33,7 +33,7 @@ enum SE_NET_EVENT
 };
 
 
-enum EServerType
+enum ServerType
 {
 	SERVER_TYPE_NONE = 0,
 	SERVER_TYPE_MASTER = 1,

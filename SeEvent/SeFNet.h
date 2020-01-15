@@ -54,7 +54,7 @@ public:
 	void SendPbMsg(const socket_t fd, const int nMsgID, ::google::protobuf::Message* pMsg);
 	void SendPbMsg(std::vector<socket_t>& fdlist, const int nMsgID, ::google::protobuf::Message* pMsg);
 	void SendPBToAllMsg(const int nMsgID, ::google::protobuf::Message* pMsg);
-	//
+
 	SeNet* GetNet() { return mNet; }
 private:
 	void OnReceiveNetPack(const socket_t nFd, const int nMsgId, const char* pMsg, const uint32_t nLen);
@@ -74,7 +74,7 @@ struct ConnectData
 	int Port;
 	std::string Ip;
 	std::string name;
-	EServerType ServerType;
+	ServerType ServerType;
 	ConnectState ConnState;
 	socket_t SockFd;
 	std::shared_ptr<SeFNet> pNet;

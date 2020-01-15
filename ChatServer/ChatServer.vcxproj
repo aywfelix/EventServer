@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Chat.cpp" />
+    <ClCompile Include="NodeNet\ChatNodeServer.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MsgHandle\ChatPlayer.cpp" />
     <ClCompile Include="MsgHandle\ModuleChat.cpp" />
@@ -140,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chat.h" />
+    <ClInclude Include="NodeNet\ChatNodeServer.h" />
     <ClInclude Include="MsgHandle\ChatPlayer.h" />
     <ClInclude Include="NodeNet\ChatNodeClient.h" />
     <ClInclude Include="NodeNet\ChatServerThread.h" />

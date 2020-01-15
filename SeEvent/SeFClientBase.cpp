@@ -7,7 +7,7 @@
 bool SeFClientBase::Init()
 {
 	mNetCliModule = new SeFNetClient();
-	mNetCliModule->AddReceiveCallBack(EServerType::SERVER_TYPE_MASTER, MASTER_REPORT_SERVER_INFO_TO_SERVER, this, &SeFClientBase::OnMasterMessage);
+	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_MASTER, MASTER_REPORT_SERVER_INFO_TO_SERVER, this, &SeFClientBase::OnMasterMessage);
 	
 	return true;
 }
@@ -64,7 +64,7 @@ void SeFClientBase::OnMasterMessage(const socket_t nFd, const int nMsgID, const 
 				ServerData->Port = server_info.server_port();
 				ServerData->name = server_info.server_name();
 				ServerData->Ip = server_info.server_ip();
-				ServerData->ServerType = EServerType(server_info.server_type());
+				ServerData->ServerType = ServerType(server_info.server_type());
 				ServerData->ConnState = ConnectState::CONNECTING;
 				mNetCliModule->AddServer(ServerData);
 			}
@@ -81,11 +81,11 @@ void SeFClientBase::Loop()
 
 void SeFClientBase::AddConnectMaster()
 {
-	if (this->GetServerType() != EServerType::SERVER_TYPE_MASTER)
+	if (this->GetServerType() != ServerType::SERVER_TYPE_MASTER)
 	{
 		ConnectDataPtr ServerData = std::make_shared<ConnectData>();
 		ServerData->ServerId = g_JsonConfig->m_Root["MasterServer"]["NodeId"].asInt();
-		ServerData->ServerType = EServerType::SERVER_TYPE_MASTER;
+		ServerData->ServerType = ServerType::SERVER_TYPE_MASTER;
 		ServerData->Ip = g_JsonConfig->m_Root["MasterServer"]["NodeIp"].asString();
 		ServerData->Port = g_JsonConfig->m_Root["MasterServer"]["NodePort"].asInt();
 		ServerData->name = g_JsonConfig->m_Root["MasterServer"]["NodeName"].asString();

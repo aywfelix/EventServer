@@ -16,7 +16,7 @@
 #include "Util.h"
 #include "CommDef.h"
 
-enum eLogLevel
+enum LogLevel
 {
 	E_LOG_DEBUG = 1,
 	E_LOG_INFO = 2,
@@ -25,7 +25,7 @@ enum eLogLevel
 	E_LOG_FATAL = 5,
 };
 
-enum eLogRollType
+enum LogRollType
 {
 	E_ROLL_SIZE = 1,
 	E_ROLL_HOUR = 2,
@@ -72,8 +72,8 @@ public:
 
 	int m_level{ 1 };
 	int m_line{ 0 };
-	const char* m_file;
-	const char* m_func;
+	const char* m_file{nullptr};
+	const char* m_func{nullptr};
 
 };
 

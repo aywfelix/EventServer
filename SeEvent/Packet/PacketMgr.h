@@ -24,4 +24,4 @@ private:
 	std::unordered_map<int, PPacket*> m_mPackets;
 };
 
-extern std::unique_ptr<PacketMgr> g_pPacketMgr;
+extern std::unique_ptr<PacketMgr> g_packetmgr;

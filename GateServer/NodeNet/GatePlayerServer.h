@@ -17,7 +17,7 @@ public:
 
 	void OnOtherMessage(const socket_t nFd, const int msgid, const char* msg, const uint32_t nLen);
 	void SentToClient(const int nMsgID, const std::string& msg, const socket_t nFd);
-	void SentToClient(const int nMsgID, google::protobuf::Message& xData, const socket_t nFd);
+	void SentToClient(const int nMsgID, google::protobuf::Message* xData, const socket_t nFd);
 	void SentToAllClient(const int nMsgID, const std::string& msg);
 
 	void KickPlayer(const socket_t nFd);

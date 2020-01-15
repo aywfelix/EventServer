@@ -2,7 +2,6 @@
 #include <map>
 #include <memory>
 #include <list>
-#include "SeFINet.h"
 #include "MemPool.hpp"
 #include "ClientPlayer.h"
 

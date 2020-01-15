@@ -9,10 +9,10 @@ class Packet
 {
 public:
 	Packet() {}
-	Packet(int msgid, ::google::protobuf::Message* msg) : msg_id(msgid), pMsg(msg) {}
+	Packet(int msgid, ::google::protobuf::Message* msg) : msg_id(msgid), msg(msg) {}
 
 	int msg_id{ -1 };
-	::google::protobuf::Message* pMsg{ nullptr };
+	::google::protobuf::Message* msg{ nullptr };
 };
 
 class PPacket
@@ -29,7 +29,7 @@ public:
 	{
 		m_t.ParseFromArray(msg, msglen);
 		m_packet.msg_id = msg_id;
-		m_packet.pMsg = &m_t;
+		m_packet.msg = &m_t;
 		return &m_packet;
 	}
 private:

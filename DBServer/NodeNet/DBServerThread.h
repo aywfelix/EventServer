@@ -11,17 +11,17 @@ public:
 	
 	DBNodeServer& NodeServer()
 	{
-		return m_NodeServer;
+		return m_nodeserver;
 	}
 
 	DBNodeClient& NodeClient()
 	{
-		return m_NodeClient;
+		return m_nodeclient;
 	}
 
 private:
-    DBNodeServer m_NodeServer;
-	DBNodeClient m_NodeClient;
+    DBNodeServer m_nodeserver;
+	DBNodeClient m_nodeclient;
 
 };
 

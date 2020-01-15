@@ -9,7 +9,7 @@ public:
     bool Init();
     void ThreadLoop();
 private:
-    MasterNodeServer m_NodeServer;
+    MasterNodeServer m_nodeserver;
 };
 
 extern std::unique_ptr<MasterServerThread> g_pServerThread;

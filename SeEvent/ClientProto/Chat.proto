@@ -3,8 +3,8 @@ import "ClientPublic.proto";
 
 message Chat_ChatReq
 {
-	string chat_msg = 1;
-	int32 channel = 2;
+	int32 channel = 1;
+	string chat_msg = 2;
 }
 
 message Chat_ChatReply

@@ -6,8 +6,8 @@
 
 void DBNodeClient::InitHelper()
 {
-	mNetCliModule->AddEventCallBack(EServerType::SERVER_TYPE_MASTER, this, &DBNodeClient::OnSocketEvent);
-	mNetCliModule->AddEventCallBack(EServerType::SERVER_TYPE_GATE, this, &DBNodeClient::OnSocketEvent); // world服连接master服务
+	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_MASTER, this, &DBNodeClient::OnSocketEvent);
+	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_GATE, this, &DBNodeClient::OnSocketEvent); // world服连接master服务
 
 	SetReportInfo();
 	AddConnectServer();
@@ -22,7 +22,7 @@ void DBNodeClient::SetReportInfo()
 	mServerInfo.set_server_port(g_JsonConfig->m_ServerConf["NodePort"].asInt());
 	mServerInfo.set_server_max_online(5000);
 	mServerInfo.set_server_state(EServerState::EST_NORMAL);
-	mServerInfo.set_server_type(EServerType::SERVER_TYPE_DB);
+	mServerInfo.set_server_type(ServerType::SERVER_TYPE_DB);
 }
 
 void DBNodeClient::AddConnectServer()

@@ -6,7 +6,7 @@
 
 SeFNetClient::SeFNetClient()
 {
-	for (int eType = 0; eType < EServerType::SERVER_TYPE_MAX; ++eType)
+	for (int eType = 0; eType < ServerType::SERVER_TYPE_MAX; ++eType)
 	{
 		CallBack cb;
 		mmCallBack.emplace(eType, cb);
@@ -18,7 +18,7 @@ SeFNetClient::~SeFNetClient()
 	mmCallBack.clear();
 }
 
-void SeFNetClient::AddReceiveCallBack(EServerType eType, NET_RECEIVE_FUNCTOR_PTR functorPtr)
+void SeFNetClient::AddReceiveCallBack(ServerType eType, NET_RECEIVE_FUNCTOR_PTR functorPtr)
 {
 	auto it = mmCallBack.find(eType);
 	if (it == mmCallBack.end())
@@ -28,7 +28,7 @@ void SeFNetClient::AddReceiveCallBack(EServerType eType, NET_RECEIVE_FUNCTOR_PTR
 	mmCallBack[eType].mCallBackList.emplace_back(functorPtr);
 }
 
-void SeFNetClient::AddReceiveCallBack(EServerType eType, uint32_t nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr)
+void SeFNetClient::AddReceiveCallBack(ServerType eType, uint32_t nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr)
 {
 	auto it = mmCallBack.find(eType);
 	if (it == mmCallBack.end())
@@ -38,7 +38,7 @@ void SeFNetClient::AddReceiveCallBack(EServerType eType, uint32_t nMsgId, NET_RE
 	mmCallBack[eType].mReceiveCallBack.emplace(nMsgId, functorPtr);
 }
 
-void SeFNetClient::AddEventCallBack(EServerType eType, NET_EVENT_FUNCTOR_PTR functorPtr)
+void SeFNetClient::AddEventCallBack(ServerType eType, NET_EVENT_FUNCTOR_PTR functorPtr)
 {
 	auto it = mmCallBack.find((int)eType);
 	if (it == mmCallBack.end())
@@ -48,7 +48,7 @@ void SeFNetClient::AddEventCallBack(EServerType eType, NET_EVENT_FUNCTOR_PTR fun
 	mmCallBack[eType].mEventCallBackList.emplace_back(functorPtr);
 }
 
-void SeFNetClient::RemoveReceiveCallBack(EServerType eType, uint32_t nMsgId)
+void SeFNetClient::RemoveReceiveCallBack(ServerType eType, uint32_t nMsgId)
 {
 	auto it = mmCallBack.find(eType);
 	if (it == mmCallBack.end())
@@ -199,19 +199,19 @@ void SeFNetClient::SendPBToAll(const int nMsgID, ::google::protobuf::Message* pM
 	}
 }
 
-void SeFNetClient::SendByServType(EServerType type, const int nMsgID, const char* msg, int len)
+void SeFNetClient::SendByServType(ServerType type, const int nMsgID, const char* msg, int len)
 {
 
 }
-void SeFNetClient::SendByServTypes(std::vector<EServerType>& types, const int nMsgID, const char* msg, int len)
+void SeFNetClient::SendByServTypes(std::vector<ServerType>& types, const int nMsgID, const char* msg, int len)
 {
 
 }
-void SeFNetClient::SendPbByServType(EServerType type, const int nMsgID, ::google::protobuf::Message* pMsg)
+void SeFNetClient::SendPbByServType(ServerType type, const int nMsgID, ::google::protobuf::Message* pMsg)
 {
 
 }
-void SeFNetClient::SendPbByServTypes(std::vector<EServerType>& types, const int nMsgID, ::google::protobuf::Message* pMsg)
+void SeFNetClient::SendPbByServTypes(std::vector<ServerType>& types, const int nMsgID, ::google::protobuf::Message* pMsg)
 {
 
 }

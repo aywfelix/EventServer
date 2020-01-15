@@ -2,6 +2,8 @@
 #include "WorldNodeServer.h"
 #include "JsonConfig.h"
 #include "LogHelper.h"
+#include "SeFNodeNet.pb.h"
+#include "SeFNet.h"
 
 bool WorldNodeServer::InitHelper()
 {

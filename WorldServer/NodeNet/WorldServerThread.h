@@ -11,17 +11,17 @@ public:
 	
 	WorldNodeServer& NodeServer()
 	{
-		return m_NodeServer;
+		return m_nodeserver;
 	}
 
 	WorldNodeClient& NodeClient()
 	{
-		return m_NodeClient;
+		return m_nodeclient;
 	}
 
 private:
-    WorldNodeServer m_NodeServer;
-	WorldNodeClient m_NodeClient;
+    WorldNodeServer m_nodeserver;
+	WorldNodeClient m_nodeclient;
 };
 
 extern std::unique_ptr<WorldServerThread> g_pServerThread;

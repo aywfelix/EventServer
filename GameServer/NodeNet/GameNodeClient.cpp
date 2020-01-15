@@ -5,9 +5,9 @@
 
 void GameNodeClient::InitHelper()
 {
-    mNetCliModule->AddEventCallBack(EServerType::SERVER_TYPE_MASTER, this, &GameNodeClient::OnSocketEvent);
-	mNetCliModule->AddEventCallBack(EServerType::SERVER_TYPE_WORLD, this, &GameNodeClient::OnSocketEvent);
-	mNetCliModule->AddEventCallBack(EServerType::SERVER_TYPE_GATE, this, &GameNodeClient::OnSocketEvent);
+    mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_MASTER, this, &GameNodeClient::OnSocketEvent);
+	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_WORLD, this, &GameNodeClient::OnSocketEvent);
+	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_GATE, this, &GameNodeClient::OnSocketEvent);
 	SetReportInfo();
 	AddConnectServer();
 }
@@ -21,14 +21,14 @@ void GameNodeClient::SetReportInfo()
 	mServerInfo.set_server_port(g_JsonConfig->m_ServerConf["NodePort"].asInt());
 	mServerInfo.set_server_max_online(2000);
 	mServerInfo.set_server_state(EServerState::EST_NORMAL);
-	mServerInfo.set_server_type(EServerType::SERVER_TYPE_GAME);
+	mServerInfo.set_server_type(ServerType::SERVER_TYPE_GAME);
 }
 
 void GameNodeClient::AddConnectServer()
 {
 	AddConnectMaster();
-	mConnectType.push_back(EServerType::SERVER_TYPE_WORLD);
-	mConnectType.push_back(EServerType::SERVER_TYPE_GATE);
+	mConnectType.push_back(ServerType::SERVER_TYPE_WORLD);
+	mConnectType.push_back(ServerType::SERVER_TYPE_GATE);
 }
 
 

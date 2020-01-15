@@ -17,7 +17,7 @@ public:
 
 protected:
 	SeFNetClient* m_pNetClientModule{ nullptr };
-	std::vector<EServerType> m_ConnectType;
+	std::vector<ServerType> m_ConnectType;
 
 	int m_ServerId;
 };

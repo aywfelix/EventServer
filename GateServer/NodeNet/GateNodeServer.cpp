@@ -1,14 +1,12 @@
-#include <iostream>
 #include "GateNodeServer.h"
+#include "GateServerThread.h"
 #include "JsonConfig.h"
 #include "ClientModule/ModuleChat.h"
 #include "ClientPlayer/ClientPlayerMgr.h"
-#include "ClientPlayer/ClientPlayer.h"
 #include "LogHelper.h"
 #include "SeFNodeNet.pb.h"
 #include "SeFNet.h"
-#include "GateServerThread.h"
-#include "SeFNet.h"
+
 
 bool GateNodeServer::InitHelper()
 {
@@ -35,11 +33,11 @@ bool GateNodeServer::SendPackToLogin(const socket_t client_fd, const int msgid, 
 {
 	return true;
 }
-bool GateNodeServer::SendPackToScene(const int msgid, google::protobuf::Message& xData, int nServerID)
+bool GateNodeServer::SendPackToScene(const int msgid, google::protobuf::Message* xData, int nServerID)
 {
 	return true;
 }
-bool GateNodeServer::SentPackToChat(const int msgid, google::protobuf::Message& xData)
+bool GateNodeServer::SentPackToChat(const int msgid, google::protobuf::Message* xData)
 {
 	ServerDataPtr pServerData = nullptr;
 	std::vector<ServerDataPtr> typed_list;
@@ -47,7 +45,7 @@ bool GateNodeServer::SentPackToChat(const int msgid, google::protobuf::Message& 
 	for (auto& it : mmServNodes)
 	{
 		pServerData = it.second;
-		if (pServerData->ServerInfo->server_type() == EServerType::SERVER_TYPE_CHAT)
+		if (pServerData->ServerInfo->server_type() == ServerType::SERVER_TYPE_CHAT)
 		{
 			typed_list.emplace_back(pServerData);
 		}
@@ -60,7 +58,7 @@ bool GateNodeServer::SentPackToChat(const int msgid, google::protobuf::Message& 
 	mNetServModule->SendPbMsg(typed_list[0]->fd, msgid, &xData);
 	return true;
 }
-bool GateNodeServer::SentPackToWorld(const int msgid, google::protobuf::Message& xData)
+bool GateNodeServer::SentPackToWorld(const int msgid, google::protobuf::Message* xData)
 {
 	return true;
 }
