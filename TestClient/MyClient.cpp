@@ -24,20 +24,20 @@ void EventCb(const socket_t nFd, const SE_NET_EVENT nEvent, SeNet* pNet)
 //	template<typename T>
 //	MyStream& operator<<(const T& log)
 //	{
-//		moss << log;
+//		m_oss << log;
 //		return *this;
 //	}
 //
 //	MyStream& operator<<(std::ostream& (*log)(std::ostream&))
 //	{
-//		moss << log;
-//		std::ostringstream moss2;
-//		moss.swap(moss2);
-//		std::cout << moss2.str();
+//		m_oss << log;
+//		std::ostringstream m_oss2;
+//		m_oss.swap(m_oss2);
+//		std::cout << m_oss2.str();
 //		return *this;
 //	}
 //private:
-//	std::ostringstream moss;
+//	std::ostringstream m_oss;
 //	
 //};
 

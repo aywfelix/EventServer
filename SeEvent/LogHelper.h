@@ -58,7 +58,7 @@ public:
 	template<typename T>
 	LogStream& operator<<(const T& log)
 	{
-		moss << log;
+		m_oss << log;
 		return *this;
 	}
 
@@ -68,7 +68,7 @@ public:
 		return *this;
 	}
 
-	std::ostringstream moss;
+	std::ostringstream m_oss;
 
 	int m_level{ 1 };
 	int m_line{ 0 };
@@ -103,19 +103,19 @@ private:
 	ConcurrentQueue<std::string> m_queue;
 	//Queue<std::string> m_queue;
 	std::string m_LogPath;
-	std::ostringstream moss;
+	std::ostringstream m_oss;
 	std::thread m_thread;
 	int m_level;
-	LogStream stream;
-	bool mStop{ false };
+	LogStream m_logstream;
+	bool m_stop{ false };
 	
-	int m_RollType;
-	std::string m_LogName;
-	std::string m_ServerName;
-	int64_t m_LastTime;
-	FileC mFileC;
+	int m_roll_type;
+	std::string m_logname;
+	std::string m_servername;
+	int64_t m_lasttime;
+	FileC m_filec;
 
-	TimeOut m_TimeOut;
+	TimeOut m_timeout;
 };
 
 extern std::unique_ptr<LogHelper> g_pLog;
