@@ -79,14 +79,14 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\ThirdPart\hiredis\adapters;..\ThirdPart\hiredis;..\SeEvent;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ThirdPart\hiredis\adapters;..\ThirdPart\hiredis;..\Common;..\SeNet;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PreprocessorDefinitions>WIN32;_WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>..\libs</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SeEvent.lib;libconfig++.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocd.lib;hiredis.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SeNet.lib;Common.lib;libconfig++.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocd.lib;hiredis.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>

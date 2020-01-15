@@ -11,8 +11,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestClient", "TestClient\Te
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test\Test.vcxproj", "{239FDF32-F249-47FD-8666-462D4710ECF2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeEvent", "SeEvent\SeEvent.vcxproj", "{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PlayerClient", "PlayerClient\PlayerClient.vcxproj", "{DB372B12-9C79-4282-9803-7AE13DD99840}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetProto", "NetProto\NetProto.vcxproj", "{BB692190-40C5-4CE2-9345-30829F409A62}"
@@ -28,6 +26,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "Common\Common.vcxproj", "{C1DB09F1-AB9B-47D4-ADB9-5F19543EDD68}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChatServer", "ChatServer\ChatServer.vcxproj", "{F15B48E2-7BA7-4EFD-85C6-585B173C1F3F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeNet", "SeNet\SeNet.vcxproj", "{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,14 +69,6 @@ Global
 		{239FDF32-F249-47FD-8666-462D4710ECF2}.Release|x64.Build.0 = Release|x64
 		{239FDF32-F249-47FD-8666-462D4710ECF2}.Release|x86.ActiveCfg = Release|Win32
 		{239FDF32-F249-47FD-8666-462D4710ECF2}.Release|x86.Build.0 = Release|Win32
-		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Debug|x64.ActiveCfg = Debug|x64
-		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Debug|x64.Build.0 = Debug|x64
-		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Debug|x86.ActiveCfg = Debug|Win32
-		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Debug|x86.Build.0 = Debug|Win32
-		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Release|x64.ActiveCfg = Release|x64
-		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Release|x64.Build.0 = Release|x64
-		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Release|x86.ActiveCfg = Release|Win32
-		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Release|x86.Build.0 = Release|Win32
 		{DB372B12-9C79-4282-9803-7AE13DD99840}.Debug|x64.ActiveCfg = Debug|x64
 		{DB372B12-9C79-4282-9803-7AE13DD99840}.Debug|x64.Build.0 = Debug|x64
 		{DB372B12-9C79-4282-9803-7AE13DD99840}.Debug|x86.ActiveCfg = Debug|Win32
@@ -141,6 +133,14 @@ Global
 		{F15B48E2-7BA7-4EFD-85C6-585B173C1F3F}.Release|x64.Build.0 = Release|x64
 		{F15B48E2-7BA7-4EFD-85C6-585B173C1F3F}.Release|x86.ActiveCfg = Release|Win32
 		{F15B48E2-7BA7-4EFD-85C6-585B173C1F3F}.Release|x86.Build.0 = Release|Win32
+		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Debug|x64.ActiveCfg = Debug|x64
+		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Debug|x64.Build.0 = Debug|x64
+		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Debug|x86.ActiveCfg = Debug|Win32
+		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Debug|x86.Build.0 = Debug|Win32
+		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Release|x64.ActiveCfg = Release|x64
+		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Release|x64.Build.0 = Release|x64
+		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Release|x86.ActiveCfg = Release|Win32
+		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
