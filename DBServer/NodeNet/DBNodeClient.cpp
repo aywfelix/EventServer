@@ -2,13 +2,8 @@
 #include "JsonConfig.h"
 #include "SeFNetClient.h"
 
-
-
 void DBNodeClient::InitHelper()
 {
-	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_MASTER, this, &DBNodeClient::OnSocketEvent);
-	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_GATE, this, &DBNodeClient::OnSocketEvent); // world服连接master服务
-
 	SetReportInfo();
 	AddConnectServer();
 }
@@ -30,9 +25,3 @@ void DBNodeClient::AddConnectServer()
 	AddConnectMaster();
 	mConnectType.push_back(SERVER_TYPE_GATE);
 }
-
-void DBNodeClient::OnSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)
-{
-    OnSocketNodeEvent(sock_fd, nEvent, pNet);
-}
-
