@@ -14,7 +14,7 @@ public:
 	virtual void InitHelper() = 0;
 	virtual void SetReportInfo() = 0;
 	virtual void AddConnectServer() = 0;
-	virtual void OnMasterMessage(const socket_t sock_fd, const int nMsgID, const char* msg, const uint32_t msg_len);
+	virtual void OnMasterMessage(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len);
 	virtual void Loop();
 
 	virtual void OnSocketNodeEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet);

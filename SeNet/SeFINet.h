@@ -72,7 +72,7 @@ struct IMsgHead
 	virtual void EnCode(char* strData) = 0;
 	virtual void DeCode(const char* strData) = 0;
 	virtual uint16_t GetMsgID() const = 0;
-	virtual void SetMsgID(uint16_t nMsgID) = 0;
+	virtual void SetMsgID(uint16_t msg_id) = 0;
 	virtual uint32_t GetBodyLength() const = 0;
 	virtual void SetBodyLength(uint32_t msg_length) = 0;
 
@@ -145,8 +145,8 @@ public:
 	// Message Head[ MsgID(2) | MsgSize(4) ]
 	virtual void EnCode(char* strData)
 	{
-		uint16_t nMsgID = Htons(mMsgID);
-		memcpy(strData, &nMsgID, sizeof(nMsgID));
+		uint16_t msg_id = Htons(mMsgID);
+		memcpy(strData, &msg_id, sizeof(msg_id));
 
 		uint32_t nPackSize = mSize + MSG_HEAD_LEN;
 		uint32_t nSize = Htonl(nPackSize);
@@ -156,9 +156,9 @@ public:
 	// Message Head[ MsgID(2) | MsgSize(4) ]
 	virtual void DeCode(const char* strData)
 	{
-		uint16_t nMsgID = 0;
-		memcpy(&nMsgID, strData, sizeof(mMsgID));
-		mMsgID = Ntohs(nMsgID);
+		uint16_t msg_id = 0;
+		memcpy(&msg_id, strData, sizeof(mMsgID));
+		mMsgID = Ntohs(msg_id);
 
 		uint32_t nPackSize = 0;
 		memcpy(&nPackSize, strData + 2, sizeof(mSize));
@@ -170,9 +170,9 @@ public:
 		return mMsgID;
 	}
 
-	virtual void SetMsgID(uint16_t nMsgID)
+	virtual void SetMsgID(uint16_t msg_id)
 	{
-		mMsgID = nMsgID;
+		mMsgID = msg_id;
 	}
 
 	virtual uint32_t GetBodyLength() const

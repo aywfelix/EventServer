@@ -26,13 +26,13 @@ public:
 
 	ServerDataPtr GetClientNodeData(int nServerId);
 
-	virtual void OnReportToServer(const socket_t sock_fd, const int nMsgID, const char* msg, const uint32_t msg_len);
+	virtual void OnReportToServer(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len);
 	virtual void AfterReportToServer(ServerDataPtr& pReportServerData);
 
-	void SendByServType(ServerType type, const int nMsgID, const char* msg, int len);
-	void SendByServId(int nServerId, const int nMsgID, const char* msg, int len);
-	void SendPbByServType(ServerType type, const int nMsgID, ::google::protobuf::Message* pMsg);
-	void SendPbByServId(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendByServType(ServerType type, const int msg_id, const char* msg, int len);
+	void SendByServId(int nServerId, const int msg_id, const char* msg, int len);
+	void SendPbByServType(ServerType type, const int msg_id, ::google::protobuf::Message* pMsg);
+	void SendPbByServId(int nServerId, const int msg_id, ::google::protobuf::Message* pMsg);
 
 protected:
 	SeFNet* mNetServModule;

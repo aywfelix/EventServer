@@ -16,9 +16,9 @@ public:
 	void OnClientDisconnect(const socket_t sock_fd);
 
 	void OnOtherMessage(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len);
-	void SentToClient(const int nMsgID, const std::string& msg, const socket_t sock_fd);
-	void SentToClient(const int nMsgID, google::protobuf::Message* msg, const socket_t sock_fd);
-	void SentToAllClient(const int nMsgID, const std::string& msg);
+	void SentToClient(const int msg_id, const std::string& msg, const socket_t sock_fd);
+	void SentToClient(const int msg_id, google::protobuf::Message* msg, const socket_t sock_fd);
+	void SentToAllClient(const int msg_id, const std::string& msg);
 
 	void KickPlayer(const socket_t sock_fd);
 	void KickPlayerAllPlayer();

@@ -8,9 +8,9 @@ public:
     bool Init();
     void ThreadLoop();
 
-	GameNodeClient& GameClient() { return m_game_client; }
+	GameNodeClient& GameClient() { return m_game_cli; }
 private:
-	GameNodeClient m_game_client;
+	GameNodeClient m_game_cli;
 };
 
 extern std::unique_ptr<GameServerThread> g_pServerThread;

@@ -118,19 +118,19 @@ void GatePlayerServer::OnOtherMessage(const socket_t sock_fd, const int msg_id, 
 	}
 }
 
-void GatePlayerServer::SentToClient(const int nMsgID, const std::string& msg, const socket_t sock_fd)
+void GatePlayerServer::SentToClient(const int msg_id, const std::string& msg, const socket_t sock_fd)
 {
-	m_pNetModule->SendMsg(sock_fd, nMsgID, msg.c_str(), msg.length());
+	m_pNetModule->SendMsg(sock_fd, msg_id, msg.c_str(), msg.length());
 }
 
-void GatePlayerServer::SentToClient(const int nMsgID, google::protobuf::Message* msg, const socket_t sock_fd)
+void GatePlayerServer::SentToClient(const int msg_id, google::protobuf::Message* msg, const socket_t sock_fd)
 {
-	m_pNetModule->SendPbMsg(sock_fd, nMsgID, msg);
+	m_pNetModule->SendPbMsg(sock_fd, msg_id, msg);
 }
 
-void GatePlayerServer::SentToAllClient(const int nMsgID, const std::string& msg)
+void GatePlayerServer::SentToAllClient(const int msg_id, const std::string& msg)
 {
-	m_pNetModule->SendToAll(nMsgID, msg.c_str(), msg.length());
+	m_pNetModule->SendToAll(msg_id, msg.c_str(), msg.length());
 }
 
 void GatePlayerServer::SetClientServerNode(socket_t client_fd, ServerDataPtr& ptr)

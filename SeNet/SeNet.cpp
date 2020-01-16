@@ -365,9 +365,9 @@ void SeNet::SendToAllClients(const char* msg, int len)
 	}
 }
 
-void SeNet::SendProtoMsg(socket_t fd, const int nMsgID, const char* msg, int len)
+void SeNet::SendProtoMsg(socket_t fd, const int msg_id, const char* msg, int len)
 {
-	NetMsgHead MsgHead(nMsgID, len);
+	NetMsgHead MsgHead(msg_id, len);
 	int nSend = len + MSG_HEAD_LEN;
 	char pHead[MSG_HEAD_LEN] = { 0 };
 	MsgHead.EnCode(pHead);
@@ -375,9 +375,9 @@ void SeNet::SendProtoMsg(socket_t fd, const int nMsgID, const char* msg, int len
 	SendMsg(fd, msg, len);
 }
 
-void SeNet::SendProtoMsg(std::vector<socket_t>& fdlist, const int nMsgID, const char* msg, int len)
+void SeNet::SendProtoMsg(std::vector<socket_t>& fdlist, const int msg_id, const char* msg, int len)
 {
-	NetMsgHead MsgHead(nMsgID, len);
+	NetMsgHead MsgHead(msg_id, len);
 	int nSend = len + MSG_HEAD_LEN;
 	char pHead[MSG_HEAD_LEN] = { 0 };
 	MsgHead.EnCode(pHead);
@@ -385,9 +385,9 @@ void SeNet::SendProtoMsg(std::vector<socket_t>& fdlist, const int nMsgID, const 
 	SendMsg(fdlist, msg, len);
 }
 
-void SeNet::SendProtoMsg(const int nMsgID, const char* msg, int len)
+void SeNet::SendProtoMsg(const int msg_id, const char* msg, int len)
 {
-	NetMsgHead MsgHead(nMsgID, len);
+	NetMsgHead MsgHead(msg_id, len);
 	int nSend = len + MSG_HEAD_LEN;
 	char pHead[MSG_HEAD_LEN] = { 0 };
 	MsgHead.EnCode(pHead);
@@ -418,12 +418,12 @@ void SeNet::CloseAllClient()
 	mSessions.clear();
 }
 
-bool SeNet::ReceivePB(const int nMsgID, const std::string& strMsg, google::protobuf::Message* pMsg)
+bool SeNet::ReceivePB(const int msg_id, const std::string& strMsg, google::protobuf::Message* pMsg)
 {
-	return ReceivePB(nMsgID, strMsg.c_str(), strMsg.length(), pMsg);
+	return ReceivePB(msg_id, strMsg.c_str(), strMsg.length(), pMsg);
 }
 
-bool SeNet::ReceivePB(const int nMsgID, const char* msg, const uint32_t msg_len, google::protobuf::Message* pData)
+bool SeNet::ReceivePB(const int msg_id, const char* msg, const uint32_t msg_len, google::protobuf::Message* pData)
 {
 	if (msg == nullptr) return false;
 	return pData->ParseFromArray(msg, msg_len);

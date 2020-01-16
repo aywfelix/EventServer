@@ -19,7 +19,7 @@ bool WorldNodeServer::InitHelper()
 	return true;
 }
 
-void WorldNodeServer::OtherMessage(const socket_t sock_fd, const int nMsgID, const char* msg, const uint32_t msg_len)
+void WorldNodeServer::OtherMessage(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
 {
 
 }

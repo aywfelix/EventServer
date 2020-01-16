@@ -27,7 +27,7 @@ public:
 	bool OnModuleGameMessage(const int msg_id, const char* msg, uint32_t msg_len);
 	bool OnModuleChatMessage(const int msg_id, const char* msg, uint32_t msg_len);
 	bool OnModuleWorldMessage(const int msg_id, const char* msg, uint32_t msg_len);
-	void SendToClient(const int nMsgID, const std::string& msg);
+	void SendToClient(const int msg_id, const std::string& msg);
 private:
 	uint64_t mPlayerId;
 	int mLineId;

@@ -2,6 +2,7 @@
 #include "DBNodeServer.h"
 #include "JsonConfig.h"
 #include "LogHelper.h"
+#include "SeFNet.h"
 
 bool DBNodeServer::InitHelper()
 {
@@ -17,7 +18,7 @@ bool DBNodeServer::InitHelper()
 	return true;
 }
 
-void DBNodeServer::OtherMessage(const socket_t sock_fd, const int nMsgID, const char* msg, const uint32_t msg_len)
+void DBNodeServer::OtherMessage(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
 {
 
 }

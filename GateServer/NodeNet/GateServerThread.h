@@ -11,16 +11,16 @@ public:
 	bool Init();
 	void ThreadLoop();
 
-	GatePlayerServer &PlayerServer() { return m_playerserver; }
+	GatePlayerServer &PlayerServer() { return m_gate_player; }
 
-	GateNodeServer &NodeServer() { return m_nodeserver; }
+	GateNodeServer &NodeServer() { return m_gate_serv; }
 
-	GateNodeClient &NodeClient() { return m_nodeclient; }
+	GateNodeClient &NodeClient() { return m_gate_cli; }
 
 private:
-	GatePlayerServer m_playerserver;
-	GateNodeServer m_nodeserver;
-	GateNodeClient m_nodeclient;
+	GatePlayerServer m_gate_player;
+	GateNodeServer m_gate_serv;
+	GateNodeClient m_gate_cli;
 };
 
 extern std::unique_ptr<GateServerThread> g_pServerThread;

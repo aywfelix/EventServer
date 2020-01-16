@@ -9,6 +9,5 @@ public:
 	void Start();
 	void Stop();
 private:
-	void InitManager();
 };
 

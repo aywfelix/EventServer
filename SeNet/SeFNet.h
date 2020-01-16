@@ -19,11 +19,11 @@ public:
 
 	// add callback
 	template<typename BaseType>
-	void AddReceiveCallBack(const int nMsgID, BaseType* pBase, void (BaseType::* HandleReceive)(const socket_t, const int, const char*, const uint32_t))
+	void AddReceiveCallBack(const int msg_id, BaseType* pBase, void (BaseType::* HandleReceive)(const socket_t, const int, const char*, const uint32_t))
 	{
 		NET_RECEIVE_FUNCTOR functor = std::bind(HandleReceive, pBase, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
 		NET_RECEIVE_FUNCTOR_PTR functorPtr = std::make_shared<NET_RECEIVE_FUNCTOR>(functor);
-		AddReceiveCallBack(nMsgID, functorPtr);
+		AddReceiveCallBack(msg_id, functorPtr);
 	}
 
 	template<typename BaseType>
@@ -41,19 +41,19 @@ public:
 		NET_EVENT_FUNCTOR_PTR functorPtr = std::make_shared<NET_EVENT_FUNCTOR>(functor);
 		AddEventCallBack(functorPtr);
 	}
-	void AddReceiveCallBack(const int nMsgID, const NET_RECEIVE_FUNCTOR_PTR& cb);
+	void AddReceiveCallBack(const int msg_id, const NET_RECEIVE_FUNCTOR_PTR& cb);
 	void AddReceiveCallBack(const NET_RECEIVE_FUNCTOR_PTR& cb);
 	void AddEventCallBack(const NET_EVENT_FUNCTOR_PTR& cb);
-	void RemoveReceiveCallBack(const int nMsgID);
+	void RemoveReceiveCallBack(const int msg_id);
 
 	// send msg
-	void SendMsg(const socket_t fd, const int nMsgID, const char* msg, int len);
-	void SendMsg(std::vector<socket_t>& fdlist, const int nMsgID, const char* msg, int len);
-	void SendToAll(const int nMsgID, const char* msg, int len);
+	void SendMsg(const socket_t fd, const int msg_id, const char* msg, int len);
+	void SendMsg(std::vector<socket_t>& fdlist, const int msg_id, const char* msg, int len);
+	void SendToAll(const int msg_id, const char* msg, int len);
 
-	void SendPbMsg(const socket_t fd, const int nMsgID, ::google::protobuf::Message* pMsg);
-	void SendPbMsg(std::vector<socket_t>& fdlist, const int nMsgID, ::google::protobuf::Message* pMsg);
-	void SendPBToAllMsg(const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendPbMsg(const socket_t fd, const int msg_id, ::google::protobuf::Message* pMsg);
+	void SendPbMsg(std::vector<socket_t>& fdlist, const int msg_id, ::google::protobuf::Message* pMsg);
+	void SendPBToAllMsg(const int msg_id, ::google::protobuf::Message* pMsg);
 
 	SeNet* GetNet() { return mNet; }
 private:

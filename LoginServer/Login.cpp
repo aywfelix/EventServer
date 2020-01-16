@@ -17,7 +17,6 @@ void Login::Init()
 	g_pTableMgr = std::make_unique<TableMgr>();
 	g_pServerThread = std::make_unique<LoginServerThread>();
 	g_pSessionPool = std::make_unique<SessionPool>();
-	InitManager();
 }
 
 void Login::Start()
@@ -28,10 +27,4 @@ void Login::Start()
 void Login::Stop()
 {
 	g_pServerThread->Stop();
-}
-
-void Login::InitManager()
-{
-	//load tables
-	g_pTableMgr->LoadTables();
 }

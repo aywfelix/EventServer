@@ -5,8 +5,8 @@ std::unique_ptr<LoginServerThread> g_pServerThread = nullptr;
 
 bool LoginServerThread::Init()
 {
-	m_game_client.Init();
-	m_game_client.InitHelper();
+	m_login_cli.Init();
+	m_login_cli.InitHelper();
 	return true;
 }
 
@@ -14,7 +14,7 @@ void LoginServerThread::ThreadLoop()
 {
 	while (IsActive())
 	{
-		m_game_client.Loop();
+		m_login_cli.Loop();
 		SFSLEEP(LOOP_TIMEOUT);
 	}
 	

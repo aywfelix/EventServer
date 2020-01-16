@@ -27,9 +27,3 @@ void LoginNodeClient::AddConnectServer()
 	mConnectType.push_back(ServerType::SERVER_TYPE_WORLD);
 	mConnectType.push_back(ServerType::SERVER_TYPE_GATE);
 }
-
-
-void LoginNodeClient::OnSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)
-{
-    OnSocketNodeEvent(sock_fd, nEvent, pNet);
-}

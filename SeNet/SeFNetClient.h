@@ -43,17 +43,17 @@ public:
 	// remove call back
 	void RemoveReceiveCallBack(ServerType eType, uint32_t nMsgId);
 	// send msg
-	void SendByServId(int nServerId, const int nMsgID, const char* msg, int len);
-	void SendByServIds(std::vector<int>& nServerIds, const int nMsgID, const char* msg, int len);
-	void SendPbByServId(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg);
-	void SendPbByServIds(std::vector<int>& nServerIds, const int nMsgID, ::google::protobuf::Message* pMsg);
-	void SendToAll(const int nMsgID, const char* msg, int len);
-	void SendPBToAll(const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendByServId(int nServerId, const int msg_id, const char* msg, int len);
+	void SendByServIds(std::vector<int>& nServerIds, const int msg_id, const char* msg, int len);
+	void SendPbByServId(int nServerId, const int msg_id, ::google::protobuf::Message* pMsg);
+	void SendPbByServIds(std::vector<int>& nServerIds, const int msg_id, ::google::protobuf::Message* pMsg);
+	void SendToAll(const int msg_id, const char* msg, int len);
+	void SendPBToAll(const int msg_id, ::google::protobuf::Message* pMsg);
 	
-	void SendByServType(ServerType type, const int nMsgID, const char* msg, int len);
-	void SendByServTypes(std::vector<ServerType>& types, const int nMsgID, const char* msg, int len);
-	void SendPbByServType(ServerType type, const int nMsgID, ::google::protobuf::Message* pMsg);
-	void SendPbByServTypes(std::vector<ServerType>& types, const int nMsgID, ::google::protobuf::Message* pMsg);
+	void SendByServType(ServerType type, const int msg_id, const char* msg, int len);
+	void SendByServTypes(std::vector<ServerType>& types, const int msg_id, const char* msg, int len);
+	void SendPbByServType(ServerType type, const int msg_id, ::google::protobuf::Message* pMsg);
+	void SendPbByServTypes(std::vector<ServerType>& types, const int msg_id, ::google::protobuf::Message* pMsg);
 	// get server info
 	ConnectDataPtr GetServerNetInfo(const int& nServerID);
 	ConnectDataPtr GetServerNetInfo(const SeNet* pNet);

@@ -8,6 +8,5 @@ public:
     void InitHelper();
     void SetReportInfo();
     void AddConnectServer();
-    
 private:
 };

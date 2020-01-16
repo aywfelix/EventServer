@@ -5,13 +5,13 @@
 std::unique_ptr<GateServerThread> g_pServerThread = nullptr;
 bool GateServerThread::Init()
 {
-	m_nodeclient.Init();
-	m_nodeclient.InitHelper();
+	m_gate_cli.Init();
+	m_gate_cli.InitHelper();
 
-    m_nodeserver.Init();
-    m_nodeserver.InitHelper();
+    m_gate_serv.Init();
+	m_gate_serv.InitHelper();
 
-	m_playerserver.Init();
+	m_gate_player.Init();
 
 	return true;
 }
@@ -20,9 +20,9 @@ void GateServerThread::ThreadLoop()
 {
     while(IsActive())
     {
-        m_nodeserver.Loop();
-		m_nodeclient.Loop();
-		m_playerserver.Loop();
+        m_gate_serv.Loop();
+		m_gate_cli.Loop();
+		m_gate_player.Loop();
 		SFSLEEP(LOOP_TIMEOUT);
     }
 }

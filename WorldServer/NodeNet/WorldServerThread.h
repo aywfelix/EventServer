@@ -9,19 +9,11 @@ public:
     bool Init();
     void ThreadLoop();
 	
-	WorldNodeServer& NodeServer()
-	{
-		return m_nodeserver;
-	}
-
-	WorldNodeClient& NodeClient()
-	{
-		return m_nodeclient;
-	}
-
+	WorldNodeServer& NodeServer() { return m_world_serv; }
+	WorldNodeClient& NodeClient() { return m_world_cli; }
 private:
-    WorldNodeServer m_nodeserver;
-	WorldNodeClient m_nodeclient;
+    WorldNodeServer m_world_serv;
+	WorldNodeClient m_world_cli;
 };
 
 extern std::unique_ptr<WorldServerThread> g_pServerThread;

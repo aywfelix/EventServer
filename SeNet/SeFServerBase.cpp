@@ -55,11 +55,11 @@ ServerDataPtr SeFServerBase::GetClientNodeData(int nServerId)
 	return it->second;
 }
 
-void SeFServerBase::OnReportToServer(const socket_t sock_fd, const int nMsgID, const char* msg, const uint32_t msg_len)
+void SeFServerBase::OnReportToServer(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
 {
 	ServerDataPtr pServerData = std::make_shared<ServerData>();
 	ServerReport report;
-	if (!SeNet::ReceivePB(nMsgID, msg, msg_len, &report)) return;
+	if (!SeNet::ReceivePB(msg_id, msg, msg_len, &report)) return;
 
 	pServerData->fd = sock_fd;
 	pServerData->ServerInfo = std::make_shared<ServerReport>(report);
@@ -73,7 +73,7 @@ void SeFServerBase::OnReportToServer(const socket_t sock_fd, const int nMsgID, c
 void SeFServerBase::AfterReportToServer(ServerDataPtr& pReportServerData)
 {}
 
-void SeFServerBase::SendByServType(ServerType type, const int nMsgID, const char* msg, int len)
+void SeFServerBase::SendByServType(ServerType type, const int msg_id, const char* msg, int len)
 {
 	std::vector<socket_t> vec;
 	for (auto& it : mmServNodes)
@@ -86,19 +86,19 @@ void SeFServerBase::SendByServType(ServerType type, const int nMsgID, const char
 	if(vec.empty()) return;
 	for (auto& it : vec)
 	{
-		mNetServModule->SendMsg(it, nMsgID, msg, len);
+		mNetServModule->SendMsg(it, msg_id, msg, len);
 	}
 }
 
-void SeFServerBase::SendByServId(int nServerId, const int nMsgID, const char* msg, int len)
+void SeFServerBase::SendByServId(int nServerId, const int msg_id, const char* msg, int len)
 {
 	auto it = mmServNodes.find(nServerId);
 	if (it == mmServNodes.end()) return;
 	socket_t fd = it->second->fd;
-	mNetServModule->SendMsg(fd, nMsgID, msg, len);
+	mNetServModule->SendMsg(fd, msg_id, msg, len);
 }
 
-void SeFServerBase::SendPbByServType(ServerType type, const int nMsgID, ::google::protobuf::Message* pMsg)
+void SeFServerBase::SendPbByServType(ServerType type, const int msg_id, ::google::protobuf::Message* pMsg)
 {
 	std::vector<socket_t> vec;
 	for (auto& it : mmServNodes)
@@ -111,16 +111,16 @@ void SeFServerBase::SendPbByServType(ServerType type, const int nMsgID, ::google
 	if (vec.empty()) return;
 	for (auto& it : vec)
 	{
-		mNetServModule->SendPbMsg(it, nMsgID, pMsg);
+		mNetServModule->SendPbMsg(it, msg_id, pMsg);
 	}
 }
 
-void SeFServerBase::SendPbByServId(int nServerId, const int nMsgID, ::google::protobuf::Message* pMsg)
+void SeFServerBase::SendPbByServId(int nServerId, const int msg_id, ::google::protobuf::Message* pMsg)
 {
 	auto it = mmServNodes.find(nServerId);
 	if (it == mmServNodes.end()) return;
 	socket_t fd = it->second->fd;
-	mNetServModule->SendPbMsg(fd, nMsgID, pMsg);
+	mNetServModule->SendPbMsg(fd, msg_id, pMsg);
 }
 
 void SeFServerBase::Loop()

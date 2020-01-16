@@ -7,10 +7,10 @@ std::unique_ptr<ChatServerThread> g_pServerThread = nullptr;
 
 bool ChatServerThread::Init()
 {
-	m_chatserver.Init();
-	m_chatserver.InitHelper();
-	m_chatclient.Init();
-	m_chatclient.InitHelper();
+	m_chat_serv.Init();
+	m_chat_serv.InitHelper();
+	m_chat_cli.Init();
+	m_chat_cli.InitHelper();
 	return true;
 }
 
@@ -18,8 +18,8 @@ void ChatServerThread::ThreadLoop()
 {
 	while (IsActive())
 	{
-		m_chatserver.Loop();
-		m_chatclient.Loop();
+		m_chat_serv.Loop();
+		m_chat_cli.Loop();
 
 		SFSLEEP(LOOP_TIMEOUT);
 	}
