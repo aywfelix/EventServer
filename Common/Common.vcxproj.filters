@@ -108,6 +108,9 @@
     <ClCompile Include="Util.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="clientproto\Login.pb.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cityhash\city.h">
@@ -258,6 +261,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Util.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleTon.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="clientproto\Login.pb.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

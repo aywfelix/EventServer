@@ -20,12 +20,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Login.cpp" />
+    <ClCompile Include="MsgHandle\LoginPlayer.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MsgHandle\ModuleLogin.cpp" />
     <ClCompile Include="NodeNet\LoginNodeClient.cpp" />
     <ClCompile Include="NodeNet\LoginServerThread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Login.h" />
+    <ClInclude Include="MsgHandle\LoginPlayer.h" />
     <ClInclude Include="NodeNet\LoginNodeClient.h" />
     <ClInclude Include="NodeNet\LoginServerThread.h" />
   </ItemGroup>

@@ -1,8 +1,6 @@
 #include "ChatNodeClient.h"
 #include "JsonConfig.h"
 #include "Packet/PacketMgr.h"
-#include "Util.h"
-#include "Packet/Player.h"
 #include "MsgHandle/ChatPlayer.h"
 #include "SeFNetClient.h"
 #include "SeNet.h"
@@ -33,10 +31,10 @@ void ChatNodeClient::AddConnectServer()
 	mConnectType.push_back(ServerType::SERVER_TYPE_GAME);
 }
 
-void ChatNodeClient::OnGateRouteChat(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msglen)
+void ChatNodeClient::OnGateRouteChat(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	GateToChatPacket gate_packet;
-	if (!SeNet::ReceivePB(msg_id, msg, msglen, &gate_packet))
+	if (!SeNet::ReceivePB(msg_id, msg, msg_len, &gate_packet))
 		return;
 
 	ConnectDataPtr pServerData = GetServerNetInfo(sock_fd);
@@ -56,7 +54,7 @@ void ChatNodeClient::OnGateRouteChat(const socket_t sock_fd, const int msg_id, c
 	int ret = msgHandle(&chatPlayer, pRecvPacket); // process msg logic
 }
 
-void ChatNodeClient::OnGameRouteChat(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msglen)
+void ChatNodeClient::OnGameRouteChat(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 
 }

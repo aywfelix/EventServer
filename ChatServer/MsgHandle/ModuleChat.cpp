@@ -1,13 +1,12 @@
 #include "ClientModule/ModuleChat.h"
-#include "Packet/Player.h"
 #include "ChatPlayer.h"
 #include "LogHelper.h"
 #include "Assertx.h"
 
-int ModuleChat::ChatReq(Player* player, Packet* recv_packet)
+int ModuleChat::ChatReq(Player* player, Packet* packet)
 {
-	Assert(player && recv_packet);
-	auto pMsg = (Chat_ChatReq*)recv_packet->msg;
+	Assert(player && packet);
+	auto pMsg = (Chat_ChatReq*)packet->msg;
 	auto chat_player = (ChatPlayer*)player;
 	const std::string msg = pMsg->chat_msg();
 

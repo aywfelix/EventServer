@@ -134,6 +134,7 @@
     <ClCompile Include="cityhash\city.cc" />
     <ClCompile Include="clientproto\Chat.pb.cc" />
     <ClCompile Include="clientproto\ClientPublic.pb.cc" />
+    <ClCompile Include="clientproto\Login.pb.cc" />
     <ClCompile Include="designtable\TableMgr.cpp" />
     <ClCompile Include="FileHelper.cpp" />
     <ClCompile Include="JsonConfig.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="clientmodule\ModuleWorld.h" />
     <ClInclude Include="clientproto\Chat.pb.h" />
     <ClInclude Include="clientproto\ClientPublic.pb.h" />
+    <ClInclude Include="clientproto\Login.pb.h" />
     <ClInclude Include="CommDef.h" />
     <ClInclude Include="concurrentqueue.h" />
     <ClInclude Include="ConcurrentQueue.hpp" />
@@ -204,6 +206,7 @@
     <ClInclude Include="redis\db_hiredis.h" />
     <ClInclude Include="redis\db_redis.h" />
     <ClInclude Include="SePlatForm.h" />
+    <ClInclude Include="SingleTon.hpp" />
     <ClInclude Include="SnowFlake.hpp" />
     <ClInclude Include="StringUtil.h" />
     <ClInclude Include="ThreadBase.h" />
