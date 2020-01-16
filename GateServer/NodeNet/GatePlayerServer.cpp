@@ -82,7 +82,7 @@ int GatePlayerServer::GetModuleID(const int msg_id)
 	return int(msg_id / 100);
 }
 
-void GatePlayerServer::OnOtherMessage(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
+void GatePlayerServer::OnOtherMessage(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	if (msg_id <= 0) return;
 	int moduleId = GetModuleID(msg_id);

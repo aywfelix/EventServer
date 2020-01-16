@@ -24,12 +24,12 @@ bool GateNodeServer::InitHelper()
 	return true;
 }
 
-void GateNodeServer::OtherMessage(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
+void GateNodeServer::OtherMessage(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	CLOG_DEBUG << "Gate Server recv other message msg_id:" << msg_id;
 }
 
-bool GateNodeServer::SendPackToLogin(const socket_t client_fd, const int msg_id, const char* msg, uint32_t msg_len, int game_id, const std::string& ip)
+bool GateNodeServer::SendPackToLogin(const socket_t client_fd, const int msg_id, const char* msg, size_t msg_len, int game_id, const std::string& ip)
 {
 	return true;
 }
@@ -63,11 +63,11 @@ bool GateNodeServer::SentPackToWorld(const int msg_id, google::protobuf::Message
 	return true;
 }
 
-void GateNodeServer::OnLoginRouteBack(socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
+void GateNodeServer::OnLoginRouteBack(socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 }
 
-void GateNodeServer::OnChatRouteBack(socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
+void GateNodeServer::OnChatRouteBack(socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	ChatToGatePacket chat_packet;
 	if (!SeNet::ReceivePB(msg_id, msg, msg_len, &chat_packet)) return;
@@ -87,6 +87,6 @@ void GateNodeServer::OnChatRouteBack(socket_t sock_fd, const int msg_id, const c
 	CLOG_INFO << "OnChatRouteBack and sent to client: socket_id:" << playerId << " " << chat_packet.msg_id();
 
 }
-void GateNodeServer::OnWorldRouteBack(socket_t sock_fd, const int msg_id, const char *msg, const uint32_t msg_len)
+void GateNodeServer::OnWorldRouteBack(socket_t sock_fd, const int msg_id, const char *msg, const size_t msg_len)
 {
 }

@@ -1,0 +1,27 @@
+玩家账号表
+loginname  登录名
+loginpwd    登录密码
+accountid   玩家账号 一个账号可以登录多个游戏（或者叫gameid string）
+openid  运营号，用于登录验证（微信登录返回一个openid string）
+token 登录验证（string）
+channelid   渠道号
+whitelist 白名单
+snid 设备唯一码
+mac 设备地址
+
+
+玩家游戏基本信息表
+playerid 玩家角色唯一id（等同于 accountid + role， 插入数据库）
+accountid 玩家游戏唯一id （用来关联账号表）
+roleid 角色 （从配置表中获取一般4男4女8个角色）
+nickname 昵称
+sex 性别
+level 玩家等级
+create_tm 创建时间
+online_tm 登录时间
+offline_tm  下线时间
+gold 金币
+guildid 工会id
+
+
+

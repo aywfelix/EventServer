@@ -32,7 +32,6 @@ message ServerHeartBeat
 	int32 count = 1;
 }
 
-
 enum ServerNodeMsgID
 {
 	SERVER_NODE_MSG_ID = 0;
@@ -82,111 +81,111 @@ message MasterToNodePacket
 message GateToLoginPacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message LoginToGatePacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message GateToGamePacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message GameToGatePacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message GateToChatPacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message ChatToGatePacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message WorldToGatePacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message GateToWorldPacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message GameToChatPacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message ChatToGamePacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message GameToWorldPacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message WorldToGamePacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message LoginToWorldPacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message WorldToLoginPacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message WorldToDBPacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }
 
 message DBToWorldPacket
 {
 	uint64 player_id = 1;
-	uint32 msg_id = 2;
+	int32 msg_id = 2;
 	bytes msg_body = 3;
 }

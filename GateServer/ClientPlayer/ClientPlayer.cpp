@@ -27,19 +27,19 @@ socket_t ClientPlayer::GetSockFd()
 	return mSession->GetSocket()->GetFd(); 
 }
 
-bool ClientPlayer::OnModuleGateMessage(const int msg_id, const char* msg, uint32_t msg_len, socket_t sock_fd)
+bool ClientPlayer::OnModuleGateMessage(const int msg_id, const char* msg, size_t msg_len, socket_t sock_fd)
 {
 	return true;
 }
-bool ClientPlayer::OnModuleLoginMessage(const int msg_id, const char* msg, uint32_t msg_len)
+bool ClientPlayer::OnModuleLoginMessage(const int msg_id, const char* msg, size_t msg_len)
 {
 	return true;
 }
-bool ClientPlayer::OnModuleGameMessage(const int msg_id, const char* msg, uint32_t msg_len)
+bool ClientPlayer::OnModuleGameMessage(const int msg_id, const char* msg, size_t msg_len)
 {
 	return true;
 }
-bool ClientPlayer::OnModuleChatMessage(const int msg_id, const char* msg, uint32_t msg_len)
+bool ClientPlayer::OnModuleChatMessage(const int msg_id, const char* msg, size_t msg_len)
 {
 	GateToChatPacket gatetochat;
 	gatetochat.set_player_id(mPlayerId);
@@ -49,7 +49,7 @@ bool ClientPlayer::OnModuleChatMessage(const int msg_id, const char* msg, uint32
 	CLOG_INFO << "OnModuleChatMessage " << mPlayerId << "  msg_id:" << msg_id;
 	return true;
 }
-bool ClientPlayer::OnModuleWorldMessage(const int msg_id, const char* msg, uint32_t msg_len)
+bool ClientPlayer::OnModuleWorldMessage(const int msg_id, const char* msg, size_t msg_len)
 {
 	return true;
 }

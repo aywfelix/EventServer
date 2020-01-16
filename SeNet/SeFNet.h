@@ -19,7 +19,7 @@ public:
 
 	// add callback
 	template<typename BaseType>
-	void AddReceiveCallBack(const int msg_id, BaseType* pBase, void (BaseType::* HandleReceive)(const socket_t, const int, const char*, const uint32_t))
+	void AddReceiveCallBack(const int msg_id, BaseType* pBase, void (BaseType::* HandleReceive)(const socket_t, const int, const char*, const size_t))
 	{
 		NET_RECEIVE_FUNCTOR functor = std::bind(HandleReceive, pBase, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
 		NET_RECEIVE_FUNCTOR_PTR functorPtr = std::make_shared<NET_RECEIVE_FUNCTOR>(functor);
@@ -27,7 +27,7 @@ public:
 	}
 
 	template<typename BaseType>
-	void AddReceiveCallBack(BaseType* pBase, void (BaseType::* HandleReceive)(const socket_t, const int, const char*, const uint32_t))
+	void AddReceiveCallBack(BaseType* pBase, void (BaseType::* HandleReceive)(const socket_t, const int, const char*, const size_t))
 	{
 		NET_RECEIVE_FUNCTOR functor = std::bind(HandleReceive, pBase, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
 		NET_RECEIVE_FUNCTOR_PTR functorPtr = std::make_shared<NET_RECEIVE_FUNCTOR>(functor);
@@ -57,7 +57,7 @@ public:
 
 	SeNet* GetNet() { return mNet; }
 private:
-	void OnReceiveNetPack(const socket_t sock_fd, const int nMsgId, const char* pMsg, const uint32_t msg_len);
+	void OnReceiveNetPack(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len);
 	void OnSocketNetEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet);
 private:
 	SeNet* mNet;

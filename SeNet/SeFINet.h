@@ -57,7 +57,7 @@ enum ConnectState
 	RECONNECT,
 };
 
-using NET_RECEIVE_FUNCTOR = std::function<void(const socket_t sock_fd, const int nMsgId, const char* pMsg, const uint32_t msg_len)>;
+using NET_RECEIVE_FUNCTOR = std::function<void(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)>;
 using NET_RECEIVE_FUNCTOR_PTR = std::shared_ptr<NET_RECEIVE_FUNCTOR>;
 
 using NET_EVENT_FUNCTOR = std::function<void(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)>;
@@ -67,15 +67,9 @@ using NET_EVENT_FUNCTOR_PTR = std::shared_ptr<NET_EVENT_FUNCTOR>;
 // Message Head[ MsgID(2) | MsgSize(4) ]
 #define MSG_HEAD_LEN 6
 
-struct IMsgHead
+class IMsgHead
 {
-	virtual void EnCode(char* strData) = 0;
-	virtual void DeCode(const char* strData) = 0;
-	virtual uint16_t GetMsgID() const = 0;
-	virtual void SetMsgID(uint16_t msg_id) = 0;
-	virtual uint32_t GetBodyLength() const = 0;
-	virtual void SetBodyLength(uint32_t msg_length) = 0;
-
+public:
 	uint64_t Htonll(uint64_t nData)
 	{
 #ifdef SF_PLATFORM_WIN
@@ -137,18 +131,18 @@ class NetMsgHead : public IMsgHead
 public:
 	NetMsgHead()
 	{
-		mSize = 0;
-		mMsgID = 0;
+		m_size = 0;
+		m_msgid = 0;
 	}
-	NetMsgHead(uint16_t MsgID, uint32_t Size):mMsgID(MsgID), mSize(Size){}
+	NetMsgHead(uint16_t MsgID, uint32_t Size):m_msgid(MsgID), m_size(Size){}
 
 	// Message Head[ MsgID(2) | MsgSize(4) ]
 	virtual void EnCode(char* strData)
 	{
-		uint16_t msg_id = Htons(mMsgID);
+		uint16_t msg_id = Htons(m_msgid);
 		memcpy(strData, &msg_id, sizeof(msg_id));
 
-		uint32_t nPackSize = mSize + MSG_HEAD_LEN;
+		uint32_t nPackSize = m_size + MSG_HEAD_LEN;
 		uint32_t nSize = Htonl(nPackSize);
 		memcpy(strData + 2, &nSize, sizeof(nSize));
 	}
@@ -157,36 +151,36 @@ public:
 	virtual void DeCode(const char* strData)
 	{
 		uint16_t msg_id = 0;
-		memcpy(&msg_id, strData, sizeof(mMsgID));
-		mMsgID = Ntohs(msg_id);
+		memcpy(&msg_id, strData, sizeof(m_msgid));
+		m_msgid = Ntohs(msg_id);
 
 		uint32_t nPackSize = 0;
-		memcpy(&nPackSize, strData + 2, sizeof(mSize));
-		mSize = Ntohl(nPackSize) - MSG_HEAD_LEN;
+		memcpy(&nPackSize, strData + 2, sizeof(m_size));
+		m_size = Ntohl(nPackSize) - MSG_HEAD_LEN;
 	}
 
 	virtual uint16_t GetMsgID() const
 	{
-		return mMsgID;
+		return m_msgid;
 	}
 
 	virtual void SetMsgID(uint16_t msg_id)
 	{
-		mMsgID = msg_id;
+		m_msgid = msg_id;
 	}
 
 	virtual uint32_t GetBodyLength() const
 	{
-		return mSize;
+		return m_size;
 	}
 
 	virtual void SetBodyLength(uint32_t msg_length)
 	{
-		mSize = msg_length;
+		m_size = msg_length;
 	}
 
 private:
-	uint32_t mSize;
-	uint16_t mMsgID;
+	uint32_t m_size;
+	uint16_t m_msgid;
 };
 

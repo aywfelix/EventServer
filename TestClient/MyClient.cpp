@@ -7,7 +7,7 @@
 #include <sstream>
 using namespace std;
 
-void RecvCb(const socket_t sock_fd, const int nMsgId, const char* pMsg, const uint32_t msg_len)
+void RecvCb(const socket_t sock_fd, const int nMsgId, const char* pMsg, const size_t msg_len)
 {
 	cout << pMsg << endl;
 }

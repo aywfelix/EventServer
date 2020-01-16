@@ -18,10 +18,8 @@ void SeFNet::RemoveReceiveCallBack(const int msg_id)
 void SeFNet::AddReceiveCallBack(const int msg_id, const NET_RECEIVE_FUNCTOR_PTR& cb)
 {
 	auto it = mReceiveCallBack.find(msg_id);
-	if (it != mReceiveCallBack.end())
-	{
-		return;
-	}
+	if (it != mReceiveCallBack.end()) return;
+
 	mReceiveCallBack.emplace(msg_id, cb);
 }
 
@@ -47,18 +45,18 @@ bool SeFNet::InitNet(uint32_t port)
 	return mNet->InitServer(port);
 }
 
-void SeFNet::OnReceiveNetPack(const socket_t sock_fd, const int nMsgId, const char* pMsg, const uint32_t msg_len)
+void SeFNet::OnReceiveNetPack(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
-	auto it = mReceiveCallBack.find(nMsgId);
+	auto it = mReceiveCallBack.find(msg_id);
 	if (it != mReceiveCallBack.end())
 	{
-		it->second->operator()(sock_fd, nMsgId, pMsg, msg_len);
+		it->second->operator()(sock_fd, msg_id, msg, msg_len);
 	}
 	else
 	{
 		for (auto& it : mReceiveCallBackList)
 		{
-			it->operator()(sock_fd, nMsgId, pMsg, msg_len);
+			it->operator()(sock_fd, msg_id, msg, msg_len);
 		}
 	}
 }

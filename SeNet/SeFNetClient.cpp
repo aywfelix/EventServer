@@ -21,21 +21,17 @@ SeFNetClient::~SeFNetClient()
 void SeFNetClient::AddReceiveCallBack(ServerType eType, NET_RECEIVE_FUNCTOR_PTR functorPtr)
 {
 	auto it = mmCallBack.find(eType);
-	if (it == mmCallBack.end())
-	{
-		return;
-	}
+	if (it == mmCallBack.end()) return;
+
 	mmCallBack[eType].mCallBackList.emplace_back(functorPtr);
 }
 
-void SeFNetClient::AddReceiveCallBack(ServerType eType, uint32_t nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr)
+void SeFNetClient::AddReceiveCallBack(ServerType eType, const int msg_id, NET_RECEIVE_FUNCTOR_PTR functorPtr)
 {
 	auto it = mmCallBack.find(eType);
-	if (it == mmCallBack.end())
-	{
-		return;
-	}
-	mmCallBack[eType].mReceiveCallBack.emplace(nMsgId, functorPtr);
+	if (it == mmCallBack.end()) return;
+
+	mmCallBack[eType].mReceiveCallBack.emplace(msg_id, functorPtr);
 }
 
 void SeFNetClient::AddEventCallBack(ServerType eType, NET_EVENT_FUNCTOR_PTR functorPtr)
@@ -48,14 +44,12 @@ void SeFNetClient::AddEventCallBack(ServerType eType, NET_EVENT_FUNCTOR_PTR func
 	mmCallBack[eType].mEventCallBackList.emplace_back(functorPtr);
 }
 
-void SeFNetClient::RemoveReceiveCallBack(ServerType eType, uint32_t nMsgId)
+void SeFNetClient::RemoveReceiveCallBack(ServerType eType, const int msg_id)
 {
 	auto it = mmCallBack.find(eType);
-	if (it == mmCallBack.end())
-	{
-		return;
-	}
-	mmCallBack[eType].mReceiveCallBack.erase(nMsgId);
+	if (it == mmCallBack.end()) return;
+
+	mmCallBack[eType].mReceiveCallBack.erase(msg_id);
 }
 
 void SeFNetClient::AddServer(ConnectDataPtr& info)

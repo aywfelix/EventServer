@@ -20,28 +20,28 @@ public:
 
 	// add call back
 	template<typename BaseType>
-	void AddReceiveCallBack(ServerType eType, const uint32_t nMsgId, BaseType* pBase, void(BaseType::* HandleReceive)(const socket_t, const int, const char*, const uint32_t))
+	void AddReceiveCallBack(ServerType eType, const int msg_id, BaseType* pBase, void(BaseType::* HandleReceive)(const socket_t, const int, const char*, const size_t))
 	{
 		NET_RECEIVE_FUNCTOR functor = std::bind(HandleReceive, pBase, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
 		NET_RECEIVE_FUNCTOR_PTR functorPtr = std::make_shared<NET_RECEIVE_FUNCTOR>(functor);
-		AddReceiveCallBack(eType, nMsgId, functorPtr);
+		AddReceiveCallBack(eType, msg_id, functorPtr);
 	}
 	template<typename BaseType>
-	void AddReceiveCallBack(ServerType eType, BaseType* pBase, void(BaseType::* HandleReceive)(const socket_t, const int, const char*, const uint32_t))
+	void AddReceiveCallBack(ServerType eType, BaseType* pBase, void(BaseType::* HandleReceive)(const socket_t, const int, const char*, const size_t))
 	{
 		NET_RECEIVE_FUNCTOR functor = std::bind(HandleReceive, pBase, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
 		NET_RECEIVE_FUNCTOR_PTR functorPtr = std::make_shared<NET_RECEIVE_FUNCTOR>(functor);
 		AddReceiveCallBack(eType, functorPtr);
 	}
 	template<typename BaseType>
-	void AddEventCallBack(ServerType eType, BaseType* pBase, void(BaseType::* HandleEvent)(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet))
+	void AddEventCallBack(ServerType eType, BaseType* pBase, void(BaseType::* HandleEvent)(const socket_t, const SE_NET_EVENT, SeNet*))
 	{
 		NET_EVENT_FUNCTOR functor = std::bind(HandleEvent, pBase, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 		NET_EVENT_FUNCTOR_PTR functorPtr = std::make_shared<NET_EVENT_FUNCTOR>(functor);
 		AddEventCallBack(eType, functorPtr);
 	}
 	// remove call back
-	void RemoveReceiveCallBack(ServerType eType, uint32_t nMsgId);
+	void RemoveReceiveCallBack(ServerType eType, int msg_id);
 	// send msg
 	void SendByServId(int nServerId, const int msg_id, const char* msg, int len);
 	void SendByServIds(std::vector<int>& nServerIds, const int msg_id, const char* msg, int len);
@@ -59,7 +59,7 @@ public:
 	ConnectDataPtr GetServerNetInfo(const SeNet* pNet);
 	ConnectDataPtr GetServerNetInfo(const socket_t& sock_fd);
 private:
-	void AddReceiveCallBack(ServerType eType, uint32_t nMsgId, NET_RECEIVE_FUNCTOR_PTR functorPtr);
+	void AddReceiveCallBack(ServerType eType, const int msg_id, NET_RECEIVE_FUNCTOR_PTR functorPtr);
 	void AddReceiveCallBack(ServerType eType, NET_RECEIVE_FUNCTOR_PTR functorPtr);
 	void AddEventCallBack(ServerType eType, NET_EVENT_FUNCTOR_PTR functorPtr);
 	void ProcessExecute(LOOP_RUN_TYPE run);

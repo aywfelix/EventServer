@@ -24,12 +24,9 @@ bool SeEventOp::Init()
 
 void SeEventOp::SetMaxFd(socket_t fd)
 {
-	if (fd != INVALID_SOCKET)
+	if (fd != INVALID_SOCKET && fd > mMaxFd)
 	{
-		if (fd > mMaxFd)
-		{
-			mMaxFd = fd;
-		}
+		mMaxFd = fd;
 	}
 }
 
@@ -127,7 +124,7 @@ Session* SeNet::GetSession(socket_t fd)
 	if (mSessions.empty()) return nullptr;
 	if (!mbServer) { return mSessions[0]; }
 	auto it = mSessions.find(fd);
-	if (it != mSessions.end()) return it->second;
+	if (it != mSessions.end()) { return it->second; }
 	return nullptr;
 }
 
@@ -341,9 +338,9 @@ void SeNet::SendMsg(const char* msg, int len)
 	}
 }
 
-void SeNet::SendMsg(std::vector<socket_t>& fdlist, const char* msg, int len)
+void SeNet::SendMsg(std::vector<socket_t>& fds, const char* msg, int len)
 {
-	for (auto& it : fdlist)
+	for (auto& it : fds)
 	{
 		auto it2 = mSessions.find(it);
 		if (it2 != mSessions.end())
@@ -423,7 +420,7 @@ bool SeNet::ReceivePB(const int msg_id, const std::string& strMsg, google::proto
 	return ReceivePB(msg_id, strMsg.c_str(), strMsg.length(), pMsg);
 }
 
-bool SeNet::ReceivePB(const int msg_id, const char* msg, const uint32_t msg_len, google::protobuf::Message* pData)
+bool SeNet::ReceivePB(const int msg_id, const char* msg, const size_t msg_len, google::protobuf::Message* pData)
 {
 	if (msg == nullptr) return false;
 	return pData->ParseFromArray(msg, msg_len);

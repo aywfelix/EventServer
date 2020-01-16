@@ -43,7 +43,7 @@ public:
 		mEventCB = eventCb;
 	}
 	template<typename BaseType>
-	SeNet(BaseType* pBaseType, void (BaseType::* HandleReceive)(const socket_t, const int, const char*, const uint32_t), void (BaseType::* HandleEvent)(const socket_t, const SE_NET_EVENT, SeNet*))
+	SeNet(BaseType* pBaseType, void (BaseType::* HandleReceive)(const socket_t, const int, const char*, const size_t), void (BaseType::* HandleEvent)(const socket_t, const SE_NET_EVENT, SeNet*))
 	{
 		mRecvCB = std::bind(HandleReceive, pBaseType, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
 		mEventCB = std::bind(HandleEvent, pBaseType, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
@@ -59,7 +59,7 @@ public:
 	void SendProtoMsg(const int msg_id, const char* msg, int len);
 	// recv pb msg
 	static bool ReceivePB(const int msg_id, const std::string& strMsg, google::protobuf::Message* pMsg);
-	static bool ReceivePB(const int msg_id, const char* msg, const uint32_t msg_len, google::protobuf::Message* pData);
+	static bool ReceivePB(const int msg_id, const char* msg, const size_t msg_len, google::protobuf::Message* pData);
 	// close or kick socket
 	void CloseClient(socket_t fd);
 	void CloseAllClient();
@@ -79,7 +79,7 @@ private:
 	// send msg
 	void SendMsg(const char* msg, int len);
 	void SendMsg(socket_t fd, const char* msg, int len);
-	void SendMsg(std::vector<socket_t>& fdlist, const char* msg, int len);
+	void SendMsg(std::vector<socket_t>& fds, const char* msg, int len);
 	void SendToAllClients(const char* msg, int len);
 	
 private:

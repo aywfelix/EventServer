@@ -61,7 +61,7 @@ void ChatNodeClient::OnGameRouteChat(const socket_t sock_fd, const int msg_id, c
 
 }
 
-void ChatNodeClient::SendToGate(const int& serverid, uint64_t playerId, uint32_t msg_id, ::google::protobuf::Message* pMsg)
+void ChatNodeClient::SendToGate(const int& serverid, uint64_t playerId, const int msg_id, ::google::protobuf::Message* pMsg)
 {
 	ChatToGatePacket chat_gate;
 	std::string send_msg = pMsg->SerializeAsString();

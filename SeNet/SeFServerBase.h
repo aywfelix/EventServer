@@ -26,7 +26,7 @@ public:
 
 	ServerDataPtr GetClientNodeData(int nServerId);
 
-	virtual void OnReportToServer(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len);
+	virtual void OnReportToServer(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len);
 	virtual void AfterReportToServer(ServerDataPtr& pReportServerData);
 
 	void SendByServType(ServerType type, const int msg_id, const char* msg, int len);

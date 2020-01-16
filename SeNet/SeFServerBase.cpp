@@ -55,7 +55,7 @@ ServerDataPtr SeFServerBase::GetClientNodeData(int nServerId)
 	return it->second;
 }
 
-void SeFServerBase::OnReportToServer(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
+void SeFServerBase::OnReportToServer(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	ServerDataPtr pServerData = std::make_shared<ServerData>();
 	ServerReport report;

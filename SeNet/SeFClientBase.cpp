@@ -45,7 +45,7 @@ void SeFClientBase::OnSocketNodeEvent(const socket_t sock_fd, const SE_NET_EVENT
 	}
 }
 
-void SeFClientBase::OnMasterMessage(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msg_len)
+void SeFClientBase::OnMasterMessage(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	if (mConnectType.empty()) return;
 	ServerReportList report_list;
