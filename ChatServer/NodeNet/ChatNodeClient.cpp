@@ -9,9 +9,6 @@
 
 void ChatNodeClient::InitHelper()
 {
-	// send chat server info to other server
-	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_MASTER, this, &ChatNodeClient::OnSocketEvent);
-
 	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_GATE, GATE_ROUTE_TO_CHAT, this, &ChatNodeClient::OnGateRouteChat);
 	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_GAME, GAME_ROUTE_TO_CHAT, this, &ChatNodeClient::OnGameRouteChat);
 	SetReportInfo();
@@ -34,11 +31,6 @@ void ChatNodeClient::AddConnectServer()
 	AddConnectMaster();
 	mConnectType.push_back(ServerType::SERVER_TYPE_GATE);
 	mConnectType.push_back(ServerType::SERVER_TYPE_GAME);
-}
-
-void ChatNodeClient::OnSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)
-{
-	OnSocketNodeEvent(sock_fd, nEvent, pNet);
 }
 
 void ChatNodeClient::OnGateRouteChat(const socket_t sock_fd, const int msg_id, const char* msg, const uint32_t msglen)

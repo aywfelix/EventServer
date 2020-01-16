@@ -7,7 +7,7 @@
 bool SeFClientBase::Init()
 {
 	mNetCliModule = new SeFNetClient();
-
+	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_MASTER, this, &SeFClientBase::OnSocketNodeEvent);
 	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_MASTER, MASTER_REPORT_SERVER_INFO_TO_SERVER, this, &SeFClientBase::OnMasterMessage);
 	
 	return true;
@@ -30,6 +30,8 @@ ConnectDataPtr SeFClientBase::GetServerNetInfo(const socket_t& sock_fd)
 
 void SeFClientBase::OnSocketNodeEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)
 {
+	if (this->GetServerType() == ServerType::SERVER_TYPE_MASTER) return;
+
 	ConnectDataPtr pConnData = mNetCliModule->GetServerNetInfo(pNet);
 	if (nEvent == SE_NET_EVENT_CONNECTED && pConnData)
 	{

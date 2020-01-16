@@ -2,13 +2,8 @@
 #include "JsonConfig.h"
 #include "SeFNetClient.h"
 
-
-
 void WorldNodeClient::InitHelper()
 {
-    mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_MASTER, this, &WorldNodeClient::OnSocketEvent);
-	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_GATE, this, &WorldNodeClient::OnSocketEvent);//world服连接master服务
-
 	SetReportInfo();
 	AddConnectServer();
 }
@@ -29,10 +24,5 @@ void WorldNodeClient::AddConnectServer()
 {
 	AddConnectMaster();
 	mConnectType.emplace_back(SERVER_TYPE_GATE);
-}
-
-void WorldNodeClient::OnSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)
-{
-	OnSocketNodeEvent(sock_fd, nEvent, pNet);
 }
 

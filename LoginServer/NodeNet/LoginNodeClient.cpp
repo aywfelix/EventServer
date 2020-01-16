@@ -5,8 +5,6 @@
 
 void LoginNodeClient::InitHelper()
 {
-    mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_MASTER, this, &LoginNodeClient::OnSocketEvent);
-
 	SetReportInfo();
 	AddConnectServer();
 }

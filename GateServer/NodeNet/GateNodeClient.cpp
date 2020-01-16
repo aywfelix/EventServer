@@ -5,7 +5,6 @@
 
 void GateNodeClient::InitHelper()
 {
-	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_MASTER, this, &GateNodeClient::OnSocketEvent);
 	SetReportInfo();
 	AddConnectServer();
 }
@@ -26,11 +25,4 @@ void GateNodeClient::AddConnectServer()
 {
 	AddConnectMaster();
 }
-
-void GateNodeClient::OnSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)
-{
-    OnSocketNodeEvent(sock_fd, nEvent, pNet);
-}
-
-
 
