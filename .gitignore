@@ -28,7 +28,6 @@
 *.tlog
 *.log
 *.ilk
-*.user
 *.exp
 *.vc.db
 *.*.manifest
