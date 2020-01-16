@@ -7,6 +7,7 @@
 bool SeFClientBase::Init()
 {
 	mNetCliModule = new SeFNetClient();
+
 	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_MASTER, MASTER_REPORT_SERVER_INFO_TO_SERVER, this, &SeFClientBase::OnMasterMessage);
 	
 	return true;

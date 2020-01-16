@@ -79,6 +79,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeNet", "SeNet\SeNet.vcxpro
 		{C1DB09F1-AB9B-47D4-ADB9-5F19543EDD68} = {C1DB09F1-AB9B-47D4-ADB9-5F19543EDD68}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoginServer", "LoginServer\LoginServer.vcxproj", "{5060352A-F00F-4291-818B-032AB72CD4B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -191,6 +193,14 @@ Global
 		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Release|x64.Build.0 = Release|x64
 		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Release|x86.ActiveCfg = Release|Win32
 		{F22D411E-9BD7-4AD5-980F-9BCDE22BD763}.Release|x86.Build.0 = Release|Win32
+		{5060352A-F00F-4291-818B-032AB72CD4B3}.Debug|x64.ActiveCfg = Debug|x64
+		{5060352A-F00F-4291-818B-032AB72CD4B3}.Debug|x64.Build.0 = Debug|x64
+		{5060352A-F00F-4291-818B-032AB72CD4B3}.Debug|x86.ActiveCfg = Debug|Win32
+		{5060352A-F00F-4291-818B-032AB72CD4B3}.Debug|x86.Build.0 = Debug|Win32
+		{5060352A-F00F-4291-818B-032AB72CD4B3}.Release|x64.ActiveCfg = Release|x64
+		{5060352A-F00F-4291-818B-032AB72CD4B3}.Release|x64.Build.0 = Release|x64
+		{5060352A-F00F-4291-818B-032AB72CD4B3}.Release|x86.ActiveCfg = Release|Win32
+		{5060352A-F00F-4291-818B-032AB72CD4B3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
