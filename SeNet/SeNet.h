@@ -24,13 +24,13 @@ public:
 	virtual bool DelEvent(socket_t fd, int mask) = 0;
 	virtual bool Dispatch(struct timeval* tv) = 0;
 	virtual bool Clear() = 0;
-	void SetActiveEvent(socket_t fd, int mask);
-	std::map<socket_t, int>& GetActiveEvents();
+	void SetEvent(socket_t fd, int mask);
+	std::map<socket_t, int>& GetEvents();
 	void SetMaxFd(socket_t fd);
 protected:
-	socket_t mMaxFd;
+	socket_t m_maxfd;
 	struct timeval mtv;
-	std::map<socket_t, int> mActiveEvents;
+	std::map<socket_t, int> m_events;
 };
 
 class SeNet

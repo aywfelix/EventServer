@@ -13,7 +13,7 @@
 
 bool SeEventOp::Init()
 {
-	mMaxFd = INVALID_SOCKET;
+	m_maxfd = INVALID_SOCKET;
 	// init timeval
 	gettimeofday(&mtv, nullptr);
 	mtv.tv_sec = 0;
@@ -24,20 +24,20 @@ bool SeEventOp::Init()
 
 void SeEventOp::SetMaxFd(socket_t fd)
 {
-	if (fd != INVALID_SOCKET && fd > mMaxFd)
+	if (fd != INVALID_SOCKET && fd > m_maxfd)
 	{
-		mMaxFd = fd;
+		m_maxfd = fd;
 	}
 }
 
-void SeEventOp::SetActiveEvent(socket_t fd, int mask)
+void SeEventOp::SetEvent(socket_t fd, int mask)
 {
-	mActiveEvents[fd] = mask;
+	m_events[fd] = mask;
 }
 
-std::map<socket_t, int>& SeEventOp::GetActiveEvents()
+std::map<socket_t, int>& SeEventOp::GetEvents()
 {
-	return mActiveEvents;
+	return m_events;
 }
 
 bool SeEventOp::Dispatch()
@@ -265,7 +265,7 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 			LOG_FATAL("eventloop dispatch error");
 			break;
 		}
-		auto activemq = mEventOp->GetActiveEvents();
+		auto activemq = mEventOp->GetEvents();
 
 		// do with activemq
 		for (auto it = activemq.begin(); it != activemq.end(); it++)

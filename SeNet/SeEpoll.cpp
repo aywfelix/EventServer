@@ -151,7 +151,7 @@ bool SeEpoll::Dispatch(struct timeval *tv)
 			{
 				continue;
 			}
-			SetActiveEvent(ev.data.fd, mask);
+			SetEvent(ev.data.fd, mask);
 		}
 	}
     return true;

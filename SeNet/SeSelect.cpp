@@ -40,7 +40,7 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 	memcpy(&mSelectOp._rfds, &mSelectOp.rfds, sizeof(fd_set));
 	memcpy(&mSelectOp._wfds, &mSelectOp.wfds, sizeof(fd_set));
 
-	ret = select((int)mMaxFd + 1,&mSelectOp._rfds, &mSelectOp._wfds, NULL, tv);
+	ret = select((int)m_maxfd + 1,&mSelectOp._rfds, &mSelectOp._wfds, NULL, tv);
 	if (ret == -1)
 	{
 		if (errno != EINTR)
@@ -51,7 +51,7 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 		return true;
 	}
 	if (ret > 0) {
-		for (socket_t iter = 0; iter <= mMaxFd; iter++)
+		for (socket_t iter = 0; iter <= m_maxfd; iter++)
 		{
 			int mask = 0;
 			if (FD_ISSET(iter, &mSelectOp._rfds))
@@ -66,7 +66,7 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 			{
 				continue;
 			}
-			SetActiveEvent(iter, mask);
+			SetEvent(iter, mask);
 		}
 	}
 	return true;
@@ -74,7 +74,7 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 
 bool SeSelect::Clear()
 {
-	for (int i=0;i<= mMaxFd; i++)
+	for (int i=0;i<= m_maxfd; i++)
 	{
 		if (FD_ISSET(i, &mSelectOp.rfds))
 		{
