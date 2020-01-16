@@ -5,8 +5,8 @@ std::unique_ptr<GameServerThread> g_pServerThread = nullptr;
 
 bool GameServerThread::Init()
 {
-	m_GameClient.Init();
-	m_GameClient.InitHelper();
+	m_game_client.Init();
+	m_game_client.InitHelper();
 	return true;
 }
 
@@ -14,7 +14,7 @@ void GameServerThread::ThreadLoop()
 {
 	while (IsActive())
 	{
-		m_GameClient.Loop();
+		m_game_client.Loop();
 		SFSLEEP(LOOP_TIMEOUT);
 	}
 	

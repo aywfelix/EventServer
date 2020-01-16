@@ -83,6 +83,7 @@ void SeFClientBase::AddConnectMaster()
 {
 	if (this->GetServerType() != ServerType::SERVER_TYPE_MASTER)
 	{
+		g_JsonConfig->Load("../Config/ServerConf.json");
 		ConnectDataPtr ServerData = std::make_shared<ConnectData>();
 		ServerData->ServerId = g_JsonConfig->m_Root["MasterServer"]["NodeId"].asInt();
 		ServerData->ServerType = ServerType::SERVER_TYPE_MASTER;

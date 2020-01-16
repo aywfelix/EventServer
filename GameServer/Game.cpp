@@ -14,8 +14,8 @@ Game::~Game()
 
 void Game::Init()
 {
-	g_pServerThread.reset(new GameServerThread());
-	g_pTableMgr.reset(new TableMgr);
+	g_pTableMgr = std::make_unique<TableMgr>();
+	g_pServerThread = std::make_unique<GameServerThread>();
 	g_pSessionPool = std::make_unique<SessionPool>();
 	InitManager();
 }

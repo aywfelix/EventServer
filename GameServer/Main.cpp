@@ -1,9 +1,9 @@
+#include <signal.h>
 #include "SePlatForm.h"
 #include "Game.h"
 #include "JsonConfig.h"
 #include "Util.h"
 #include "LogHelper.h"
-#include <signal.h>
 
 bool bStopServer = false;
 
@@ -40,14 +40,18 @@ void OnHookSignal()
 }
 
 
-int main()
+int main(int argc, char** argv)
 {
 	OnHookSignal();
-
+#ifdef SF_PLATFORM_LINUX
+	SetResource();
+#endif
+	std::string gameserver = "GameServer" + std::string(argv[1]);
 	g_JsonConfig.reset(new JsonConfig());
-	g_JsonConfig->Load("../Config/server_conf.json");
-	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root["GameServer"];
+	g_JsonConfig->Load("../Config/ServerConf.json");
+	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root[gameserver];
 
+	INIT_SFLOG(gameserver);
 	Game game;
 	game.Init();
 	game.Start();
@@ -56,8 +60,7 @@ int main()
 	{
 		SFSLEEP(500);
 	}
-
 	game.Stop();
-
+	STOP_SFLOG();
 	return 0;
 }

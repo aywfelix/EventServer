@@ -42,7 +42,9 @@ void OnHookSignal()
 int main()
 {
 	OnHookSignal();
-
+#ifdef SF_PLATFORM_LINUX
+	SetResource();
+#endif
 	//init config
     g_JsonConfig.reset(new JsonConfig);
 	g_JsonConfig->Load("../Config/ServerConf.json");

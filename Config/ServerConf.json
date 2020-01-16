@@ -27,12 +27,13 @@
         "NodePort": 100004,
         "MaxConnect": 10
     },
-    "GameServer": {
+    "GameServer1": {
         "NodeId": 1005,
-        "NodeName": "GameServer",
+        "NodeName": "GameServer1",
         "NodeIp": "127.0.0.1",
         "NodePort": 100005,
-        "MaxConnect": 10
+        "MaxConnect": 10,
+        "SceneIds": [1, 3, 5, 7, 9]
     },
     "ChatServer": {
         "NodeId": 1006,
