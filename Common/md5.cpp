@@ -1,6 +1,5 @@
 #include "md5.h"
-
-using namespace std;
+#include <cstring>
 
 /* Constants for MD5Transform routine. */
 #define S11 7
