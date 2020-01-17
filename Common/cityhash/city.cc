@@ -28,7 +28,7 @@
 // compromising on hash quality.
 
 //#include "config.h"
-#include "CityHash/city.h"
+#include "city.h"
 
 #include <algorithm>
 #include <string.h>  // for memcpy and memset

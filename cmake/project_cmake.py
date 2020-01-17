@@ -45,6 +45,7 @@ class cmake_tool(object):
         include_directories = include_directories_item.text
         includes = include_directories[0: include_directories.rfind(";")]
         self.include_directories = includes.replace('\\', '/').split(';')
+        self.include_directories.append("/usr/include /usr/local/include /usr/include/mysql")
         # print(self.include_directories)
 
     def get_link_directories(self, item_group):

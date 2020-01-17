@@ -7,7 +7,9 @@
 #include <fstream>
 
 /* Type define */
+#ifdef _WIN32
 typedef unsigned char byte;
+#endif
 typedef unsigned int uint32;
 
 using std::string;
