@@ -199,6 +199,7 @@
     <ClInclude Include="mariacpp\mariacpp\resultset.hpp" />
     <ClInclude Include="mariacpp\mariacpp\time.hpp" />
     <ClInclude Include="mariacpp\mariacpp\uri.hpp" />
+    <ClInclude Include="md52.hpp" />
     <ClInclude Include="MemPool.hpp" />
     <ClInclude Include="packet\Packet.h" />
     <ClInclude Include="packet\PacketMgr.h" />

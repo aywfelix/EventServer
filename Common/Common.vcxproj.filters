@@ -269,5 +269,8 @@
     <ClInclude Include="clientproto\Login.pb.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="md52.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
