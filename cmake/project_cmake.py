@@ -17,7 +17,7 @@ class cmake_tool(object):
         self.include_directories = []
         self.link_directories = []
         self.compile_files = []
-        self.definitions = "-D__LINUX__ -D__LINUX64"
+        self.definitions = "-D__LINUX__"
         self.project = ""
         self.root = None  # xml parse
         self.namespace = ""

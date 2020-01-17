@@ -1,6 +1,4 @@
 
-#define __WIN32__
-
 #if defined(__WIN32__) || defined(_WIN32) || defined(__WIN64) || defined(__WIN64__) || defined(WIN32) || defined(WIN64)
 #define SF_PLATFORM_WIN
 #elif defined(linux) || defined(__linux__) || defined(__LINUX) || defined(__LINUX__)
