@@ -11,5 +11,6 @@ public:
 	static void TestConsistent();
 	static void TestEncypt();
 	static void TestSnowFlake();
+	static void TestMd5();
 };
 

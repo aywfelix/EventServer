@@ -111,6 +111,9 @@
     <ClCompile Include="clientproto\Login.pb.cc">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cityhash\city.h">
@@ -269,7 +272,7 @@
     <ClInclude Include="clientproto\Login.pb.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="md52.hpp">
+    <ClInclude Include="md5.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

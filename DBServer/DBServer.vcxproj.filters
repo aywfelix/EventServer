@@ -18,9 +18,6 @@
     <ClCompile Include="Connection\ConnectionPool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Connection\MyConnection.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="NodeNet\DBNodeClient.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -36,12 +33,12 @@
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Connection\Conn.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Connection\ConnectionPool.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Connection\MyConnection.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="NodeNet\DBNodeClient.h">
@@ -54,6 +51,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="DB.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Connection\Conn.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

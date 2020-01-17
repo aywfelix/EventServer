@@ -131,7 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Connection\ConnectionPool.cpp" />
-    <ClCompile Include="Connection\MyConnection.cpp" />
+    <ClCompile Include="Connection\Conn.cpp" />
     <ClCompile Include="DB.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="NodeNet\DBNodeClient.cpp" />
@@ -140,7 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Connection\ConnectionPool.h" />
-    <ClInclude Include="Connection\MyConnection.h" />
+    <ClInclude Include="Connection\Conn.h" />
     <ClInclude Include="DB.h" />
     <ClInclude Include="NodeNet\DBNodeClient.h" />
     <ClInclude Include="NodeNet\DBNodeServer.h" />

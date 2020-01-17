@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Connection\Conn.cpp" />
+    <ClCompile Include="Connection\ConnectionPool.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="MsgHandle\LoginPlayer.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -27,6 +29,8 @@
     <ClCompile Include="NodeNet\LoginServerThread.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Connection\Conn.h" />
+    <ClInclude Include="Connection\ConnectionPool.h" />
     <ClInclude Include="Login.h" />
     <ClInclude Include="MsgHandle\LoginPlayer.h" />
     <ClInclude Include="NodeNet\LoginNodeClient.h" />
@@ -93,13 +97,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\SeNet;..\Common\mariacpp;..\Common;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\MariaDB 10.4\include\mysql;..\SeNet;..\Common\mariacpp;..\Common;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>..\libs</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SeNet.lib;Common.lib;libconfig++.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SeNet.lib;Common.lib;libconfig++.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocd.lib;libmariadb.lib;mariadbclient.lib;mysqlservices.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

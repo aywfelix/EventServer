@@ -8,7 +8,7 @@ DB::~DB(){}
 void DB::Init()
 {
 	g_pServerThread.reset(new DBServerThread());
-	g_pConnPool.reset(new ConnectionPool);
+	g_conn_pool.reset(new ConnectionPool);
 	InitManager();
 }
 
@@ -20,7 +20,7 @@ void DB::Start()
 void DB::Stop()
 {
 	g_pServerThread->Stop();
-	g_pConnPool->Stop();
+	g_conn_pool->Stop();
 }
 
 void DB::InitManager()

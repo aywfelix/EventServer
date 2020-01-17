@@ -135,6 +135,7 @@
     <ClCompile Include="SFTest.cpp" />
     <ClCompile Include="TestConsistent.cpp" />
     <ClCompile Include="TestEncypt.cpp" />
+    <ClCompile Include="TestMd5.cpp" />
     <ClCompile Include="TestRedis.cpp" />
     <ClCompile Include="TestSnowFlake.cpp" />
     <ClCompile Include="TestSplit.cpp" />

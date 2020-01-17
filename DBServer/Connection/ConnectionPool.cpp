@@ -1,15 +1,16 @@
 #include "ConnectionPool.h"
 #include "Util.h"
+#include "LogHelper.h"
 
-ConnectionPool::ConnectionPool(int thrdnum):m_ConnNum(thrdnum)
+ConnectionPool::ConnectionPool(int thrdnum):m_conn_num(thrdnum)
 {
-	Init();
+	m_conn_threads.resize(m_conn_num);
 }
 
 ConnectionPool::ConnectionPool()
 {
-	m_ConnNum = 8;
-	Init();
+	m_conn_num = 8;
+	m_conn_threads.resize(m_conn_num);
 }
 
 ConnectionPool::~ConnectionPool()
@@ -18,61 +19,66 @@ ConnectionPool::~ConnectionPool()
 
 void ConnectionPool::Stop()
 {
-	for (int i = 0; i < m_ConnNum; ++i)
+	for (int i = 0; i < m_conn_num; ++i)
 	{
-		m_ConnThrds[i]->Stop();
-		DELETE_PTR(m_ConnThrds[i]);
+		ConnThread* thread = m_conn_threads[i];
+		thread->Stop();
+		DELETE_PTR(thread);
+		thread = nullptr;
 	}
-	DELETE_PTR_ARR(m_ConnThrds);
+	m_conn_threads.clear();
 }
 
 void ConnectionPool::Init()
 {
-	m_ConnThrds = new ConnThread*[m_ConnNum];
-	for (int i = 0; i < m_ConnNum; ++i)
+	for (int i = 0; i < m_conn_num; ++i)
 	{
-		ConnThread* thrd = new ConnThread;
-		thrd->Init();
-		thrd->Start();
-		m_ConnThrds[i] = thrd;
+		ConnThread* thread = new ConnThread;
+		thread->Init();
+		thread->Start();
+		m_conn_threads.push_back(thread);
 	}
 }
 
-void ConnectionPool::DispatchReq(const std::string& sql)
+ConnThread* ConnectionPool::Malloc()
 {
-	//1、根据负载情况进行分发请求 //2、直接通过hash 或者随机方式
-	for (int i=0;i<m_ConnNum;i++)
+	// 1、根据负载情况进行分发请求 
+	// 2、直接通过hash 或者随机方式
+	for (int i = 0; i < m_conn_num; i++)
 	{
-		if (m_ConnThrds[i]->IsFree())
+		if (m_conn_threads[i]->IsFree())
 		{
-			m_ConnThrds[i]->AddSqlReq(sql);
-			return;
+			return m_conn_threads[i];
 		}
 	}
 	int nSize = 0;
 	int idx = 0;
-	for (int i = 0; i < m_ConnNum; i++)
+	for (int i = 0; i < m_conn_num; i++)
 	{
-		int nReqSize = m_ConnThrds[i]->GetReqSize();
-		if (nSize == 0)
-		{
-			nSize = nReqSize;
-		}
+		int nReqSize = m_conn_threads[i]->GetReqSize();
+		if (nSize == 0) nSize = nReqSize;
 		if (nSize >= nReqSize)
 		{
 			nSize = nReqSize;
 			idx = i;
 		}
 	}
-
-	m_ConnThrds[idx]->AddSqlReq(sql);
+	return m_conn_threads[idx];
 }
 
+void ConnectionPool::Free(ConnThread* conn)
+{
+	if (conn == nullptr) return;
+	if (m_conn_threads.size() >= m_conn_num)
+	{
+		LOG_FATAL("some conn free more times");
+	}
+	m_conn_threads.push_back(conn);
+}
 
 bool ConnThread::Init()
 {
-	m_SqlDeque.clear();
-
+	m_sqldeque.clear();
 	return true;
 }
 
@@ -83,18 +89,18 @@ void ConnThread::ThreadLoop()
 	{
 		if (!bConn)
 		{
-			m_Conn.ConnectToDB();
+			m_conn.ConnectToDB();
 		}
-		bConn = m_Conn.IsConnOk();
-		if (bConn && !m_SqlDeque.empty())
+		bConn = m_conn.IsConnOk();
+		if (bConn && !m_sqldeque.empty())
 		{
-			std::string sql = m_SqlDeque.front();
+			std::string sql = m_sqldeque.front();
 			Execute(sql);
 		}
 		SFSLEEP(20);
 	}
 	//线程结束断开连接
-	m_Conn.DisConnect();
+	m_conn.DisConnect();
 }
 
 bool ConnThread::IsFree()
@@ -104,13 +110,13 @@ bool ConnThread::IsFree()
 
 void ConnThread::AddSqlReq(const std::string& sql)
 {
-	m_SqlDeque.emplace_back(sql);
+	m_sqldeque.emplace_back(sql);
 }
 
 bool ConnThread::Execute(const std::string& sql)
 {
-	m_Conn.ExecuteSql(sql);
+	m_conn.ExecuteSql(sql);
 	return true;
 }
 
-std::unique_ptr<ConnectionPool> g_pConnPool = nullptr;
+std::unique_ptr<ConnectionPool> g_conn_pool = nullptr;

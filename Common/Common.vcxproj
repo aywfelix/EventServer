@@ -149,6 +149,7 @@
     <ClCompile Include="mariacpp\src\resultset.cpp" />
     <ClCompile Include="mariacpp\src\time.cpp" />
     <ClCompile Include="mariacpp\src\uri.cpp" />
+    <ClCompile Include="md5.cpp" />
     <ClCompile Include="packet\Packet.cpp" />
     <ClCompile Include="packet\PacketMgr.cpp" />
     <ClCompile Include="packet\Player.cpp" />
@@ -199,7 +200,7 @@
     <ClInclude Include="mariacpp\mariacpp\resultset.hpp" />
     <ClInclude Include="mariacpp\mariacpp\time.hpp" />
     <ClInclude Include="mariacpp\mariacpp\uri.hpp" />
-    <ClInclude Include="md52.hpp" />
+    <ClInclude Include="md5.h" />
     <ClInclude Include="MemPool.hpp" />
     <ClInclude Include="packet\Packet.h" />
     <ClInclude Include="packet\PacketMgr.h" />
