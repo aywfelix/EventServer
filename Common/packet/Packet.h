@@ -18,6 +18,7 @@ public:
 class PPacket
 {
 public:
+	virtual ~PPacket(){}
 	virtual Packet* CreatePacket(int msg_id, const char* msg, int msglen) = 0;
 };
 

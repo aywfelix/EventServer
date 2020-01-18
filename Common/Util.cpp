@@ -37,7 +37,7 @@ Time_t DateToTime(const std::string& date)
 {
 	struct tm stm;
 	int year, month, day, hour, minute, second;
-	sscanf_s(date.c_str(), "%d/%d/%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second);
+	sf_sscanf(date.c_str(), "%d/%d/%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second);
 	stm.tm_year = year - 1900;
 	stm.tm_mon = month - 1;
 	stm.tm_mday = day;
@@ -64,8 +64,8 @@ std::string StringFormat(const char* fmt, ...)
 {
 	va_list ap;
 	va_start(ap, fmt);
-	int nSize = std::vsnprintf(nullptr, 0, fmt, ap);
-	std::vector<char> buff((nSize + 1), '\0');
+	int nsize = std::vsnprintf(nullptr, 0, fmt, ap);
+	std::vector<char> buff((nsize + 1), '\0');
 	va_start(ap, fmt);
 	std::vsnprintf(buff.data(), buff.size(), fmt, ap);
 	va_end(ap);
@@ -87,10 +87,7 @@ void Snprintf(char* buffer, size_t count, const char* format, ...)
 
 std::string& StringTrim(std::string& s)
 {
-	if (s.empty())
-	{
-		return s;
-	}
+	if (s.empty()) return s;
 	s.erase(0, s.find_first_not_of(" "));
 	s.erase(s.find_last_not_of(" ") + 1);
 	return s;
