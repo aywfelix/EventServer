@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.11)
 project(SeNet)
 add_definitions(-D__LINUX__)
 include_directories(../Common ../ ./ /usr/include /usr/local/include /usr/include/mysql)

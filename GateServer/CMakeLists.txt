@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.11)
 project(GateServer)
 add_definitions(-D__LINUX__)
 include_directories(../Common ../SeNet ../ ./ /usr/include /usr/local/include /usr/include/mysql)
-link_directories(../libs)
+link_directories(../libs /usr/local/lib64 /usr/local/lib)
 set(SOURCE_FILE ClientPlayer/ClientPlayer.cpp ClientPlayer/ClientPlayerMgr.cpp Gate.cpp Main.cpp NodeNet/GateNodeClient.cpp NodeNet/GateNodeServer.cpp NodeNet/GatePlayerServer.cpp NodeNet/GateServerThread.cpp)
 
 set(CMAKE_VERBOSE_MAKEFILE on)

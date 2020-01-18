@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.11)
 project(GameServer)
 add_definitions(-D__LINUX__)
 include_directories(../Common ../SeNet ../ ./ /usr/include /usr/local/include /usr/include/mysql)
-link_directories(../lib)
+link_directories(../lib /usr/local/lib64 /usr/local/lib)
 set(SOURCE_FILE Game.cpp Main.cpp NodeNet/GameNodeClient.cpp NodeNet/GameServerThread.cpp)
 
 set(CMAKE_VERBOSE_MAKEFILE on)

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.11)
 project(Common)
 add_definitions(-D__LINUX__)
 include_directories(C:/Program Files/MariaDB 10.4/include/mysql ../ThirdPart/hiredis/adapters ../ThirdPart/hiredis ./mariacpp ../SeNet ../ ./ /usr/include /usr/local/include /usr/include/mysql)

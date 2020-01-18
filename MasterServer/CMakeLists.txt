@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.11)
 project(MasterServer)
 add_definitions(-D__LINUX__)
 include_directories(../Common ../SeNet ../ ./ /usr/include /usr/local/include /usr/include/mysql)
-link_directories(../libs)
+link_directories(../libs /usr/local/lib64 /usr/local/lib)
 set(SOURCE_FILE Main.cpp Master.cpp NodeNet/MasterNodeServer.cpp NodeNet/MasterServerThread.cpp)
 
 set(CMAKE_VERBOSE_MAKEFILE on)

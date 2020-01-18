@@ -58,6 +58,8 @@ class cmake_tool(object):
         links = link_directories[0 : link_directories.rfind(";")]
         links = links.replace('\\', '/')
         self.link_directories = links.split(';')
+        self.link_directories.append("/usr/local/lib64")
+        self.link_directories.append("/usr/local/lib")
         # print(self.link_directories)
 
     def get_compile_files(self):
@@ -85,7 +87,7 @@ class cmake_tool(object):
 
     def writecmakefile(self, is_lib):
         cmake_str = ""
-        cmake_str += 'cmake_minimum_required(VERSION 2.8)'
+        cmake_str += 'cmake_minimum_required(VERSION 3.11)'
         cmake_str += '\n'
         cmake_str += 'project(%s)' % self.project
         cmake_str += '\n'
