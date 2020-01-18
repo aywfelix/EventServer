@@ -28,7 +28,7 @@ int64_t GetTimeS();
 int64_t GetTimeMs();
 
 std::string StringFormat(const char* fmt, ...);
-void Snprintf(char* buffer, size_t count, const char* format, ...);
+void Snprintf(char* buffer, int count, const char* format, ...);
 
 #ifndef DELETE_PTR
 #define DELETE_PTR(x) if((x)) { delete (x); (x)=nullptr;}

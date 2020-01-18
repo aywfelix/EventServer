@@ -72,17 +72,13 @@ std::string StringFormat(const char* fmt, ...)
 	return buff.data();
 }
 
-void Snprintf(char* buffer, size_t count, const char* format, ...)
+void Snprintf(char* buffer, int len, const char* format, ...)
 {
 	va_list argptr;
 	va_start(argptr, format);
-	int nchars = tvsnprintf((char*)buffer, count, format, argptr);
+	int nchars = tvsnprintf((char*)buffer, len, format, argptr);
 	va_end(argptr);
-
-	if (nchars == count)
-	{
-		buffer[count - 1] = '\0';
-	}
+	if (nchars == len) { buffer[len - 1] = '\0' };
 }
 
 std::string& StringTrim(std::string& s)
