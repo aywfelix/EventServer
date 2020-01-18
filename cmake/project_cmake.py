@@ -78,6 +78,8 @@ class cmake_tool(object):
         self.link_libs = " ".join(link.replace("ws2_32.lib", "").
                                   replace("win32_interop.lib", "").
                                   replace("libmysql.lib", "").
+                                  replace("Common.lib", "libCommon.a").
+                                  replace("SeNet.lib", "libSeNet.a").
                                   replace(".lib", ".a") for link in links)
         self.link_libs += " mysqlclient dl stdc++fs pthread"
 
@@ -154,10 +156,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 
 if __name__ == '__main__':
     tool = cmake_tool()
-    # tool.loadxml("../GameServer/GameServer.vcxproj", "../GameServer/")
-    # tool.loadxml("../ChatServer/ChatServer.vcxproj", "../ChatServer/")
+    tool.loadxml("../Common/Common.vcxproj", "../Common/", True)
+    tool.loadxml("../SeNet/SeNet.vcxproj", "../SeNet/", True)
+    tool.loadxml("../GameServer/GameServer.vcxproj", "../MasterServer/")
+    tool.loadxml("../GameServer/GameServer.vcxproj", "../GateServer/")
+    tool.loadxml("../GameServer/GameServer.vcxproj", "../ChatServer/")
+    tool.loadxml("../GameServer/GameServer.vcxproj", "../GameServer/")
     # tool.loadxml("../LoginServer/LoginServer.vcxproj", "../LoginServer/")
     # tool.loadxml("../DBServer/DBServer.vcxproj", "../DBServer/")
     # tool.loadxml("../WorldServer/WorldServer.vcxproj", "../WorldServer/")
-    tool.loadxml("../Common/Common.vcxproj", "../Common/", True)
-    tool.loadxml("../SeNet/SeNet.vcxproj", "../SeNet/", True)
+
