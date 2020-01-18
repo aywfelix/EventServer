@@ -5,15 +5,13 @@
 #ifdef SF_PLATFORM_WIN
 #include <WS2tcpip.h>
 
-#define MY_SOCKET_ERROR() WSAGetLastError()
 #define socket_t intptr_t
 int SocketGetError(socket_t fd);
-#define IoctlSocket(s,c,a) ioctlsocket(s,c,a)
+#define sf_ioctlsocket(s,c,a) ioctlsocket(s,c,a)
 #define CONNINPRROGRESS	WSAEWOULDBLOCK
 typedef int	socklen_t;
 #else
 #include <sys/socket.h>
-#include <netinet.h>
 #include <sys/ioctl.h>
 #include <netdb.h>
 #include <netinet/in.h>
@@ -28,10 +26,9 @@ typedef sockaddr_in	SOCKADDR_IN;
 typedef sockaddr	SOCKADDR;
 #define INVALID_SOCKET	-1
 #define WSAEWOULDBLOCK	EWOULDBLOCK
-#define IoctlSocket(s,c,a) ioctl(s,c,a)
+#define sf_ioctlsocket(s,c,a) ioctl(s,c,a)
 #define CONNINPRROGRESS	EINPROGRESS
 #define INVALID_SOCKET -1
-#define MY_SOCKET_ERROR() (errno)
 #define SocketGetError(sock) (errno)
 #endif
 
@@ -79,17 +76,17 @@ int SocketCloseOnExec(socket_t fd);
 #define SOCKET_ERR_IS_EAGAIN(e) \
 	((e) == EAGAIN || (e) == EWOULDBLOCK)
 #endif
-/* True iff e is an error that means a read/write operation can be retried. */
+/* True if e is an error that means a read/write operation can be retried. */
 #define SOCKET_ERR_RW_RETRIABLE(e)				\
 	((e) == EINTR || SOCKET_ERR_IS_EAGAIN(e))
-/* True iff e is an error that means an connect can be retried. */
+/* True if e is an error that means an connect can be retried. */
 #define SOCKET_ERR_CONNECT_RETRIABLE(e)			\
 	((e) == EINTR || (e) == EINPROGRESS)
-/* True iff e is an error that means a accept can be retried. */
+/* True if e is an error that means a accept can be retried. */
 #define SOCKET_ERR_ACCEPT_RETRIABLE(e)			\
 	((e) == EINTR || SOCKET_ERR_IS_EAGAIN(e) || (e) == ECONNABORTED)
 
-/* True iff e is an error that means the connection was refused */
+/* True if e is an error that means the connection was refused */
 #define SOCKET_ERR_CONNECT_REFUSED(e)					\
 	((e) == ECONNREFUSED)
 
