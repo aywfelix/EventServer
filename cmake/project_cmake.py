@@ -55,7 +55,7 @@ class cmake_tool(object):
             return
         link_directories = ""
         link_directories = link_directories_item.text
-        links = link_directories[0: link_directories.rfind(";")]
+        links = link_directories[0 : link_directories.rfind(";")]
         links = links.replace('\\', '/')
         self.link_directories = links.split(';')
         # print(self.link_directories)
@@ -158,9 +158,9 @@ if __name__ == '__main__':
     tool = cmake_tool()
     tool.loadxml("../Common/Common.vcxproj", "../Common/", True)
     tool.loadxml("../SeNet/SeNet.vcxproj", "../SeNet/", True)
-    tool.loadxml("../GameServer/GameServer.vcxproj", "../MasterServer/")
-    tool.loadxml("../GameServer/GameServer.vcxproj", "../GateServer/")
-    tool.loadxml("../GameServer/GameServer.vcxproj", "../ChatServer/")
+    tool.loadxml("../MasterServer/MasterServer.vcxproj", "../MasterServer/")
+    tool.loadxml("../GateServer/GateServer.vcxproj", "../GateServer/")
+    tool.loadxml("../ChatServer/ChatServer.vcxproj", "../ChatServer/")
     tool.loadxml("../GameServer/GameServer.vcxproj", "../GameServer/")
     # tool.loadxml("../LoginServer/LoginServer.vcxproj", "../LoginServer/")
     # tool.loadxml("../DBServer/DBServer.vcxproj", "../DBServer/")

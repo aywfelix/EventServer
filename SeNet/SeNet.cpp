@@ -14,7 +14,6 @@
 SeEventOp::SeEventOp() {}
 SeEventOp::~SeEventOp()
 {
-	this->Clear();
 	m_events.clear();
 }
 
@@ -306,6 +305,7 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 
 void SeNet::StopLoop()
 {
+	mEventOp->Clear();
 	delete mEventOp;
 	mEventOp = nullptr;
 	mbStop = true;
