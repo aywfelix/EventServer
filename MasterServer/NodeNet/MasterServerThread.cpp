@@ -15,6 +15,6 @@ void MasterServerThread::ThreadLoop()
     while(IsActive())
     {
         m_nodeserver.Loop();
-		SFSLEEP(LOOP_TIMEOUT);
+		sf_sleep(LOOP_TIMEOUT);
     }
 }

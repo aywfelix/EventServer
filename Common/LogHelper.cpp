@@ -57,7 +57,7 @@ void LogHelper::ThreadLoop()
 		if (m_stop) break;
 		CreateLog();
 		SendLog();
-		SFSLEEP(50);
+		sf_sleep(50);
 	}
 }
 

@@ -58,7 +58,7 @@ int main(int argc, char** argv)
 
 	while (bStopServer == false)
 	{
-		SFSLEEP(500);
+		sf_sleep(500);
 	}
 	game.Stop();
 	STOP_SFLOG();

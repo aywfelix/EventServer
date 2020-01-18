@@ -56,7 +56,7 @@ int main()
 
 	while (bStopServer == false)
 	{
-		SFSLEEP(500);
+		sf_sleep(500);
 	}
 
 	master.Stop();

@@ -18,6 +18,6 @@ void DBServerThread::ThreadLoop()
     {
         m_db_serv.Loop();
 		m_db_cli.Loop();
-		SFSLEEP(LOOP_TIMEOUT);
+		sf_sleep(LOOP_TIMEOUT);
     }
 }

@@ -18,6 +18,6 @@ void WorldServerThread::ThreadLoop()
     {
         m_world_serv.Loop();
 		m_world_cli.Loop();
-		SFSLEEP(LOOP_TIMEOUT);
+		sf_sleep(LOOP_TIMEOUT);
     }
 }

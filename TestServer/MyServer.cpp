@@ -53,7 +53,7 @@ int main()
 		TimeId tid = timerLoop.NearestTimer();
 		cout << tid.GetSeq() << endl;
 		timerLoop.TimeLoop();
-		SFSLEEP(100);
+		sf_sleep(100);
 	}
 	return 0;
 }

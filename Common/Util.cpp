@@ -18,7 +18,7 @@ bool IsEqualDouble(const double dval, double epsilon)
 std::string TimeToDate(Time_t t)
 {
 	struct tm ptm;
-	localtime_s(&ptm, &t);
+	LocalTime(&t, &ptm);
 	char buf[32];
 	memset(buf, '\0', sizeof(buf));
 	strftime(buf, sizeof(buf), "%Y/%m/%d %H:%M:%S", &ptm);
@@ -29,7 +29,7 @@ std::string TimeToDate(Time_t t)
 Time_t GetDigitDate(Time_t t)
 {
 	struct tm ptm;
-	localtime_s(&ptm, &t);
+	LocalTime(&t, &ptm);
 	return (ptm.tm_year + 1900) * 10000 + (ptm.tm_mon + 1) * 100 + ptm.tm_mday;
 }
 

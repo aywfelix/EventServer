@@ -21,6 +21,6 @@ void ChatServerThread::ThreadLoop()
 		m_chat_serv.Loop();
 		m_chat_cli.Loop();
 
-		SFSLEEP(LOOP_TIMEOUT);
+		sf_sleep(LOOP_TIMEOUT);
 	}
 }

@@ -61,7 +61,7 @@ int64_t SnowFlake::TimeMs()
 }
 int64_t SnowFlake::PId()
 {
-	return (int64_t)SFGetPID();
+	return (int64_t)sf_getpid();
 }
 
 int64_t SnowFlake::NextMs(int64_t now)

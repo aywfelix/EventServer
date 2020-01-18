@@ -23,6 +23,6 @@ void GateServerThread::ThreadLoop()
         m_gate_serv.Loop();
 		m_gate_cli.Loop();
 		m_gate_player.Loop();
-		SFSLEEP(LOOP_TIMEOUT);
+		sf_sleep(LOOP_TIMEOUT);
     }
 }

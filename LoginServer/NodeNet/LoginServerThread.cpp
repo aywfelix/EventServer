@@ -15,7 +15,7 @@ void LoginServerThread::ThreadLoop()
 	while (IsActive())
 	{
 		m_login_cli.Loop();
-		SFSLEEP(LOOP_TIMEOUT);
+		sf_sleep(LOOP_TIMEOUT);
 	}
 	
 }

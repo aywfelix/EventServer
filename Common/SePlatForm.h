@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <sys/errno.h>
 #include <sys/resource.h>
+#include <sys/time.h>
 #endif
 
 #include <cerrno>
@@ -55,26 +56,28 @@ typedef unsigned int    uint32_t;
 int gettimeofday(struct timeval* tp, void* tzp);
 typedef DWORD		TID;
 
-#define SPRINTF sprintf_s
-#define SFSTRICMP stricmp
-#define SFSLEEP(s) Sleep(s) //millisecond
-#define SFGetPID() _getpid()
-
+#define sf_snprintf sprintf_s
+#define sf_stricmp stricmp
+#define sf_sleep(s) Sleep(s) //millisecond
+#define sf_getpid() _getpid()
+#define sf_sscanf	sscanf_s
 #define		tvsnprintf		_vsnprintf
 #define		tsnprintf		_snprintf
 #else
 typedef pthread_t	TID;
-#define SPRINTF snprintf
-#define SFSTRICMP strcasecmp
-#define SFSLEEP(s) usleep(s*1000) //millisecond
-#define SFGetPID() getpid()
+#define sf_snprintf snprintf
+#define sf_stricmp strcasecmp
+#define sf_sleep(s) usleep(s*1000) //millisecond
+#define sf_getpid() getpid()
 #define		tvsnprintf		vsnprintf
 #define		tsnprintf		snprintf
+#define sf_sscanf	sscanf
 void	SetResource();
 #endif
 
-
 TID CurrentThreadId();
+
+void LocalTime(const time_t* timep, struct tm* result);
 
 #define LOOP_TIMEOUT 30   // event loop 30ms
 

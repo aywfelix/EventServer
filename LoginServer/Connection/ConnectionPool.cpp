@@ -97,7 +97,7 @@ void ConnThread::ThreadLoop()
 			std::string sql = m_sqldeque.front();
 			Execute(sql);
 		}
-		SFSLEEP(20);
+		sf_sleep(20);
 	}
 	//线程结束断开连接
 	m_conn.DisConnect();

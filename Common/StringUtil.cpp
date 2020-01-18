@@ -1,7 +1,7 @@
 #include <string.h>
 #include <algorithm>
 
-#include "stringUtil.h"
+#include "StringUtil.h"
 
 void StringUtil::Split(const std::string& str, const std::string& delim, std::vector<std::string>& res)
 {

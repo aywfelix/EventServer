@@ -1,7 +1,5 @@
 #include "SePlatForm.h"
 
-
-
 #ifdef SF_PLATFORM_WIN
 int gettimeofday(struct timeval* tp, void* tzp)
 {
@@ -32,9 +30,19 @@ TID CurrentThreadId()
 #endif
 }
 
+void LocalTime(const time_t* timep, struct tm* result)
+{
+#ifdef SF_PLATFORM_WIN
+	localtime_s(result, timep);
+#else
+	localtime_r(timep, result);
+#endif
+}
+
 #ifdef SF_PLATFORM_LINUX
 void SetResource()
 {
+	struct rlimit rlim, rlim_new;
 	if(getrlimit(RLIMIT_CORE, &rlim)==0) 
 	{
 		rlim_new.rlim_cur = rlim_new.rlim_max = RLIM_INFINITY;

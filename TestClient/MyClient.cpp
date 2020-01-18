@@ -68,7 +68,7 @@ int main()
 	client.StopLoop();
 	while (1)
 	{
-		SFSLEEP(100);
+		sf_sleep(100);
 	}
 	return 0;
 }

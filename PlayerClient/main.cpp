@@ -21,7 +21,7 @@ int main()
 	while (true)
 	{
 		client.Loop();
-		SFSLEEP(500);
+		sf_sleep(500);
 	}
 
 	STOP_SFLOG();
