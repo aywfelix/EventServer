@@ -54,8 +54,9 @@ void TimerQueue::Clear()
 {
 	for (auto it : mTimerList)
 	{
-		delete it.mTimer;
+		delete (Timer*)it.mTimer;
 	}
+	mTimerList.clear();
 }
 
 TimeId TimerQueue::NearestTimer()
@@ -67,5 +68,3 @@ TimeId TimerQueue::NearestTimer()
 	}
 	return TimeId();
 }
-
-std::atomic<int64_t> Timer::seq = 0;

@@ -159,6 +159,7 @@
     <ClCompile Include="StringUtil.cpp" />
     <ClCompile Include="ThreadBase.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
+    <ClCompile Include="timer\Timer.cpp" />
     <ClCompile Include="timer\TimerLoop.cpp" />
     <ClCompile Include="timer\TimerQueue.cpp" />
     <ClCompile Include="timer\Timestamp.cpp" />

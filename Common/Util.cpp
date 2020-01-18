@@ -78,7 +78,7 @@ void Snprintf(char* buffer, int len, const char* format, ...)
 	va_start(argptr, format);
 	int nchars = tvsnprintf((char*)buffer, len, format, argptr);
 	va_end(argptr);
-	if (nchars == len) { buffer[len - 1] = '\0' };
+	if (nchars == len) { buffer[len - 1] = '\0'; };
 }
 
 std::string& StringTrim(std::string& s)

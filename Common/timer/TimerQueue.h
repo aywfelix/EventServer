@@ -6,7 +6,7 @@
 
 struct Entry
 {
-	Entry(Timestamp timestamp, Timer* pTimer) :mTimer(pTimer), mTimestamp(timestamp) {}
+	Entry(Timestamp timestamp, Timer* pTimer):mTimer(pTimer), mTimestamp(timestamp) {}
 	Timestamp mTimestamp;
 	Timer* mTimer;
 	bool operator<(const Entry& entry) const
