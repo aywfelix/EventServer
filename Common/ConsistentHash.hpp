@@ -6,7 +6,7 @@
 #include <map>
 #include <chrono>
 #include "lexical_cast.hpp"
-#include "CityHash/city.h"
+#include "cityhash/city.h"
 
 template<typename T>
 class VirtualNode

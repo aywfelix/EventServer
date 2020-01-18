@@ -65,8 +65,8 @@ private:
 template<typename T, typename TD>
 class MapEx
 {
-	using TD_PTR = std::shared_ptr<TD>;
-	using mapex_t = std::map<T, std::shared_ptr<TD>>;
+	typedef std::shared_ptr<TD> TD_PTR;
+	typedef std::map<T, TD_PTR> mapex_t;
 public:
 	MapEx() {}
 	~MapEx() {}
@@ -154,7 +154,7 @@ public:
 	}
 
 protected:
-	typename mapex_t m_mapex;
+	mapex_t m_mapex;
 	typename mapex_t::iterator m_iter;
 };
 

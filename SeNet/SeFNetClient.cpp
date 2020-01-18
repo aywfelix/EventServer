@@ -67,29 +67,29 @@ void SeFNetClient::ProcessExecute(LOOP_RUN_TYPE run)
 {
 	for (auto& it : mConnecServers)
 	{
-		ConnectState state = it.second->ConnState;
+		ConnectState state = it.second->conn_state;
 		switch (state)
 		{
 		case ConnectState::DISCONNECT:
-			if (it.second->pNet->InitNet(it.second->Ip.c_str(), it.second->Port))
+			if (it.second->pNet->InitNet(it.second->ip.c_str(), it.second->port))
 			{
-				it.second->ConnState = ConnectState::NORMAL;
+				it.second->conn_state = ConnectState::NORMAL;
 			}
 			break;
 		case ConnectState::NORMAL:
 			it.second->pNet->Execute(run);
 			break;
 		case ConnectState::RECONNECT:
-			it.second->ConnState = ConnectState::CONNECTING;
+			it.second->conn_state = ConnectState::CONNECTING;
 			it.second->pNet = std::make_shared<SeFNet>();
 			InitCallBacks(it.second);
-			if (it.second->pNet->InitNet(it.second->Ip.c_str(), it.second->Port))
+			if (it.second->pNet->InitNet(it.second->ip.c_str(), it.second->port))
 			{
-				it.second->ConnState = ConnectState::NORMAL;
+				it.second->conn_state = ConnectState::NORMAL;
 			}
 			else
 			{
-				it.second->ConnState = ConnectState::DISCONNECT;
+				it.second->conn_state = ConnectState::DISCONNECT;
 			}
 			break;
 		default:
@@ -104,21 +104,21 @@ void SeFNetClient::ProcessAddConnect()
 
 	for (auto& connPtr : mTemplist)
 	{
-		auto it = mConnecServers.find(connPtr->ServerId);
+		auto it = mConnecServers.find(connPtr->serv_id);
 		if (it == mConnecServers.end())
 		{
 			connPtr->pNet = std::make_shared<SeFNet>();
 			InitCallBacks(connPtr);
-			Assert(connPtr->ServerId != 0);
-			mConnecServers.emplace(connPtr->ServerId, connPtr);
-			if (connPtr->pNet->InitNet(connPtr->Ip.c_str(), connPtr->Port))
+			Assert(connPtr->serv_id != 0);
+			mConnecServers.emplace(connPtr->serv_id, connPtr);
+			if (connPtr->pNet->InitNet(connPtr->ip.c_str(), connPtr->port))
 			{
-				connPtr->ConnState = ConnectState::NORMAL;
-				CLOG_INFO << "connect to server " << connPtr->name << " ok!!!" << CLOG_END;
+				connPtr->conn_state = ConnectState::NORMAL;
+				CLOG_INFO << "connect to server " << connPtr->serv_name << " ok!!!" << CLOG_END;
 			}
 			else
 			{
-				connPtr->ConnState = ConnectState::DISCONNECT;
+				connPtr->conn_state = ConnectState::DISCONNECT;
 			}
 		}
 	}
@@ -234,7 +234,7 @@ ConnectDataPtr SeFNetClient::GetServerNetInfo(const socket_t& sock_fd)
 {
 	for (auto it = mConnecServers.begin(); it != mConnecServers.end(); it++)
 	{
-		if (it->second->SockFd == sock_fd)
+		if (it->second->sock_fd == sock_fd)
 			return it->second;
 	}
 	return nullptr;

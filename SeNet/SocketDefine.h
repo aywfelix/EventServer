@@ -15,13 +15,12 @@ typedef int	socklen_t;
 #include <sys/ioctl.h>
 #include <netdb.h>
 #include <netinet/in.h>
-#include <netinet/in6.h>
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
-#include <arpe/inet.h>
 #include <net/if.h>
 #include <ifaddrs.h>
 #define socket_t int
+#define SOMAXCONN      0x7fffffff
 typedef sockaddr_in	SOCKADDR_IN;
 typedef sockaddr	SOCKADDR;
 #define INVALID_SOCKET	-1
@@ -32,7 +31,7 @@ typedef sockaddr	SOCKADDR;
 #define SocketGetError(sock) (errno)
 #endif
 
-#define SOMAXCONN       0x7fffffff
+
 #define DEFAULT_SOCKET_READ_LEN 1024
 
 const int PROTOCOL_TCP = 1;

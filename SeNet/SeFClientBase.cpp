@@ -35,9 +35,9 @@ void SeFClientBase::OnSocketNodeEvent(const socket_t sock_fd, const SE_NET_EVENT
 	ConnectDataPtr pConnData = mNetCliModule->GetServerNetInfo(pNet);
 	if (nEvent == SE_NET_EVENT_CONNECTED && pConnData)
 	{
-		pConnData->SockFd = sock_fd;
-		mNetCliModule->SendPbByServId(pConnData->ServerId, REPORT_CLIENT_INFO_TO_SERVER, &mServerInfo);
-		LOG_INFO("(%d : %s) report info to %s server", mServerInfo.server_id(), mServerInfo.server_name().c_str(), (pConnData->name).c_str());
+		pConnData->sock_fd = sock_fd;
+		mNetCliModule->SendPbByServId(pConnData->serv_id, REPORT_CLIENT_INFO_TO_SERVER, &mServerInfo);
+		LOG_INFO("(%d : %s) report info to %s server", mServerInfo.server_id(), mServerInfo.server_name().c_str(), (pConnData->serv_name).c_str());
 	}
 	else
 	{
@@ -63,12 +63,12 @@ void SeFClientBase::OnMasterMessage(const socket_t sock_fd, const int msg_id, co
 			if (server_info.server_type() == serverType)
 			{
 				ConnectDataPtr ServerData = std::make_shared<ConnectData>();
-				ServerData->ServerId = server_info.server_id();
-				ServerData->Port = server_info.server_port();
-				ServerData->name = server_info.server_name();
-				ServerData->Ip = server_info.server_ip();
-				ServerData->ServerType = ServerType(server_info.server_type());
-				ServerData->ConnState = ConnectState::CONNECTING;
+				ServerData->serv_id = server_info.server_id();
+				ServerData->port = server_info.server_port();
+				ServerData->serv_name = server_info.server_name();
+				ServerData->ip = server_info.server_ip();
+				ServerData->serv_type = ServerType(server_info.server_type());
+				ServerData->conn_state = ConnectState::CONNECTING;
 				mNetCliModule->AddServer(ServerData);
 			}
 		}
@@ -88,12 +88,12 @@ void SeFClientBase::AddConnectMaster()
 	{
 		g_JsonConfig->Load("../Config/ServerConf.json");
 		ConnectDataPtr ServerData = std::make_shared<ConnectData>();
-		ServerData->ServerId = g_JsonConfig->m_Root["MasterServer"]["NodeId"].asInt();
-		ServerData->ServerType = ServerType::SERVER_TYPE_MASTER;
-		ServerData->Ip = g_JsonConfig->m_Root["MasterServer"]["NodeIp"].asString();
-		ServerData->Port = g_JsonConfig->m_Root["MasterServer"]["NodePort"].asInt();
-		ServerData->name = g_JsonConfig->m_Root["MasterServer"]["NodeName"].asString();
-		ServerData->ConnState = ConnectState::CONNECTING;
+		ServerData->serv_id = g_JsonConfig->m_Root["MasterServer"]["NodeId"].asInt();
+		ServerData->serv_type = ServerType::SERVER_TYPE_MASTER;
+		ServerData->ip = g_JsonConfig->m_Root["MasterServer"]["NodeIp"].asString();
+		ServerData->port = g_JsonConfig->m_Root["MasterServer"]["NodePort"].asInt();
+		ServerData->serv_name = g_JsonConfig->m_Root["MasterServer"]["NodeName"].asString();
+		ServerData->conn_state = ConnectState::CONNECTING;
 		mNetCliModule->AddServer(ServerData);
 	}
 }

@@ -70,13 +70,13 @@ private:
 // 客户端需要连接服务器信息
 struct ConnectData
 {
-	int ServerId;
-	int Port;
-	std::string Ip;
-	std::string name;
-	ServerType ServerType;
-	ConnectState ConnState;
-	socket_t SockFd;
+	int serv_id;
+	int port;
+	std::string ip;
+	std::string serv_name;
+	ServerType serv_type;
+	ConnectState conn_state;
+	socket_t sock_fd;
 	std::shared_ptr<SeFNet> pNet;
 };
 
