@@ -11,6 +11,13 @@
 #include "SeEpoll.h"
 #include "SeFINet.h"
 
+SeEventOp::SeEventOp() {}
+SeEventOp::~SeEventOp()
+{
+	this->Clear();
+	m_events.clear();
+}
+
 bool SeEventOp::Init()
 {
 	m_maxfd = INVALID_SOCKET;
@@ -299,7 +306,6 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 
 void SeNet::StopLoop()
 {
-	mEventOp->Clear();
 	delete mEventOp;
 	mEventOp = nullptr;
 	mbStop = true;
@@ -365,7 +371,6 @@ void SeNet::SendToAllClients(const char* msg, int len)
 void SeNet::SendProtoMsg(socket_t fd, const int msg_id, const char* msg, int len)
 {
 	NetMsgHead MsgHead(msg_id, len);
-	int nSend = len + MSG_HEAD_LEN;
 	char pHead[MSG_HEAD_LEN] = { 0 };
 	MsgHead.EnCode(pHead);
 	SendMsg(fd, pHead, MSG_HEAD_LEN);
@@ -375,7 +380,6 @@ void SeNet::SendProtoMsg(socket_t fd, const int msg_id, const char* msg, int len
 void SeNet::SendProtoMsg(std::vector<socket_t>& fdlist, const int msg_id, const char* msg, int len)
 {
 	NetMsgHead MsgHead(msg_id, len);
-	int nSend = len + MSG_HEAD_LEN;
 	char pHead[MSG_HEAD_LEN] = { 0 };
 	MsgHead.EnCode(pHead);
 	SendMsg(fdlist, pHead, MSG_HEAD_LEN);
@@ -385,7 +389,6 @@ void SeNet::SendProtoMsg(std::vector<socket_t>& fdlist, const int msg_id, const 
 void SeNet::SendProtoMsg(const int msg_id, const char* msg, int len)
 {
 	NetMsgHead MsgHead(msg_id, len);
-	int nSend = len + MSG_HEAD_LEN;
 	char pHead[MSG_HEAD_LEN] = { 0 };
 	MsgHead.EnCode(pHead);
 	SendMsg(pHead, MSG_HEAD_LEN);

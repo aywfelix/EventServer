@@ -17,6 +17,8 @@ class Session;
 class SeEventOp
 {
 public:
+	SeEventOp();
+	virtual ~SeEventOp();
 	virtual bool Init();
 	bool Dispatch();
 	virtual bool InitOp() = 0;

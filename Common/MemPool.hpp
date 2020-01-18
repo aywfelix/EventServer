@@ -8,6 +8,7 @@
 class MemElem
 {
 public:
+	virtual ~MemElem(){}
 	virtual void SetMemId(int memid)
 	{
 		m_memid = memid;
@@ -37,7 +38,7 @@ public:
 		Expand();
 	}
 
-	~MemPool()
+	virtual ~MemPool()
 	{
 		for (auto& it : m_list)
 		{

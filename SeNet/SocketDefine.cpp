@@ -37,14 +37,14 @@ int SocketCloseOnExec(socket_t fd)
 	int flags;
 	if ((flags = fcntl(fd, F_GETFD, NULL)) < 0)
 	{
-		fprintf(stderr, "fcntl(%d, F_GETFD)", fd);
+		fprintf(stderr, "fcntl(%ld, F_GETFD)", fd);
 		return -1;
 	}
 	if (!(flags & FD_CLOEXEC))
 	{
 		if (fcntl(fd, F_SETFD, flags | FD_CLOEXEC) == -1)
 		{
-			fprintf(stderr, "fcntl(%d, F_SETFD)", fd);
+			fprintf(stderr, "fcntl(%ld, F_SETFD)", fd);
 			return -1;
 		}
 	}

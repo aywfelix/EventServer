@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 project(Common)
-add_definitions(-D__LINUX__ -D__LINUX64)
-include_directories(C:/Program Files/MariaDB 10.4/include/mysql ../ThirdPart/hiredis/adapters ../ThirdPart/hiredis ./mariacpp ../SeNet ../ ./)
+add_definitions(-D__LINUX__)
+include_directories(C:/Program Files/MariaDB 10.4/include/mysql ../ThirdPart/hiredis/adapters ../ThirdPart/hiredis ./mariacpp ../SeNet ../ ./ /usr/include /usr/local/include /usr/include/mysql)
 link_directories()
-set(SOURCE_FILE Assertx.cpp cityhash/city.cc clientproto/Chat.pb.cc clientproto/ClientPublic.pb.cc clientproto/Login.pb.cc designtable/TableMgr.cpp FileHelper.cpp JsonConfig.cpp jsoncpp.cpp LogHelper.cpp mariacpp/src/bind.cpp mariacpp/src/connection.cpp mariacpp/src/exception.cpp mariacpp/src/lib.cpp mariacpp/src/ma_time.c mariacpp/src/prepared_stmt.cpp mariacpp/src/resultset.cpp mariacpp/src/time.cpp mariacpp/src/uri.cpp packet/Packet.cpp packet/PacketMgr.cpp packet/Player.cpp redis/db_hiredis.cpp redis/db_redis.cpp SePlatForm.cpp StringUtil.cpp ThreadBase.cpp ThreadPool.cpp timer/TimerLoop.cpp timer/TimerQueue.cpp timer/Timestamp.cpp Util.cpp)
+set(SOURCE_FILE Assertx.cpp cityhash/city.cc clientproto/Chat.pb.cc clientproto/ClientPublic.pb.cc clientproto/Login.pb.cc designtable/TableMgr.cpp FileHelper.cpp JsonConfig.cpp jsoncpp.cpp LogHelper.cpp mariacpp/src/bind.cpp mariacpp/src/connection.cpp mariacpp/src/exception.cpp mariacpp/src/lib.cpp mariacpp/src/ma_time.c mariacpp/src/prepared_stmt.cpp mariacpp/src/resultset.cpp mariacpp/src/time.cpp mariacpp/src/uri.cpp md5.cpp packet/Packet.cpp packet/PacketMgr.cpp packet/Player.cpp redis/db_hiredis.cpp redis/db_redis.cpp SePlatForm.cpp StringUtil.cpp ThreadBase.cpp ThreadPool.cpp timer/Timer.cpp timer/TimerLoop.cpp timer/TimerQueue.cpp timer/Timestamp.cpp Util.cpp)
 
 set(CMAKE_VERBOSE_MAKEFILE on)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
