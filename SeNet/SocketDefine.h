@@ -19,8 +19,7 @@ typedef int	socklen_t;
 #include <arpa/inet.h>
 #include <net/if.h>
 #include <ifaddrs.h>
-#define socket_t int
-#define SOMAXCONN      0x7fffffff
+#define socket_t int64_t
 typedef sockaddr_in	SOCKADDR_IN;
 typedef sockaddr	SOCKADDR;
 #define INVALID_SOCKET	-1

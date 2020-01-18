@@ -3,6 +3,15 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <string>
+
+class Test
+{
+public:
+	void Print(const int32_t& a) { std::cout << a << std::endl; }
+	void Print(const int64_t& a) { std::cout << a << std::endl; }
+private:
+};
 
 int main()
 {
@@ -13,6 +22,10 @@ int main()
 	//SFTest::TestEncypt();
 	//SFTest::TestSnowFlake();
 	SFTest::TestMd5();
+
+	Test test;
+	std::string aa = "aaaaaaaaa";
+	test.Print(100);
 
 	//insert into tb(field1,field2) values ("111",22)
 

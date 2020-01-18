@@ -65,7 +65,7 @@ bool Socket::Listen(uint32_t port)
 
 bool Socket::Accept(socket_t& connfd, struct sockaddr_in& addr)
 {
-	int32_t len = sizeof(addr);
+	socklen_t len = sizeof(addr);
 	if ((connfd = accept(m_fd, (struct sockaddr*) & addr, &len)) < 0)
 	{
 		return false;
@@ -115,9 +115,9 @@ void Socket::SetKeepAlive(uint32_t interval)
 	setsockopt(m_fd, IPPROTO_TCP, TCP_KEEPIDLE, &val, sizeof(val));
 	val = interval / 3;
 	if (val == 0) val = 1;
-	setsockopt(fd, IPPROTO_TCP, TCP_KEEPINTVL, &val, sizeof(val));
+	setsockopt(m_fd, IPPROTO_TCP, TCP_KEEPINTVL, &val, sizeof(val));
 	val = 5;
-	setsockopt(fd, IPPROTO_TCP, TCP_KEEPCNT, &val, sizeof(val));
+	setsockopt(m_fd, IPPROTO_TCP, TCP_KEEPCNT, &val, sizeof(val));
 #endif
 }
 
@@ -150,7 +150,7 @@ void Socket::CreateUDPFd()
 
 int Socket::RecvFrom(char* buf, int len)
 {
-	int addr_len = sizeof(struct sockaddr_in);
+	socklen_t addr_len = sizeof(struct sockaddr_in);
 	return recvfrom(m_fd, buf, len, 0, (struct sockaddr*)&m_sockAddr, &addr_len);
 }
 
