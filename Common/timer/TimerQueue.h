@@ -4,15 +4,17 @@
 #include "Timestamp.h"
 #include "Timer.h"
 
-struct Entry
+class Entry
 {
+public:
 	Entry(Timestamp timestamp, Timer* pTimer):mTimer(pTimer), mTimestamp(timestamp) {}
-	Timestamp mTimestamp;
-	Timer* mTimer;
+	~Entry() {}
 	bool operator<(const Entry& entry) const
 	{
 		return mTimestamp < entry.mTimestamp;
 	}
+	Timestamp mTimestamp;
+	Timer* mTimer{nullptr};
 };
 
 using TimeList_t = std::set<Entry>;
