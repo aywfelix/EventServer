@@ -60,8 +60,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Chat_2eproto::offsets[] PROTOB
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::Chat_ChatReq, chat_msg_),
   PROTOBUF_FIELD_OFFSET(::Chat_ChatReq, channel_),
+  PROTOBUF_FIELD_OFFSET(::Chat_ChatReq, chat_msg_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Chat_ChatReply, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -82,8 +82,8 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_Chat_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\nChat.proto\032\022ClientPublic.proto\"1\n\014Chat"
-  "_ChatReq\022\020\n\010chat_msg\030\001 \001(\t\022\017\n\007channel\030\002 "
-  "\001(\005\"/\n\016Chat_ChatReply\022\013\n\003ret\030\001 \001(\005\022\020\n\010ch"
+  "_ChatReq\022\017\n\007channel\030\001 \001(\005\022\020\n\010chat_msg\030\002 "
+  "\001(\t\"/\n\016Chat_ChatReply\022\013\n\003ret\030\001 \001(\005\022\020\n\010ch"
   "at_msg\030\002 \001(\tb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Chat_2eproto_deps[1] = {
@@ -103,7 +103,7 @@ const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Chat_2
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_Chat_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_Chat_2eproto), true);
+static bool dynamic_init_dummy_Chat_2eproto = (static_cast<void>(::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_Chat_2eproto)), true);
 
 // ===================================================================
 
@@ -172,17 +172,19 @@ const char* Chat_ChatReq::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // string chat_msg = 1;
+      // int32 channel = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_chat_msg(), ptr, ctx, "Chat_ChatReq.chat_msg");
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          channel_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // int32 channel = 2;
+      // string chat_msg = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          channel_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_chat_msg();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Chat_ChatReq.chat_msg"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -206,26 +208,26 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Chat_ChatReq::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Chat_ChatReq::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:Chat_ChatReq)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string chat_msg = 1;
+  // int32 channel = 1;
+  if (this->channel() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_channel(), target);
+  }
+
+  // string chat_msg = 2;
   if (this->chat_msg().size() > 0) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_chat_msg().data(), static_cast<int>(this->_internal_chat_msg().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "Chat_ChatReq.chat_msg");
     target = stream->WriteStringMaybeAliased(
-        1, this->_internal_chat_msg(), target);
-  }
-
-  // int32 channel = 2;
-  if (this->channel() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_channel(), target);
+        2, this->_internal_chat_msg(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -244,14 +246,14 @@ size_t Chat_ChatReq::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string chat_msg = 1;
+  // string chat_msg = 2;
   if (this->chat_msg().size() > 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_chat_msg());
   }
 
-  // int32 channel = 2;
+  // int32 channel = 1;
   if (this->channel() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
@@ -399,14 +401,16 @@ const char* Chat_ChatReply::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
       // int32 ret = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ret_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ret_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // string chat_msg = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_chat_msg(), ptr, ctx, "Chat_ChatReply.chat_msg");
+          auto str = _internal_mutable_chat_msg();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Chat_ChatReply.chat_msg"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -430,7 +434,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Chat_ChatReply::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Chat_ChatReply::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:Chat_ChatReply)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;

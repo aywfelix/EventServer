@@ -82,6 +82,9 @@ class cmake_tool(object):
                                   replace("libmysql.lib", "").
                                   replace("Common.lib", "libCommon.a").
                                   replace("SeNet.lib", "libSeNet.a").
+                                  replace("libprotobufd.lib", "libprotobuf.a").
+                                  replace("libprotobuf-lited.lib", "libprotobuf-lite.a").
+                                  replace("libprotocd.lib", "libprotoc.a").
                                   replace(".lib", ".a") for link in links)
         self.link_libs += " mysqlclient dl stdc++fs pthread"
 
