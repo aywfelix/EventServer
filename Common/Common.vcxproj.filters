@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cityhash\city.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="clientproto\Chat.pb.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="clientproto\ClientPublic.pb.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="designtable\TableMgr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mariacpp\src\bind.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mariacpp\src\connection.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mariacpp\src\exception.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mariacpp\src\lib.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mariacpp\src\ma_time.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mariacpp\src\prepared_stmt.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mariacpp\src\resultset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mariacpp\src\time.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mariacpp\src\uri.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="packet\Packet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="packet\PacketMgr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="packet\Player.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="redis\db_hiredis.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="redis\db_redis.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\TimerLoop.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\TimerQueue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\Timestamp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Assertx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FileHelper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonConfig.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jsoncpp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LogHelper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SePlatForm.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="StringUtil.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadPool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="clientproto\Login.pb.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\Timer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cityhash\city.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cityhash\citycrc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="clientmodule\ModuleChat.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="clientmodule\ModuleGate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="clientmodule\ModuleLogin.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="clientmodule\ModuleWorld.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="clientproto\Chat.pb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="clientproto\ClientPublic.pb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="designtable\Activity.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="designtable\TableMgr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mariacpp\mariacpp\bits\bind.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mariacpp\mariacpp\connection.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mariacpp\mariacpp\exception.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mariacpp\mariacpp\lib.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mariacpp\mariacpp\prepared_stmt.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mariacpp\mariacpp\resultset.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mariacpp\mariacpp\time.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mariacpp\mariacpp\uri.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="packet\Packet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="packet\PacketMgr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="packet\Player.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="redis\db_hiredis.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="redis\db_redis.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\Timer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\TimerLoop.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\TimerQueue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\Timestamp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Assertx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="blockingconcurrentqueue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockQueue.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CommDef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="concurrentqueue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ConcurrentQueue.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsistentHash.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FileHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="json.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonConfig.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="lexical_cast.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LibConfig.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="libconfig++.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Lock.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LogHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MapEx.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MemPool.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SePlatForm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SnowFlake.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtil.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadPool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleTon.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="clientproto\Login.pb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="clientmodule\ModuleGame.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

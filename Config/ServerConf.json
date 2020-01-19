@@ -1,0 +1,68 @@
+{
+    "MasterServer": {
+        "NodeId": 1001,
+        "NodeName": "MasterServer",
+        "NodeIp": "127.0.0.1",
+        "NodePort": 100001,
+        "MaxConnect": 10
+    },
+    "WorldServer": {
+        "NodeId": 1002,
+        "NodeName": "WorldServer",
+        "NodeIp": "127.0.0.1",
+        "NodePort": 100002,
+        "MaxConnect": 10
+    },
+    "LoginServer": {
+        "NodeId": 1003,
+        "NodeName": "LoginServer",
+        "NodeIp": "127.0.0.1",
+        "NodePort": 100003,
+        "MaxConnect": 10
+    },
+    "GateServer": {
+        "NodeId": 1004,
+        "NodeName": "GateServer",
+        "NodeIp": "127.0.0.1",
+        "NodePort": 100004,
+        "MaxConnect": 10
+    },
+    "GameServer1": {
+        "NodeId": 1005,
+        "NodeName": "GameServer1",
+        "NodeIp": "127.0.0.1",
+        "NodePort": 100005,
+        "MaxConnect": 10,
+        "SceneIds": [1, 3, 5, 7, 9]
+    },
+    "ChatServer": {
+        "NodeId": 1006,
+        "NodeName": "ChatServer",
+        "NodeIp": "127.0.0.1",
+        "NodePort": 100006,
+        "MaxConnect": 10
+    },
+    "GatePlayerServer": {
+        "NodeId": 1007,
+        "NodeName": "GatePlayerServer",
+        "NodeIp": "127.0.0.1",
+        "NodePort": 100007,
+        "MaxConnect": 5000
+    },
+    "DBServer": {
+        "NodeId": 1008,
+        "NodeName": "GatePlayerServer",
+        "NodeIp": "127.0.0.1",
+        "NodePort": 100008,
+        "MaxConnect": 10
+    },
+    "GameGlobal": {
+        "LogPath": "../logs",
+        "MaxOnline": 5000
+    },
+    "MariaDB": {
+        "uri": "tcp://localhost:3306/test",
+        "user": "root",
+        "passwd": "123456"
+    }
+}

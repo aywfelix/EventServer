@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{C1DB09F1-AB9B-47D4-ADB9-5F19543EDD68}</ProjectGuid>
+    <RootNamespace>Common</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\libs\</OutDir>
+    <IntDir>..\obj\Common\$(Configuration)\</IntDir>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Program Files\MariaDB 10.4\include\mysql;..\ThirdPart\hiredis\adapters;..\ThirdPart\hiredis;.\mariacpp;..\SeNet;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WIN32;_WINDOWS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Assertx.cpp" />
+    <ClCompile Include="cityhash\city.cc" />
+    <ClCompile Include="clientproto\Chat.pb.cc" />
+    <ClCompile Include="clientproto\ClientPublic.pb.cc" />
+    <ClCompile Include="clientproto\Login.pb.cc" />
+    <ClCompile Include="designtable\TableMgr.cpp" />
+    <ClCompile Include="FileHelper.cpp" />
+    <ClCompile Include="JsonConfig.cpp" />
+    <ClCompile Include="jsoncpp.cpp" />
+    <ClCompile Include="LogHelper.cpp" />
+    <ClCompile Include="mariacpp\src\bind.cpp" />
+    <ClCompile Include="mariacpp\src\connection.cpp" />
+    <ClCompile Include="mariacpp\src\exception.cpp" />
+    <ClCompile Include="mariacpp\src\lib.cpp" />
+    <ClCompile Include="mariacpp\src\ma_time.c" />
+    <ClCompile Include="mariacpp\src\prepared_stmt.cpp" />
+    <ClCompile Include="mariacpp\src\resultset.cpp" />
+    <ClCompile Include="mariacpp\src\time.cpp" />
+    <ClCompile Include="mariacpp\src\uri.cpp" />
+    <ClCompile Include="md5.cpp" />
+    <ClCompile Include="packet\Packet.cpp" />
+    <ClCompile Include="packet\PacketMgr.cpp" />
+    <ClCompile Include="packet\Player.cpp" />
+    <ClCompile Include="redis\db_hiredis.cpp" />
+    <ClCompile Include="redis\db_redis.cpp" />
+    <ClCompile Include="SePlatForm.cpp" />
+    <ClCompile Include="StringUtil.cpp" />
+    <ClCompile Include="ThreadBase.cpp" />
+    <ClCompile Include="ThreadPool.cpp" />
+    <ClCompile Include="timer\Timer.cpp" />
+    <ClCompile Include="timer\TimerLoop.cpp" />
+    <ClCompile Include="timer\TimerQueue.cpp" />
+    <ClCompile Include="timer\Timestamp.cpp" />
+    <ClCompile Include="Util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Assertx.h" />
+    <ClInclude Include="blockingconcurrentqueue.h" />
+    <ClInclude Include="BlockQueue.hpp" />
+    <ClInclude Include="cityhash\city.h" />
+    <ClInclude Include="cityhash\citycrc.h" />
+    <ClInclude Include="clientmodule\ModuleChat.h" />
+    <ClInclude Include="clientmodule\ModuleGame.h" />
+    <ClInclude Include="clientmodule\ModuleGate.h" />
+    <ClInclude Include="clientmodule\ModuleLogin.h" />
+    <ClInclude Include="clientmodule\ModuleWorld.h" />
+    <ClInclude Include="clientproto\Chat.pb.h" />
+    <ClInclude Include="clientproto\ClientPublic.pb.h" />
+    <ClInclude Include="clientproto\Login.pb.h" />
+    <ClInclude Include="CommDef.h" />
+    <ClInclude Include="concurrentqueue.h" />
+    <ClInclude Include="ConcurrentQueue.hpp" />
+    <ClInclude Include="ConsistentHash.hpp" />
+    <ClInclude Include="designtable\Activity.hpp" />
+    <ClInclude Include="designtable\TableMgr.h" />
+    <ClInclude Include="FileHelper.h" />
+    <ClInclude Include="json.h" />
+    <ClInclude Include="JsonConfig.h" />
+    <ClInclude Include="lexical_cast.hpp" />
+    <ClInclude Include="libconfig++.hpp" />
+    <ClInclude Include="LibConfig.hpp" />
+    <ClInclude Include="Lock.hpp" />
+    <ClInclude Include="LogHelper.h" />
+    <ClInclude Include="MapEx.hpp" />
+    <ClInclude Include="mariacpp\mariacpp\bits\bind.hpp" />
+    <ClInclude Include="mariacpp\mariacpp\connection.hpp" />
+    <ClInclude Include="mariacpp\mariacpp\exception.hpp" />
+    <ClInclude Include="mariacpp\mariacpp\lib.hpp" />
+    <ClInclude Include="mariacpp\mariacpp\prepared_stmt.hpp" />
+    <ClInclude Include="mariacpp\mariacpp\resultset.hpp" />
+    <ClInclude Include="mariacpp\mariacpp\time.hpp" />
+    <ClInclude Include="mariacpp\mariacpp\uri.hpp" />
+    <ClInclude Include="md5.h" />
+    <ClInclude Include="MemPool.hpp" />
+    <ClInclude Include="packet\Packet.h" />
+    <ClInclude Include="packet\PacketMgr.h" />
+    <ClInclude Include="packet\Player.h" />
+    <ClInclude Include="redis\db_hiredis.h" />
+    <ClInclude Include="redis\db_redis.h" />
+    <ClInclude Include="SePlatForm.h" />
+    <ClInclude Include="SingleTon.hpp" />
+    <ClInclude Include="SnowFlake.hpp" />
+    <ClInclude Include="StringUtil.h" />
+    <ClInclude Include="ThreadBase.h" />
+    <ClInclude Include="ThreadPool.h" />
+    <ClInclude Include="timer\Timer.h" />
+    <ClInclude Include="timer\TimerLoop.h" />
+    <ClInclude Include="timer\TimerQueue.h" />
+    <ClInclude Include="timer\Timestamp.h" />
+    <ClInclude Include="Util.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
