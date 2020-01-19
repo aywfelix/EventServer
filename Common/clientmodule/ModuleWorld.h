@@ -16,11 +16,10 @@ public:
 	{
 		MODULE_ID_WORLD = 15,
 	};
-public:
 	static ModuleWorld* Instance()
 	{
 		static ModuleWorld instance;
 		return &instance;
 	}
-public:
+private:
 };

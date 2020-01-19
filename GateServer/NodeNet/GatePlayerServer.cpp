@@ -8,11 +8,18 @@
 #include "JsonConfig.h"
 #include "Session.h"
 
+<<<<<<< HEAD
 #include "clientmodule/ModuleChat.h"
 #include "clientmodule/ModuleGate.h"
 #include "clientmodule/ModuleLogin.h"
 #include "clientmodule/ModuleWorld.h"
 #include "clientmodule/ModuleGame.h"
+=======
+#include "ClientModule/ModuleChat.h"
+#include "ClientModule/ModuleGate.h"
+#include "ClientModule/ModuleLogin.h"
+#include "ClientModule/ModuleWorld.h"
+>>>>>>> da208e9572bd4e113d3fc9c2f012e9e9a40a804f
 
 bool GatePlayerServer::Init()
 {
@@ -25,6 +32,10 @@ bool GatePlayerServer::Init()
 	if (!m_pNetModule->InitNet(GatePlayerServerConf["NodePort"].asUInt()))
 	{
 		CLOG_ERR << "init GatePlayerServer failed" << CLOG_END;
+<<<<<<< HEAD
+=======
+		//LOG_ERR("init GatePlayerServer failed");
+>>>>>>> da208e9572bd4e113d3fc9c2f012e9e9a40a804f
 		return false;
 	}
 	CLOG_INFO << "init GatePlayerServer ok" << CLOG_END;
@@ -112,10 +123,15 @@ void GatePlayerServer::OnOtherMessage(const socket_t sock_fd, const int msg_id, 
 		cli_player->OnModuleWorldMessage(msg_id, msg, msg_len);
 		break;
 	}
+<<<<<<< HEAD
 	case ModuleGame::MODULE_ID_GAME:
 		cli_player->OnModuleGameMessage(msg_id, msg, msg_len);
 		break;
 	default:
+=======
+	default:
+		cli_player->OnModuleGameMessage(msg_id, msg, msg_len);
+>>>>>>> da208e9572bd4e113d3fc9c2f012e9e9a40a804f
 		break;
 	}
 }

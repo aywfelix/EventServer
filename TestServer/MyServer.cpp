@@ -5,7 +5,11 @@
 
 #include <set>
 #include<iostream>
+<<<<<<< HEAD
 #include "timer/TimerLoop.h"
+=======
+#include "Timer/TimerLoop.h"
+>>>>>>> da208e9572bd4e113d3fc9c2f012e9e9a40a804f
 
 using namespace std;
 

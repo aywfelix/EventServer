@@ -50,7 +50,11 @@ void ChatNodeClient::OnGateRouteChat(const socket_t sock_fd, const int msg_id, c
 
 	ChatPlayer chatPlayer;
 	chatPlayer.m_PlayerId = gate_packet.player_id();
+<<<<<<< HEAD
 	chatPlayer.m_ServerId = pServerData->serv_id;
+=======
+	chatPlayer.m_ServerId = pServerData->ServerId;
+>>>>>>> da208e9572bd4e113d3fc9c2f012e9e9a40a804f
 	int ret = msgHandle(&chatPlayer, pRecvPacket); // process msg logic
 }
 

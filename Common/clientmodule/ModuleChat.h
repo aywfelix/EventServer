@@ -15,7 +15,6 @@ public:
 		MODULE_ID_CHAT = 11,
 		RPC_CHAT_CHAT_REQ = 1101,
 	};
-public:
 	ModuleChat()
 	{
 		g_packetmgr->RegisterHandle(RPC_CHAT_CHAT_REQ, ModuleChat::ChatReq);
