@@ -20,7 +20,7 @@ bool SeEpoll::InitOp()
 #endif
     if (mEpollOp.epfd == -1)
     {
-        mEpollOp.epfd = epoll_create(32000);
+        mEpollOp.epfd = epoll_create(0);
 		Assert(mEpollOp.epfd == -1);
     }
     mEpollOp.events = new epoll_event[EPOLL_EVENT_NUM];

@@ -1,10 +1,8 @@
-#include "SePlatForm.h"
 #include "World.h"
+#include "SePlatForm.h"
 #include "JsonConfig.h"
-#include "Util.h"
 #include "LogHelper.h"
 #include <signal.h>
-
 
 bool bStopServer = false;
 
@@ -44,10 +42,13 @@ void OnHookSignal()
 int main()
 {
 	OnHookSignal();
-
+#ifdef SF_PLATFORM_LINUX
+	SetResource();
+#endif
 	g_JsonConfig.reset(new JsonConfig());
 	g_JsonConfig->Load("../Config/ServerConf.json");
 	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root["WorldServer"];
+	INIT_SFLOG("WorldServer");
 
 	World world;
 	world.Init();
@@ -57,8 +58,7 @@ int main()
 	{
 		sf_sleep(500);
 	}
-
 	world.Stop();
-
+	STOP_SFLOG();
 	return 0;
 }
