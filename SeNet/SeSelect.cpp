@@ -41,7 +41,7 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 	memcpy(&mSelectOp._wfds, &mSelectOp.wfds, sizeof(fd_set));
 
 	ret = select((int)m_maxfd + 1,&mSelectOp._rfds, &mSelectOp._wfds, NULL, tv);
-	if (ret == -1)
+	if (ret == -1)  //TODO need test
 	{
 		if (errno != EINTR)
 		{
