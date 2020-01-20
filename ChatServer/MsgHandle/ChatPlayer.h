@@ -1,5 +1,5 @@
 #pragma once
-#include "Packet/Player.h"
+#include "packet/Player.h"
 
 class ChatPlayer : public Player
 {

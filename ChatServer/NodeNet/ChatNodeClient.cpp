@@ -1,6 +1,6 @@
 #include "ChatNodeClient.h"
 #include "JsonConfig.h"
-#include "Packet/PacketMgr.h"
+#include "packet/PacketMgr.h"
 #include "MsgHandle/ChatPlayer.h"
 #include "SeFNetClient.h"
 #include "SeNet.h"
