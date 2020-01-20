@@ -1,0 +1,105 @@
+#pragma once
+
+#include <memory>
+#include <vector>
+#include <string>
+#include <unordered_map>
+
+#include "ServerComm/CommonDef.h"
+#include "jsoncpp/json.h"
+#include "easylogging/easylogging++.h"
+#include "Config.h"
+
+class %(class_name)sRow
+{
+public:
+	%(row_fields)s
+};
+
+class %(class_name)sTable
+{
+	typedef std::shared_ptr<%(class_name)sRow> ptr_row_type;
+	typedef std::unordered_map<int, ptr_row_type> map_table_type;
+	typedef std::vector<int> vec_type;	
+private:
+	vec_type m_keys;
+	map_table_type	m_table;
+public:
+	static %(class_name)sTable* Instance()
+	{
+		static %(class_name)sTable instance;
+		return &instance;
+	}
+
+	const %(class_name)sRow* GetRow(int key)
+	{
+		map_table_type::iterator it = m_table.find(key);
+		if (it == m_table.end())
+		{
+			return nullptr;
+		}
+		return it->second.get();
+	}
+
+	bool HasRow(int key)
+	{
+		return m_table.find(key) != m_table.end();
+	}
+
+	const vec_type& Keys() const
+	{
+		return m_keys;
+	}
+
+	const map_table_type& table() const
+	{
+		return m_table;
+	}
+
+	bool Load()
+	{
+		return LoadJson("%(class_name)s.json");
+	}
+
+	bool ReLoad()
+	{
+		return ReLoadJson("%(class_name)s.json");
+	}
+
+	bool LoadJson(const std::string& jsonFile)
+	{
+		std::string loadfile = std::string(TABLE_PATH).append(jsonFile.c_str());
+		if (!g_pConfig->Load(loadfile.c_str()))
+		{
+			LOG(ERROR) << "load table %(class_name)s error";
+			return false;
+		}
+
+		for (auto it = g_pConfig->m_Root.begin(); it != g_pConfig->m_Root.end(); ++it)
+		{
+			try
+			{
+				auto& r = (*it);
+				ptr_row_type pRow(new %(class_name)sRow);
+				%(class_name)sRow& row = *pRow;
+				%(json_logic)s
+				m_table.emplace(row.id, pRow);
+				m_keys.emplace_back(row.id);
+			}
+			catch (std::exception const& e)
+			{
+				LOG(ERROR) << "read table %(class_name)s error," << e.what() << ":" << (*it)["id"].asInt();
+				return false;
+			}
+		}
+		return true;
+	}
+
+	bool ReLoadJson(const std::string& jsonFile)
+	{
+		m_keys.clear();
+		m_table.clear();
+		return LoadJson(jsonFile);
+	}
+
+};

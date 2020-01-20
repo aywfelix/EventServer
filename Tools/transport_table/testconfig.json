@@ -1,0 +1,8 @@
+{
+    "tmpl_file": "table_cpp.tmpl",
+    "class_name": "Activity",
+    "key_field" : "key",
+    "row_fields" : "row_fields",
+    "json_logic" : "json_logic",
+    "file_name": "ActivityTable.hpp"
+}
