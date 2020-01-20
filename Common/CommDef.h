@@ -2,7 +2,8 @@
 
 #define TABLE_PATH "../DataTable/"
 
-#define LOG_CFG_PATH "../Config/log.cfg"
+//#define LOG_CFG_PATH "../Config/log.cfg"
+#define LOG_CFG_PATH "../Config/log.json"
 
 enum ChatChannelType
 {

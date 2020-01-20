@@ -189,8 +189,6 @@
     <ClInclude Include="json.h" />
     <ClInclude Include="JsonConfig.h" />
     <ClInclude Include="lexical_cast.hpp" />
-    <ClInclude Include="libconfig++.hpp" />
-    <ClInclude Include="LibConfig.hpp" />
     <ClInclude Include="Lock.hpp" />
     <ClInclude Include="LogHelper.h" />
     <ClInclude Include="MapEx.hpp" />

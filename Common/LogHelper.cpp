@@ -1,11 +1,10 @@
-
 #include <cstring>
 #include <sstream>
 #include <iostream>
 #include "LogHelper.h"
 #include "SePlatForm.h"
-#include "LibConfig.hpp"
 #include "Assertx.h"
+#include "JsonConfig.h"
 
 std::unique_ptr<LogHelper> g_pLog = nullptr;
 
@@ -139,31 +138,20 @@ void LogHelper::Log(int level, const char* file, const char* func, int line, con
 
 bool LogHelper::LoadLogCfg(std::string& logcfg)
 {
-	if (!LibConfig::Instance().loadcfg(logcfg))
-	{
-		AssertEx(0, "load log cfg error");
-	}
-	const Setting& root = LibConfig::Instance().GetRoot();
-	const Setting& log = root["log"];
-	if (!log.lookupValue("default_level", m_level))
-	{
-		AssertEx(0, "log level cfg error");
-	}
-	if (!log.lookupValue("default_roll", m_roll_type))
-	{
-		AssertEx(0, "log roll cfg error");
-	}
-	if (!log.lookupValue("default_path", m_LogPath))
-	{
-		AssertEx(0, "log path cfg error");
-	}
-	return true;
+	return LoadLogCfg(logcfg.c_str());
 }
 
 bool LogHelper::LoadLogCfg(const char* logcfg)
 {
-	std::string strLogcfg = logcfg;
-	return LoadLogCfg(strLogcfg);
+	if (!g_JsonConfig->Load(logcfg))
+	{
+		AssertEx(0, "log path cfg error");
+		return false;
+	}
+	m_level = g_JsonConfig->m_Root["default_level"].asInt();
+	m_roll_type = g_JsonConfig->m_Root["default_roll"].asInt();
+	m_LogPath = g_JsonConfig->m_Root["default_path"].asString();
+	return true;
 }
 
 LogStream& LogHelper::Stream(int level, const char* file, const char* func, int line)

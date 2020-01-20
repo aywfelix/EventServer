@@ -1,96 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="资源文件">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="module\ModuleBuff.cpp" />
+    <ClCompile Include="module\ModuleRank.cpp" />
+    <ClCompile Include="module\ModulePet.cpp" />
+    <ClCompile Include="module\ModuleBase.cpp" />
+    <ClCompile Include="NodeNet\GameNodeClient.cpp" />
+    <ClCompile Include="NodeNet\GameServerThread.cpp" />
+    <ClCompile Include="obj\ObjPet.cpp" />
+    <ClCompile Include="obj\ObjPlayer.cpp" />
+    <ClCompile Include="obj\ObjMonster.cpp" />
+    <ClCompile Include="obj\ObjBase.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="NodeNet\GameNodeClient.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="NodeNet\GameServerThread.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="obj\ObjBase.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="obj\ObjMonster.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="obj\ObjPlayer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="obj\ObjPet.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="module\ModuleBase.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="module\ModulePet.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="module\ModuleRank.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="module\ModuleBuff.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-=======
->>>>>>> da208e9572bd4e113d3fc9c2f012e9e9a40a804f
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="NodeNet\GameNodeClient.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeNet\GameServerThread.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="obj\ObjBase.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="obj\ObjMonster.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="obj\ObjPlayer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="obj\ObjPet.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="module\ModuleBase.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="module\ModulePet.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="module\ModuleRank.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="module\ModuleBuff.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-=======
->>>>>>> da208e9572bd4e113d3fc9c2f012e9e9a40a804f
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="module\ModuleBuff.h" />
+    <ClInclude Include="module\ModuleRank.h" />
+    <ClInclude Include="module\ModulePet.h" />
+    <ClInclude Include="module\ModuleBase.h" />
+    <ClInclude Include="NodeNet\GameNodeClient.h" />
+    <ClInclude Include="NodeNet\GameServerThread.h" />
+    <ClInclude Include="obj\ObjPet.h" />
+    <ClInclude Include="obj\ObjPlayer.h" />
+    <ClInclude Include="obj\ObjMonster.h" />
+    <ClInclude Include="obj\ObjBase.h" />
   </ItemGroup>
 </Project>

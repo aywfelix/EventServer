@@ -15,7 +15,7 @@ class ModuleGate
 public:
 	enum EGate
 	{
-		MODULE_ID_GATE = 11,
+		MODULE_ID_GATE = 13,
 	};
 public:
 	static ModuleGate& Instance()
