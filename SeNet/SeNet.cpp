@@ -271,10 +271,10 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 			LOG_FATAL("eventloop dispatch error");
 			break;
 		}
-		auto activemq = mEventOp->GetEvents();
+		auto events = mEventOp->GetEvents();
 
-		// do with activemq
-		for (auto it = activemq.begin(); it != activemq.end(); it++)
+		// do with events
+		for (auto it = events.begin(); it != events.end(); it++)
 		{
 			if (mbServer && (it->second & EV_READ) && (mSocket->GetFd() == it->first))
 			{
@@ -298,7 +298,7 @@ void SeNet::StartLoop(LOOP_RUN_TYPE run)
 				CloseSession(pSession);
 			}
 		}
-		activemq.clear();
+		events.clear();
 		if (run == LOOP_RUN_NONBLOCK) break;
 	}
 }

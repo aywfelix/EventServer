@@ -41,14 +41,14 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 	memcpy(&mSelectOp._wfds, &mSelectOp.wfds, sizeof(fd_set));
 
 	ret = select((int)m_maxfd + 1,&mSelectOp._rfds, &mSelectOp._wfds, NULL, tv);
-	if (ret == -1)  //TODO need test
+	if (ret == -1)
 	{
-		if (errno != EINTR)
+		if (SOCKET_ERR_RW_RETRIABLE(errno))
 		{
-			fprintf(stderr, "select error");
-			return false;
+			return true;
 		}
-		return true;
+		fprintf(stderr, "epoll error");
+		return false;
 	}
 	if (ret > 0) {
 		for (socket_t iter = 0; iter <= m_maxfd; iter++)

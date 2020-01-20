@@ -111,12 +111,12 @@ bool SeEpoll::Dispatch(struct timeval *tv)
                      tv ? (tv->tv_sec * 1000 + tv->tv_usec / 1000) : -1);
 	if (ret == -1)
 	{
-		if (errno != EINTR)
+		if (SOCKET_ERR_RW_RETRIABLE(errno))
 		{
-			fprintf(stderr, "epoll error");
-			return false;
+			return true;
 		}
-		return true;
+		fprintf(stderr, "epoll error");
+		return false;
 	}
 	if (ret > 0)
 	{
