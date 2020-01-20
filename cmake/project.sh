@@ -31,22 +31,24 @@ cd $DIR
 python3 project_cmake.py
 
 # make servers
-Servers=("Common","SeNet","MasterServer","GateServer","ChatServer","LoginServer","WorldServer","GameServer")
+Servers=("Common" "SeNet" "MasterServer" "GateServer" "ChatServer" "LoginServer" "WorldServer" "GameServer")
 make_all_servers(){
     for str in ${Servers[@]};do
-        cd $DIR/../$str/
+        cd $DIR/../$str/ && pwd
         if [ ! -d build ];then
             mkdir build
         fi
         cd build
         cmake ..
-        make -j8
+        make $1
         # cp lib to libs and cp server to bin dir
-        $LIB = `ls | grep -E '*\.a'`
-        if [ ! -n "$LIB" ]; then
-            cp -f $LIB $DIR/../libs/     
+        LIB=`ls | grep -E '*\.a'`
+        if [ "$LIB" = "" ]; then
+            cp -f $str $DIR/../bin/
         else
-            cp -f $str $DIR/../libs/
+            cp -f $LIB $DIR/../libs/
         fi
     done 
 }
+
+make_all_servers "-j8"
