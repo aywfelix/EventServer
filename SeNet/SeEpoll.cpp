@@ -20,12 +20,8 @@ bool SeEpoll::InitOp()
 #endif
     if (mEpollOp.epfd == -1)
     {
-        mEpollOp.epfd = epoll_create(1024); // 只要一个大于0的数字即可 
-		if (mEpollOp.epfd == -1)
-		{
-			perror("epoll create error");
-		}
-		Assert(mEpollOp.epfd == -1);
+        mEpollOp.epfd = epoll_create(1024);
+		Assert(mEpollOp.epfd != -1);
     }
     mEpollOp.events = new epoll_event[EPOLL_EVENT_NUM];
     if (mEpollOp.events == nullptr)
