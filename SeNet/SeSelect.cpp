@@ -47,7 +47,7 @@ bool  SeSelect::Dispatch(struct timeval* tv)
 		{
 			return true;
 		}
-		fprintf(stderr, "epoll error");
+		fprintf(stderr, "select error %d:%s", errno, strerror(errno));
 		return false;
 	}
 	if (ret > 0) {
