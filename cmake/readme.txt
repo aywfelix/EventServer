@@ -9,3 +9,6 @@
 
 下载子模块
 git submodule update --init --recursive
+
+最新：
+直接执行 sh project.sh 即可编译全部文件

@@ -1,7 +1,7 @@
 #include "GateNodeServer.h"
 #include "GateServerThread.h"
 #include "JsonConfig.h"
-#include "ClientModule/ModuleChat.h"
+#include "clientmodule/ModuleChat.h"
 #include "ClientPlayer/ClientPlayerMgr.h"
 #include "LogHelper.h"
 #include "SeFNodeNet.pb.h"

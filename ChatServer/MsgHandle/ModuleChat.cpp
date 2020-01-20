@@ -1,4 +1,4 @@
-#include "ClientModule/ModuleChat.h"
+#include "clientmodule/ModuleChat.h"
 #include "ChatPlayer.h"
 #include "LogHelper.h"
 #include "Assertx.h"
