@@ -229,7 +229,7 @@ void SeNet::EventRead(Session* pSession)
 
 		for (;;)
 		{
-			// 进行数据解包
+			// parse msg packet
 			if (!Dismantle(pSession)) break;
 		}
 		if (nRecvLeft == 0) break;

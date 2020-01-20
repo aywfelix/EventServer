@@ -18,6 +18,8 @@ class SeNet;
 #define EV_WRITE 4
 #define EV_CLOSED 8
 
+#define MAX_FD_NUM 5000
+
 enum LOOP_RUN_TYPE
 {
 	LOOP_RUN_BLOCK = 1,
