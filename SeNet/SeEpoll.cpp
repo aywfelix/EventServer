@@ -22,6 +22,7 @@ bool SeEpoll::InitOp()
     {
         mEpollOp.epfd = epoll_create(0);
 		Assert(mEpollOp.epfd == -1);
+		fprintf(stderr, "epoll epfd %d", mEpollOp.epfd);
     }
     mEpollOp.events = new epoll_event[EPOLL_EVENT_NUM];
     if (mEpollOp.events == nullptr)
@@ -115,7 +116,7 @@ bool SeEpoll::Dispatch(struct timeval *tv)
 		{
 			return true;
 		}
-		fprintf(stderr, "select error %d:%s", errno, strerror(errno));
+		fprintf(stderr, "epoll_wait error %d:%s", errno, strerror(errno));
 		return false;
 	}
 	if (ret > 0)

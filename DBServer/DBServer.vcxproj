@@ -86,7 +86,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>SeNet.lib;Common.lib;libmariadb.lib;mariadbclient.lib;mysqlservices.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\libs</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
