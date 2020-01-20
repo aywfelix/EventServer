@@ -167,7 +167,7 @@ if __name__ == '__main__':
     tool.loadxml("../GateServer/GateServer.vcxproj", "../GateServer/")
     tool.loadxml("../ChatServer/ChatServer.vcxproj", "../ChatServer/")
     tool.loadxml("../GameServer/GameServer.vcxproj", "../GameServer/")
-    # tool.loadxml("../LoginServer/LoginServer.vcxproj", "../LoginServer/")
-    # tool.loadxml("../DBServer/DBServer.vcxproj", "../DBServer/")
-    # tool.loadxml("../WorldServer/WorldServer.vcxproj", "../WorldServer/")
+    tool.loadxml("../LoginServer/LoginServer.vcxproj", "../LoginServer/")
+    tool.loadxml("../DBServer/DBServer.vcxproj", "../DBServer/")
+    tool.loadxml("../WorldServer/WorldServer.vcxproj", "../WorldServer/")
 

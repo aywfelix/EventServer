@@ -2,8 +2,8 @@
 
 #!/bin/bash
 # set path
-PWD=$(cd $(dirname $0); pwd)
-cd $PWD/../
+DIR=$(cd $(dirname $0); pwd)
+cd $DIR/../
 # create bin/log dir
 if [ ! -d bin  ];then
   mkdir bin
@@ -12,32 +12,29 @@ if [ ! -d bin  ];then
   chmod 777 ServerLogs
 fi
 # install third part
-cd $PWD/../ThirdPart
+cd $DIR/../ThirdPart
 git submodule update --init --recursive
 # install hiredis
-cd hiredis
-mkdir build && cd build
-cmake ..
-make && make install
+cd $DIR/../ThirdPart/hiredis
+cmake .
+make -j8 && make install
 # install mariacpp
-cd ../MariaCpp
-mkdir build && cd build
-cmake ..
-make && make install
+cd $DIR/../ThirdPart/MariaCpp
+cmake .
+make -j8 && make install
 #install protobuf
-cd ../protobuf/cmake
-mkdir build && cd build
-cmake ..
-make && make install
+cd $DIR/../ThirdPart/protobuf/cmake
+cmake -Dprotobuf_BUILD_TESTS=OFF .
+make -j8 && make install
 # gen cmakelist files
+cd $DIR
 python3 project_cmake.py
 
 # make servers
-cd $PWD
 Servers=("Common","SeNet","MasterServer","GateServer","ChatServer","LoginServer","WorldServer","GameServer")
 make_all_servers(){
     for str in ${Servers[@]};do
-        cd $PWD/../$str/
+        cd $DIR/../$str/
         if [ ! -d build ];then
             mkdir build
         fi
@@ -47,9 +44,9 @@ make_all_servers(){
         # cp lib to libs and cp server to bin dir
         $LIB = `ls | grep -E '*\.a'`
         if [ ! -n "$LIB" ]; then
-            cp -f $LIB $PWD/../libs/     
+            cp -f $LIB $DIR/../libs/     
         else
-            cp -f $str $PWD/../libs/
+            cp -f $str $DIR/../libs/
         fi
     done 
 }
