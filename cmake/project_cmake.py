@@ -17,7 +17,7 @@ class cmake_tool(object):
         self.include_directories = []
         self.link_directories = []
         self.compile_files = []
-        self.definitions = "-D__LINUX__"
+        self.definitions = "-D__LINUX -DDEBUG"
         self.project = ""
         self.root = None  # xml parse
         self.namespace = ""
