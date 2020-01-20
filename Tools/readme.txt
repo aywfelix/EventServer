@@ -18,6 +18,13 @@ ulimit -a 查看信息
 
 TODO log 日志文件名太长了
 TODO 修改dump路径到bin目录下
+TODO 添加mysql 请求处理， 将sql 语句与protobuff 互转
+TODO protobuff 编辑客户端程序
+TODO 模拟玩家登录游戏
+TODO 策划数值公式转换工具
+TODO AI 
+TODO 地图导航 recast navgition
+
 
 linux下设置coredump文件的开关和路径
 ulimit -c unlimited 不限制生成core文件大小
