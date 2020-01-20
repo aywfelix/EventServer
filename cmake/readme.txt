@@ -10,3 +10,12 @@ git clone git://github.com/Roslaniec/MariaCpp.git
 git clone git://github.com/protocolbuffers/protobuf.git
 git clone git://github.com/redis/hiredis.git
 git clone git://github.com/hyperrealm/libconfig.git
+
+设置 文件描述符上限
+
+vim /etc/security/limits.conf
+在最后加入
+* soft nofile 8192
+* hard nofile 8192
+
+ulimit -a 查看信息

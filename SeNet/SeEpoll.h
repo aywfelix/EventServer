@@ -1,6 +1,6 @@
 #pragma once
 
-#ifndef SF_PLATFORM_WIN
+#ifdef SF_PLATFORM_LINUX
 #include <sys/epoll.h>
 #endif
 

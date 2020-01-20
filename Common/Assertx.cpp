@@ -9,6 +9,7 @@ void __assert__(const char* file, uint32_t line, const char* func, const char* e
 	assert(0);
 #else
 	fprintf(stderr, "%s\n", out_msg);
+	perror("assert error:");
 	abort();
 #endif
 }
@@ -22,6 +23,7 @@ void __assertex__(const char* file, uint32_t line, const char* func, const char*
 	assert(0);
 #else
 	fprintf(stderr, "%s\n", out_msg);
+	perror("assertex error:");
 	abort();
 #endif
 	

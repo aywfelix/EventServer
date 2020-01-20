@@ -20,9 +20,8 @@ bool SeEpoll::InitOp()
 #endif
     if (mEpollOp.epfd == -1)
     {
-        mEpollOp.epfd = epoll_create(MAX_FD_NUM);
+        mEpollOp.epfd = epoll_create(MAX_FD_NUM); 
 		Assert(mEpollOp.epfd == -1);
-		fprintf(stderr, "epoll epfd %d", mEpollOp.epfd);
     }
     mEpollOp.events = new epoll_event[EPOLL_EVENT_NUM];
     if (mEpollOp.events == nullptr)
