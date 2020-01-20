@@ -29,7 +29,8 @@ make -j8 && make install
 # gen cmakelist files
 cd $DIR
 python3 project_cmake.py
-
+# clear bin files
+rm -rf $DIR/../bin/*
 # make servers
 Servers=("Common" "SeNet" "MasterServer" "GateServer" "ChatServer" "LoginServer" "WorldServer" "GameServer")
 make_all_servers(){
