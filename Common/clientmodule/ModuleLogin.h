@@ -6,19 +6,18 @@
 
 class Player;
 class Packet;
-
-enum ELogin
-{
-	MODULE_ID_LOGIN = 14,
-	RPC_LOGIN_LOGIN_REQ = 1401,
-	RPC_LOGIN_CREATEROLE_REQ = 1402,
-	RPC_LOGIN_SELECTROLE_REQ = 1403,
-	RPC_LOGIN_DELROLE_REQ = 1404,
-};
 extern std::unique_ptr<PacketMgr> g_packetmgr;
 class ModuleLogin : public SingleTon<ModuleLogin>
 {
 public:
+	enum ELogin
+	{
+		MODULE_ID_LOGIN = 14,
+		RPC_LOGIN_LOGIN_REQ = 1401,
+		RPC_LOGIN_CREATEROLE_REQ = 1402,
+		RPC_LOGIN_SELECTROLE_REQ = 1403,
+		RPC_LOGIN_DELROLE_REQ = 1404,
+	};
 	ModuleLogin()
 	{
 		g_packetmgr->RegisterHandle(RPC_LOGIN_LOGIN_REQ, ModuleLogin::LoginReq);

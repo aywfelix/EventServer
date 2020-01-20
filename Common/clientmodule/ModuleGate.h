@@ -5,16 +5,14 @@
 
 class Player;
 class Packet;
-
-enum EGate
-{
-	MODULE_ID_GATE = 13,
-};
-
 extern std::unique_ptr<PacketMgr> g_packetmgr;
 class ModuleGate : public SingleTon<ModuleGate>
 {
 public:
+	enum EGate
+	{
+		MODULE_ID_GATE = 13,
+	};
 	ModuleGate()
 	{
 

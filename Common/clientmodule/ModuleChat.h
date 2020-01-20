@@ -6,16 +6,15 @@
 
 class Player;
 class Packet;
-
-enum EChat
-{
-	MODULE_ID_CHAT = 11,
-	RPC_CHAT_CHAT_REQ = 1101,
-};
 extern std::unique_ptr<PacketMgr> g_packetmgr;
 class ModuleChat : public SingleTon<ModuleChat>
 {
 public:
+	enum EChat
+	{
+		MODULE_ID_CHAT = 11,
+		RPC_CHAT_CHAT_REQ = 1101,
+	};
 	ModuleChat()
 	{
 		g_packetmgr->RegisterHandle(RPC_CHAT_CHAT_REQ, ModuleChat::ChatReq);
