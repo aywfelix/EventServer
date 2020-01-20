@@ -85,9 +85,9 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>..\libs</AdditionalLibraryDirectories>
       <AdditionalDependencies>SeNet.lib;Common.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
