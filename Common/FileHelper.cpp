@@ -50,6 +50,7 @@ void FileC::SeekEnd()
 
 long FileC::FileSize()
 {
+	if (mFp == nullptr) return 0L;
 	fseek(mFp, 0L, SEEK_END);
 	long size = ftell(mFp);
 	return size;

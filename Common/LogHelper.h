@@ -110,6 +110,7 @@ private:
 	bool m_stop{ false };
 	
 	int m_roll_type;
+	int64_t m_roll_size;
 	std::string m_logname;
 	std::string m_servername;
 	int64_t m_lasttime;

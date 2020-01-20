@@ -19,32 +19,35 @@ bool LogHelper::Init(std::string servername)
 	{
 		m_timeout.SetInterval(3600 * 24);
 	}
+	if (m_roll_type == E_ROLL_SIZE)
+	{
+		m_timeout.SetInterval(3 * 60);
+	}
 	return true;
 }
 
 bool LogHelper::CreateLog()
 {
+	if (!m_timeout.IsTimeOut()) { return false; }
+	
 	int64_t now = time(0);
+	m_logname = m_servername + "_" + std::to_string(now / 60) + ".log"; // 取分钟数日志的名称为：服务器名_分钟数.log
 	switch (m_roll_type)
 	{
 	case E_ROLL_HOUR:
 	case E_ROLL_DAY:
-		if (!m_timeout.IsTimeOut())
-		{
-			return false;
-		}
-		m_filec.Close();
-		m_logname = m_servername + "_" + std::to_string(now / 60) + ".log"; // 取分钟数日志的名称为：服务器名_分钟数.log
-		m_filec.SetFile(m_LogPath, m_logname);
-		if (!m_filec.Open())
-		{
-			AssertEx(0, "open log file error");
-			return false;
-		}
 		break;
 	case E_ROLL_SIZE:
-
+		long size = m_filec.FileSize();
+		if (size>0 && size< m_roll_size) { return false; }
 		break;
+	}
+	m_filec.Close();
+	m_filec.SetFile(m_LogPath, m_logname);
+	if (!m_filec.Open())
+	{
+		AssertEx(0, "open log file error");
+		return false;
 	}
 	return true;
 }
@@ -143,14 +146,16 @@ bool LogHelper::LoadLogCfg(std::string& logcfg)
 
 bool LogHelper::LoadLogCfg(const char* logcfg)
 {
-	if (!g_JsonConfig->Load(logcfg))
+	JsonConfig json_config;
+	if (!json_config.Load(logcfg))
 	{
 		AssertEx(0, "log path cfg error");
 		return false;
 	}
-	m_level = g_JsonConfig->m_Root["default_level"].asInt();
-	m_roll_type = g_JsonConfig->m_Root["default_roll"].asInt();
-	m_LogPath = g_JsonConfig->m_Root["default_path"].asString();
+	m_level = json_config.m_Root["log"]["default_level"].asInt();
+	m_roll_type = json_config.m_Root["log"]["default_roll"].asInt();
+	m_LogPath = json_config.m_Root["log"]["default_path"].asString();
+	m_roll_size = json_config.m_Root["log"]["roll_size"].asInt64();
 	return true;
 }
 
