@@ -9,7 +9,7 @@
 void __assert__(const char* file, uint32_t line, const char* func, const char* expr);
 void __assertex__(const char* file, uint32_t line, const char* func, const char* expr, const char* msg);
 
-#ifdef NDEBUG
+#ifndef DEBUG
 #define Assert(expr) ((void)0)
 #define AssertEx(expr, msg) ((void)0)
 #else
