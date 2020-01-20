@@ -42,6 +42,7 @@ void LocalTime(const time_t* timep, struct tm* result)
 #ifdef SF_PLATFORM_LINUX
 void SetResource()
 {
+	// set dump core size
 	struct rlimit rlim, rlim_new;
 	if(getrlimit(RLIMIT_CORE, &rlim)==0) 
 	{
@@ -50,6 +51,16 @@ void SetResource()
 		{
 			rlim_new.rlim_cur = rlim_new.rlim_max = rlim.rlim_max;
 			(void)setrlimit(RLIMIT_CORE, &rlim_new);
+		}
+	}
+	// set can open max file num
+	if (getrlimit(RLIMIT_NOFILE, &rlim) == 0)
+	{
+		rlim_new.rlim_cur = rlim_new.rlim_max = 8192;
+		if (setrlimit(RLIMIT_NOFILE, &rlim_new) != 0)
+		{
+			rlim_new.rlim_cur = rlim_new.rlim_max = rlim.rlim_max;
+			(void)setrlimit(RLIMIT_NOFILE, &rlim_new);
 		}
 	}
 }

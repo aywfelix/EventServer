@@ -19,6 +19,26 @@ ulimit -a 查看信息
 TODO log 日志文件名太长了
 TODO 修改dump路径到bin目录下
 
+linux下设置coredump文件的开关和路径
+ulimit -c unlimited 不限制生成core文件大小
+ulimit -c 0 关闭core文件生成开关
+ulimit -c 1024 限定生成core文件的大小为1024
+
+2.core文件的命名规则
+/proc/sys/kernel/core_uses_pid 1 表示使用procid命名，0表示不使用
+/proc/sys/kernel/core_pattern 可以设置格式化的 core 文件保存位置或文件名
+echo “/opt/corefile/core-%e-%p-%t” > /proc/sys/kernel/core_pattern
+将会控制所产生的 core 文件会存放到 /corefile 目录下，产生的文件名为 core- 命令名 -pid- 时间戳
+以下是参数列表 :
+%p - insert pid into filename 添加 pid
+%u - insert current uid into filename 添加当前 uid
+%g - insert current gid into filename 添加当前 gid
+%s - insert signal that caused the coredump into the filename 添加导致产生 core 的信号
+%t - insert UNIX time that the coredump occurred into filename 添加 core 文件生成时的 unix 时间
+%h - insert hostname where the coredump happened into filename 添加主机名
+%e - insert coredumping executable name into filename 添加命令名
+
+
 
 
 
