@@ -1,25 +1,22 @@
 #pragma once
 
-#include <memory>
-#include <vector>
-#include <functional>
-#include "Packet/PacketMgr.h"
+#include "SingleTon.hpp"
+#include "packet/PacketMgr.h"
 
 class Player;
 class Packet;
 
+enum EWorld
+{
+	MODULE_ID_WORLD = 15,
+};
 extern std::unique_ptr<PacketMgr> g_packetmgr;
-class ModuleWorld
+class ModuleWorld : public SingleTon<ModuleWorld>
 {
 public:
-	enum EWorld
+	ModuleWorld()
 	{
-		MODULE_ID_WORLD = 15,
-	};
-	static ModuleWorld* Instance()
-	{
-		static ModuleWorld instance;
-		return &instance;
+
 	}
 private:
 };

@@ -1,23 +1,23 @@
 #pragma once
 
 #include "SingleTon.hpp"
-#include "Packet/PacketMgr.h"
-#include "ClientProto/Login.pb.h"
+#include "packet/PacketMgr.h"
+#include "clientproto/Login.pb.h"
 
 class Player;
 class Packet;
 
+enum ELogin
+{
+	MODULE_ID_LOGIN = 14,
+	RPC_LOGIN_LOGIN_REQ = 1401,
+	RPC_LOGIN_CREATEROLE_REQ = 1402,
+	RPC_LOGIN_SELECTROLE_REQ = 1403,
+	RPC_LOGIN_DELROLE_REQ = 1404,
+};
+extern std::unique_ptr<PacketMgr> g_packetmgr;
 class ModuleLogin : public SingleTon<ModuleLogin>
 {
-public:
-	enum ELogin
-	{
-		MODULE_ID_LOGIN = 14,
-		RPC_LOGIN_LOGIN_REQ = 1401,
-		RPC_LOGIN_CREATEROLE_REQ = 1402,
-		RPC_LOGIN_SELECTROLE_REQ = 1403,
-		RPC_LOGIN_DELROLE_REQ = 1404,
-	};
 public:
 	ModuleLogin()
 	{
@@ -29,11 +29,6 @@ public:
 		g_packetmgr->RegisterPacket(RPC_LOGIN_SELECTROLE_REQ, new CPacket<Login_SelectRoleReq>());
 		g_packetmgr->RegisterHandle(RPC_LOGIN_DELROLE_REQ, ModuleLogin::DelRoleReq);
 		g_packetmgr->RegisterPacket(RPC_LOGIN_DELROLE_REQ, new CPacket<Login_DelRoleReq>());
-	}
-	static ModuleLogin* Instance()
-	{
-		static ModuleLogin instance;
-		return &instance;
 	}
 public:
 	static int LoginReq(Player* player, Packet* packet);
