@@ -1,5 +1,5 @@
 #include "SeFClientBase.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 #include "SeFNetClient.h"
 #include "JsonConfig.h"
 #include "SeNet.h"

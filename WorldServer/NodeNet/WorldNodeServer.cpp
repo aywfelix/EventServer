@@ -1,7 +1,7 @@
 #include <iostream>
 #include "WorldNodeServer.h"
 #include "JsonConfig.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 #include "SeFNodeNet.pb.h"
 #include "SeFNet.h"
 

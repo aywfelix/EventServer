@@ -1,7 +1,7 @@
 #include "World.h"
 #include "SePlatForm.h"
 #include "JsonConfig.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 #include <signal.h>
 
 bool bStopServer = false;

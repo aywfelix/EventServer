@@ -1,6 +1,6 @@
 #include "clientmodule/ModuleLogin.h"
 #include "LoginPlayer.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 #include "Assertx.h"
 
 int ModuleLogin::LoginReq(Player* player, Packet* packet)

@@ -2,7 +2,7 @@
 #include "SePlatForm.h"
 #include "JsonConfig.h"
 #include "Chat.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 
 bool bStopServer = false;
 

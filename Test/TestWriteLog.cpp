@@ -1,7 +1,7 @@
 #include "SFTest.h"
 
-#include "FileHelper.h"
-#include "LogHelper.h"
+#include "FileUtil.h"
+#include "LogUtil.h"
 #include <string>
 
 void SFTest::TestWriteLog()

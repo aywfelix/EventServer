@@ -1,5 +1,5 @@
 #include "db_hiredis.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 
 //redis_pool
 hiredis_pool::hiredis_pool(int n, const char* ip, unsigned int port)

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "DBNodeServer.h"
 #include "JsonConfig.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 #include "SeFNet.h"
 
 bool DBNodeServer::InitHelper()

@@ -26,10 +26,6 @@
 #include <memory>
 #include <vector>
 
-#if __cplusplus < 201103L
-# define unique_ptr auto_ptr
-#endif
-
 namespace MariaCpp {
 
 PreparedStatement::PreparedStatement(Connection &conn, MYSQL_STMT *stmt)

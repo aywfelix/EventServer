@@ -1,6 +1,6 @@
 #include "ConnectionPool.h"
 #include "Util.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 
 ConnectionPool::ConnectionPool(int thrdnum):m_conn_num(thrdnum)
 {

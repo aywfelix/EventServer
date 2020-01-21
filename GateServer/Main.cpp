@@ -2,7 +2,7 @@
 #include "Gate.h"
 #include "SePlatForm.h"
 #include "JsonConfig.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 
 
 bool bStopServer = false;

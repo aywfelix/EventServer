@@ -86,6 +86,7 @@
       <DisableSpecificWarnings>4099</DisableSpecificWarnings>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <UseFullPaths>false</UseFullPaths>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,10 +140,10 @@
     <ClCompile Include="clientproto\ClientPublic.pb.cc" />
     <ClCompile Include="clientproto\Login.pb.cc" />
     <ClCompile Include="designtable\TableMgr.cpp" />
-    <ClCompile Include="FileHelper.cpp" />
+    <ClCompile Include="FileUtil.cpp" />
     <ClCompile Include="JsonConfig.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
-    <ClCompile Include="LogHelper.cpp" />
+    <ClCompile Include="LogUtil.cpp" />
     <ClCompile Include="mariacpp\src\bind.cpp" />
     <ClCompile Include="mariacpp\src\connection.cpp" />
     <ClCompile Include="mariacpp\src\exception.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="redis\db_hiredis.cpp" />
     <ClCompile Include="redis\db_redis.cpp" />
     <ClCompile Include="SePlatForm.cpp" />
+    <ClCompile Include="SqlUtil.cpp" />
     <ClCompile Include="StringUtil.cpp" />
     <ClCompile Include="ThreadBase.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
@@ -169,6 +171,7 @@
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnyData.hpp" />
     <ClInclude Include="Assertx.h" />
     <ClInclude Include="blockingconcurrentqueue.h" />
     <ClInclude Include="BlockQueue.hpp" />
@@ -188,12 +191,12 @@
     <ClInclude Include="ConsistentHash.hpp" />
     <ClInclude Include="designtable\Activity.hpp" />
     <ClInclude Include="designtable\TableMgr.h" />
-    <ClInclude Include="FileHelper.h" />
+    <ClInclude Include="FileUtil.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="JsonConfig.h" />
     <ClInclude Include="lexical_cast.hpp" />
     <ClInclude Include="Lock.hpp" />
-    <ClInclude Include="LogHelper.h" />
+    <ClInclude Include="LogUtil.h" />
     <ClInclude Include="MapEx.hpp" />
     <ClInclude Include="mariacpp\mariacpp\bits\bind.hpp" />
     <ClInclude Include="mariacpp\mariacpp\connection.hpp" />
@@ -213,6 +216,7 @@
     <ClInclude Include="SePlatForm.h" />
     <ClInclude Include="SingleTon.hpp" />
     <ClInclude Include="SnowFlake.hpp" />
+    <ClInclude Include="SqlUtil.h" />
     <ClInclude Include="StringUtil.h" />
     <ClInclude Include="ThreadBase.h" />
     <ClInclude Include="ThreadPool.h" />

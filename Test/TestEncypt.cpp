@@ -1,5 +1,5 @@
 #include "SFTest.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 #include <vector>
 
 // tea algorithm

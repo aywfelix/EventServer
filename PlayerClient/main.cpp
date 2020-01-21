@@ -1,7 +1,7 @@
 #include "JsonConfig.h"
 #include "Util.h"
 #include "Client.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 #include "SePlatForm.h"
 #include "Session.h"
 

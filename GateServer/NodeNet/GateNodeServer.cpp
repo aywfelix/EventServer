@@ -3,7 +3,7 @@
 #include "JsonConfig.h"
 #include "clientmodule/ModuleChat.h"
 #include "ClientPlayer/ClientPlayerMgr.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 #include "SeFNodeNet.pb.h"
 #include "SeFNet.h"
 

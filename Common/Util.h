@@ -3,6 +3,7 @@
 #include "lexical_cast.hpp"
 #include <string>
 
+
 bool IsEqualFloat(const float fval, float epsilon=1e-6);
 bool IsEqualDouble(const double dval, double epsilon=1e-15);
 
@@ -96,3 +97,4 @@ T StringToNum(const std::string& str)
 }
 
 std::string& StringTrim(std::string& s);
+

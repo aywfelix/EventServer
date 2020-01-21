@@ -86,7 +86,7 @@ void StringUtil::Trim(std::vector<std::string>* str_list) {
 	}
 }
 
-void StringUtil::string_replace(const std::string& sub_str1,
+void StringUtil::Replace(const std::string& sub_str1,
 	const std::string& sub_str2, std::string* str) {
 	std::string::size_type pos = 0;
 	std::string::size_type a = sub_str1.size();

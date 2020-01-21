@@ -1,5 +1,5 @@
 #include "SeFNetClient.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 #include "Assertx.h"
 #include "SeNet.h"
 #include "SeFNet.h"

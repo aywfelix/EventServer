@@ -1,7 +1,7 @@
 #pragma once
 #pragma once
 
-#include "LogHelper.h"
+#include "LogUtil.h"
 #include "SeNet.h"
 
 class MyServer

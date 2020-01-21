@@ -8,7 +8,7 @@
 #include "CommDef.h"
 #include "json.h"
 #include "JsonConfig.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 
 class ActivityRow
 {

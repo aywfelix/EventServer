@@ -4,7 +4,7 @@
 #include "clientmodule/ModuleChat.h"
 #include "Util.h"
 #include "SeFNetClient.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 
 bool Client::Init()
 {

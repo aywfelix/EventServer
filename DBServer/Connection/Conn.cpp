@@ -4,7 +4,7 @@
 #include "mariacpp/time.hpp"
 #include "mariacpp/uri.hpp"
 #include "JsonConfig.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 
 Conn::Conn()
 {

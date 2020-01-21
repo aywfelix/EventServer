@@ -22,7 +22,7 @@ public:
 	static void Trim(std::vector<std::string>* str_list);
 
 	// ×Ó´®Ìæ»»
-	static void string_replace(const std::string& sub_str1,
+	static void Replace(const std::string& sub_str1,
 		const std::string& sub_str2, std::string* str);
 
 	static void UrlEncode(const std::string& src_str, std::string* dst_str);

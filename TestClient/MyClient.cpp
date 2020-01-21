@@ -1,6 +1,6 @@
 #include "MyClient.h"
 #include "SeSelect.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 #include "Session.h"
 #include "Util.h"
 #include <iostream>

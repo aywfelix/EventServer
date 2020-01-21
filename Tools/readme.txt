@@ -8,24 +8,12 @@ yum install -y lz4 lz4-devel
 coredump 默认文件路径
 /var/lib/systemd/coredump  
 
-
 设置 文件描述符上限
 vim /etc/security/limits.conf
 在最后加入
 * soft nofile 8192
 * hard nofile 8192
 ulimit -a 查看信息
-
-TODO log 日志文件名太长了
-windows 下设置项目属性  使用完全路径 否   调试信息格式  程序数据库（Zi）
-Linux 
-如果是使用CMAKE编译的，在CMakeLists.txt中添加这么一行（C++语言需要将CMAKE_C_FLAGS换成CMAKE_CXX_FLAGS）
-
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D__FILENAME__=‘\"$(subst ${CMAKE_SOURCE_DIR}/usrsctplib/netinet/,,$(abspath $<))\"‘")
-如果使用的是GNU Makefile，则应该在相应的Makefile中添加如下行（C++语言需要将C_FLAGS换成CXX_FLAGS）
-
-C_FLAGS+=-D__FILENAME__=‘\"$(subst $(SOURCE_PREFIX)/,,$(abspath $<))\"‘
-同时源代码中，所有使用__FILE__的，替换成__FILENAME__宏。
 
 TODO 修改dump路径到bin目录下
 TODO 添加mysql 请求处理， 将sql 语句与protobuff 互转

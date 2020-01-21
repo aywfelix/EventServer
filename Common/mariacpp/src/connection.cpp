@@ -25,10 +25,6 @@
 #include <memory>
 #include <sstream>
 
-#if __cplusplus < 201103L
-# define unique_ptr auto_ptr
-#endif
-
 namespace MariaCpp {
 
 

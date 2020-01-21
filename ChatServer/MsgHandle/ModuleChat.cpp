@@ -1,6 +1,6 @@
 #include "clientmodule/ModuleChat.h"
 #include "ChatPlayer.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 #include "Assertx.h"
 
 int ModuleChat::ChatReq(Player* player, Packet* packet)

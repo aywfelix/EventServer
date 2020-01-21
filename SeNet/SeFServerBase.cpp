@@ -1,6 +1,6 @@
 #include "SeFServerBase.h"
 #include "SeFNodeNet.pb.h"
-#include "LogHelper.h"
+#include "LogUtil.h"
 #include "SeFNet.h"
 #include "SeNet.h"
 
