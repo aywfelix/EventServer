@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include "SePlatForm.h"
 
 class SFTest
 {
@@ -12,5 +13,6 @@ public:
 	static void TestEncypt();
 	static void TestSnowFlake();
 	static void TestMd5();
+	static void TestFile();
 };
 

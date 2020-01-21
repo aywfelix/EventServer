@@ -1,10 +1,9 @@
 #include <cstring>
-#include <sstream>
-#include <iostream>
-#include "LogHelper.h"
-#include "SePlatForm.h"
+#include <thread>
+#include <functional>
 #include "Assertx.h"
 #include "JsonConfig.h"
+#include "LogHelper.h"
 
 std::unique_ptr<LogHelper> g_pLog = nullptr;
 
@@ -67,7 +66,6 @@ bool LogHelper::SendLog()
 {
 	std::string info = "";
 	if (m_queue.TryPopQ(info))
-	//if(m_queue.PopQ(info))
 	{
 #ifdef DEBUG
 		std::cout << info << std::endl; 
@@ -91,22 +89,13 @@ void LogHelper::Stop()
 	if (m_thread.joinable()) m_thread.join();
 }
 
-void LogHelper::SetLogLevel(int level)
-{
-	m_level = level;
-}
-
 void LogHelper::Log(int level, const char* file, const char* func, int line, const char* fmt, ...)
 {
 	if (level < m_level) return;
 
 	m_oss.clear();
 	m_oss.str("");
-	// time
-	char time_stamp[32];
-	memset(time_stamp, '\0', sizeof(time_stamp));
-	time_t now = time(0);
-	::strftime(time_stamp, sizeof(time_stamp), "%Y-%m-%d %H:%M:%S", localtime(&now));
+	std::string timestr = TimeToDate(time(0));
 
 	char content[256];
 	memset(content, '\0', sizeof(content));
@@ -118,22 +107,22 @@ void LogHelper::Log(int level, const char* file, const char* func, int line, con
 #ifdef DEBUG
 	if (level == E_LOG_FATAL || level == E_LOG_ERR)
 	{
-		m_oss << "\x1b[31m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m";  //red
+		m_oss << "\x1b[31m" << timestr << "|" << file << ":" << line << "|" << func << "|" << content << "\x1b[0m";  //red
 	}
 	else if (level == E_LOG_WARN)
 	{
-		m_oss << "\x1b[33m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //yellow
+		m_oss << "\x1b[33m" << timestr << "|" << file << ":" << line << "|" << func << "|" << content << "\x1b[0m"; //yellow
 	}
 	else if (level == E_LOG_INFO)
 	{
-		m_oss << "\x1b[32m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //green
+		m_oss << "\x1b[32m" << timestr << "|" << file << ":" << line << "|" << func << "|" << content << "\x1b[0m"; //green
 	}
 	else if (level == E_LOG_DEBUG)
 	{
-		m_oss << "\x1b[37m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content << "\x1b[0m"; //white
+		m_oss << "\x1b[37m" << timestr << "|" << file << ":" << line << "|" << func << "|" << content << "\x1b[0m"; //white
 	}
 #else
-	m_oss << time_stamp << "|" << file << ":" << line << " " << func << " >>>" << content;
+	m_oss << timestr << "|" << file << ":" << line << "|" << func << "|" << content;
 #endif
 	m_oss << "\n";
 	m_queue.PutQ(m_oss.str());
@@ -161,10 +150,7 @@ bool LogHelper::LoadLogCfg(const char* logcfg)
 
 LogStream& LogHelper::Stream(int level, const char* file, const char* func, int line)
 {
-	if (m_level < g_pLog->GetLevel())
-	{
-		return m_logstream;
-	}
+	if (m_level < g_pLog->GetLevel()) { return m_logstream; }
 
 	m_logstream.Init(level, file, func, line);
 	return m_logstream;
@@ -179,30 +165,27 @@ void LogStream::Init(int level, const char* file, const char* func, int line)
 	m_func = func;
 	m_line = line;
 	// time
-	char time_stamp[32];
-	memset(time_stamp, '\0', sizeof(time_stamp));
-	time_t now = time(0);
-	::strftime(time_stamp, sizeof(time_stamp), "%Y-%m-%d %H:%M:%S", localtime(&now));
+	std::string timestr = TimeToDate(time(0));
 
 #ifdef DEBUG
 	if (level == E_LOG_FATAL || level == E_LOG_ERR)
 	{
-		m_oss << "\x1b[31m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
+		m_oss << "\x1b[31m" << timestr << "|" << file << ":" << line << "|" << func << "|";
 	}
 	else if (level == E_LOG_WARN)
 	{
-		m_oss << "\x1b[33m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
+		m_oss << "\x1b[33m" << timestr << "|" << file << ":" << line << "|" << func << "|";
 	}
 	else if (level == E_LOG_INFO)
 	{
-		m_oss << "\x1b[32m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
+		m_oss << "\x1b[32m" << timestr << "|" << file << ":" << line << "|" << func << "|";
 	}
 	else if (level == E_LOG_DEBUG)
 	{
-		m_oss << "\x1b[37m" << time_stamp << "|" << file << ":" << line << " " << func << " >>>";
+		m_oss << "\x1b[37m" << timestr << "|" << file << ":" << line << "|" << func << "|";
 	}
 #else
-	m_oss << time_stamp << "|" << file << ":" << line << " " << func << ">>>";
+	m_oss << timestr << "|" << file << ":" << line << "|" << func << ">>>";
 #endif
 }
 
@@ -228,4 +211,22 @@ void LogStream::Clear()
 #endif // DEBUG
 	m_oss << "\n";
 	g_pLog->GetQueue().PutQ(m_oss.str());
+}
+
+void LogHelper::LogGame(int type, const char* fmt, ...)
+{
+	m_oss.clear();
+	m_oss.str("");
+	std::string timestr = TimeToDate(time(0));
+
+	char content[256];
+	memset(content, '\0', sizeof(content));
+	va_list ap;
+	va_start(ap, fmt);
+	vsnprintf(content, sizeof(content) - 1, fmt, ap);
+	va_end(ap);
+
+	m_oss << timestr << "|" << content << "\n";
+	// 处理业务日志信息
+	std::cout << m_oss.str() << std::endl;
 }

@@ -21,7 +21,8 @@ int main()
 	//SFTest::TestConsistent();
 	//SFTest::TestEncypt();
 	//SFTest::TestSnowFlake();
-	SFTest::TestMd5();
+	//SFTest::TestMd5();
+	SFTest::TestFile();
 
 	Test test;
 	std::string aa = "aaaaaaaaa";

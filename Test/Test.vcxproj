@@ -82,6 +82,8 @@
       <AdditionalIncludeDirectories>..\ThirdPart\hiredis\adapters;..\ThirdPart\hiredis;..\Common;..\SeNet;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PreprocessorDefinitions>WIN32;_WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <UseFullPaths>false</UseFullPaths>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,6 +137,7 @@
     <ClCompile Include="SFTest.cpp" />
     <ClCompile Include="TestConsistent.cpp" />
     <ClCompile Include="TestEncypt.cpp" />
+    <ClCompile Include="TestFile.cpp" />
     <ClCompile Include="TestMd5.cpp" />
     <ClCompile Include="TestRedis.cpp" />
     <ClCompile Include="TestSnowFlake.cpp" />

@@ -28,7 +28,7 @@ void SFTest::TestSplit()
 		});
 
 	res.clear();
-	StringUtil::Split(str, "|,", &res);
+	StringUtil::SplitC(str, "|,", res);
 	std::for_each(res.begin(), res.end(), [](std::string& it) {
 		std::cout << it << std::endl;
 		});

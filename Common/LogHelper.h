@@ -7,16 +7,13 @@
 #include <thread>
 #include <iostream>
 #include <sstream>
-#include <fstream>
-#include "ThreadBase.h"
 #include "ConcurrentQueue.hpp"
-//#include "BlockQueue.hpp"
-#include "FileHelper.h"
 #include "SePlatForm.h"
-#include "Util.h"
+#include "FileHelper.h"
 #include "CommDef.h"
+#include "Util.h"
 
-enum LogLevel
+enum ELogLevel
 {
 	E_LOG_DEBUG = 1,
 	E_LOG_INFO = 2,
@@ -25,7 +22,14 @@ enum LogLevel
 	E_LOG_FATAL = 5,
 };
 
-enum LogRollType
+enum ELogGame
+{
+	E_LOG_SYSTEM = 0,
+	E_LOG_PLAYER = 1,
+	E_LOG_CHANNEL = 2,
+};
+
+enum ELogRollType
 {
 	E_ROLL_SIZE = 1,
 	E_ROLL_HOUR = 2,
@@ -84,6 +88,7 @@ public:
 
 	bool Init(std::string servername = "");
 	void Log(int level, const char* file, const char* func, int line, const char* fmt, ...);
+	void LogGame(int type, const char* fmt, ...);
 	
 	void Start();
 	void Stop();
@@ -93,15 +98,13 @@ public:
 
 	LogStream& Stream(int level, const char* file, const char* func, int line);
 	ConcurrentQueue<std::string>& GetQueue() { return m_queue; }
-	//Queue<std::string>& GetQueue() {return m_queue;}
 private:
 	void ThreadLoop();
 	bool SendLog();
-	void SetLogLevel(int level);
+	void SetLogLevel(int level) { m_level = level; }
 	bool CreateLog();
 private:
 	ConcurrentQueue<std::string> m_queue;
-	//Queue<std::string> m_queue;
 	std::string m_LogPath;
 	std::ostringstream m_oss;
 	std::thread m_thread;
@@ -133,8 +136,12 @@ extern std::unique_ptr<LogHelper> g_pLog;
 #define CLOG_WARN g_pLog->Stream(E_LOG_WARN, __FILE__, __FUNCTION__, __LINE__)
 #define CLOG_ERR g_pLog->Stream(E_LOG_ERR, __FILE__, __FUNCTION__, __LINE__)
 #define CLOG_FATAL g_pLog->Stream(E_LOG_FATAL, __FILE__, __FUNCTION__, __LINE__)
-
 #define CLOG_END std::endl
+
+// 游戏业务日志（记录玩家的操作行为）
+#define LOG_SYSTEM(...) g_pLog->LogGame(E_LOG_SYSTEM, __VA_ARGS__)
+#define LOG_PLAYER(...) g_pLog->LogGame(E_LOG_PLAYER, __VA_ARGS__)
+#define LOG_CHAN(...) g_pLog->LogGame(E_LOG_CHANNEL, __VA_ARGS__)
 
 #define INIT_SFLOG(a) do{\
 g_pLog = std::make_unique<LogHelper>();\

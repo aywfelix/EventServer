@@ -3,24 +3,24 @@
 
 #include "StringUtil.h"
 
-void StringUtil::Split(const std::string& str, const std::string& delim, std::vector<std::string>& res)
+void StringUtil::SplitC(const std::string& str, const std::string delim, std::vector<std::string>& result)
 {
 	char* p = strtok(const_cast<char*>(str.c_str()), delim.c_str());
 	while (p)
 	{
 		std::string s = p;
-		res.emplace_back(s);
+		result.emplace_back(s);
 		p = strtok(nullptr, delim.c_str());
 	}
 }
 
-void StringUtil::Split(const std::string& str,const std::string& delim,std::vector<std::string>* result) 
+void StringUtil::SplitCpp(const std::string& str, const std::string delim, std::vector<std::string>& result) 
 {
 	if (str.empty()) {
 		return;
 	}
 	if (delim[0] == '\0') {
-		result->push_back(str);
+		result.emplace_back(str);
 		return;
 	}
 
@@ -29,11 +29,11 @@ void StringUtil::Split(const std::string& str,const std::string& delim,std::vect
 	for (std::string::size_type begin_index = 0; begin_index < str.size();) {
 		std::string::size_type end_index = str.find(delim, begin_index);
 		if (end_index == std::string::npos) {
-			result->push_back(str.substr(begin_index));
+			result.emplace_back(str.substr(begin_index));
 			return;
 		}
 		if (end_index > begin_index) {
-			result->push_back(str.substr(begin_index, (end_index - begin_index)));
+			result.emplace_back(str.substr(begin_index, (end_index - begin_index)));
 		}
 
 		begin_index = end_index + delim_length;

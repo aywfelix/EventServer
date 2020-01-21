@@ -21,9 +21,8 @@ std::string TimeToDate(Time_t t)
 	LocalTime(&t, &ptm);
 	char buf[32];
 	memset(buf, '\0', sizeof(buf));
-	strftime(buf, sizeof(buf), "%Y/%m/%d %H:%M:%S", &ptm);
-	std::string str = buf;
-	return str;
+	::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &ptm);
+	return buf;
 }
 
 Time_t GetDigitDate(Time_t t)

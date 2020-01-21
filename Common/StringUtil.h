@@ -6,8 +6,8 @@
 
 class StringUtil {
 public:
-	static void Split(const std::string& str,const std::string& delim,std::vector<std::string>* result);
-	static void Split(const std::string& str, const std::string& delim, std::vector<std::string>& res);
+	static void SplitC(const std::string& str, const std::string delim, std::vector<std::string>& result);
+	static void SplitCpp(const std::string& str, const std::string delim, std::vector<std::string>& result);
 	// 判断字符串str是否是以prefix开头
 	static bool StartsWith(const std::string& str, const std::string& prefix);
 
