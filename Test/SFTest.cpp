@@ -22,7 +22,9 @@ int main()
 	//SFTest::TestEncypt();
 	//SFTest::TestSnowFlake();
 	//SFTest::TestMd5();
-	SFTest::TestFile();
+	//SFTest::TestFile();
+	//SFTest::TestAnyData();
+	SFTest::TestSql();
 
 	Test test;
 	std::string aa = "aaaaaaaaa";

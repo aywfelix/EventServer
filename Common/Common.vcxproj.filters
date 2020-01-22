@@ -36,6 +36,7 @@
     <ClCompile Include="LogUtil.cpp" />
     <ClCompile Include="FileUtil.cpp" />
     <ClCompile Include="SqlUtil.cpp" />
+    <ClCompile Include="TableDB.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assertx.h" />
@@ -92,5 +93,6 @@
     <ClInclude Include="FileUtil.h" />
     <ClInclude Include="SqlUtil.h" />
     <ClInclude Include="AnyData.hpp" />
+    <ClInclude Include="TableDB.h" />
   </ItemGroup>
 </Project>

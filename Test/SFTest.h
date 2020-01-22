@@ -14,5 +14,7 @@ public:
 	static void TestSnowFlake();
 	static void TestMd5();
 	static void TestFile();
+	static void TestAnyData();
+	static void TestSql();
 };
 

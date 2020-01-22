@@ -1,10 +1,28 @@
 #include "SqlUtil.h"
-#include "lexical_cast.hpp"
+
+string SqlUtil::Select(const string& fields, const string& tbls, map<string, string>& condition, bool isdesc = false)
+{
+	string sql = "";
+	sql = "SELECT " + fields + " FROM " + tbls;
+	if (!condition.empty())
+	{
+		sql += " WHERE " + JoinMap(condition);
+	}
+	if (isdesc)
+	{
+		sql += " ORDER BY DESC;";
+	}
+	return sql;
+}
 
 string SqlUtil::Select(vector<string>& fields, vector<string>& tbls, map<string, string>& condition, bool isdesc)
 {
 	string sql = "";
-	sql = "SELECT " + JoinVec(fields) + " FROM " + JoinVec(tbls) + " WHERE " + JoinMap(condition);
+	sql = "SELECT " + JoinVec(fields) + " FROM " + JoinVec(tbls);
+	if (!condition.empty())
+	{
+		sql += " WHERE " + JoinMap(condition);
+	}
 	if (isdesc)
 	{
 		sql += " ORDER BY DESC;";
@@ -43,6 +61,7 @@ string SqlUtil::Delete(const string& tbl, map<string, string>& condition)
 
 string SqlUtil::JoinVec(vector<string>& vec)
 {
+	if (vec.empty()) return "*";
 	string tmp = "";
 	for (auto& it : vec)
 	{

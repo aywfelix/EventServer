@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <cctype>
 #include <cstring>
+
 using namespace std;
 
 namespace detail

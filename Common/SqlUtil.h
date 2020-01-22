@@ -10,6 +10,7 @@ using std::map;
 class SqlUtil
 {
 public:
+	static string Select(const string& fields, const string& tbls, map<string, string>& condition, bool isdesc = false);
 	static string Select(vector<string>& fields, vector<string>& tbls, map<string, string>& condition, bool isdesc=false);
 	static string Insert(const string& tbl, vector<string>& fields, vector<string>& values);
 	static string InsertInto(const string& tbl, vector<string>& values);

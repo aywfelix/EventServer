@@ -46,7 +46,19 @@ public:
 		m_data = v;
 		return *this;
 	}
-
+	template<typename T>
+	T Get()
+	{
+		try
+		{
+			T v = std::get<T>(m_data);
+			return v;
+		}
+		catch (const std::exception & e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+	}
 	template<typename T>
 	operator T() const
 	{
@@ -61,6 +73,5 @@ public:
 		}
 	}
 private:
-	typedef std::variant< const char*, int8_t, int16_t, int32_t, int64_t, float, double, bool, std::string> data_type;
-	data_type m_data;
+	std::variant< int32_t, int64_t, float, double, bool, std::string> m_data;
 };

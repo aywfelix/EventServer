@@ -162,6 +162,7 @@
     <ClCompile Include="SePlatForm.cpp" />
     <ClCompile Include="SqlUtil.cpp" />
     <ClCompile Include="StringUtil.cpp" />
+    <ClCompile Include="TableDB.cpp" />
     <ClCompile Include="ThreadBase.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="timer\Timer.cpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="SnowFlake.hpp" />
     <ClInclude Include="SqlUtil.h" />
     <ClInclude Include="StringUtil.h" />
+    <ClInclude Include="TableDB.h" />
     <ClInclude Include="ThreadBase.h" />
     <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="timer\Timer.h" />
