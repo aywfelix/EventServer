@@ -418,13 +418,3 @@ void SeNet::CloseAllClient()
 	mSessions.clear();
 }
 
-bool SeNet::ReceivePB(const int msg_id, const std::string& strMsg, google::protobuf::Message* pMsg)
-{
-	return ReceivePB(msg_id, strMsg.c_str(), strMsg.length(), pMsg);
-}
-
-bool SeNet::ReceivePB(const int msg_id, const char* msg, const size_t msg_len, google::protobuf::Message* pData)
-{
-	if (msg == nullptr) return false;
-	return pData->ParseFromArray(msg, msg_len);
-}

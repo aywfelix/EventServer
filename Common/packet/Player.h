@@ -12,9 +12,9 @@ public:
 	virtual bool Init();
 
 	virtual bool HeartBeat();
-	virtual int SendMsg(unsigned short msg_id, ::google::protobuf::Message* pMsg);
+	virtual int SendMsg(unsigned short msg_id, ::google::protobuf::Message* pb_msg);
 	virtual int SendMsg(Packet* pPacket);
 
-protected:
-	//virtual int onReciveMsg(Msg_Head* pHead, char* strContent) = 0;
+	std::string m_playerid;
+	std::string m_servid;
 };

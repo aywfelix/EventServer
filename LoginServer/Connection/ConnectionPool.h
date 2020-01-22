@@ -1,5 +1,5 @@
 #pragma once
-#include <deque>
+#include <map>
 #include <vector>
 #include <string>
 #include <memory>
@@ -27,19 +27,20 @@ private:
 
 class ConnThread : public ThreadBase
 {
+	using sqlqueue_type = std::map<std::string, std::string>;
 public:
 
 	bool Init();
 	void ThreadLoop();
 	bool IsFree();
-	void AddSqlReq(const std::string& sql);
+	void AddSqlReq(const std::string& playerid, std::string& sql);
 	bool Execute(const std::string& sql);
 
-	int GetReqSize() { return m_sqldeque.size(); }
+	int GetReqSize() { return m_sqlqueue.size(); }
 
 private:
 	Conn m_conn;
-	std::deque<std::string> m_sqldeque;
+	sqlqueue_type m_sqlqueue;
 };
 
 extern std::unique_ptr<ConnectionPool> g_conn_pool;

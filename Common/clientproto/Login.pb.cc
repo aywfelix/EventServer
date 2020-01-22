@@ -170,7 +170,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Login_2eproto::offsets[] PROTO
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::Login_LoginReq, login_name_),
   PROTOBUF_FIELD_OFFSET(::Login_LoginReq, login_pwd_),
-  PROTOBUF_FIELD_OFFSET(::Login_LoginReq, account_id_),
+  PROTOBUF_FIELD_OFFSET(::Login_LoginReq, game_id_),
   PROTOBUF_FIELD_OFFSET(::Login_LoginReq, open_id_),
   PROTOBUF_FIELD_OFFSET(::Login_LoginReq, token_),
   PROTOBUF_FIELD_OFFSET(::Login_LoginReq, channel_id_),
@@ -244,19 +244,19 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_Login_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\013Login.proto\032\022ClientPublic.proto\"\232\001\n\016Lo"
+  "\n\013Login.proto\032\022ClientPublic.proto\"\227\001\n\016Lo"
   "gin_LoginReq\022\022\n\nlogin_name\030\001 \001(\014\022\021\n\tlogi"
-  "n_pwd\030\002 \001(\014\022\022\n\naccount_id\030\003 \001(\014\022\017\n\007open_"
-  "id\030\004 \001(\014\022\r\n\005token\030\005 \001(\014\022\022\n\nchannel_id\030\006 "
-  "\001(\014\022\014\n\004snid\030\007 \001(\014\022\013\n\003mac\030\010 \001(\014\"\037\n\020Login_"
-  "LoginReply\022\013\n\003ret\030\001 \001(\005\"F\n\023Login_CreateR"
-  "oleReq\022\017\n\007role_id\030\001 \001(\005\022\021\n\tnick_name\030\002 \001"
-  "(\014\022\013\n\003sex\030\003 \001(\005\"$\n\025Login_CreateRoleReply"
-  "\022\013\n\003ret\030\001 \001(\005\"&\n\023Login_SelectRoleReq\022\017\n\007"
-  "role_id\030\001 \001(\005\"$\n\025Login_SelectRoleReply\022\013"
-  "\n\003ret\030\001 \001(\005\"#\n\020Login_DelRoleReq\022\017\n\007role_"
-  "id\030\001 \001(\005\"!\n\022Login_DelRoleReply\022\013\n\003ret\030\001 "
-  "\001(\005b\006proto3"
+  "n_pwd\030\002 \001(\014\022\017\n\007game_id\030\003 \001(\014\022\017\n\007open_id\030"
+  "\004 \001(\014\022\r\n\005token\030\005 \001(\014\022\022\n\nchannel_id\030\006 \001(\014"
+  "\022\014\n\004snid\030\007 \001(\014\022\013\n\003mac\030\010 \001(\014\"\037\n\020Login_Log"
+  "inReply\022\013\n\003ret\030\001 \001(\005\"F\n\023Login_CreateRole"
+  "Req\022\017\n\007role_id\030\001 \001(\005\022\021\n\tnick_name\030\002 \001(\014\022"
+  "\013\n\003sex\030\003 \001(\005\"$\n\025Login_CreateRoleReply\022\013\n"
+  "\003ret\030\001 \001(\005\"&\n\023Login_SelectRoleReq\022\017\n\007rol"
+  "e_id\030\001 \001(\005\"$\n\025Login_SelectRoleReply\022\013\n\003r"
+  "et\030\001 \001(\005\"#\n\020Login_DelRoleReq\022\017\n\007role_id\030"
+  "\001 \001(\005\"!\n\022Login_DelRoleReply\022\013\n\003ret\030\001 \001(\005"
+  "b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Login_2eproto_deps[1] = {
   &::descriptor_table_ClientPublic_2eproto,
@@ -274,14 +274,14 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_Log
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Login_2eproto_once;
 static bool descriptor_table_Login_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Login_2eproto = {
-  &descriptor_table_Login_2eproto_initialized, descriptor_table_protodef_Login_2eproto, "Login.proto", 491,
+  &descriptor_table_Login_2eproto_initialized, descriptor_table_protodef_Login_2eproto, "Login.proto", 488,
   &descriptor_table_Login_2eproto_once, descriptor_table_Login_2eproto_sccs, descriptor_table_Login_2eproto_deps, 8, 1,
   schemas, file_default_instances, TableStruct_Login_2eproto::offsets,
   file_level_metadata_Login_2eproto, 8, file_level_enum_descriptors_Login_2eproto, file_level_service_descriptors_Login_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_Login_2eproto = (static_cast<void>(::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_Login_2eproto)), true);
+static bool dynamic_init_dummy_Login_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_Login_2eproto), true);
 
 // ===================================================================
 
@@ -308,9 +308,9 @@ Login_LoginReq::Login_LoginReq(const Login_LoginReq& from)
   if (!from._internal_login_pwd().empty()) {
     login_pwd_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.login_pwd_);
   }
-  account_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_account_id().empty()) {
-    account_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.account_id_);
+  game_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_game_id().empty()) {
+    game_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.game_id_);
   }
   open_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_open_id().empty()) {
@@ -339,7 +339,7 @@ void Login_LoginReq::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Login_LoginReq_Login_2eproto.base);
   login_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   login_pwd_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  account_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  game_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   open_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   token_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   channel_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -355,7 +355,7 @@ Login_LoginReq::~Login_LoginReq() {
 void Login_LoginReq::SharedDtor() {
   login_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   login_pwd_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  account_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  game_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   open_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   token_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   channel_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -380,7 +380,7 @@ void Login_LoginReq::Clear() {
 
   login_name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   login_pwd_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  account_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  game_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   open_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   channel_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -399,64 +399,56 @@ const char* Login_LoginReq::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
       // bytes login_name = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_login_name();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(_internal_mutable_login_name(), ptr, ctx);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // bytes login_pwd = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_login_pwd();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(_internal_mutable_login_pwd(), ptr, ctx);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // bytes account_id = 3;
+      // bytes game_id = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
-          auto str = _internal_mutable_account_id();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(_internal_mutable_game_id(), ptr, ctx);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // bytes open_id = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
-          auto str = _internal_mutable_open_id();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(_internal_mutable_open_id(), ptr, ctx);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // bytes token = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
-          auto str = _internal_mutable_token();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(_internal_mutable_token(), ptr, ctx);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // bytes channel_id = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
-          auto str = _internal_mutable_channel_id();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(_internal_mutable_channel_id(), ptr, ctx);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // bytes snid = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
-          auto str = _internal_mutable_snid();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(_internal_mutable_snid(), ptr, ctx);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // bytes mac = 8;
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
-          auto str = _internal_mutable_mac();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(_internal_mutable_mac(), ptr, ctx);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -480,7 +472,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Login_LoginReq::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* Login_LoginReq::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:Login_LoginReq)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -498,10 +490,10 @@ failure:
         2, this->_internal_login_pwd(), target);
   }
 
-  // bytes account_id = 3;
-  if (this->account_id().size() > 0) {
+  // bytes game_id = 3;
+  if (this->game_id().size() > 0) {
     target = stream->WriteBytesMaybeAliased(
-        3, this->_internal_account_id(), target);
+        3, this->_internal_game_id(), target);
   }
 
   // bytes open_id = 4;
@@ -564,11 +556,11 @@ size_t Login_LoginReq::ByteSizeLong() const {
         this->_internal_login_pwd());
   }
 
-  // bytes account_id = 3;
-  if (this->account_id().size() > 0) {
+  // bytes game_id = 3;
+  if (this->game_id().size() > 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
-        this->_internal_account_id());
+        this->_internal_game_id());
   }
 
   // bytes open_id = 4;
@@ -645,9 +637,9 @@ void Login_LoginReq::MergeFrom(const Login_LoginReq& from) {
 
     login_pwd_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.login_pwd_);
   }
-  if (from.account_id().size() > 0) {
+  if (from.game_id().size() > 0) {
 
-    account_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.account_id_);
+    game_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.game_id_);
   }
   if (from.open_id().size() > 0) {
 
@@ -696,7 +688,7 @@ void Login_LoginReq::InternalSwap(Login_LoginReq* other) {
     GetArenaNoVirtual());
   login_pwd_.Swap(&other->login_pwd_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
-  account_id_.Swap(&other->account_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+  game_id_.Swap(&other->game_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   open_id_.Swap(&other->open_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
@@ -777,7 +769,7 @@ const char* Login_LoginReply::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
       // int32 ret = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ret_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          ret_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -801,7 +793,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Login_LoginReply::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* Login_LoginReply::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:Login_LoginReply)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -977,22 +969,21 @@ const char* Login_CreateRoleReq::_InternalParse(const char* ptr, ::PROTOBUF_NAME
       // int32 role_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          role_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          role_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // bytes nick_name = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_nick_name();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(_internal_mutable_nick_name(), ptr, ctx);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // int32 sex = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          sex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          sex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1016,7 +1007,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Login_CreateRoleReq::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* Login_CreateRoleReq::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:Login_CreateRoleReq)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1214,7 +1205,7 @@ const char* Login_CreateRoleReply::_InternalParse(const char* ptr, ::PROTOBUF_NA
       // int32 ret = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ret_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          ret_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1238,7 +1229,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Login_CreateRoleReply::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* Login_CreateRoleReply::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:Login_CreateRoleReply)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1400,7 +1391,7 @@ const char* Login_SelectRoleReq::_InternalParse(const char* ptr, ::PROTOBUF_NAME
       // int32 role_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          role_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          role_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1424,7 +1415,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Login_SelectRoleReq::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* Login_SelectRoleReq::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:Login_SelectRoleReq)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1586,7 +1577,7 @@ const char* Login_SelectRoleReply::_InternalParse(const char* ptr, ::PROTOBUF_NA
       // int32 ret = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ret_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          ret_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1610,7 +1601,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Login_SelectRoleReply::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* Login_SelectRoleReply::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:Login_SelectRoleReply)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1772,7 +1763,7 @@ const char* Login_DelRoleReq::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
       // int32 role_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          role_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          role_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1796,7 +1787,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Login_DelRoleReq::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* Login_DelRoleReq::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:Login_DelRoleReq)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1958,7 +1949,7 @@ const char* Login_DelRoleReply::_InternalParse(const char* ptr, ::PROTOBUF_NAMES
       // int32 ret = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ret_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          ret_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1982,7 +1973,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Login_DelRoleReply::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* Login_DelRoleReply::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:Login_DelRoleReply)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;

@@ -1,6 +1,6 @@
 #include "SqlUtil.h"
 
-string SqlUtil::Select(const string& fields, const string& tbls, map<string, string>& condition, bool isdesc = false)
+string SqlUtil::Select(const string& fields, const string& tbls, map<string, string>& condition, bool isdesc)
 {
 	string sql = "";
 	sql = "SELECT " + fields + " FROM " + tbls;

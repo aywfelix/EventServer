@@ -5,6 +5,8 @@
 class LoginPlayer : public Player
 {
 public:
+
 private:
+
 };
 

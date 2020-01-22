@@ -59,9 +59,7 @@ public:
 	void SendProtoMsg(socket_t fd, const int msg_id, const char* msg, int len);
 	void SendProtoMsg(std::vector<socket_t>& fdlist, const int msg_id, const char* msg, int len);
 	void SendProtoMsg(const int msg_id, const char* msg, int len);
-	// recv pb msg
-	static bool ReceivePB(const int msg_id, const std::string& strMsg, google::protobuf::Message* pMsg);
-	static bool ReceivePB(const int msg_id, const char* msg, const size_t msg_len, google::protobuf::Message* pData);
+
 	// close or kick socket
 	void CloseClient(socket_t fd);
 	void CloseAllClient();

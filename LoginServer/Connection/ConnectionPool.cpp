@@ -78,7 +78,7 @@ void ConnectionPool::Free(ConnThread* conn)
 
 bool ConnThread::Init()
 {
-	m_sqldeque.clear();
+	m_sqlqueue.clear();
 	return true;
 }
 
@@ -92,10 +92,12 @@ void ConnThread::ThreadLoop()
 			m_conn.ConnectToDB();
 		}
 		bConn = m_conn.IsConnOk();
-		if (bConn && !m_sqldeque.empty())
+		if (bConn && !m_sqlqueue.empty())
 		{
-			std::string sql = m_sqldeque.front();
-			Execute(sql);
+			for (auto& it : m_sqlqueue)
+			{
+				Execute(it.second);
+			}
 		}
 		sf_sleep(20);
 	}
@@ -108,9 +110,9 @@ bool ConnThread::IsFree()
 	return true;
 }
 
-void ConnThread::AddSqlReq(const std::string& sql)
+void ConnThread::AddSqlReq(const std::string& playerid, std::string& sql)
 {
-	m_sqldeque.emplace_back(sql);
+	m_sqlqueue.emplace(playerid, sql);
 }
 
 bool ConnThread::Execute(const std::string& sql)

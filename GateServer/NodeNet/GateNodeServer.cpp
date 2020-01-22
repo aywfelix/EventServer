@@ -29,33 +29,34 @@ void GateNodeServer::OtherMessage(const socket_t sock_fd, const int msg_id, cons
 	CLOG_DEBUG << "Gate Server recv other message msg_id:" << msg_id;
 }
 
-bool GateNodeServer::SendPackToLogin(const socket_t client_fd, const int msg_id, const char* msg, size_t msg_len, int game_id, const std::string& ip)
+bool GateNodeServer::SendPackToLogin(const int msg_id, google::protobuf::Message* pb_msg)
+{
+	SendPbByServTypeOne(SERVER_TYPE_LOGIN, msg_id, pb_msg);
+	return true;
+}
+bool GateNodeServer::SendPackToScene(const int msg_id, google::protobuf::Message* pb_msg, int server_id)
 {
 	return true;
 }
-bool GateNodeServer::SendPackToScene(const int msg_id, google::protobuf::Message* msg, int nServerID)
-{
-	return true;
-}
-bool GateNodeServer::SentPackToChat(const int msg_id, google::protobuf::Message* msg)
+bool GateNodeServer::SentPackToChat(const int msg_id, google::protobuf::Message* pb_msg)
 {
 	ServerDataPtr pServerData = nullptr;
-	std::vector<ServerDataPtr> typed_list;
+	std::vector<ServerDataPtr> cli_list;
 
 	for (auto& it : mmServNodes)
 	{
 		pServerData = it.second;
 		if (pServerData->ServerInfo->server_type() == ServerType::SERVER_TYPE_CHAT)
 		{
-			typed_list.emplace_back(pServerData);
+			cli_list.emplace_back(pServerData);
 		}
 	}
-	if (typed_list.size() == 0)
+	if (cli_list.size() == 0)
 	{
 		CLOG_ERR << "GateNodeServer::SentPackToChat Send ERROR!!!!";
 		return false;
 	}
-	mNetServModule->SendPbMsg(typed_list[0]->fd, msg_id, msg);
+	mNetServModule->SendPbMsg(cli_list[0]->fd, msg_id, pb_msg);
 	return true;
 }
 bool GateNodeServer::SentPackToWorld(const int msg_id, google::protobuf::Message* msg)
@@ -70,7 +71,7 @@ void GateNodeServer::OnLoginRouteBack(socket_t sock_fd, const int msg_id, const 
 void GateNodeServer::OnChatRouteBack(socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	ChatToGatePacket chat_packet;
-	if (!SeNet::ReceivePB(msg_id, msg, msg_len, &chat_packet)) return;
+	if (!ReceivePB(msg_id, msg, msg_len, &chat_packet)) return;
 
 	uint64_t playerId = chat_packet.player_id();
 	if (ModuleChat::RPC_CHAT_CHAT_REQ == chat_packet.msg_id())

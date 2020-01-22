@@ -212,6 +212,7 @@
     <ClInclude Include="packet\Packet.h" />
     <ClInclude Include="packet\PacketMgr.h" />
     <ClInclude Include="packet\Player.h" />
+    <ClInclude Include="Random.hpp" />
     <ClInclude Include="redis\db_hiredis.h" />
     <ClInclude Include="redis\db_redis.h" />
     <ClInclude Include="SePlatForm.h" />

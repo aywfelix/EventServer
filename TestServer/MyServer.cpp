@@ -18,9 +18,9 @@ void Print()
 	cout << "test timer" << endl;
 }
 
-void RecvCb(const socket_t sock_fd, const int nMsgId, const char* pMsg, const size_t msg_len)
+void RecvCb(const socket_t sock_fd, const int nMsgId, const char* pb_msg, const size_t msg_len)
 {
-	cout << pMsg << endl;
+	cout << pb_msg << endl;
 }
 
 void EventCb(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)

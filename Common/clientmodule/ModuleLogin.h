@@ -1,8 +1,8 @@
 #pragma once
 
-#include "SingleTon.hpp"
 #include "packet/PacketMgr.h"
 #include "clientproto/Login.pb.h"
+#include "SingleTon.hpp"
 
 class Player;
 class Packet;

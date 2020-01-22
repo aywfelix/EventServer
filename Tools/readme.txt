@@ -19,7 +19,7 @@ TODO 修改dump路径到bin目录下
 TODO 添加mysql 请求处理， 将sql 语句与protobuff 互转
 TODO protobuff 编辑客户端程序
 TODO 模拟玩家登录游戏
-TODO 策划数值公式转换工具
+TODO 策划数值公式转换工具（表达式公式）
 TODO AI 
 TODO 地图导航 recast navgition
 

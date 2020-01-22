@@ -46,14 +46,14 @@ public:
 	void AddEventCallBack(const NET_EVENT_FUNCTOR_PTR& cb);
 	void RemoveReceiveCallBack(const int msg_id);
 
-	// send msg
+	// send msg by fd
 	void SendMsg(const socket_t fd, const int msg_id, const char* msg, int len);
 	void SendMsg(std::vector<socket_t>& fdlist, const int msg_id, const char* msg, int len);
 	void SendToAll(const int msg_id, const char* msg, int len);
 
-	void SendPbMsg(const socket_t fd, const int msg_id, ::google::protobuf::Message* pMsg);
-	void SendPbMsg(std::vector<socket_t>& fdlist, const int msg_id, ::google::protobuf::Message* pMsg);
-	void SendPBToAllMsg(const int msg_id, ::google::protobuf::Message* pMsg);
+	void SendPbMsg(const socket_t fd, const int msg_id, ::google::protobuf::Message* pb_msg);
+	void SendPbMsg(std::vector<socket_t>& fdlist, const int msg_id, ::google::protobuf::Message* pb_msg);
+	void SendPBToAllMsg(const int msg_id, ::google::protobuf::Message* pb_msg);
 
 	SeNet* GetNet() { return mNet; }
 private:

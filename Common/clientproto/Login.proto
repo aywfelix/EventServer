@@ -6,7 +6,7 @@ message Login_LoginReq
 {
 	bytes login_name = 1;
 	bytes login_pwd = 2;
-	bytes account_id = 3;
+	bytes game_id = 3;
 	bytes open_id = 4;
 	bytes token = 5;
 	bytes channel_id = 6;

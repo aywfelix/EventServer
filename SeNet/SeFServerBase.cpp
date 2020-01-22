@@ -3,6 +3,7 @@
 #include "LogUtil.h"
 #include "SeFNet.h"
 #include "SeNet.h"
+#include "Random.hpp"
 
 bool SeFServerBase::Init()
 {
@@ -59,7 +60,7 @@ void SeFServerBase::OnReportToServer(const socket_t sock_fd, const int msg_id, c
 {
 	ServerDataPtr pServerData = std::make_shared<ServerData>();
 	ServerReport report;
-	if (!SeNet::ReceivePB(msg_id, msg, msg_len, &report)) return;
+	if (!ReceivePB(msg_id, msg, msg_len, &report)) return;
 
 	pServerData->fd = sock_fd;
 	pServerData->ServerInfo = std::make_shared<ServerReport>(report);
@@ -90,6 +91,22 @@ void SeFServerBase::SendByServType(ServerType type, const int msg_id, const char
 	}
 }
 
+void SeFServerBase::SendByServTypeOne(ServerType type, const int msg_id, const char* msg, int len)
+{
+	std::vector<socket_t> vec;
+	for (auto& it : mmServNodes)
+	{
+		if (it.second->ServerInfo->server_type() == type)
+		{
+			vec.emplace_back(it.second->fd);
+		}
+	}
+	if (vec.empty()) return;
+	int rnd = Random::Instance()->rand(0, vec.size() - 1);
+	socket_t fd = vec[rnd];
+	mNetServModule->SendMsg(fd, msg_id, msg, len);
+}
+
 void SeFServerBase::SendByServId(int nServerId, const int msg_id, const char* msg, int len)
 {
 	auto it = mmServNodes.find(nServerId);
@@ -98,7 +115,7 @@ void SeFServerBase::SendByServId(int nServerId, const int msg_id, const char* ms
 	mNetServModule->SendMsg(fd, msg_id, msg, len);
 }
 
-void SeFServerBase::SendPbByServType(ServerType type, const int msg_id, ::google::protobuf::Message* pMsg)
+void SeFServerBase::SendPbByServType(ServerType type, const int msg_id, ::google::protobuf::Message* pb_msg)
 {
 	std::vector<socket_t> vec;
 	for (auto& it : mmServNodes)
@@ -111,16 +128,33 @@ void SeFServerBase::SendPbByServType(ServerType type, const int msg_id, ::google
 	if (vec.empty()) return;
 	for (auto& it : vec)
 	{
-		mNetServModule->SendPbMsg(it, msg_id, pMsg);
+		mNetServModule->SendPbMsg(it, msg_id, pb_msg);
 	}
 }
 
-void SeFServerBase::SendPbByServId(int nServerId, const int msg_id, ::google::protobuf::Message* pMsg)
+void SeFServerBase::SendPbByServTypeOne(ServerType type, const int msg_id, ::google::protobuf::Message* pb_msg)
+{
+	std::vector<socket_t> vec;
+	for (auto& it : mmServNodes)
+	{
+		if (it.second->ServerInfo->server_type() == type)
+		{
+			vec.emplace_back(it.second->fd);
+		}
+	}
+	if (vec.empty()) return;
+	// rand one client to send msg
+	int rnd = Random::Instance()->rand(0, vec.size()-1);
+	socket_t fd = vec[rnd];
+	mNetServModule->SendPbMsg(fd, msg_id, pb_msg);
+}
+
+void SeFServerBase::SendPbByServId(int nServerId, const int msg_id, ::google::protobuf::Message* pb_msg)
 {
 	auto it = mmServNodes.find(nServerId);
 	if (it == mmServNodes.end()) return;
 	socket_t fd = it->second->fd;
-	mNetServModule->SendPbMsg(fd, msg_id, pMsg);
+	mNetServModule->SendPbMsg(fd, msg_id, pb_msg);
 }
 
 void SeFServerBase::Loop()

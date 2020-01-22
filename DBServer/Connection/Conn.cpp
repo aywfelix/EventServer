@@ -14,6 +14,12 @@ Conn::~Conn()
 {
 }
 
+void Conn::Init()
+{
+	// 保留常用的查询sql 即安全也提高性能
+	m_login_check = std::make_shared<MariaCpp::PreparedStatement>();
+	m_login_check->prepare("select * from tb_account where loginname=? and loginpwd=?");
+}
 
 bool Conn::ConnectToDB()
 {
@@ -46,8 +52,18 @@ void Conn::DisConnect()
 	m_conn.close();
 }
 
-bool Conn::ExecuteSql(const std::string& sql)
+void Conn::Query(const std::string& sql)
 {
 	m_conn.query(sql);
-	return true;
+	m_result = std::make_shared<MariaCpp::ResultSet>(m_conn.store_result());
+	// next() is an alias for fetch_row()
+	MariaCpp::ResultSet* res_set = m_result.get();
+	while (res_set && res_set->next()) {
+		std::cout << "id = " << res->getInt(0)
+			<< ", label = '" << res->getRaw(1) << "'"
+			<< ", date = "
+			<< (res->isNull(2) ? "NULL" : res->getString(2).c_str())
+			<< std::endl;
+	}
+	m_result.reset();
 }

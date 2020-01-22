@@ -4,6 +4,7 @@
 #include "MsgHandle/ChatPlayer.h"
 #include "SeFNetClient.h"
 #include "SeNet.h"
+#include "LogUtil.h"
 
 void ChatNodeClient::InitHelper()
 {
@@ -34,7 +35,7 @@ void ChatNodeClient::AddConnectServer()
 void ChatNodeClient::OnGateRouteChat(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	GateToChatPacket gate_packet;
-	if (!SeNet::ReceivePB(msg_id, msg, msg_len, &gate_packet))
+	if (!ReceivePB(msg_id, msg, msg_len, &gate_packet))
 		return;
 
 	ConnectDataPtr pServerData = GetServerNetInfo(sock_fd);
@@ -44,14 +45,17 @@ void ChatNodeClient::OnGateRouteChat(const socket_t sock_fd, const int msg_id, c
 	// parse the packet
 	Packet* pRecvPacket = g_packetmgr->CreatePakcet(gate_packet.msg_id(), gate_packet.msg_body().c_str(), gate_packet.msg_body().length());
 
-	MsgHandle msgHandle = g_packetmgr->GetMsgHandle(gate_packet.msg_id());
-	if (msgHandle == nullptr)
+	MsgHandle pHandle = g_packetmgr->GetMsgHandle(gate_packet.msg_id());
+	if (pHandle == nullptr)
 		return;
 
 	ChatPlayer chatPlayer;
-	chatPlayer.m_PlayerId = gate_packet.player_id();
-	chatPlayer.m_ServerId = pServerData->serv_id;
-	int ret = msgHandle(&chatPlayer, pRecvPacket); // process msg logic
+	chatPlayer.m_playerid = gate_packet.player_id();
+	chatPlayer.m_servid = pServerData->serv_id;
+	if (pHandle(&chatPlayer, pRecvPacket) != 0)
+	{
+		CLOG_INFO << "msg handle error" << CLOG_END;
+	}
 }
 
 void ChatNodeClient::OnGameRouteChat(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
@@ -59,10 +63,10 @@ void ChatNodeClient::OnGameRouteChat(const socket_t sock_fd, const int msg_id, c
 
 }
 
-void ChatNodeClient::SendToGate(const int& serverid, uint64_t playerId, const int msg_id, ::google::protobuf::Message* pMsg)
+void ChatNodeClient::SendToGate(const int& serverid, uint64_t playerId, const int msg_id, ::google::protobuf::Message* pb_msg)
 {
 	ChatToGatePacket chat_gate;
-	std::string send_msg = pMsg->SerializeAsString();
+	std::string send_msg = pb_msg->SerializeAsString();
 	chat_gate.set_msg_id(msg_id);
 	chat_gate.set_msg_body(send_msg);
 	chat_gate.set_player_id(playerId);

@@ -158,16 +158,16 @@ void SeFNetClient::SendByServIds(std::vector<int>& nServerIds, const int msg_id,
 		SendByServId(it, msg_id, msg, len);
 	}
 }
-void SeFNetClient::SendPbByServId(int nServerId, const int msg_id, ::google::protobuf::Message* pMsg)
+void SeFNetClient::SendPbByServId(int nServerId, const int msg_id, ::google::protobuf::Message* pb_msg)
 {
-	std::string strMsg = pMsg->SerializeAsString();
+	std::string strMsg = pb_msg->SerializeAsString();
 	SendByServId(nServerId, msg_id, strMsg.c_str(), strMsg.length());
 }
-void SeFNetClient::SendPbByServIds(std::vector<int>& nServerIds, const int msg_id, ::google::protobuf::Message* pMsg)
+void SeFNetClient::SendPbByServIds(std::vector<int>& nServerIds, const int msg_id, ::google::protobuf::Message* pb_msg)
 {
 	for (auto& it : nServerIds)
 	{
-		std::string strMsg = pMsg->SerializeAsString();
+		std::string strMsg = pb_msg->SerializeAsString();
 		SendByServId(it, msg_id, strMsg.c_str(), strMsg.length());
 	}
 }
@@ -181,13 +181,13 @@ void SeFNetClient::SendToAll(const int msg_id, const char* msg, int len)
 		}
 	}
 }
-void SeFNetClient::SendPBToAll(const int msg_id, ::google::protobuf::Message* pMsg)
+void SeFNetClient::SendPBToAll(const int msg_id, ::google::protobuf::Message* pb_msg)
 {
 	for (auto& it : mConnecServers)
 	{
 		if (it.second->pNet.get())
 		{
-			std::string strMsg = pMsg->SerializeAsString();
+			std::string strMsg = pb_msg->SerializeAsString();
 			it.second->pNet->SendMsg(0, msg_id, strMsg.c_str(), strMsg.length());
 		}
 	}
@@ -201,11 +201,11 @@ void SeFNetClient::SendByServTypes(std::vector<ServerType>& types, const int msg
 {
 
 }
-void SeFNetClient::SendPbByServType(ServerType type, const int msg_id, ::google::protobuf::Message* pMsg)
+void SeFNetClient::SendPbByServType(ServerType type, const int msg_id, ::google::protobuf::Message* pb_msg)
 {
 
 }
-void SeFNetClient::SendPbByServTypes(std::vector<ServerType>& types, const int msg_id, ::google::protobuf::Message* pMsg)
+void SeFNetClient::SendPbByServTypes(std::vector<ServerType>& types, const int msg_id, ::google::protobuf::Message* pb_msg)
 {
 
 }

@@ -94,5 +94,6 @@
     <ClInclude Include="SqlUtil.h" />
     <ClInclude Include="AnyData.hpp" />
     <ClInclude Include="TableDB.h" />
+    <ClInclude Include="Random.hpp" />
   </ItemGroup>
 </Project>

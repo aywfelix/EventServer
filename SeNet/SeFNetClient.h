@@ -45,15 +45,15 @@ public:
 	// send msg
 	void SendByServId(int nServerId, const int msg_id, const char* msg, int len);
 	void SendByServIds(std::vector<int>& nServerIds, const int msg_id, const char* msg, int len);
-	void SendPbByServId(int nServerId, const int msg_id, ::google::protobuf::Message* pMsg);
-	void SendPbByServIds(std::vector<int>& nServerIds, const int msg_id, ::google::protobuf::Message* pMsg);
+	void SendPbByServId(int nServerId, const int msg_id, ::google::protobuf::Message* pb_msg);
+	void SendPbByServIds(std::vector<int>& nServerIds, const int msg_id, ::google::protobuf::Message* pb_msg);
 	void SendToAll(const int msg_id, const char* msg, int len);
-	void SendPBToAll(const int msg_id, ::google::protobuf::Message* pMsg);
+	void SendPBToAll(const int msg_id, ::google::protobuf::Message* pb_msg);
 	
 	void SendByServType(ServerType type, const int msg_id, const char* msg, int len);
 	void SendByServTypes(std::vector<ServerType>& types, const int msg_id, const char* msg, int len);
-	void SendPbByServType(ServerType type, const int msg_id, ::google::protobuf::Message* pMsg);
-	void SendPbByServTypes(std::vector<ServerType>& types, const int msg_id, ::google::protobuf::Message* pMsg);
+	void SendPbByServType(ServerType type, const int msg_id, ::google::protobuf::Message* pb_msg);
+	void SendPbByServTypes(std::vector<ServerType>& types, const int msg_id, ::google::protobuf::Message* pb_msg);
 	// get server info
 	ConnectDataPtr GetServerNetInfo(const int& nServerID);
 	ConnectDataPtr GetServerNetInfo(const SeNet* pNet);

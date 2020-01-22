@@ -33,6 +33,12 @@ bool ClientPlayer::OnModuleGateMessage(const int msg_id, const char* msg, size_t
 }
 bool ClientPlayer::OnModuleLoginMessage(const int msg_id, const char* msg, size_t msg_len)
 {
+	GateToLoginPacket gatetologin;
+	gatetologin.set_player_id(mPlayerId);
+	gatetologin.set_msg_id(msg_id);
+	gatetologin.set_msg_body(msg, msg_len);
+	g_pServerThread->NodeServer().SendPackToLogin(GATE_ROUTE_TO_LOGIN, &gatetologin);
+	CLOG_INFO << "ClientPlayer:OnModuleLoginMessage" <<CLOG_END;
 	return true;
 }
 bool ClientPlayer::OnModuleGameMessage(const int msg_id, const char* msg, size_t msg_len)

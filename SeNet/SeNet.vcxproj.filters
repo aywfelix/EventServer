@@ -128,5 +128,8 @@
     <ClCompile Include="http\mongoose.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="SeFINet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

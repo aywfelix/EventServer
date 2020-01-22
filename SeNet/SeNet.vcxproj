@@ -160,6 +160,7 @@
     <ClCompile Include="http\http_server.cpp" />
     <ClCompile Include="http\mongoose.c" />
     <ClCompile Include="SeFClientBase.cpp" />
+    <ClCompile Include="SeFINet.cpp" />
     <ClCompile Include="SeFServerBase.cpp" />
     <ClCompile Include="SeNet.cpp" />
     <ClCompile Include="SeEpoll.cpp" />

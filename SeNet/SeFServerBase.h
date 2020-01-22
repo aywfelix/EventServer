@@ -31,9 +31,11 @@ public:
 
 	void SendByServType(ServerType type, const int msg_id, const char* msg, int len);
 	void SendByServId(int nServerId, const int msg_id, const char* msg, int len);
-	void SendPbByServType(ServerType type, const int msg_id, ::google::protobuf::Message* pMsg);
-	void SendPbByServId(int nServerId, const int msg_id, ::google::protobuf::Message* pMsg);
+	void SendPbByServType(ServerType type, const int msg_id, ::google::protobuf::Message* pb_msg);
+	void SendPbByServId(int nServerId, const int msg_id, ::google::protobuf::Message* pb_msg);
 
+	void SendByServTypeOne(ServerType type, const int msg_id, const char* msg, int len);
+	void SendPbByServTypeOne(ServerType type, const int msg_id, ::google::protobuf::Message* pb_msg);
 protected:
 	SeFNet* mNetServModule;
 	// serverid serverdata
