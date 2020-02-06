@@ -8,8 +8,8 @@
 
 class ConnThread;
 
-// Í¨¹ıÏß³Ì³Ø´¦ÀísqlÇëÇó
-// Íæ¼ÒµÄÊı¾İÔÚÉÏÏßºó±£´æµ½ÄÚ´æÖĞ£¬Ã¿¸öÍæ¼ÒÃ¿¸ô5·ÖÖÓ´æµµÒ»´Î¼´¿É£¬Íæ¼ÒÏÂÏß½«ËùÓĞÊı¾İ±£´æµ½Êı¾İ¿â
+// é€šè¿‡çº¿ç¨‹æ± å¤„ç†sqlè¯·æ±‚
+// ç©å®¶çš„æ•°æ®åœ¨ä¸Šçº¿åä¿å­˜åˆ°å†…å­˜ä¸­ï¼Œæ¯ä¸ªç©å®¶æ¯éš”5åˆ†é’Ÿå­˜æ¡£ä¸€æ¬¡å³å¯ï¼Œç©å®¶ä¸‹çº¿å°†æ‰€æœ‰æ•°æ®ä¿å­˜åˆ°æ•°æ®åº“
 class ConnectionPool
 {
 public:
@@ -17,8 +17,8 @@ public:
 	ConnectionPool(int thrdnum);
 	~ConnectionPool();
 	void Init();
-	ConnThread* Malloc();  // »ñÈ¡Ïß³Ì¶ÔÏó
-	void Free(ConnThread* conn); // »ØÊÕÒ»¸öÏß³Ì¶ÔÏó
+	ConnThread* Malloc();  // è·å–çº¿ç¨‹å¯¹è±¡
+	void Free(ConnThread* conn); // å›æ”¶ä¸€ä¸ªçº¿ç¨‹å¯¹è±¡
 	void Stop();
 private:
 	int m_conn_num;   //conn thread num

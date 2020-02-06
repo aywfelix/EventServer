@@ -9,8 +9,8 @@ int ModuleLogin::LoginReq(Player* player, Packet* packet)
 	Assert(player && packet);
 	auto pb_msg = (Login_LoginReq*)packet->msg;
 	auto login_player = (LoginPlayer*)player;
-	// unity µÇÂ¼ ÓÃ»§ÃûÃÜÂëÑéÖ¤
-	// ÊÖ»ú¿Í»§¶ËµÇÂ¼ gameid token(openid) channelid ·¢ËÍµ½ÉÏÓÎÑéÖ¤
+	// unity ç™»å½• ç”¨æˆ·åå¯†ç éªŒè¯
+	// æ‰‹æœºå®¢æˆ·ç«¯ç™»å½• gameid token(openid) channelid å‘é€åˆ°ä¸Šæ¸¸éªŒè¯
 	if (pb_msg->game_id().empty())
 	{
 		ConnThread* conn_thrd = g_conn_pool->Malloc();

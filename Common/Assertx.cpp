@@ -26,5 +26,4 @@ void __assertex__(const char* file, uint32_t line, const char* func, const char*
 	perror("assertex error:");
 	abort();
 #endif
-
 }

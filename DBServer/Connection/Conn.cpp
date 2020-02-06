@@ -18,7 +18,7 @@ Conn::~Conn()
 
 void Conn::Init()
 {
-	// 保留常用的查询sql 即安全也提高性能
+	// 淇濈暀甯哥敤鐨勬煡璇ql 鍗冲畨鍏ㄤ篃鎻愰珮鎬ц兘
 	//m_login_check = std::make_shared<MariaCpp::PreparedStatement>(m_conn, nullptr);
 	//m_login_check->prepare("select * from tb_account where loginname=? and loginpwd=?");
 }

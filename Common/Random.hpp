@@ -40,7 +40,7 @@ public:
 		return dis(m_gen);
 	}
 private:
-	std::mt19937 m_gen;  // ÀûÓÃÃ·É­Ğı×ªÎ±Ëæ»úÊıÉú³ÉÆ÷
+	std::mt19937 m_gen;  // åˆ©ç”¨æ¢…æ£®æ—‹è½¬ä¼ªéšæœºæ•°ç”Ÿæˆå™¨
 	std::random_device m_rd;  //get seed  
 };
 

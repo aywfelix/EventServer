@@ -23,7 +23,7 @@ public:
 	void DisConnect();
 private:
 	MariaCpp::Connection m_conn;
-	MariaCpp::scoped_library_init maria_lib_init; // ”√¿¥init mysql
+	MariaCpp::scoped_library_init maria_lib_init; // Áî®Êù•init mysql
 
 	// prepare model
 	//MariaCpp::PreparedStatement m_login_check;

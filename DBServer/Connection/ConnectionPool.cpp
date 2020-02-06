@@ -44,8 +44,8 @@ void ConnectionPool::Init()
 
 ConnThread* ConnectionPool::Malloc()
 {
-	// 1¡¢¸ù¾İ¸ºÔØÇé¿ö½øĞĞ·Ö·¢ÇëÇó 
-	// 2¡¢Ö±½ÓÍ¨¹ıhash »òÕßËæ»ú·½Ê½
+	// 1ã€æ ¹æ®è´Ÿè½½æƒ…å†µè¿›è¡Œåˆ†å‘è¯·æ±‚ 
+	// 2ã€ç›´æ¥é€šè¿‡hash æˆ–è€…éšæœºæ–¹å¼
 	for (int i = 0; i < m_conn_num; i++)
 	{
 		if (m_conn_threads[i]->IsFree())
@@ -103,7 +103,7 @@ void ConnThread::ThreadLoop()
 		}
 		sf_sleep(20);
 	}
-	//Ïß³Ì½áÊø¶Ï¿ªÁ¬½Ó
+	//çº¿ç¨‹ç»“æŸæ–­å¼€è¿æ¥
 	m_conn.DisConnect();
 }
 
