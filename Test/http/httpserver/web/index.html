@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RESTful API demo</title>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+    // simple http
+    $(document).ready(function(){
+     $("button").click(function(){
+        $.get("/api/hello",function(data, status){
+            console.log("get rsp: ", data);
+            $('#result1').html(data);
+        });
+       });
+    });
+
+    $(document).on('keyup', '#n1, #n2', function() {
+      $.ajax({
+        url: '/api/sum',
+        method: 'POST',
+        dataType: 'json',
+        data: { n1: $('#n1').val(), n2: $('#n2').val() },
+        success: function(json) {
+          console.log("post rsp: ", json);
+          $('#result2').html(json.result);
+        }
+      });
+    });
+
+    // websocket
+    var websocket = new WebSocket('ws://' + location.host + '/ws');
+    websocket.onopen = function (ev) {
+        console.log(ev.data);
+    };
+    websocket.onerror = function (ev) {
+        console.log(ev.data);
+    };
+    websocket.onclose = function (ev) {
+        console.log(ev.data);
+    };
+    websocket.onmessage = function (ev) {
+        console.log(ev.data);
+
+        document.getElementById("ws_text").innerHTML = ev.data;
+    };
+
+    window.onload = function () {
+        document.getElementById('send_button').onclick = function (ev) {
+            var msg = document.getElementById('send_input').value;
+            websocket.send(msg);
+        };
+    };
+</script>
+</head>
+<body>
+    <h1>c++ httpserver demo</h1>
+
+    <h2>simple http</h2>
+
+    <h3>GET</h3>
+    <div>
+        <button id="btn">get request</button>
+    </div>
+    <div>
+     <label>Result1:</label> <span id="result1">&nbsp;</span>
+    </div>
+
+    <h3>POST</h3>
+    <div>
+      <label>Number 1:</label> <input type="text" id="n1" />
+    </div>
+    <div>
+      <label>Number 2:</label> <input type="text" id="n2" />
+    </div>
+    <div>
+     <label>Result2:</label> <span id="result2">&nbsp;</span>
+    </div>
+
+    <h2>websocket</h2>
+
+    <div>
+        <span id="ws_text">&nbsp;</span>
+        <br />
+        <input type="text" id="send_input" />
+        <button id="send_button">Send</button>
+    </div>
+
+</body>
+</html>

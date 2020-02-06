@@ -1,0 +1,50 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.zip
+*.gz
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Visaul Studio
+*.iobj
+*.ipdb
+*.idb
+*.pdb
+*.tlog
+*.log
+*.ilk
+*.exp
+*.vc.db
+*.*.manifest
+*.cache
+*.bsc
+.vs
+
+# Codeblocks
+*.layout
+*.depend
+
+# CMake
+#[cC][mM]ake[lL]ists.txt
+
+Debug
+
+*~1.*
+*~2.*
+
+CMakeLists.txt

@@ -1,0 +1,8 @@
+{
+    "log": {
+        "default_level": 1,
+        "default_roll": 1,
+        "default_path": "../ServerLogs/",
+        "roll_size": 41943040
+    }
+}

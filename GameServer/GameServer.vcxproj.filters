@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="module\ModuleBuff.cpp" />
+    <ClCompile Include="module\ModuleRank.cpp" />
+    <ClCompile Include="module\ModulePet.cpp" />
+    <ClCompile Include="module\ModuleBase.cpp" />
+    <ClCompile Include="NodeNet\GameNodeClient.cpp" />
+    <ClCompile Include="NodeNet\GameServerThread.cpp" />
+    <ClCompile Include="obj\ObjPet.cpp" />
+    <ClCompile Include="obj\ObjPlayer.cpp" />
+    <ClCompile Include="obj\ObjMonster.cpp" />
+    <ClCompile Include="obj\ObjBase.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="module\ModuleBuff.h" />
+    <ClInclude Include="module\ModuleRank.h" />
+    <ClInclude Include="module\ModulePet.h" />
+    <ClInclude Include="module\ModuleBase.h" />
+    <ClInclude Include="NodeNet\GameNodeClient.h" />
+    <ClInclude Include="NodeNet\GameServerThread.h" />
+    <ClInclude Include="obj\ObjPet.h" />
+    <ClInclude Include="obj\ObjPlayer.h" />
+    <ClInclude Include="obj\ObjMonster.h" />
+    <ClInclude Include="obj\ObjBase.h" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+[submodule "ThirdPart/libconfig"]
+	path = ThirdPart/libconfig
+	url = https://github.com/hyperrealm/libconfig.git
+[submodule "ThirdPart/MariaCpp"]
+	path = ThirdPart/MariaCpp
+	url = https://github.com/Roslaniec/MariaCpp.git
