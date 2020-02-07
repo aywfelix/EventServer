@@ -4,3 +4,6 @@
 [submodule "ThirdPart/MariaCpp"]
 	path = ThirdPart/MariaCpp
 	url = https://github.com/Roslaniec/MariaCpp.git
+[submodule "ThirdPart/ThirdPart/recastnavigation"]
+	path = ThirdPart/ThirdPart/recastnavigation
+	url = https://github.com/recastnavigation/recastnavigation.git
