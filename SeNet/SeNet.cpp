@@ -51,7 +51,6 @@ bool SeEventOp::Dispatch()
 	return this->Dispatch(&mtv);
 }
 
-
 Socket* SeNet::InitSeNet()
 {
 #ifdef SF_PLATFORM_WIN

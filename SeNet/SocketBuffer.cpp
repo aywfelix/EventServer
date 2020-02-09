@@ -1,4 +1,4 @@
-#include "SocketBuffer.h"
+ï»¿#include "SocketBuffer.h"
 
 void SocketBuffer::Init()
 {
@@ -45,7 +45,7 @@ void SocketBuffer::Read(char* buf, int size)
 
 void SocketBuffer::ReadProtoHead(char* buf, int size)
 {
-	if (m_oBuffer.total_len <= size) return;  // ¾¡Á¿±£Ö¤¶Áµ½ÍêÕûĞ­Òé
+	if (m_oBuffer.total_len <= size) return;  // å°½é‡ä¿è¯è¯»åˆ°å®Œæ•´åè®®
 
 	int read_len = 0;
 	int can_read_len = 0;
@@ -89,17 +89,17 @@ BufferChain* SocketBuffer::NewChain(int size)
 	return chain;
 }
 
-char* SocketBuffer::PullUp()  // ½«Á´ÖĞÊı¾İ·Åµ½µÚÒ»¸öÁ´ÖĞ²¢·µ»ØÍ·Ö¸Õë
+char* SocketBuffer::PullUp()  // å°†é“¾ä¸­æ•°æ®æ”¾åˆ°ç¬¬ä¸€ä¸ªé“¾ä¸­å¹¶è¿”å›å¤´æŒ‡é’ˆ
 {
 	return nullptr;
 }
 
 BufferChain* SocketBuffer::GetWriteChain(int size)
 {
-	// Ğ´ÈëÔ­Ôò
-	// 1¡¢Ó¦¸Ã´Ó×îºóÒ»¸öÊÇ·ñÓĞ¿ÕÏĞ¿Õ¼äĞ´ÈëÊı¾İ
-	// 2¡¢²éÕÒÇ°ÃæÒÑ¾­¿ÕÏĞÒ»¸ö´óĞ¡×îÎªºÏÊÊµÄ¿ÕÁ´±íĞ´Èë
-	// 3¡¢Èç¹û¿ÕµÄÁ´±íµÄ³¤¶È´óÓÚ£¨ÄÜ¹»Ğ´ÈësizeµÄ´óĞ¡£©µÄ2±¶ÒÔÉÏÔòĞ´ÈëÒ»¸öĞÂÁ´±í
+	// å†™å…¥åŸåˆ™
+	// 1ã€åº”è¯¥ä»æœ€åä¸€ä¸ªæ˜¯å¦æœ‰ç©ºé—²ç©ºé—´å†™å…¥æ•°æ®
+	// 2ã€æŸ¥æ‰¾å‰é¢å·²ç»ç©ºé—²ä¸€ä¸ªå¤§å°æœ€ä¸ºåˆé€‚çš„ç©ºé“¾è¡¨å†™å…¥
+	// 3ã€å¦‚æœç©ºçš„é“¾è¡¨çš„é•¿åº¦å¤§äºï¼ˆèƒ½å¤Ÿå†™å…¥sizeçš„å¤§å°ï¼‰çš„2å€ä»¥ä¸Šåˆ™å†™å…¥ä¸€ä¸ªæ–°é“¾è¡¨
 	if (m_oBuffer.last && m_oBuffer.last->Left() >= size)
 	{
 		return m_oBuffer.last;
@@ -119,7 +119,7 @@ BufferChain* SocketBuffer::GetWriteChain(int size)
 	if (wait && wait->buffer_len <= (alloc_size << 1))
 	{
 		if (m_oBuffer.chain_num > 1)
-		{// ĞèÒªµ÷ÕûÁ´±íµÄÎ»ÖÃµ½×îºó
+		{// éœ€è¦è°ƒæ•´é“¾è¡¨çš„ä½ç½®åˆ°æœ€å
 			AjustChain(wait);
 		}
 		return wait;

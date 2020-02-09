@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Assertx.h"
 
@@ -10,19 +10,19 @@ struct BufferChain
 	int read_pos;
 	int write_pos;
 	int buffer_len;
-	char* buffer{nullptr};
-	struct BufferChain* prev{nullptr};
-	struct BufferChain* next{nullptr};
+	char* buffer{ nullptr };
+	struct BufferChain* prev{ nullptr };
+	struct BufferChain* next{ nullptr };
 	int DataLen() { return (write_pos - read_pos); }
 	int Left() { return buffer_len - write_pos; }
-	bool IsEmpty() { return write_pos == 0 || write_pos==read_pos; }
+	bool IsEmpty() { return write_pos == 0 || write_pos == read_pos; }
 };
 
 struct BufferChainMgr
 {
 	struct BufferChain* first;
 	struct BufferChain* last;
-	struct BufferChain* datap; // Ö¸Ïò±£´æÊı¾İµÄ»º´æÁ´
+	struct BufferChain* datap; // æŒ‡å‘ä¿å­˜æ•°æ®çš„ç¼“å­˜é“¾
 	int total_len;
 	int chain_num{ 0 };
 };
@@ -31,17 +31,17 @@ class SocketBuffer
 {
 public:
 	void Init();
-	// µ¥¶ÀÊ¹ÓÃbufferµÄ²Ù×÷½Ó¿Ú
+	// å•ç‹¬ä½¿ç”¨bufferçš„æ“ä½œæ¥å£
 	void Write(const char* data, int size);
 	void Read(char* buf, int size);
-	// ÎªÁË·şÎñÆ÷Í¨ĞÅĞ­Òé½âÎöÊ¹ÓÃµÄ½Ó¿Ú
+	// ä¸ºäº†æœåŠ¡å™¨é€šä¿¡åè®®è§£æä½¿ç”¨çš„æ¥å£
 	void ReadProtoHead(char* buf, int size = 6);
 
 	void Clear();
 	BufferChain* NewChain(int size);
-	char* PullUp();  // ½«Á´ÖĞÊı¾İ·Åµ½µÚÒ»¸öÁ´ÖĞ²¢·µ»ØÍ·Ö¸Õë
+	char* PullUp();  // å°†é“¾ä¸­æ•°æ®æ”¾åˆ°ç¬¬ä¸€ä¸ªé“¾ä¸­å¹¶è¿”å›å¤´æŒ‡é’ˆ
 
-	// ÏÂÃæËÄ¸ö½Ó¿ÚÊÇ¸øsocket½ÓÊÕ·¢ËÍÌá¹©µÄ½Ó¿Ú
+	// ä¸‹é¢å››ä¸ªæ¥å£æ˜¯ç»™socketæ¥æ”¶å‘é€æä¾›çš„æ¥å£
 	char* GetRecvBuf(int size)
 	{
 		BufferChain* chain = GetWriteChain(size);
@@ -106,4 +106,3 @@ private:
 private:
 	BufferChainMgr m_oBuffer;
 };
-
