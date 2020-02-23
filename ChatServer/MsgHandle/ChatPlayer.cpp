@@ -3,7 +3,7 @@
 
 int ChatPlayer::SendToGate(unsigned short msg_id, ::google::protobuf::Message* pb_msg)
 {
-	g_pServerThread->ChatClient().SendToGate(m_ServerId, m_PlayerId, msg_id, pb_msg);
+	g_pServerThread->ChatClient().SendToGate(m_servid, m_playerid, msg_id, pb_msg);
 	return 0;
 }
 

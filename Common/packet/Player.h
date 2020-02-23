@@ -15,6 +15,6 @@ public:
 	virtual int SendMsg(unsigned short msg_id, ::google::protobuf::Message* pb_msg);
 	virtual int SendMsg(Packet* pPacket);
 
-	std::string m_playerid;
-	std::string m_servid;
+	uint64_t m_playerid;
+	int32_t m_servid;
 };
