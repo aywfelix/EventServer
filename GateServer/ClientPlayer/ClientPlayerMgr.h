@@ -27,7 +27,7 @@ private:
 	//SocketId ClientPlayer
 	std::map<socket_t, ClientPlayer*> mPlayerSockMap;
 	//PlayerId ClientPlayer
-	std::map<uint64_t, ClientPlayer*> mPlayerIDMap;
+	std::map<uint64_t, ClientPlayer*> m_playeridMap;
 };
 
 extern std::unique_ptr<ClientPlayerMgr> g_pClientPlayerMgr;

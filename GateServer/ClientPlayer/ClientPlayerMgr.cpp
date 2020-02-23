@@ -20,7 +20,7 @@ void ClientPlayerMgr::DelPlayer(ClientPlayer* player)
 {
 	mClientPool.DelElem(player->GetId());
 	mPlayerSockMap.erase(player->GetSockFd());
-	mPlayerIDMap.erase(player->GetPlayerId());
+	m_playeridMap.erase(player->GetPlayerId());
 }
 
 ClientPlayer* ClientPlayerMgr::GetPlayer(int memId)
@@ -32,16 +32,16 @@ void ClientPlayerMgr::AddPlayerIDMap(uint64_t playerId, ClientPlayer* player)
 {
 	if (player == nullptr) return;
 
-	auto it = mPlayerIDMap.find(playerId);
-	if (it == mPlayerIDMap.end())
+	auto it = m_playeridMap.find(playerId);
+	if (it == m_playeridMap.end())
 	{
-		mPlayerIDMap.emplace(playerId, player);
+		m_playeridMap.emplace(playerId, player);
 	}
 }
 ClientPlayer* ClientPlayerMgr::GetPlayerByID(uint64_t playerId)
 {
-	auto it = mPlayerIDMap.find(playerId);
-	if (it == mPlayerIDMap.end()) return nullptr;
+	auto it = m_playeridMap.find(playerId);
+	if (it == m_playeridMap.end()) return nullptr;
 
 	return it->second;
 }

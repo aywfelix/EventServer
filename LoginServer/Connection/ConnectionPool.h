@@ -27,20 +27,21 @@ private:
 
 class ConnThread : public ThreadBase
 {
-	using sqlqueue_type = std::map<std::string, std::string>;
+	using sqlquery_t = std::map<uint64_t, std::string>;
+	using sqlresult_t = std::map<uint64_t, MariaCpp::ResultSet*>;
 public:
-
 	bool Init();
 	void ThreadLoop();
-	bool IsFree();
-	void AddSqlReq(const std::string& playerid, std::string& sql);
-	bool Execute(const std::string& sql);
-
-	int GetReqSize() { return m_sqlqueue.size(); }
-
+	void AddSqlReq(uint64_t playerid, const std::string& sql);
+	bool IsFree() { return m_sqlquery.size()==0; }
+	int GetReqSize() { return m_sqlquery.size(); }
+	void GetQueryRes(uint64_t playerid, result_t& result);
+private:
+	bool Query(uint64_t playerid, const std::string& sql);
 private:
 	Conn m_conn;
-	sqlqueue_type m_sqlqueue;
+	sqlquery_t m_sqlquery;
+	sqlresult_t m_sqlresult;
 };
 
 extern std::unique_ptr<ConnectionPool> g_conn_pool;

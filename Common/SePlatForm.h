@@ -17,6 +17,7 @@
 #include <sys/errno.h>
 #include <sys/resource.h>
 #include <sys/time.h>
+#include <sys/sysinfo.h>
 #endif
 
 #include <cerrno>
@@ -79,3 +80,5 @@ TID CurrentThreadId();
 void LocalTime(const time_t* timep, struct tm* result);
 
 #define LOOP_TIMEOUT 30   // event loop 30ms
+
+int GetCpuCores();

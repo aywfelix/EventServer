@@ -9,14 +9,14 @@ int ModuleLogin::LoginReq(Player* player, Packet* packet)
 	Assert(player && packet);
 	auto pb_msg = (Login_LoginReq*)packet->msg;
 	auto login_player = (LoginPlayer*)player;
-	// unity ç™»å½• ç”¨æˆ·åå¯†ç éªŒè¯
-	// æ‰‹æœºå®¢æˆ·ç«¯ç™»å½• gameid token(openid) channelid å‘é€åˆ°ä¸Šæ¸¸éªŒè¯
+	// unity µÇÂ¼ ÓÃ»§ÃûÃÜÂëÑéÖ¤
+	// ÊÖ»ú¿Í»§¶ËµÇÂ¼ gameid token(openid) channelid ·¢ËÍµ½ÉÏÓÎÑéÖ¤
 	if (pb_msg->game_id().empty())
 	{
 		ConnThread* conn_thrd = g_conn_pool->Malloc();
 		std::string sql = "select loginname,loginpwd from tb_account where loginname=" + pb_msg->login_name() \
 			+ ",loginpwd=" + pb_msg->login_pwd();
-		conn_thrd->AddSqlReq(std::to_string(player->m_playerid), sql);
+		conn_thrd->AddSqlReq(player->m_playerid, sql);
 	}
 
 	Login_LoginReply reply;

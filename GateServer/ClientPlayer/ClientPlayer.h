@@ -15,12 +15,12 @@ public:
 	virtual bool Clear();
 	int GetId();
 	socket_t GetSockFd();
-	uint64_t GetPlayerId() { return mPlayerId; }   // 默认playerid为memid
-	void SetSceneId(int sceneId) { mSceneId = sceneId; }
-	void SetLastSceneId(int sceneId) { mLastSceneId = sceneId; }
-	void SetSession(Session* pSession) { mSession = pSession; }
-	void SetConnTime(int64_t ti) { mConnTime = ti; }
-	void SetPlayerId(uint64_t playerId) { mPlayerId = playerId; }
+	uint64_t GetPlayerId() { return m_playerid; }   // 默认playerid为memid
+	void SetSceneId(int sceneId) { m_sceneid = sceneId; }
+	void SetLastSceneId(int sceneId) { m_lastsceneid = sceneId; }
+	void SetSession(Session* pSession) { m_session = pSession; }
+	void SetConnTime(int64_t ti) { m_conntime = ti; }
+	void SetPlayerId(uint64_t playerId) { m_playerid = playerId; }
 public:
 	bool OnModuleGateMessage(const int msg_id, const char* msg, size_t msg_len, socket_t sock_fd);
 	bool OnModuleLoginMessage(const int msg_id, const char* msg, size_t msg_len);
@@ -29,11 +29,11 @@ public:
 	bool OnModuleWorldMessage(const int msg_id, const char* msg, size_t msg_len);
 	void SendToClient(const int msg_id, const std::string& msg);
 private:
-	uint64_t mPlayerId;
-	int mLineId;
-	int mSceneId;
-	int mLastSceneId;
-	int64_t mConnTime;
-	Session* mSession;
+	uint64_t m_playerid;
+	int m_lineid;
+	int m_sceneid;
+	int m_lastsceneid;
+	int64_t m_conntime;
+	Session* m_session;
 };
 

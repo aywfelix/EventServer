@@ -24,7 +24,7 @@ struct AccountTB
 
 struct PlayerTB
 {
-	std::string playerid;
+	int64_t playerid;
 	std::string gameid;
 	int roleid;
 	std::string nickname;

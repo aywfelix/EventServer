@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
+#include "Common/SePlatForm.h"
+#include "LogUtil.h"
 
 class Test
 {
@@ -13,8 +15,14 @@ public:
 private:
 };
 
+void SFTest::TestCpuNum()
+{
+	GetCpuCores();
+}
+
 int main()
 {
+	INIT_SFLOG("Test");
 	//SFTest::TestRedis();
 	//SFTest::TestSplit();
 	//SFTest::TestWriteLog();
@@ -24,11 +32,15 @@ int main()
 	//SFTest::TestMd5();
 	//SFTest::TestFile();
 	//SFTest::TestAnyData();
-	SFTest::TestSql();
+	//SFTest::TestSql();
 
-	Test test;
-	std::string aa = "aaaaaaaaa";
-	test.Print(100);
+	//Test test;
+	//std::string aa = "aaaaaaaaa";
+	//test.Print(100);
+
+	//SFTest::TestCpuNum();
+
+	SFTest::TestConnMysql();
 
 	//insert into tb(field1,field2) values ("111",22)
 
@@ -42,5 +54,10 @@ int main()
 	//{
 	//	std::cout << it << " ";
 	//}
+
+	while (1)
+	{
+		sf_sleep(500);
+	}
 	return 0;
 }

@@ -119,17 +119,17 @@ void SeNet::AddSession(Socket* pSocket)
 	if (pSession == nullptr) return;
 	pSession->SetSocket(pSocket);
 	if (!mbServer) 
-		mSessions.emplace(0, pSession);
+		m_sessions.emplace(0, pSession);
 	else 
-		mSessions.emplace(pSocket->GetFd(), pSession);
+		m_sessions.emplace(pSocket->GetFd(), pSession);
 }
 
 Session* SeNet::GetSession(socket_t fd)
 {
-	if (mSessions.empty()) return nullptr;
-	if (!mbServer) { return mSessions[0]; }
-	auto it = mSessions.find(fd);
-	if (it != mSessions.end()) { return it->second; }
+	if (m_sessions.empty()) return nullptr;
+	if (!mbServer) { return m_sessions[0]; }
+	auto it = m_sessions.find(fd);
+	if (it != m_sessions.end()) { return it->second; }
 	return nullptr;
 }
 
@@ -138,7 +138,7 @@ void SeNet::CloseSession(Session* pSession)
 	socket_t fd = pSession->GetSocket()->GetFd();
 	// close connect event
 	mEventCB(fd, SE_NET_EVENT_EOF, this);
-	mSessions.erase(fd);
+	m_sessions.erase(fd);
 	mEventOp->DelEvent(fd, EV_READ | EV_WRITE);
 	g_pSessionPool->DelSession(pSession);
 }
@@ -314,7 +314,7 @@ void SeNet::StopLoop()
 		delete mSocket;
 		mSocket = nullptr;
 	}
-	for (auto it : mSessions)
+	for (auto it : m_sessions)
 	{
 		g_pSessionPool->DelSession(it.second);
 	}
@@ -325,8 +325,8 @@ void SeNet::StopLoop()
 
 void SeNet::SendMsg(socket_t fd, const char* msg, int len)
 {
-	auto it = mSessions.find(fd);
-	if (it != mSessions.end())
+	auto it = m_sessions.find(fd);
+	if (it != m_sessions.end())
 	{
 		it->second->Send(msg, len);
 		if(!mbServer) fd = it->second->GetSocket()->GetFd();
@@ -336,7 +336,7 @@ void SeNet::SendMsg(socket_t fd, const char* msg, int len)
 
 void SeNet::SendMsg(const char* msg, int len)
 {
-	for (auto& it : mSessions)
+	for (auto& it : m_sessions)
 	{
 		it.second->Send(msg, len);
 		mEventOp->AddEvent(it.first, EV_WRITE);
@@ -347,8 +347,8 @@ void SeNet::SendMsg(std::vector<socket_t>& fds, const char* msg, int len)
 {
 	for (auto& it : fds)
 	{
-		auto it2 = mSessions.find(it);
-		if (it2 != mSessions.end())
+		auto it2 = m_sessions.find(it);
+		if (it2 != m_sessions.end())
 		{
 			it2->second->Send(msg, len);
 			mEventOp->AddEvent(it2->first, EV_WRITE);
@@ -360,7 +360,7 @@ void SeNet::SendToAllClients(const char* msg, int len)
 {
 	if (!mbServer) return;
 
-	for (auto& it : mSessions)
+	for (auto& it : m_sessions)
 	{
 		it.second->Send(msg, len);
 		mEventOp->AddEvent(it.first, EV_WRITE);
@@ -396,7 +396,7 @@ void SeNet::SendProtoMsg(const int msg_id, const char* msg, int len)
 
 void SeNet::CloseClient(socket_t fd)
 {
-	for (auto& it : mSessions)
+	for (auto& it : m_sessions)
 	{
 		Session* pSession = it.second;
 		if (pSession->GetSocket()->GetFd() == fd)
@@ -409,11 +409,11 @@ void SeNet::CloseClient(socket_t fd)
 
 void SeNet::CloseAllClient()
 {
-	for (auto it = mSessions.begin(); it != mSessions.end(); it++)
+	for (auto it = m_sessions.begin(); it != m_sessions.end(); it++)
 	{
 		Session* pSession = it->second;
 		CloseSession(pSession);
 	}
-	mSessions.clear();
+	m_sessions.clear();
 }
 

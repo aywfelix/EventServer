@@ -87,3 +87,4 @@ std::string& StringTrim(std::string& s)
 	s.erase(s.find_last_not_of(" ") + 1);
 	return s;
 }
+

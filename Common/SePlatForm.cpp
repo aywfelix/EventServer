@@ -65,3 +65,16 @@ void SetResource()
 	}
 }
 #endif
+
+int GetCpuCores()
+{
+	int cpu_cores = 0;
+#ifdef SF_PLATFORM_WIN
+	SYSTEM_INFO sysInfo;
+	GetSystemInfo(&sysInfo);
+	cpu_cores = sysInfo.dwNumberOfProcessors;
+#else
+	cores = sysconf(_SC_NPROCS_CONF);
+#endif
+	return cpu_cores+1;
+}

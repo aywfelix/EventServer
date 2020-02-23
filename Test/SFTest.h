@@ -16,5 +16,7 @@ public:
 	static void TestFile();
 	static void TestAnyData();
 	static void TestSql();
+	static void TestCpuNum();
+	static void TestConnMysql();
 };
 

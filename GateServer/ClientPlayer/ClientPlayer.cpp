@@ -24,7 +24,7 @@ int ClientPlayer::GetId()
 
 socket_t ClientPlayer::GetSockFd() 
 { 
-	return mSession->GetSocket()->GetFd(); 
+	return m_session->GetSocket()->GetFd(); 
 }
 
 bool ClientPlayer::OnModuleGateMessage(const int msg_id, const char* msg, size_t msg_len, socket_t sock_fd)
@@ -34,7 +34,7 @@ bool ClientPlayer::OnModuleGateMessage(const int msg_id, const char* msg, size_t
 bool ClientPlayer::OnModuleLoginMessage(const int msg_id, const char* msg, size_t msg_len)
 {
 	GateToLoginPacket gatetologin;
-	gatetologin.set_player_id(mPlayerId);
+	gatetologin.set_player_id(m_playerid);
 	gatetologin.set_msg_id(msg_id);
 	gatetologin.set_msg_body(msg, msg_len);
 	g_pServerThread->NodeServer().SendPackToLogin(GATE_ROUTE_TO_LOGIN, &gatetologin);
@@ -48,11 +48,11 @@ bool ClientPlayer::OnModuleGameMessage(const int msg_id, const char* msg, size_t
 bool ClientPlayer::OnModuleChatMessage(const int msg_id, const char* msg, size_t msg_len)
 {
 	GateToChatPacket gatetochat;
-	gatetochat.set_player_id(mPlayerId);
+	gatetochat.set_player_id(m_playerid);
 	gatetochat.set_msg_id(msg_id);
 	gatetochat.set_msg_body(msg, msg_len);
 	g_pServerThread->NodeServer().SentPackToChat(GATE_ROUTE_TO_CHAT, &gatetochat);
-	CLOG_INFO << "OnModuleChatMessage " << mPlayerId << "  msg_id:" << msg_id;
+	CLOG_INFO << "OnModuleChatMessage " << m_playerid << "  msg_id:" << msg_id;
 	return true;
 }
 bool ClientPlayer::OnModuleWorldMessage(const int msg_id, const char* msg, size_t msg_len)

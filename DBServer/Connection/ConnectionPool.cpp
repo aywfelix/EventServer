@@ -1,6 +1,7 @@
 #include "ConnectionPool.h"
 #include "Util.h"
 #include "LogUtil.h"
+#include "SePlatForm.h"
 
 std::unique_ptr<ConnectionPool> g_conn_pool = nullptr;
 
@@ -11,7 +12,8 @@ ConnectionPool::ConnectionPool(int thrdnum) :m_conn_num(thrdnum)
 
 ConnectionPool::ConnectionPool()
 {
-	m_conn_num = 8;
+	m_conn_num = GetCpuCores();
+	//m_conn_num = 1;
 	m_conn_threads.resize(m_conn_num);
 }
 
@@ -35,17 +37,16 @@ void ConnectionPool::Init()
 {
 	for (int i = 0; i < m_conn_num; ++i)
 	{
-		ConnThread* thread = new ConnThread;
-		thread->Init();
-		thread->Start();
-		m_conn_threads.push_back(thread);
+		ConnThread* conn_thread = new ConnThread;
+		conn_thread->Start();
+		m_conn_threads[i] = conn_thread;
 	}
 }
 
 ConnThread* ConnectionPool::Malloc()
 {
-	// 1ã€æ ¹æ®è´Ÿè½½æƒ…å†µè¿›è¡Œåˆ†å‘è¯·æ±‚ 
-	// 2ã€ç›´æ¥é€šè¿‡hash æˆ–è€…éšæœºæ–¹å¼
+	// 1¡¢¸ù¾İ¸ºÔØÇé¿ö½øĞĞ·Ö·¢ÇëÇó 
+	// 2¡¢Ö±½ÓÍ¨¹ıhash »òÕßËæ»ú·½Ê½
 	for (int i = 0; i < m_conn_num; i++)
 	{
 		if (m_conn_threads[i]->IsFree())
@@ -103,29 +104,38 @@ void ConnThread::ThreadLoop()
 		}
 		sf_sleep(20);
 	}
-	//çº¿ç¨‹ç»“æŸæ–­å¼€è¿æ¥
+	//Ïß³Ì½áÊø¶Ï¿ªÁ¬½Ó
 	m_conn.DisConnect();
 }
 
-void ConnThread::AddSqlReq(const std::string& playerid, const std::string& sql)
+void ConnThread::AddSqlReq(uint64_t playerid, const std::string& sql)
 {
 	m_sqlquery.emplace(playerid, sql);
 }
 
-bool ConnThread::Query(const std::string& playerid, const std::string& sql)
+bool ConnThread::Query(uint64_t playerid, const std::string& sql)
 {
 	//result_t result = std::unique_ptr<MariaCpp::ResultSet>(m_conn.Query(sql));
 	MariaCpp::ResultSet* result = m_conn.Query(sql);
 	if (result == nullptr) return false;
 	m_sqlresult.emplace(playerid, result);
+
+	// print query result
+	//if (result)
+	//{
+	//	while (result && result->next()) {
+	//		std::cout << "playerid = " << result->getInt64(0)
+	//			<< ", gameid = '" << result->getRaw(1) << "'"
+	//			<< std::endl;
+	//	}
+	//}
 	return true;
 }
 
-void ConnThread::GetQueryRes(const std::string& playerid, result_t& result)
+void ConnThread::GetQueryRes(uint64_t playerid, result_t& result)
 {
 	auto it = m_sqlresult.find(playerid);
 	if (it == m_sqlresult.end()) return;
 	result = std::unique_ptr<MariaCpp::ResultSet>(it->second);
-
 }
 

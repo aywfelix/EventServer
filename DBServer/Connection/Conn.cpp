@@ -25,19 +25,20 @@ void Conn::Init()
 
 bool Conn::ConnectToDB()
 {
-	const char* uri = g_JsonConfig->m_dbConf["uri"].asCString();
-	const char* user = g_JsonConfig->m_dbConf["root"].asCString();
-	const char* passwd = g_JsonConfig->m_dbConf["passwd"].asCString();
+	bool bConn = false;
 	try
 	{
-		m_conn.connect(MariaCpp::Uri(uri), user, passwd);
+	const char* uri = g_JsonConfig->m_dbConf["uri"].asCString();
+	const char* user = g_JsonConfig->m_dbConf["user"].asCString();
+	const char* passwd = g_JsonConfig->m_dbConf["passwd"].asCString();
+	bConn = m_conn.connect(MariaCpp::Uri(uri), user, passwd);
 	}
 	catch (const std::exception & e)
 	{
 		CLOG_ERR << "connect mariadb error," << e.what() << CLOG_END;
 		return false;
 	}
-	return true;
+	return bConn;
 }
 
 bool Conn::IsConnOk()

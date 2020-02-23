@@ -8,8 +8,8 @@
 
 class ConnThread;
 
-// é€šè¿‡çº¿ç¨‹æ± å¤„ç†sqlè¯·æ±‚
-// ç©å®¶çš„æ•°æ®åœ¨ä¸Šçº¿åä¿å­˜åˆ°å†…å­˜ä¸­ï¼Œæ¯ä¸ªç©å®¶æ¯éš”5åˆ†é’Ÿå­˜æ¡£ä¸€æ¬¡å³å¯ï¼Œç©å®¶ä¸‹çº¿å°†æ‰€æœ‰æ•°æ®ä¿å­˜åˆ°æ•°æ®åº“
+// Í¨¹ıÏß³Ì³Ø´¦ÀísqlÇëÇó
+// Íæ¼ÒµÄÊı¾İÔÚÉÏÏßºó±£´æµ½ÄÚ´æÖĞ£¬Ã¿¸öÍæ¼ÒÃ¿¸ô5·ÖÖÓ´æµµÒ»´Î¼´¿É£¬Íæ¼ÒÏÂÏß½«ËùÓĞÊı¾İ±£´æµ½Êı¾İ¿â
 class ConnectionPool
 {
 public:
@@ -17,8 +17,8 @@ public:
 	ConnectionPool(int thrdnum);
 	~ConnectionPool();
 	void Init();
-	ConnThread* Malloc();  // è·å–çº¿ç¨‹å¯¹è±¡
-	void Free(ConnThread* conn); // å›æ”¶ä¸€ä¸ªçº¿ç¨‹å¯¹è±¡
+	ConnThread* Malloc();  // »ñÈ¡Ïß³Ì¶ÔÏó
+	void Free(ConnThread* conn); // »ØÊÕÒ»¸öÏß³Ì¶ÔÏó
 	void Stop();
 private:
 	int m_conn_num;   //conn thread num
@@ -27,18 +27,17 @@ private:
 
 class ConnThread : public ThreadBase
 {
-	using sqlquery_t = std::map<std::string, std::string>;
-	using sqlresult_t = std::map<std::string, MariaCpp::ResultSet*>;
+	using sqlquery_t = std::map<uint64_t, std::string>;
+	using sqlresult_t = std::map<uint64_t, MariaCpp::ResultSet*>;
 public:
-
 	bool Init();
 	void ThreadLoop();
-	void AddSqlReq(const std::string& playerid, const std::string& sql);
-	bool IsFree() { return m_sqlquery.empty(); }
+	void AddSqlReq(uint64_t playerid, const std::string& sql);
+	bool IsFree() { return m_sqlquery.size()==0; }
 	int GetReqSize() { return m_sqlquery.size(); }
-	void GetQueryRes(const std::string& playerid, result_t& result);
+	void GetQueryRes(uint64_t playerid, result_t& result);
 private:
-	bool Query(const std::string& playerid, const std::string& sql);
+	bool Query(uint64_t playerid, const std::string& sql);
 private:
 	Conn m_conn;
 	sqlquery_t m_sqlquery;

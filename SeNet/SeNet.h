@@ -86,7 +86,7 @@ private:
 	bool mbStop{false};
 	SeEventOp* mEventOp{nullptr};
 	Socket* mSocket{nullptr};
-	std::map<socket_t, Session*> mSessions;  // 如果是服务器端，sessions保存所有连接，如果是客户端则只有一个session保存
+	std::map<socket_t, Session*> m_sessions;  // 如果是服务器端，sessions保存所有连接，如果是客户端则只有一个session保存
 	bool mbServer{ false };
 
 	NET_RECEIVE_FUNCTOR mRecvCB;

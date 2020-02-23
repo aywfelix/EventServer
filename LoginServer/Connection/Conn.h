@@ -2,21 +2,31 @@
 
 #include "mariacpp/connection.hpp"
 #include "mariacpp/lib.hpp"
+#include "mariacpp/resultset.hpp"
+#include "mariacpp/prepared_stmt.hpp"
+#include <memory>
 
+using result_t = std::unique_ptr<MariaCpp::ResultSet>;
+using prepared_stmt_t = std::unique_ptr<MariaCpp::PreparedStatement>;
 class Conn
 {
 public:
 	Conn();
 	~Conn();
 
+	void Init();
 	bool ConnectToDB();
 	bool IsConnOk();
 
-	bool ExecuteSql(const std::string& sql);
+	MariaCpp::ResultSet* Query(const std::string& sql);
+
 	void DisConnect();
 private:
 	MariaCpp::Connection m_conn;
-	MariaCpp::scoped_library_init maria_lib_init;
+	MariaCpp::scoped_library_init maria_lib_init; // 鐢ㄦ潵init mysql
+
+	// prepare model
+	//MariaCpp::PreparedStatement m_login_check;
+	//MariaCpp::PreparedStatement m_login_insert;
 };
 
-// loginserver 需要单独连接数据处理登录数据验证
