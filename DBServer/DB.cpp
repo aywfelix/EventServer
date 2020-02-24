@@ -7,8 +7,8 @@ DB::~DB(){}
 
 void DB::Init()
 {
-	g_pServerThread.reset(new DBServerThread());
-	g_conn_pool.reset(new ConnectionPool);
+	g_pServerThread = std::make_unique<DBServerThread>();
+	g_conn_pool = std::make_unique<ConnectionPool>();
 	InitManager();
 }
 
@@ -25,5 +25,5 @@ void DB::Stop()
 
 void DB::InitManager()
 {
-
+	g_conn_pool->Init();
 }

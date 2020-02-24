@@ -65,10 +65,10 @@ void ChatNodeClient::OnGameRouteChat(const socket_t sock_fd, const int msg_id, c
 
 void ChatNodeClient::SendToGate(const int& serverid, uint64_t playerId, const int msg_id, ::google::protobuf::Message* pb_msg)
 {
-	ChatToGatePacket chat_gate;
+	ChatToGatePacket chat_packet;
 	std::string send_msg = pb_msg->SerializeAsString();
-	chat_gate.set_msg_id(msg_id);
-	chat_gate.set_msg_body(send_msg);
-	chat_gate.set_player_id(playerId);
-	mNetCliModule->SendPbByServId(serverid, CHAT_ROUTE_TO_GATE, &chat_gate);
+	chat_packet.set_msg_id(msg_id);
+	chat_packet.set_msg_body(send_msg);
+	chat_packet.set_player_id(playerId);
+	mNetCliModule->SendPbByServId(serverid, CHAT_ROUTE_TO_GATE, &chat_packet);
 }

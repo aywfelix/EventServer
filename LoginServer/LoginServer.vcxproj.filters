@@ -39,6 +39,9 @@
     <ClCompile Include="Connection\ConnectionPool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Connection\MsgCache.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NodeNet\LoginNodeClient.h">
@@ -57,6 +60,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Connection\ConnectionPool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Connection\MsgCache.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

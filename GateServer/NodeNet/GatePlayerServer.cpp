@@ -20,6 +20,7 @@ bool GatePlayerServer::Init()
 	m_pNetModule->AddEventCallBack(this, &GatePlayerServer::OnSocketClientEvent);
 	m_pNetModule->AddReceiveCallBack(this, &GatePlayerServer::OnOtherMessage);
 	m_pNetModule->AddReceiveCallBack(ModuleChat::RPC_CHAT_CHAT_REQ, this, &GatePlayerServer::OnOtherMessage);
+	
 	//init server info
 	Json::Value GatePlayerServerConf = g_JsonConfig->m_Root["GatePlayerServer"];
 	if (!m_pNetModule->InitNet(GatePlayerServerConf["NodePort"].asUInt()))

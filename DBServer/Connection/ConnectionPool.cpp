@@ -85,7 +85,7 @@ bool ConnThread::Init()
 	return true;
 }
 
-void ConnThread::ThreadLoop()
+void ConnThread::ThreadLoop()  // 当线程池初始化时，调用此方法
 {
 	bool bConn = false;
 	while (IsActive())

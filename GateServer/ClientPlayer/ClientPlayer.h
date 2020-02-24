@@ -1,12 +1,12 @@
 #pragma once
 
 #include <memory>
-#include "MemPool.hpp"
+#include "packet/Player.h"
 #include "SocketDefine.h"
 
 class Session;
 
-class ClientPlayer : public MemElem
+class ClientPlayer : public Player
 {
 public:
 	ClientPlayer(){}
@@ -29,7 +29,6 @@ public:
 	bool OnModuleWorldMessage(const int msg_id, const char* msg, size_t msg_len);
 	void SendToClient(const int msg_id, const std::string& msg);
 private:
-	uint64_t m_playerid;
 	int m_lineid;
 	int m_sceneid;
 	int m_lastsceneid;

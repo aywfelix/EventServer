@@ -7,7 +7,7 @@
 #include "Conn.h"
 
 class ConnThread;
-
+class LoginPlayer;
 // 通过线程池处理sql请求
 // 玩家的数据在上线后保存到内存中，每个玩家每隔5分钟存档一次即可，玩家下线将所有数据保存到数据库
 class ConnectionPool
@@ -29,8 +29,10 @@ class ConnThread : public ThreadBase
 {
 	using sqlquery_t = std::map<uint64_t, std::string>;
 	using sqlresult_t = std::map<uint64_t, MariaCpp::ResultSet*>;
+	using players_t = std::map<uint64_t, LoginPlayer*>;
 public:
 	bool Init();
+	bool Init(LoginPlayer* player);
 	void ThreadLoop();
 	void AddSqlReq(uint64_t playerid, const std::string& sql);
 	bool IsFree() { return m_sqlquery.size()==0; }
@@ -42,6 +44,8 @@ private:
 	Conn m_conn;
 	sqlquery_t m_sqlquery;
 	sqlresult_t m_sqlresult;
+
+	players_t m_players;
 };
 
 extern std::unique_ptr<ConnectionPool> g_conn_pool;

@@ -12,7 +12,7 @@ ClientPlayer* ClientPlayerMgr::NewPlayer(Session* pSession)
 	ClientPlayer* pPlayer = mClientPool.NewElem();
 	if (pPlayer == nullptr) return nullptr;
 	pPlayer->SetSession(pSession);
-	pPlayer->SetPlayerId(pPlayer->GetMemId());
+	pPlayer->SetPlayerId(pPlayer->GetMemId()); // todo 设置id为玩家对象内存id
 	return pPlayer;
 }
 

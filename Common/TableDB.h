@@ -8,7 +8,7 @@ private:
 };
 
 // 对应数据库表
-struct AccountTB
+struct tb_account
 {
 	int id;
 	std::string loginname;
@@ -22,7 +22,7 @@ struct AccountTB
 	std::string mac;
 };
 
-struct PlayerTB
+struct tb_player
 {
 	int64_t playerid;
 	std::string gameid;

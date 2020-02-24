@@ -7,8 +7,8 @@
 
 void LoginNodeClient::InitHelper()
 {
-	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_GATE, GATE_ROUTE_TO_CHAT, this, &LoginNodeClient::OnGateRouteLogin);
-	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_WORLD, GAME_ROUTE_TO_CHAT, this, &LoginNodeClient::OnDBRouteLogin);
+	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_GATE, GATE_ROUTE_TO_LOGIN, this, &LoginNodeClient::OnGateRouteLogin);
+	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_WORLD, GATE_ROUTE_TO_WORLD, this, &LoginNodeClient::OnGateRouteWorld);
 	SetReportInfo();
 	AddConnectServer();
 }
@@ -52,19 +52,44 @@ void LoginNodeClient::OnGateRouteLogin(const socket_t sock_fd, const int msg_id,
 		CLOG_INFO << "OnGateRouteLogin: msg handle error" << CLOG_END;
 	}
 }
-void LoginNodeClient::OnDBRouteLogin(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
-{
 
+void LoginNodeClient::OnGateRouteWorld(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
+{
+	GateToWorldPacket gate_packet;
+	if (!ReceivePB(msg_id, msg, msg_len, &gate_packet)) return;
+
+	ConnectDataPtr pServerData = GetServerNetInfo(sock_fd);
+	if (!pServerData) return;
+
+	Packet* pRecvPacket = g_packetmgr->CreatePakcet(gate_packet.msg_id(), gate_packet.msg_body().c_str(), gate_packet.msg_body().length());
+	MsgHandle pHandle = g_packetmgr->GetMsgHandle(gate_packet.msg_id());
+	if (pHandle == nullptr) return;
+
+	LoginPlayer loginPlayer;
+	loginPlayer.m_playerid = gate_packet.player_id();
+	loginPlayer.m_servid = pServerData->serv_id;
+	if (pHandle(&loginPlayer, pRecvPacket) != 0)
+	{
+		CLOG_INFO << "OnGateRouteWorld: msg handle error" << CLOG_END;
+	}
 }
+
 void LoginNodeClient::SendToGate(const int& serverid, uint64_t playerId, const int msg_id, ::google::protobuf::Message* pb_msg)
 {
-
+	LoginToGatePacket login_packet;
+	std::string send_msg = pb_msg->SerializeAsString();
+	login_packet.set_msg_id(msg_id);
+	login_packet.set_msg_body(send_msg);
+	login_packet.set_player_id(playerId);
+	mNetCliModule->SendPbByServId(serverid, CHAT_ROUTE_TO_GATE, &login_packet);
 }
-void LoginNodeClient::SendToDB(const int& serverid, uint64_t playerId, const int msg_id, ::google::protobuf::Message* pb_msg)
-{
 
-}
 void LoginNodeClient::SendToWorld(const int& serverid, uint64_t playerId, const int msg_id, ::google::protobuf::Message* pb_msg)
 {
-
+	LoginToWorldPacket login_packet;
+	std::string send_msg = pb_msg->SerializeAsString();
+	login_packet.set_msg_id(msg_id);
+	login_packet.set_msg_body(send_msg);
+	login_packet.set_player_id(playerId);
+	mNetCliModule->SendPbByServId(serverid, LOGIN_ROUTE_TO_WORLD, &login_packet);
 }

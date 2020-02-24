@@ -2,6 +2,7 @@
 #include "Util.h"
 #include "LogUtil.h"
 #include "SePlatForm.h"
+#include "MsgHandle/LoginPlayer.h"
 
 std::unique_ptr<ConnectionPool> g_conn_pool = nullptr;
 
@@ -79,9 +80,17 @@ void ConnectionPool::Free(ConnThread* conn)
 	m_conn_threads.push_back(conn);
 }
 
+///////////////////////////////// ConnThread  ///////////////////////////////////////
+
 bool ConnThread::Init()
 {
 	m_sqlquery.clear();
+	return true;
+}
+
+bool ConnThread::Init(LoginPlayer* player)
+{
+	m_players.emplace(player->m_playerid, player);
 	return true;
 }
 
@@ -118,8 +127,14 @@ bool ConnThread::Query(uint64_t playerid, const std::string& sql)
 	//result_t result = std::unique_ptr<MariaCpp::ResultSet>(m_conn.Query(sql));
 	MariaCpp::ResultSet* result = m_conn.Query(sql);
 	if (result == nullptr) return false;
-	m_sqlresult.emplace(playerid, result);
+	//m_sqlresult.emplace(playerid, result);
 
+	// Send msg to gate
+	//auto iter = m_players.find(playerid);
+	//if (iter != m_players.end())
+	//{
+	//	(iter->second)->SendToGate();
+	//}
 	// print query result
 	//if (result)
 	//{
