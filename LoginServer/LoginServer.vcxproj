@@ -22,7 +22,6 @@
     <ClCompile Include="Connection\Conn.cpp" />
     <ClCompile Include="Connection\ConnectionPool.cpp" />
     <ClCompile Include="Login.cpp" />
-    <ClCompile Include="Connection\MsgCache.cpp" />
     <ClCompile Include="MsgHandle\LoginPlayer.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MsgHandle\ModuleLogin.cpp" />
@@ -33,7 +32,6 @@
     <ClInclude Include="Connection\Conn.h" />
     <ClInclude Include="Connection\ConnectionPool.h" />
     <ClInclude Include="Login.h" />
-    <ClInclude Include="Connection\MsgCache.h" />
     <ClInclude Include="MsgHandle\LoginPlayer.h" />
     <ClInclude Include="NodeNet\LoginNodeClient.h" />
     <ClInclude Include="NodeNet\LoginServerThread.h" />

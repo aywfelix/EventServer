@@ -59,13 +59,4 @@ MariaCpp::ResultSet* Conn::Query(const std::string& sql)
 {
 	m_conn.query(sql);
 	return m_conn.store_result();
-	// next() is an alias for fetch_row()
-	//MariaCpp::ResultSet* res_set = m_result.get();
-	//while (res_set && res_set->next()) {
-	//	std::cout << "id = " << res_set->getInt(0)
-	//		<< ", label = '" << res_set->getRaw(1) << "'"
-	//		<< ", date = "
-	//		<< (res_set->isNull(2) ? "NULL" : res_set->getString(2).c_str())
-	//		<< std::endl;
-	//}
 }
