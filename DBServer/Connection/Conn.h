@@ -6,7 +6,7 @@
 #include "mariacpp/prepared_stmt.hpp"
 #include <memory>
 
-using result_t = std::shared_ptr<MariaCpp::ResultSet>;
+using result_t = std::unique_ptr<MariaCpp::ResultSet>;
 using prepared_stmt_t = std::unique_ptr<MariaCpp::PreparedStatement>;
 class Conn
 {
