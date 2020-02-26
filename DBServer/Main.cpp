@@ -51,6 +51,7 @@ int main()
 	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root["DBServer"];
 	//mariadb config
 	g_JsonConfig->m_dbConf = g_JsonConfig->m_Root["MariaDB"];
+	INIT_SFLOG("DBServer");
 
 	DB db;
 	db.Init();

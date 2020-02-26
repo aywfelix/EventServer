@@ -54,7 +54,7 @@ public:
 
 	T* NewElem()
 	{
-		UniqueLock lock(m_mutex);
+		GuardLock lock(m_mutex);
 		if (m_list.size() <= 0)
 		{
 			Expand();
@@ -81,12 +81,13 @@ public:
 
 	bool DelElem(int id)
 	{
-		UniqueLock lock(m_mutex);
+		GuardLock lock(m_mutex);
 		auto it = m_use.find(id);
 		if (it == m_use.end())
 		{
 			return false;
 		}
+
 		T* t = it->second;
 		t->Clear();
 		m_list.push_back(t);

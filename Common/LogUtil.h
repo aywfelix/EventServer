@@ -12,6 +12,7 @@
 #include "FileUtil.h"
 #include "CommDef.h"
 #include "Util.h"
+#include "Lock.hpp"
 
 enum ELogLevel
 {
@@ -120,6 +121,8 @@ private:
 	FileC m_filec;
 
 	TimeOut m_timeout;
+
+	Mutex m_mutex;
 };
 
 extern std::unique_ptr<LogUtil> g_pLog;

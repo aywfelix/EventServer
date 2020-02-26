@@ -50,6 +50,8 @@ int main(int argc, char** argv)
 	g_JsonConfig->Load("../Config/ServerConf.json");
 	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root["LoginServer"];
 	g_JsonConfig->m_RedisConf = g_JsonConfig->m_Root["Redis"];
+	//mariadb config
+	g_JsonConfig->m_dbConf = g_JsonConfig->m_Root["MariaDB"];
 
 	INIT_SFLOG("LoginServer");
 	Login login;

@@ -51,8 +51,8 @@ int main(int argc, char** argv)
 	g_JsonConfig->Load("../Config/ServerConf.json");
 	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root[gameserver];
 	g_JsonConfig->m_RedisConf = g_JsonConfig->m_Root["Redis"];
-
 	INIT_SFLOG(gameserver);
+
 	Game game;
 	game.Init();
 	game.Start();

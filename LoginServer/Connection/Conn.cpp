@@ -35,7 +35,7 @@ bool Conn::ConnectToDB()
 	}
 	catch (const std::exception & e)
 	{
-		CLOG_ERR << "connect mariadb error," << e.what() << CLOG_END;
+		LOG_ERR("connect mariadb error,%s", e.what());
 		return false;
 	}
 	return bConn;

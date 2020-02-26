@@ -93,6 +93,7 @@ void LogUtil::Log(int level, const char* file, const char* func, int line, const
 {
 	if (level < m_level) return;
 
+	UniqueLock lock(m_mutex);
 	m_oss.clear();
 	m_oss.str("");
 	std::string timestr = TimeToDate(time(0));

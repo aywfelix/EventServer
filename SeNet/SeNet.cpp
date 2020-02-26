@@ -135,6 +135,7 @@ Session* SeNet::GetSession(socket_t fd)
 
 void SeNet::CloseSession(Session* pSession)
 {
+	if (pSession == nullptr) return;
 	socket_t fd = pSession->GetSocket()->GetFd();
 	// close connect event
 	mEventCB(fd, SE_NET_EVENT_EOF, this);
@@ -172,6 +173,7 @@ void SeNet::AcceptClient()
 
 void SeNet::EventWrite(Session* pSession)
 {
+	if (pSession == nullptr) return;
 	socket_t fd = pSession->GetSocket()->GetFd();
 	//LOG_INFO("write event trigger....%d", fd);
 	int nSendSize = 0;
@@ -195,6 +197,7 @@ void SeNet::EventWrite(Session* pSession)
 
 void SeNet::EventRead(Session* pSession)
 {
+	if (pSession == nullptr) return;
 	socket_t fd = pSession->GetSocket()->GetFd();
 	//LOG_INFO("read event trigger....%d", fd);
 	int nRecvSize = GetReadableSizeOnSocket(fd);
@@ -237,6 +240,7 @@ void SeNet::EventRead(Session* pSession)
 
 bool SeNet::Dismantle(Session* pSession)
 {
+	if (pSession == nullptr) return false;
 	int nTotal = pSession->GetRecvTotal();
 	if (nTotal > MSG_HEAD_LEN)
 	{
@@ -336,6 +340,7 @@ void SeNet::SendMsg(socket_t fd, const char* msg, int len)
 
 void SeNet::SendMsg(const char* msg, int len)
 {
+	if (msg == nullptr) return;
 	for (auto& it : m_sessions)
 	{
 		it.second->Send(msg, len);
