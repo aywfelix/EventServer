@@ -49,6 +49,7 @@ int main(int argc, char** argv)
 	g_JsonConfig.reset(new JsonConfig());
 	g_JsonConfig->Load("../Config/ServerConf.json");
 	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root["LoginServer"];
+	g_JsonConfig->m_RedisConf = g_JsonConfig->m_Root["Redis"];
 
 	INIT_SFLOG("LoginServer");
 	Login login;

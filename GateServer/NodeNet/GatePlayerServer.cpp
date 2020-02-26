@@ -59,14 +59,14 @@ void GatePlayerServer::OnClientConnected(const socket_t sock_fd)
 {
 	// bind client'id with socket id
 	Session* pSession = m_pNetModule->GetNet()->GetSession(sock_fd);
-	ClientPlayer* pPlayer = g_pClientPlayerMgr->NewPlayer(pSession);
-	if (pSession == nullptr || pPlayer == nullptr)
+	ClientPlayer* player = g_pClientPlayerMgr->NewPlayer(pSession);
+	if (pSession == nullptr || player == nullptr)
 	{
 		CLOG_ERR << "GatePlayerServer: create player error" << CLOG_END;
 		return;
 	}
-	g_pClientPlayerMgr->AddPlayerIDMap(pPlayer->GetMemId(), pPlayer);
-	g_pClientPlayerMgr->AddPlayerSockMap(sock_fd, pPlayer);
+	g_pClientPlayerMgr->AddPlayerIDMap(player->GetPlayerId(), player);
+	g_pClientPlayerMgr->AddPlayerSockMap(sock_fd, player);
 	CLOG_INFO << "GatePlayerServer: create player ok Sockfd:" << sock_fd << CLOG_END;
 } 
 

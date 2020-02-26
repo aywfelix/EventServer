@@ -2,6 +2,8 @@
 #include "Util.h"
 #include "hiredis.h"
 
+std::unique_ptr<db_redis> g_pRedis = nullptr;
+
 db_redis::db_redis() {}
 db_redis::~db_redis()
 {

@@ -64,5 +64,10 @@
         "uri": "tcp://localhost:3306/test",
         "user": "root",
         "passwd": "123456"
+    },
+    "Redis": {
+        "ip": "192.168.40.182",
+        "port": 6379,
+        "ConnNum":5
     }
 }

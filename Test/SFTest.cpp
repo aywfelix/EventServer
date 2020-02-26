@@ -28,7 +28,7 @@ int main()
 	//SFTest::TestWriteLog();
 	//SFTest::TestConsistent();
 	//SFTest::TestEncypt();
-	//SFTest::TestSnowFlake();
+	SFTest::TestSnowFlake();
 	//SFTest::TestMd5();
 	//SFTest::TestFile();
 	//SFTest::TestAnyData();
@@ -40,7 +40,7 @@ int main()
 
 	//SFTest::TestCpuNum();
 
-	SFTest::TestConnMysql();
+	//SFTest::TestConnMysql();
 
 	//insert into tb(field1,field2) values ("111",22)
 

@@ -1,13 +1,13 @@
 #include "SFTest.h"
-#include "SnowFlake.hpp"
+#include "SnowFlake.h"
 
 void SFTest::TestSnowFlake()
 {
-	SnowFlake snow;
-	snow.SetMechine(1024);
+	g_pSnowFlake = std::make_unique<SnowFlake>();
+	g_pSnowFlake->Init();
 	for (int i = 0; i < 1000; ++i)
 	{
-		cout << snow.UniqueId() << endl;
+		cout << g_pSnowFlake->UniqueId() << endl;
 	}
 
 }

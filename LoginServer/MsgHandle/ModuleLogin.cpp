@@ -4,7 +4,7 @@
 #include "Assertx.h"
 #include "Connection/ConnectionPool.h"
 #include "NodeNet/LoginServerThread.h"
-
+#include "redis/db_redis.h"
 
 int ModuleLogin::LoginReq(Player* player, Packet* packet)
 {
@@ -49,7 +49,7 @@ int ModuleLogin::LoginReq(Player* player, Packet* packet)
 			LOG_INFO("login ok!!!");
 		}
 	}
-
+	// TODO : 通过验证后（1）新用户 插入tb_player数据，（2）老用户更新用户表信息
 
 	Login_LoginReply reply;
 	//reply.set_ret(0);
@@ -58,10 +58,13 @@ int ModuleLogin::LoginReq(Player* player, Packet* packet)
 }
 int ModuleLogin::CreateRoleReq(Player* player, Packet* packet)
 {
+
 	return 0;
 }
 int ModuleLogin::SelectRoleReq(Player* player, Packet* packet)
 {
+	// TODO 选择角色数据 加载到redis中
+
 	return 0;
 }
 int ModuleLogin::DelRoleReq(Player* player, Packet* packet)

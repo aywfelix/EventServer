@@ -6,7 +6,6 @@
 #include "LogUtil.h"
 
 
-
 bool ClientPlayer::Init()
 {
 	return true;
@@ -15,11 +14,6 @@ bool ClientPlayer::Init()
 bool ClientPlayer::Clear()
 {
 	return true;
-}
-
-int ClientPlayer::GetId()
-{
-	return this->GetMemId();
 }
 
 socket_t ClientPlayer::GetSockFd() 

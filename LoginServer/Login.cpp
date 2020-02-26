@@ -3,6 +3,8 @@
 #include "designtable/TableMgr.h"
 #include "Session.h"
 #include "Connection/ConnectionPool.h"
+#include "redis/db_redis.h"
+
 
 Login::Login()
 {
@@ -19,7 +21,7 @@ void Login::Init()
 	g_pServerThread = std::make_unique<LoginServerThread>();
 	g_pSessionPool = std::make_unique<SessionPool>();
 	g_conn_pool = std::make_unique<ConnectionPool>();
-
+	g_pRedis = std::make_unique<db_redis>();
 	InitManager();
 }
 
@@ -37,4 +39,7 @@ void Login::Stop()
 void Login::InitManager()
 {
 	g_conn_pool->Init();
+	g_pRedis->init(g_JsonConfig->m_RedisConf["ConnNum"].asInt(), 
+		g_JsonConfig->m_RedisConf["ip"].asCString(), 
+		g_JsonConfig->m_RedisConf["port"].asInt());
 }

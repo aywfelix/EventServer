@@ -1,24 +1,24 @@
 #include "ClientPlayerMgr.h"
 #include "ClientPlayer.h"
 #include "Session.h"
+#include "SnowFlake.h"
 
 std::unique_ptr<ClientPlayerMgr> g_pClientPlayerMgr = nullptr;
-
 
 ClientPlayer* ClientPlayerMgr::NewPlayer(Session* pSession)
 {
 	if (pSession == nullptr) return nullptr;
 
-	ClientPlayer* pPlayer = mClientPool.NewElem();
-	if (pPlayer == nullptr) return nullptr;
-	pPlayer->SetSession(pSession);
-	pPlayer->SetPlayerId(pPlayer->GetMemId()); // todo 设置id为玩家对象内存id
-	return pPlayer;
+	ClientPlayer* player = mClientPool.NewElem();
+	if (player == nullptr) return nullptr;
+	player->SetSession(pSession);
+	player->SetPlayerId(g_pSnowFlake->UniqueId());
+	return player;
 }
 
 void ClientPlayerMgr::DelPlayer(ClientPlayer* player)
 {
-	mClientPool.DelElem(player->GetId());
+	mClientPool.DelElem(player->GetMemId());
 	mPlayerSockMap.erase(player->GetSockFd());
 	m_playeridMap.erase(player->GetPlayerId());
 }

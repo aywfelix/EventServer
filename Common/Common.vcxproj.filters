@@ -37,6 +37,7 @@
     <ClCompile Include="FileUtil.cpp" />
     <ClCompile Include="SqlUtil.cpp" />
     <ClCompile Include="TableDB.cpp" />
+    <ClCompile Include="SnowFlake.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assertx.h" />
@@ -79,7 +80,6 @@
     <ClInclude Include="redis\db_hiredis.h" />
     <ClInclude Include="redis\db_redis.h" />
     <ClInclude Include="SePlatForm.h" />
-    <ClInclude Include="SnowFlake.hpp" />
     <ClInclude Include="StringUtil.h" />
     <ClInclude Include="ThreadBase.h" />
     <ClInclude Include="ThreadPool.h" />
@@ -95,5 +95,6 @@
     <ClInclude Include="TableDB.h" />
     <ClInclude Include="Random.hpp" />
     <ClInclude Include="SingleTon.hpp" />
+    <ClInclude Include="SnowFlake.h" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "db_hiredis.h"
+#include <memory>
 
 // 用于具体业务的redis 接口
 class db_redis
@@ -30,3 +31,4 @@ private:
 	hiredis_pool* m_redis_pool{ nullptr };
 };
 
+extern std::unique_ptr<db_redis> g_pRedis;

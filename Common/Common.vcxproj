@@ -160,6 +160,7 @@
     <ClCompile Include="redis\db_hiredis.cpp" />
     <ClCompile Include="redis\db_redis.cpp" />
     <ClCompile Include="SePlatForm.cpp" />
+    <ClCompile Include="SnowFlake.cpp" />
     <ClCompile Include="SqlUtil.cpp" />
     <ClCompile Include="StringUtil.cpp" />
     <ClCompile Include="TableDB.cpp" />
@@ -217,7 +218,7 @@
     <ClInclude Include="redis\db_redis.h" />
     <ClInclude Include="SePlatForm.h" />
     <ClInclude Include="SingleTon.hpp" />
-    <ClInclude Include="SnowFlake.hpp" />
+    <ClInclude Include="SnowFlake.h" />
     <ClInclude Include="SqlUtil.h" />
     <ClInclude Include="StringUtil.h" />
     <ClInclude Include="TableDB.h" />
