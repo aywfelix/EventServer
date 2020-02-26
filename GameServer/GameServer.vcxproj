@@ -79,7 +79,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\ThirdPart\protobuf\src;..\Common;..\SeNet;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ThirdPart\hiredis;..\ThirdPart\protobuf\src;..\Common;..\SeNet;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <DisableSpecificWarnings>4099</DisableSpecificWarnings>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -87,7 +87,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SeNet.lib;Common.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SeNet.lib;Common.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocd.lib;hiredis.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
@@ -135,7 +135,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameDef.cpp" />
+    <ClCompile Include="GamePlayer\GamePlayerMgr.cpp" />
+    <ClCompile Include="GamePlayer\GamePlayer.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="scene\MapNav.cpp" />
     <ClCompile Include="module\ModuleBuff.cpp" />
     <ClCompile Include="module\ModuleRank.cpp" />
     <ClCompile Include="module\ModulePet.cpp" />
@@ -146,9 +150,17 @@
     <ClCompile Include="obj\ObjPlayer.cpp" />
     <ClCompile Include="obj\ObjMonster.cpp" />
     <ClCompile Include="obj\ObjBase.cpp" />
+    <ClCompile Include="scene\SceneMgr.cpp" />
+    <ClCompile Include="scene\Scene.cpp" />
+    <ClCompile Include="scene\Zone.cpp" />
+    <ClCompile Include="scene\ZoneMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameDef.h" />
+    <ClInclude Include="GamePlayer\GamePlayerMgr.h" />
+    <ClInclude Include="GamePlayer\GamePlayer.h" />
+    <ClInclude Include="scene\MapNav.h" />
     <ClInclude Include="module\ModuleBuff.h" />
     <ClInclude Include="module\ModuleRank.h" />
     <ClInclude Include="module\ModulePet.h" />
@@ -159,6 +171,10 @@
     <ClInclude Include="obj\ObjPlayer.h" />
     <ClInclude Include="obj\ObjMonster.h" />
     <ClInclude Include="obj\ObjBase.h" />
+    <ClInclude Include="scene\SceneMgr.h" />
+    <ClInclude Include="scene\Scene.h" />
+    <ClInclude Include="scene\Zone.h" />
+    <ClInclude Include="scene\ZoneMgr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,6 @@
 #pragma once
-class ObjMonster
+#include "ObjBase.h"
+class ObjMonster : public ObjBase
 {
 };
 
