@@ -97,4 +97,3 @@ T StringToNum(const std::string& str)
 }
 
 std::string& StringTrim(std::string& s);
-

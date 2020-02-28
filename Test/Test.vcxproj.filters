@@ -57,6 +57,9 @@
     <ClCompile Include="Connection\ConnectionPool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="TestExpr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SFTest.h">

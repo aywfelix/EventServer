@@ -18,5 +18,6 @@ public:
 	static void TestSql();
 	static void TestCpuNum();
 	static void TestConnMysql();
+	static void TestExpr();
 };
 

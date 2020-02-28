@@ -134,10 +134,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bag\BagBase.cpp" />
+    <ClCompile Include="email\EmailMgr.cpp" />
+    <ClCompile Include="email\Email.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameDef.cpp" />
     <ClCompile Include="GamePlayer\GamePlayerMgr.cpp" />
     <ClCompile Include="GamePlayer\GamePlayer.cpp" />
+    <ClCompile Include="bag\ItemBase.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="scene\MapNav.cpp" />
     <ClCompile Include="module\ModuleBuff.cpp" />
@@ -156,10 +160,14 @@
     <ClCompile Include="scene\ZoneMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bag\BagBase.h" />
+    <ClInclude Include="email\EmailMgr.h" />
+    <ClInclude Include="email\Email.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameDef.h" />
     <ClInclude Include="GamePlayer\GamePlayerMgr.h" />
     <ClInclude Include="GamePlayer\GamePlayer.h" />
+    <ClInclude Include="bag\ItemBase.h" />
     <ClInclude Include="scene\MapNav.h" />
     <ClInclude Include="module\ModuleBuff.h" />
     <ClInclude Include="module\ModuleRank.h" />

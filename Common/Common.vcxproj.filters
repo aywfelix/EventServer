@@ -38,6 +38,8 @@
     <ClCompile Include="SqlUtil.cpp" />
     <ClCompile Include="TableDB.cpp" />
     <ClCompile Include="SnowFlake.cpp" />
+    <ClCompile Include="expr\SimpleExpr.cpp" />
+    <ClCompile Include="stat\Stat.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assertx.h" />
@@ -96,5 +98,7 @@
     <ClInclude Include="Random.hpp" />
     <ClInclude Include="SingleTon.hpp" />
     <ClInclude Include="SnowFlake.h" />
+    <ClInclude Include="expr\SimpleExpr.h" />
+    <ClInclude Include="stat\Stat.h" />
   </ItemGroup>
 </Project>

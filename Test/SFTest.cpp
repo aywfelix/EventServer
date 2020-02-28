@@ -28,7 +28,7 @@ int main()
 	//SFTest::TestWriteLog();
 	//SFTest::TestConsistent();
 	//SFTest::TestEncypt();
-	SFTest::TestSnowFlake();
+	//SFTest::TestSnowFlake();
 	//SFTest::TestMd5();
 	//SFTest::TestFile();
 	//SFTest::TestAnyData();
@@ -54,6 +54,8 @@ int main()
 	//{
 	//	std::cout << it << " ";
 	//}
+
+	SFTest::TestExpr();
 
 	while (1)
 	{

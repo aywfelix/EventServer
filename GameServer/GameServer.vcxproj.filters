@@ -21,6 +21,10 @@
     <ClCompile Include="scene\Zone.cpp" />
     <ClCompile Include="scene\ZoneMgr.cpp" />
     <ClCompile Include="scene\MapNav.cpp" />
+    <ClCompile Include="bag\ItemBase.cpp" />
+    <ClCompile Include="bag\BagBase.cpp" />
+    <ClCompile Include="email\Email.cpp" />
+    <ClCompile Include="email\EmailMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -42,5 +46,9 @@
     <ClInclude Include="scene\ZoneMgr.h" />
     <ClInclude Include="scene\Zone.h" />
     <ClInclude Include="scene\MapNav.h" />
+    <ClInclude Include="bag\ItemBase.h" />
+    <ClInclude Include="bag\BagBase.h" />
+    <ClInclude Include="email\Email.h" />
+    <ClInclude Include="email\EmailMgr.h" />
   </ItemGroup>
 </Project>

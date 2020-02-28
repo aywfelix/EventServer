@@ -142,6 +142,7 @@
     <ClCompile Include="TestConnMysql.cpp" />
     <ClCompile Include="TestConsistent.cpp" />
     <ClCompile Include="TestEncypt.cpp" />
+    <ClCompile Include="TestExpr.cpp" />
     <ClCompile Include="TestFile.cpp" />
     <ClCompile Include="TestMd5.cpp" />
     <ClCompile Include="TestRedis.cpp" />
