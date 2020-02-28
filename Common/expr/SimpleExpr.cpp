@@ -17,22 +17,22 @@ const char* OprList = "+-*/()#";
 char* SimpleExpr::GetNum(char* expr)
 {
 	char* tmp = expr;
-	while (*tmp>='0' && *tmp <='9')
+	while (*tmp>='0' && *tmp <='9' || *tmp == '.')
 	{
 		tmp++;
 	}
-	int num;
+	float num;
 	std::string strNum(expr, 0, tmp-expr);
 	StrConvert(strNum, num);
 	m_stackNum.push(num);
 	return tmp;
 }
 
-int SimpleExpr::CalcuExpr(const char* expr)
+float SimpleExpr::CalcuExpr(const char* expr)
 {
 	if (expr == nullptr) return -1;
 	char iOpr;
-	int num1, num2;
+	float num1, num2;
 	bool do_end = false;
 	char opr;
 	char* pCur = const_cast<char*>(expr);
