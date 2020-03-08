@@ -3,7 +3,7 @@
 #include <math.h>
 #include "Proto/ServerPublic.pb.h"
 
-// 地图坐标处理
+// 地图坐标处理（2D）
 class WorldPos
 {
 public:
@@ -11,6 +11,8 @@ public:
 
 	WorldPos():m_x(0.0f),m_z(0.0f){}
 	WorldPos(float x, float z):m_x(x),m_z(z){}
+	WorldPos(const Vector3& v3) :m_x(v3.x()), m_z(v3.z()) {}
+
 	void Clear() { m_x = 0.0f; m_z = 0.0f; }
 
 	WorldPos& operator=(const WorldPos& pos)
