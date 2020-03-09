@@ -50,7 +50,7 @@ public:
 
 	V3Map operator/(float a) const
 	{
-		if (fabs(a) < 1e-3) return;
+		if (fabs(a) < 1e-3) return V3Map();
 		float oneOverA = 1.0f / a; 
 		return V3Map(m_x * oneOverA, m_y * oneOverA, m_z * oneOverA);
 	}
@@ -75,7 +75,7 @@ public:
 
 	V3Map& operator/=(float a)
 	{
-		if (fabs(a) < 1e-3) return;
+		if (fabs(a) < 1e-3) return *this;
 		float oneOverA = 1.0f / a;
 		m_x *= oneOverA; m_y *= oneOverA; m_z *= oneOverA;
 		return *this;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -173,6 +173,7 @@
     <ClCompile Include="timer\TimerQueue.cpp" />
     <ClCompile Include="timer\Timestamp.cpp" />
     <ClCompile Include="Util.cpp" />
+    <ClCompile Include="3d\V3Map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnyData.hpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="timer\TimerQueue.h" />
     <ClInclude Include="timer\Timestamp.h" />
     <ClInclude Include="Util.h" />
+    <ClInclude Include="3d\V3Map.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
