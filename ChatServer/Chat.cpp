@@ -34,5 +34,6 @@ void Chat::Stop()
 
 void Chat::InitManager()
 {
+	// register chat msg
 	ModuleChat::Instance();
 }

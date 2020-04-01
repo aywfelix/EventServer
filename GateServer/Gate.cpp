@@ -3,6 +3,7 @@
 #include "ClientPlayer/ClientPlayerMgr.h"
 #include "Session.h"
 #include "SnowFlake.h"
+#include "clientmodule/ModuleGate.h"
 
 Gate::Gate()
 {
@@ -35,4 +36,6 @@ void Gate::Stop()
 void Gate::InitManager()
 {
 	g_pSnowFlake->Init();
+	// register msg
+	ModuleGate::Instance();
 }

@@ -4,6 +4,7 @@
 #include "Session.h"
 #include "Connection/ConnectionPool.h"
 #include "redis/db_redis.h"
+#include "clientmodule/ModuleLogin.h"
 
 
 Login::Login()
@@ -42,4 +43,7 @@ void Login::InitManager()
 	g_pRedis->init(g_JsonConfig->m_RedisConf["ConnNum"].asInt(), 
 		g_JsonConfig->m_RedisConf["ip"].asCString(), 
 		g_JsonConfig->m_RedisConf["port"].asInt());
+
+	// register msg
+	ModuleLogin::Instance();
 }
