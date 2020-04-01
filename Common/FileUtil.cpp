@@ -56,6 +56,11 @@ long FileC::FileSize()
 	return size;
 }
 
+FileCpp::~FileCpp()
+{
+	Close();
+}
+
 bool FileCpp::Open()
 {
 	mfs.open(mFile, std::ios::in | std::ios::out | std::ios::app);

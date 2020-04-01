@@ -7,6 +7,7 @@
 class File
 {
 public:
+	virtual ~File(){}
 	virtual bool Close() = 0;
 	virtual long FileSize() = 0;
 	virtual void SeekEnd() = 0;
@@ -37,6 +38,7 @@ private:
 class FileCpp : public File
 {
 public:
+	~FileCpp();
 	bool Open();
 	bool Close();
 	bool Write(const char* ptr);

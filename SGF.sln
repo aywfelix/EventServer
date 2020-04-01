@@ -82,6 +82,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoginServer", "LoginServer\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "Common\Common.vcxproj", "{C1DB09F1-AB9B-47D4-ADB9-5F19543EDD68}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestLua", "TestLua\TestLua.vcxproj", "{F6F74105-D8E0-4F03-A36F-4D3051CFCCD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -202,6 +204,14 @@ Global
 		{C1DB09F1-AB9B-47D4-ADB9-5F19543EDD68}.Release|x64.Build.0 = Release|x64
 		{C1DB09F1-AB9B-47D4-ADB9-5F19543EDD68}.Release|x86.ActiveCfg = Release|Win32
 		{C1DB09F1-AB9B-47D4-ADB9-5F19543EDD68}.Release|x86.Build.0 = Release|Win32
+		{F6F74105-D8E0-4F03-A36F-4D3051CFCCD2}.Debug|x64.ActiveCfg = Debug|x64
+		{F6F74105-D8E0-4F03-A36F-4D3051CFCCD2}.Debug|x64.Build.0 = Debug|x64
+		{F6F74105-D8E0-4F03-A36F-4D3051CFCCD2}.Debug|x86.ActiveCfg = Debug|Win32
+		{F6F74105-D8E0-4F03-A36F-4D3051CFCCD2}.Debug|x86.Build.0 = Debug|Win32
+		{F6F74105-D8E0-4F03-A36F-4D3051CFCCD2}.Release|x64.ActiveCfg = Release|x64
+		{F6F74105-D8E0-4F03-A36F-4D3051CFCCD2}.Release|x64.Build.0 = Release|x64
+		{F6F74105-D8E0-4F03-A36F-4D3051CFCCD2}.Release|x86.ActiveCfg = Release|Win32
+		{F6F74105-D8E0-4F03-A36F-4D3051CFCCD2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
