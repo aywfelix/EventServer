@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DebugUtils\Include\DebugDraw.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugUtils\Include\DetourDebugDraw.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugUtils\Include\RecastDebugDraw.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugUtils\Include\RecastDump.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Detour\Include\DetourAlloc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Detour\Include\DetourAssert.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Detour\Include\DetourCommon.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Detour\Include\DetourMath.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Detour\Include\DetourNavMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Detour\Include\DetourNavMeshBuilder.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Detour\Include\DetourNavMeshQuery.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Detour\Include\DetourNode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Detour\Include\DetourStatus.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DetourCrowd\Include\DetourCrowd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DetourCrowd\Include\DetourLocalBoundary.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DetourCrowd\Include\DetourObstacleAvoidance.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DetourCrowd\Include\DetourPathCorridor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DetourCrowd\Include\DetourPathQueue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DetourCrowd\Include\DetourProximityGrid.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DetourTileCache\Include\DetourTileCache.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DetourTileCache\Include\DetourTileCacheBuilder.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Recast\Include\Recast.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Recast\Include\RecastAlloc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Recast\Include\RecastAssert.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\fastlz\fastlz.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\begin_code.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\close_code.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_assert.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_atomic.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_audio.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_bits.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_blendmode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_clipboard.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_config_android.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_config_iphoneos.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_config_macosx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_config_minimal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_config_os2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_config_pandora.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_config_psp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_config_windows.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_config_winrt.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_config_wiz.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_copying.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_cpuinfo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_egl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_endian.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_error.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_events.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_filesystem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_gamecontroller.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_gesture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_haptic.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_hints.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_joystick.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_keyboard.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_keycode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_loadso.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_main.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_messagebox.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_metal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_mouse.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_mutex.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_name.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_opengl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_opengl_glext.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_opengles.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_opengles2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_opengles2_gl2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_opengles2_gl2ext.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_opengles2_gl2platform.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_opengles2_khrplatform.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_pixels.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_platform.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_power.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_quit.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_rect.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_render.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_revision.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_rwops.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_scancode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_sensor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_shape.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_stdinc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_surface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_system.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_syswm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_test.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_test_assert.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_test_common.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_test_compare.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_test_crc32.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_test_font.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_test_fuzzer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_test_harness.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_test_images.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_test_log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_test_md5.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_test_memory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_test_random.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_thread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_timer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_touch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_types.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_version.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_video.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Contrib\SDL\include\SDL_vulkan.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\ChunkyTriMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\ConvexVolumeTool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\CrowdTool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\Filelist.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\imgui.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\imguiRenderGL.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\InputGeom.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\MeshLoaderObj.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\NavMeshPruneTool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\NavMeshTesterTool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\OffMeshConnectionTool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\PerfTimer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\Sample.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\Sample_Debug.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\Sample_SoloMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\Sample_TempObstacles.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\Sample_TileMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\SampleInterfaces.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\TestCase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RecastDemo\Include\ValueHistory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DebugUtils\Source\DebugDraw.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugUtils\Source\DetourDebugDraw.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugUtils\Source\RecastDebugDraw.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugUtils\Source\RecastDump.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Detour\Source\DetourAlloc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Detour\Source\DetourAssert.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Detour\Source\DetourCommon.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Detour\Source\DetourNavMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Detour\Source\DetourNavMeshBuilder.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Detour\Source\DetourNavMeshQuery.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Detour\Source\DetourNode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DetourCrowd\Source\DetourCrowd.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DetourCrowd\Source\DetourLocalBoundary.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DetourCrowd\Source\DetourObstacleAvoidance.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DetourCrowd\Source\DetourPathCorridor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DetourCrowd\Source\DetourPathQueue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DetourCrowd\Source\DetourProximityGrid.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DetourTileCache\Source\DetourTileCache.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DetourTileCache\Source\DetourTileCacheBuilder.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Recast\Source\Recast.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Recast\Source\RecastAlloc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Recast\Source\RecastArea.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Recast\Source\RecastAssert.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Recast\Source\RecastContour.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Recast\Source\RecastFilter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Recast\Source\RecastLayers.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Recast\Source\RecastMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Recast\Source\RecastMeshDetail.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Recast\Source\RecastRasterization.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Recast\Source\RecastRegion.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Contrib\fastlz\fastlz.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\ChunkyTriMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\ConvexVolumeTool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\CrowdTool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\Filelist.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\imgui.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\imguiRenderGL.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\InputGeom.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\MeshLoaderObj.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\NavMeshPruneTool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\NavMeshTesterTool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\OffMeshConnectionTool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\PerfTimer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\Sample.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\Sample_Debug.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\Sample_SoloMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\Sample_TempObstacles.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\Sample_TileMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\SampleInterfaces.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\TestCase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RecastDemo\Source\ValueHistory.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
