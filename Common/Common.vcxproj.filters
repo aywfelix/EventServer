@@ -40,6 +40,8 @@
     <ClCompile Include="SnowFlake.cpp" />
     <ClCompile Include="expr\SimpleExpr.cpp" />
     <ClCompile Include="stat\Stat.cpp" />
+    <ClCompile Include="3d\V3Map.cpp" />
+    <ClCompile Include="map\MapNavMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assertx.h" />
@@ -100,5 +102,6 @@
     <ClInclude Include="SnowFlake.h" />
     <ClInclude Include="expr\SimpleExpr.h" />
     <ClInclude Include="stat\Stat.h" />
+    <ClInclude Include="3d\V3Map.h" />
   </ItemGroup>
 </Project>

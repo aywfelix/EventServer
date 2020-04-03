@@ -268,6 +268,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>.\RecastDemo\Include;.\RecastDemo\Contrib\fastlz;.\RecastDemo\Contrib\SDL\include;.\Recast\Include;.\DetourTileCache\Include;.\DetourCrowd\Include;.\Detour\Include;.\DebugUtils\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

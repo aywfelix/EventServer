@@ -18,13 +18,16 @@
     <ClCompile Include="GameDef.cpp" />
     <ClCompile Include="scene\Scene.cpp" />
     <ClCompile Include="scene\SceneMgr.cpp" />
-    <ClCompile Include="scene\Zone.cpp" />
-    <ClCompile Include="scene\ZoneMgr.cpp" />
-    <ClCompile Include="scene\MapNav.cpp" />
     <ClCompile Include="bag\ItemBase.cpp" />
     <ClCompile Include="bag\BagBase.cpp" />
     <ClCompile Include="email\Email.cpp" />
     <ClCompile Include="email\EmailMgr.cpp" />
+    <ClCompile Include="scene\map\MapNav.cpp" />
+    <ClCompile Include="scene\map\Zone.cpp" />
+    <ClCompile Include="scene\map\ZoneMgr.cpp" />
+    <ClCompile Include="scene\Scene.cpp" />
+    <ClCompile Include="scene\SceneMgr.cpp" />
+    <ClCompile Include="scene\map\SceneMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -43,12 +46,15 @@
     <ClInclude Include="GameDef.h" />
     <ClInclude Include="scene\Scene.h" />
     <ClInclude Include="scene\SceneMgr.h" />
-    <ClInclude Include="scene\ZoneMgr.h" />
-    <ClInclude Include="scene\Zone.h" />
-    <ClInclude Include="scene\MapNav.h" />
     <ClInclude Include="bag\ItemBase.h" />
     <ClInclude Include="bag\BagBase.h" />
     <ClInclude Include="email\Email.h" />
     <ClInclude Include="email\EmailMgr.h" />
+    <ClInclude Include="scene\map\MapNav.h" />
+    <ClInclude Include="scene\map\Zone.h" />
+    <ClInclude Include="scene\map\ZoneMgr.h" />
+    <ClInclude Include="scene\Scene.h" />
+    <ClInclude Include="scene\SceneMgr.h" />
+    <ClInclude Include="scene\map\SceneMap.h" />
   </ItemGroup>
 </Project>

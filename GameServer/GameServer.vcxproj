@@ -79,15 +79,16 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\ThirdPart\hiredis;..\ThirdPart\protobuf\src;..\Common;..\SeNet;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\NavMesh\RecastDemo\Contrib;..\NavMesh\Recast\Include;..\NavMesh\DetourTileCache\Include;..\NavMesh\DetourCrowd\Include;..\NavMesh\Detour\Include;..\ThirdPart\hiredis;..\ThirdPart\protobuf\src;..\Common;..\SeNet;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <DisableSpecificWarnings>4099</DisableSpecificWarnings>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SeNet.lib;Common.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocd.lib;hiredis.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SeNet.lib;Common.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocd.lib;hiredis.lib;NavMesh.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
@@ -143,7 +144,7 @@
     <ClCompile Include="GamePlayer\GamePlayer.cpp" />
     <ClCompile Include="bag\ItemBase.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="scene\MapNav.cpp" />
+    <ClCompile Include="scene\map\SceneMap.cpp" />
     <ClCompile Include="module\ModuleBuff.cpp" />
     <ClCompile Include="module\ModuleRank.cpp" />
     <ClCompile Include="module\ModulePet.cpp" />
@@ -154,10 +155,11 @@
     <ClCompile Include="obj\ObjPlayer.cpp" />
     <ClCompile Include="obj\ObjMonster.cpp" />
     <ClCompile Include="obj\ObjBase.cpp" />
-    <ClCompile Include="scene\SceneMgr.cpp" />
+    <ClCompile Include="scene\map\MapNav.cpp" />
     <ClCompile Include="scene\Scene.cpp" />
-    <ClCompile Include="scene\Zone.cpp" />
-    <ClCompile Include="scene\ZoneMgr.cpp" />
+    <ClCompile Include="scene\SceneMgr.cpp" />
+    <ClCompile Include="scene\map\Zone.cpp" />
+    <ClCompile Include="scene\map\ZoneMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bag\BagBase.h" />
@@ -168,7 +170,7 @@
     <ClInclude Include="GamePlayer\GamePlayerMgr.h" />
     <ClInclude Include="GamePlayer\GamePlayer.h" />
     <ClInclude Include="bag\ItemBase.h" />
-    <ClInclude Include="scene\MapNav.h" />
+    <ClInclude Include="scene\map\SceneMap.h" />
     <ClInclude Include="module\ModuleBuff.h" />
     <ClInclude Include="module\ModuleRank.h" />
     <ClInclude Include="module\ModulePet.h" />
@@ -179,10 +181,11 @@
     <ClInclude Include="obj\ObjPlayer.h" />
     <ClInclude Include="obj\ObjMonster.h" />
     <ClInclude Include="obj\ObjBase.h" />
-    <ClInclude Include="scene\SceneMgr.h" />
+    <ClInclude Include="scene\map\MapNav.h" />
     <ClInclude Include="scene\Scene.h" />
-    <ClInclude Include="scene\Zone.h" />
-    <ClInclude Include="scene\ZoneMgr.h" />
+    <ClInclude Include="scene\SceneMgr.h" />
+    <ClInclude Include="scene\map\Zone.h" />
+    <ClInclude Include="scene\map\ZoneMgr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
