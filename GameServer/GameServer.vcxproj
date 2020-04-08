@@ -144,7 +144,6 @@
     <ClCompile Include="GamePlayer\GamePlayer.cpp" />
     <ClCompile Include="bag\ItemBase.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="scene\map\SceneMap.cpp" />
     <ClCompile Include="module\ModuleBuff.cpp" />
     <ClCompile Include="module\ModuleRank.cpp" />
     <ClCompile Include="module\ModulePet.cpp" />
@@ -154,7 +153,7 @@
     <ClCompile Include="obj\ObjPet.cpp" />
     <ClCompile Include="obj\ObjPlayer.cpp" />
     <ClCompile Include="obj\ObjMonster.cpp" />
-    <ClCompile Include="obj\ObjBase.cpp" />
+    <ClCompile Include="obj\Obj.cpp" />
     <ClCompile Include="scene\map\MapNav.cpp" />
     <ClCompile Include="scene\Scene.cpp" />
     <ClCompile Include="scene\SceneMgr.cpp" />
@@ -170,7 +169,6 @@
     <ClInclude Include="GamePlayer\GamePlayerMgr.h" />
     <ClInclude Include="GamePlayer\GamePlayer.h" />
     <ClInclude Include="bag\ItemBase.h" />
-    <ClInclude Include="scene\map\SceneMap.h" />
     <ClInclude Include="module\ModuleBuff.h" />
     <ClInclude Include="module\ModuleRank.h" />
     <ClInclude Include="module\ModulePet.h" />
@@ -180,7 +178,7 @@
     <ClInclude Include="obj\ObjPet.h" />
     <ClInclude Include="obj\ObjPlayer.h" />
     <ClInclude Include="obj\ObjMonster.h" />
-    <ClInclude Include="obj\ObjBase.h" />
+    <ClInclude Include="obj\Obj.h" />
     <ClInclude Include="scene\map\MapNav.h" />
     <ClInclude Include="scene\Scene.h" />
     <ClInclude Include="scene\SceneMgr.h" />

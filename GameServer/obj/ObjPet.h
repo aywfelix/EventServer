@@ -1,7 +1,11 @@
 #pragma once
-#include "ObjBase.h"
+#include "Obj.h"
 
-class ObjPet : public ObjBase
+class ObjPet : public Obj
 {
+public:
+
+private:
+
 };
 

@@ -1,4 +1,5 @@
 #include "MapNav.h"
+#include "Recast.h"
 #include <cstdio>
 
 MapNav::MapNav()
@@ -13,7 +14,8 @@ MapNav::MapNav()
 
 MapNav::~MapNav()
 {
-
+	if(m_navMesh) dtFreeNavMesh(m_navMesh);
+	if(m_navQuery) dtFreeNavMeshQuery(m_navQuery);
 }
 
 bool MapNav::LoadTile(const std::string& path)
@@ -363,7 +365,7 @@ static bool getSteerTarget(dtNavMeshQuery* navQuery, const float* startPos, cons
 
 ////////////////////////////////////////////////////////////////////////////////
 
-int MapNav::FindPath(PathFindMode findmode, float* m_spos, float* m_epos, float* movepath, int pathsize)
+int MapNav::FindPath(PathFindMode findmode, float* m_spos, float* m_epos, float* movepath)
 {
 	if (!m_navMesh) return 0;
 
@@ -378,7 +380,7 @@ int MapNav::FindPath(PathFindMode findmode, float* m_spos, float* m_epos, float*
 	int m_nsmoothPath;
 
 	dtPolyRef m_polys[MAX_POLYS];
-	int m_npolys;
+	int m_npolys = 0;
 	// float m_smoothPath[MAX_SMOOTH * 3];
 	int m_nstraightPath = 0;
 	unsigned char m_straightPathFlags[MAX_POLYS];
@@ -554,11 +556,6 @@ int MapNav::FindPath(PathFindMode findmode, float* m_spos, float* m_epos, float*
 	{
 		if (m_startRef && m_endRef)
 		{
-#ifdef DUMP_REQS
-			printf("ps  %f %f %f  %f %f %f  0x%x 0x%x\n",
-				m_spos[0], m_spos[1], m_spos[2], m_epos[0], m_epos[1], m_epos[2],
-				m_filter.getIncludeFlags(), m_filter.getExcludeFlags());
-#endif
 			m_npolys = 0;
 			m_nstraightPath = 0;
 
@@ -579,11 +576,6 @@ int MapNav::FindPath(PathFindMode findmode, float* m_spos, float* m_epos, float*
 		m_nstraightPath = 0;
 		if (m_startRef)
 		{
-#ifdef DUMP_REQS
-			printf("rc  %f %f %f  %f %f %f  0x%x 0x%x\n",
-				m_spos[0], m_spos[1], m_spos[2], m_epos[0], m_epos[1], m_epos[2],
-				m_filter.getIncludeFlags(), m_filter.getExcludeFlags());
-#endif
 			float t = 0;
 			m_npolys = 0;
 			m_nstraightPath = 2;
@@ -616,6 +608,42 @@ int MapNav::FindPath(PathFindMode findmode, float* m_spos, float* m_epos, float*
 	return m_npolys;
 }
 
+int MapNav::FindPath(float* spos, float* epos, float* movepath)
+{
+	dtPolyRef m_polys[MAX_POLYS];
+	int n_polys = 0;
+
+	unsigned char m_straightPathFlags[MAX_POLYS];
+	dtPolyRef m_straightPathPolys[MAX_POLYS];
+
+	dtPolyRef startRef;
+	dtPolyRef endRef;
+
+	if (!m_navQuery)
+	{
+		return 0;
+	}
+
+	m_navQuery->findNearestPoly(spos, m_polyPickExt, &m_filter, &startRef, 0);
+	m_navQuery->findNearestPoly(epos, m_polyPickExt, &m_filter, &endRef, 0);
+
+	if (startRef && endRef)
+	{
+		m_navQuery->findPath(startRef, endRef, spos, epos, &m_filter, m_polys, &n_polys, MAX_POLYS);
+		if (n_polys)
+		{
+			m_navQuery->findStraightPath(spos, epos, m_polys, n_polys,
+				movepath, m_straightPathFlags,
+				m_straightPathPolys, &n_polys, MAX_POLYS);
+		}
+	}
+	else
+	{
+		return 0;
+	}
+	return n_polys;
+}
+
 bool MapNav::CanReach(const WorldPos& pos)
 {
 	float reachpos[3] = { -pos.m_x, 0.0f, pos.m_z };
@@ -633,4 +661,47 @@ bool MapNav::CanReach(const WorldPos& pos)
 	{
 		return true;
 	}
+}
+
+// Cylinder obstacle.
+bool MapNav::AddObstacle(const WorldPos* pos, const float radius, const float height, dtObstacleRef* result)
+{
+	if (!(m_navMesh && m_tileCache)) return false;
+
+	float center[3] = { -pos->m_x, 0, pos->m_z };
+	m_tileCache->addObstacle(center, radius, height, result);
+	if (result)
+	{
+		m_tileCache->update(0.0f, m_navMesh);
+		return true;
+	}
+	return false;
+}
+// Aabb obstacle.
+bool MapNav::AddBoxObstacle(const WorldPos* pos, dtObstacleRef* result)
+{
+	if (!(m_navMesh && m_tileCache)) return false;
+
+	float center[3] = { -pos->m_x, 0, pos->m_z };
+	float halfExtents[3] = { 1.90f, 1.90f, 0.32f };
+	float yRadians = 0.0f;
+	m_tileCache->addBoxObstacle(center, halfExtents, yRadians, result);
+	if (result)
+	{
+		m_tileCache->update(0.0f, m_navMesh);
+		return true;
+	}
+	return true;
+}
+bool MapNav::RemoveObstacle(const dtObstacleRef* ref)
+{
+	if (!(m_navMesh && m_tileCache)) return false;
+
+	if (ref)
+	{
+		m_tileCache->removeObstacle(*ref);
+		m_tileCache->update(0.0f, m_navMesh);
+		return true;
+	}
+	return false;
 }

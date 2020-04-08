@@ -12,7 +12,6 @@
     <ClCompile Include="obj\ObjPet.cpp" />
     <ClCompile Include="obj\ObjPlayer.cpp" />
     <ClCompile Include="obj\ObjMonster.cpp" />
-    <ClCompile Include="obj\ObjBase.cpp" />
     <ClCompile Include="GamePlayer\GamePlayer.cpp" />
     <ClCompile Include="GamePlayer\GamePlayerMgr.cpp" />
     <ClCompile Include="GameDef.cpp" />
@@ -27,7 +26,7 @@
     <ClCompile Include="scene\map\ZoneMgr.cpp" />
     <ClCompile Include="scene\Scene.cpp" />
     <ClCompile Include="scene\SceneMgr.cpp" />
-    <ClCompile Include="scene\map\SceneMap.cpp" />
+    <ClCompile Include="obj\Obj.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -40,7 +39,6 @@
     <ClInclude Include="obj\ObjPet.h" />
     <ClInclude Include="obj\ObjPlayer.h" />
     <ClInclude Include="obj\ObjMonster.h" />
-    <ClInclude Include="obj\ObjBase.h" />
     <ClInclude Include="GamePlayer\GamePlayer.h" />
     <ClInclude Include="GamePlayer\GamePlayerMgr.h" />
     <ClInclude Include="GameDef.h" />
@@ -55,6 +53,6 @@
     <ClInclude Include="scene\map\ZoneMgr.h" />
     <ClInclude Include="scene\Scene.h" />
     <ClInclude Include="scene\SceneMgr.h" />
-    <ClInclude Include="scene\map\SceneMap.h" />
+    <ClInclude Include="obj\Obj.h" />
   </ItemGroup>
 </Project>

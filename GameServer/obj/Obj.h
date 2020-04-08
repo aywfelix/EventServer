@@ -2,14 +2,13 @@
 #include "GameDef.h"
 #include "scene/Scene.h"
 
-
 // 所有游戏对象基类
-class ObjBase
+class Obj
 {
 public:
-	ObjBase();
-	virtual ~ObjBase();
-protected:
+	Obj();
+	virtual ~Obj();
+
 	virtual void HeartBeat(time_t ti);
 	virtual void EnterScene() {}
 	virtual void LeaveScene() {}
@@ -32,8 +31,12 @@ protected:
 	void SetScene(Scene* scene) { m_scene = scene; }
 	int32_t GetZoneId() { return m_zoneid; }
 	bool UpdateZone();
-private:
+
 	void UpdateTime(time_t ti);
+
+	void SendMsg(uint32_t msgid, ::google::protobuf::Message* msg);
+public:
+	int32_t m_objid;
 protected:
 	WorldPos m_pos;
 	Scene* m_scene;
@@ -42,6 +45,5 @@ protected:
 
 	time_t m_last;
 	time_t m_now;
-
 };
 

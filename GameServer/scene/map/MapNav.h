@@ -5,10 +5,10 @@
 #include "DetourNavMeshBuilder.h"
 #include "DetourNavMeshQuery.h"
 #include "DetourTileCache.h"
-#include "Recast.h"
 #include "DetourTileCacheBuilder.h"
 #include "fastlz/fastlz.h"
 #include "DetourCommon.h"
+
 #include "GameDef.h"
 
 // load tile
@@ -192,10 +192,10 @@ struct MeshProcess : public dtTileCacheMeshProcess
 
 enum PathFindMode
 {
-	PATHFIND_FOLLOW,
-	PATHFIND_STRAIGHT,
-	PATHFIND_SLICED,
-	RAYCAST
+	PATHFIND_FOLLOW = 1,  // 路径点非常细,小段距离点组成
+	PATHFIND_STRAIGHT = 2, // 只记录拐点, 实用
+	PATHFIND_SLICED = 3, // 只记录拐点, 只是在demo中加上了动画展示
+	RAYCAST = 4 // 短距离寻路,直线,有拐点则失效
 };
 
 // reacast-navigation
@@ -205,20 +205,29 @@ public:
 	MapNav();
 	~MapNav();
 
-	int FindPath(PathFindMode findmode, float* m_spos, float* m_epos, float* movepath, int pathsize);
+	int FindPath(PathFindMode findmode, float* m_spos, float* m_epos, float* movepath);
+	// 只用此函数寻路即可
+	int FindPath(float* spos, float* epos, float* movepath);
 	bool CanReach(const WorldPos& pos);
+	// 添加障碍
+	// Cylinder obstacle.
+	bool AddObstacle(const WorldPos* pos, const float radius, const float height, dtObstacleRef* result);
+	// Aabb obstacle.
+	bool AddBoxObstacle(const WorldPos* pos, dtObstacleRef* result);
+	bool RemoveObstacle(const dtObstacleRef* ref);
 
 	bool LoadTile(const std::string& path);
 	bool LoadCacheTile(const std::string& path);
-	// load map obj and gen tile file
-	bool LoadMapObj(const std::string& path);
+	//// load map obj and gen tile file
+	// 参考
+	//bool LoadMesh(const std::string& path); --InputGeom::loadMesh(rcContext* ctx, const std::string& filepath)
+	//bool buildMesh();  --Sample_SoloMesh::handleBuild()
 private:
 	bool LoadTile(const char* path);
-	bool LoadCacheTile(const char* path);
+	bool LoadCacheTile(const char* path); 
 private:
 	class dtNavMesh* m_navMesh;
 	class dtNavMeshQuery* m_navQuery;
-	class dtCrowd* m_crowd;
 	class dtTileCache* m_tileCache;
 
 	struct LinearAllocator* m_talloc;
@@ -230,6 +239,5 @@ private:
 
 	static const int MAX_POLYS = 256;
 	static const int MAX_SMOOTH = 2048;
-	
 };
 
