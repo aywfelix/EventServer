@@ -1,4 +1,6 @@
 #include "Obj.h"
+#include "scene/Scene.h"
+
 Obj::Obj()
 {
 
@@ -31,4 +33,10 @@ void Obj::SendMsg(uint32_t msgid, ::google::protobuf::Message* msg)
 {
 	if (!IsPlayer()) return;
 
+}
+
+bool Obj::UpdateZone()
+{
+	m_scene = GetScene();
+	return true;
 }

@@ -5,6 +5,8 @@
 
 class ThreadBase{
 public:
+	virtual ~ThreadBase() { Stop(); }
+
     virtual bool Start();
     virtual bool Stop();
     virtual bool Init() = 0;
@@ -14,7 +16,6 @@ public:
     void Join();
     bool IsActive() { return m_bActive; }
     std::thread::id GetThreadId() { return m_thread.get_id(); }
-	virtual ~ThreadBase() { Stop(); }
 
 private:
     std::thread m_thread;

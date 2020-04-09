@@ -150,13 +150,15 @@
     <ClCompile Include="module\ModuleBase.cpp" />
     <ClCompile Include="NodeNet\GameNodeClient.cpp" />
     <ClCompile Include="NodeNet\GameServerThread.cpp" />
+    <ClCompile Include="scene\move\ObjMove.cpp" />
     <ClCompile Include="obj\ObjPet.cpp" />
     <ClCompile Include="obj\ObjPlayer.cpp" />
     <ClCompile Include="obj\ObjMonster.cpp" />
     <ClCompile Include="obj\Obj.cpp" />
+    <ClCompile Include="scene\map\SceneMapMgr.cpp" />
+    <ClCompile Include="scene\map\SceneMap.cpp" />
     <ClCompile Include="scene\map\MapNav.cpp" />
     <ClCompile Include="scene\Scene.cpp" />
-    <ClCompile Include="scene\SceneMgr.cpp" />
     <ClCompile Include="scene\map\Zone.cpp" />
     <ClCompile Include="scene\map\ZoneMgr.cpp" />
   </ItemGroup>
@@ -175,13 +177,15 @@
     <ClInclude Include="module\ModuleBase.h" />
     <ClInclude Include="NodeNet\GameNodeClient.h" />
     <ClInclude Include="NodeNet\GameServerThread.h" />
+    <ClInclude Include="scene\move\ObjMove.h" />
     <ClInclude Include="obj\ObjPet.h" />
     <ClInclude Include="obj\ObjPlayer.h" />
     <ClInclude Include="obj\ObjMonster.h" />
     <ClInclude Include="obj\Obj.h" />
+    <ClInclude Include="scene\map\SceneMapMgr.h" />
+    <ClInclude Include="scene\map\SceneMap.h" />
     <ClInclude Include="scene\map\MapNav.h" />
     <ClInclude Include="scene\Scene.h" />
-    <ClInclude Include="scene\SceneMgr.h" />
     <ClInclude Include="scene\map\Zone.h" />
     <ClInclude Include="scene\map\ZoneMgr.h" />
   </ItemGroup>

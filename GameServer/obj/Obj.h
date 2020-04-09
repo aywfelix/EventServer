@@ -1,7 +1,7 @@
 #pragma once
 #include "GameDef.h"
-#include "scene/Scene.h"
 
+class Scene;
 // 所有游戏对象基类
 class Obj
 {
@@ -35,6 +35,7 @@ public:
 	void UpdateTime(time_t ti);
 
 	void SendMsg(uint32_t msgid, ::google::protobuf::Message* msg);
+
 public:
 	int32_t m_objid;
 protected:

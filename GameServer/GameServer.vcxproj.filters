@@ -16,7 +16,6 @@
     <ClCompile Include="GamePlayer\GamePlayerMgr.cpp" />
     <ClCompile Include="GameDef.cpp" />
     <ClCompile Include="scene\Scene.cpp" />
-    <ClCompile Include="scene\SceneMgr.cpp" />
     <ClCompile Include="bag\ItemBase.cpp" />
     <ClCompile Include="bag\BagBase.cpp" />
     <ClCompile Include="email\Email.cpp" />
@@ -27,6 +26,9 @@
     <ClCompile Include="scene\Scene.cpp" />
     <ClCompile Include="scene\SceneMgr.cpp" />
     <ClCompile Include="obj\Obj.cpp" />
+    <ClCompile Include="scene\map\SceneMap.cpp" />
+    <ClCompile Include="scene\map\SceneMapMgr.cpp" />
+    <ClCompile Include="scene\move\ObjMove.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -43,7 +45,6 @@
     <ClInclude Include="GamePlayer\GamePlayerMgr.h" />
     <ClInclude Include="GameDef.h" />
     <ClInclude Include="scene\Scene.h" />
-    <ClInclude Include="scene\SceneMgr.h" />
     <ClInclude Include="bag\ItemBase.h" />
     <ClInclude Include="bag\BagBase.h" />
     <ClInclude Include="email\Email.h" />
@@ -54,5 +55,8 @@
     <ClInclude Include="scene\Scene.h" />
     <ClInclude Include="scene\SceneMgr.h" />
     <ClInclude Include="obj\Obj.h" />
+    <ClInclude Include="scene\map\SceneMap.h" />
+    <ClInclude Include="scene\map\SceneMapMgr.h" />
+    <ClInclude Include="scene\move\ObjMove.h" />
   </ItemGroup>
 </Project>
