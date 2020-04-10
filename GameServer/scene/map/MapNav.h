@@ -9,7 +9,7 @@
 #include "fastlz/fastlz.h"
 #include "DetourCommon.h"
 
-#include "GameDef.h"
+#include "common/GameDef.h"
 
 // load tile
 static const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; //'MSET';

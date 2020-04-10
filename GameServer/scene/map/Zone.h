@@ -1,5 +1,5 @@
 #pragma once
-#include "GameDef.h"
+#include "common/GameDef.h"
 #include <set>
 
 class Obj;

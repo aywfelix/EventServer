@@ -1,6 +1,7 @@
 #pragma once
 #include "Obj.h"
 
+// сно╥╫ги╚
 class ObjPlayer : public Obj
 {
 public:

@@ -1,9 +1,10 @@
 #pragma once
-#include "GameDef.h"
+#include "common/GameDef.h"
+#include "MemPool.hpp"
 
 class Scene;
 // 所有游戏对象基类
-class Obj
+class Obj : public MemElem
 {
 public:
 	Obj();
@@ -39,6 +40,7 @@ public:
 public:
 	int32_t m_objid;
 protected:
+	int32_t m_memid;
 	WorldPos m_pos;
 	Scene* m_scene;
 	int32_t m_zoneid;

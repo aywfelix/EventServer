@@ -38,6 +38,12 @@ public:
 		Expand();
 	}
 
+	static MemPool<T>* Instance()
+	{
+		static MemPool<T> pool;
+		return &pool;
+	}
+
 	virtual ~MemPool()
 	{
 		for (auto& it : m_list)

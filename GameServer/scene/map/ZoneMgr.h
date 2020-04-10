@@ -1,5 +1,5 @@
 #pragma once
-#include "GameDef.h"
+#include "common/GameDef.h"
 #include "Zone.h"
 #include <memory>
 #include <vector>
