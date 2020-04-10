@@ -138,6 +138,9 @@
     <ClCompile Include="bag\BagBase.cpp" />
     <ClCompile Include="email\EmailMgr.cpp" />
     <ClCompile Include="email\Email.cpp" />
+    <ClCompile Include="scene\dungeon\FightSceneImpl.cpp" />
+    <ClCompile Include="scene\SceneImpl.cpp" />
+    <ClCompile Include="scene\dungeon\FightScene.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameDef.cpp" />
     <ClCompile Include="GamePlayer\GamePlayerMgr.cpp" />
@@ -166,6 +169,9 @@
     <ClInclude Include="bag\BagBase.h" />
     <ClInclude Include="email\EmailMgr.h" />
     <ClInclude Include="email\Email.h" />
+    <ClInclude Include="scene\dungeon\FightSceneImpl.h" />
+    <ClInclude Include="scene\SceneImpl.h" />
+    <ClInclude Include="scene\dungeon\FightScene.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameDef.h" />
     <ClInclude Include="GamePlayer\GamePlayerMgr.h" />
