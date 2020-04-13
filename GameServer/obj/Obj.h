@@ -1,6 +1,7 @@
 #pragma once
 #include "common/GameDef.h"
 #include "MemPool.hpp"
+#include "ai/Context.h"
 
 class Scene;
 // 所有游戏对象基类
@@ -9,7 +10,7 @@ class Obj : public MemElem
 public:
 	Obj();
 	virtual ~Obj();
-
+	
 	virtual void HeartBeat(time_t ti);
 	virtual void EnterScene() {}
 	virtual void LeaveScene() {}
@@ -48,5 +49,7 @@ protected:
 
 	time_t m_last;
 	time_t m_now;
+
+	Context m_context;
 };
 

@@ -1,7 +1,7 @@
 #include "Chat.h"
 #include "NodeNet/ChatServerThread.h"
 #include "packet/PacketMgr.h"
-#include "clientmodule/ModuleChat.h"
+#include "clienthandle/handleChat.h"
 #include "Session.h"
 
 Chat::Chat()
@@ -35,5 +35,5 @@ void Chat::Stop()
 void Chat::InitManager()
 {
 	// register chat msg
-	ModuleChat::Instance();
+	HandleChat::Instance();
 }

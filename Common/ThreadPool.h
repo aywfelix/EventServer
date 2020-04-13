@@ -13,11 +13,11 @@ class ThreadPool
 	typedef std::function<void()> Task;
 	typedef std::deque<Task> TaskQueueType;
 public:
-	// static ThreadPool& Instance()
-	// {
-	// 	static ThreadPool pool;
-	// 	return pool;
-	// }
+	 static ThreadPool* Instance()
+	 {
+	 	static ThreadPool pool;
+	 	return &pool;
+	 }
 
 	void SetQueueMaxSize(size_t nMaxSize)
 	{

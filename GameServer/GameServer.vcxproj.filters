@@ -12,7 +12,6 @@
     <ClCompile Include="obj\ObjPet.cpp" />
     <ClCompile Include="obj\ObjPlayer.cpp" />
     <ClCompile Include="obj\ObjMonster.cpp" />
-    <ClCompile Include="GamePlayer\GamePlayer.cpp" />
     <ClCompile Include="scene\Scene.cpp" />
     <ClCompile Include="bag\ItemBase.cpp" />
     <ClCompile Include="bag\BagBase.cpp" />
@@ -32,6 +31,11 @@
     <ClCompile Include="obj\ObjPlayerMgr.cpp" />
     <ClCompile Include="common\GameDef.cpp" />
     <ClCompile Include="obj\ObjPool.cpp" />
+    <ClCompile Include="gameplayer\GamePlayer.cpp" />
+    <ClCompile Include="msghandle\ModuleBag.cpp" />
+    <ClCompile Include="ai\Context.cpp" />
+    <ClCompile Include="ai\State.cpp" />
+    <ClCompile Include="ai\StateMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -44,7 +48,6 @@
     <ClInclude Include="obj\ObjPet.h" />
     <ClInclude Include="obj\ObjPlayer.h" />
     <ClInclude Include="obj\ObjMonster.h" />
-    <ClInclude Include="GamePlayer\GamePlayer.h" />
     <ClInclude Include="scene\Scene.h" />
     <ClInclude Include="bag\ItemBase.h" />
     <ClInclude Include="bag\BagBase.h" />
@@ -64,5 +67,9 @@
     <ClInclude Include="obj\ObjPlayerMgr.h" />
     <ClInclude Include="common\GameDef.h" />
     <ClInclude Include="obj\ObjPool.h" />
+    <ClInclude Include="gameplayer\GamePlayer.h" />
+    <ClInclude Include="ai\Context.h" />
+    <ClInclude Include="ai\State.h" />
+    <ClInclude Include="ai\StateMgr.h" />
   </ItemGroup>
 </Project>

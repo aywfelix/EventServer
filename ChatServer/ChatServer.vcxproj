@@ -139,7 +139,7 @@
     <ClCompile Include="NodeNet\ChatNodeServer.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MsgHandle\ChatPlayer.cpp" />
-    <ClCompile Include="MsgHandle\ModuleChat.cpp" />
+    <ClCompile Include="MsgHandle\HandleChat.cpp" />
     <ClCompile Include="NodeNet\ChatNodeClient.cpp" />
     <ClCompile Include="NodeNet\ChatServerThread.cpp" />
   </ItemGroup>

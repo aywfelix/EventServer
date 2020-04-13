@@ -18,9 +18,6 @@
     <ClCompile Include="MsgHandle\ChatPlayer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="MsgHandle\ModuleChat.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="NodeNet\ChatNodeClient.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -34,6 +31,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="NodeNet\ChatNodeServer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MsgHandle\HandleChat.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

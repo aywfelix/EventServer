@@ -3,7 +3,7 @@
 
 Obj::Obj()
 {
-
+	m_context.SetContext(this, E_STATE_INVALID);
 }
 
 Obj::~Obj()
@@ -14,6 +14,7 @@ Obj::~Obj()
 void Obj::HeartBeat(time_t ti)
 {
 	UpdateTime(ti);
+	m_context.DoAction();   // 只要调用context类ChangeState函数就执行相应的动作
 }
 
 void Obj::UpdateTime(time_t ti)

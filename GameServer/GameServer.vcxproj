@@ -136,8 +136,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="bag\BagBase.cpp" />
+    <ClCompile Include="ai\Context.cpp" />
     <ClCompile Include="email\EmailMgr.cpp" />
     <ClCompile Include="email\Email.cpp" />
+    <ClCompile Include="msghandle\ModuleBag.cpp" />
     <ClCompile Include="obj\ObjPool.cpp" />
     <ClCompile Include="obj\ObjPlayerMgr.cpp" />
     <ClCompile Include="scene\dungeon\FightSceneImpl.cpp" />
@@ -145,7 +147,7 @@
     <ClCompile Include="scene\dungeon\FightScene.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="common\GameDef.cpp" />
-    <ClCompile Include="GamePlayer\GamePlayer.cpp" />
+    <ClCompile Include="gameplayer\GamePlayer.cpp" />
     <ClCompile Include="bag\ItemBase.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="module\ModuleBuff.cpp" />
@@ -165,9 +167,11 @@
     <ClCompile Include="scene\Scene.cpp" />
     <ClCompile Include="scene\map\Zone.cpp" />
     <ClCompile Include="scene\map\ZoneMgr.cpp" />
+    <ClCompile Include="ai\StateMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bag\BagBase.h" />
+    <ClInclude Include="ai\Context.h" />
     <ClInclude Include="email\EmailMgr.h" />
     <ClInclude Include="email\Email.h" />
     <ClInclude Include="obj\ObjPool.h" />
@@ -177,7 +181,7 @@
     <ClInclude Include="scene\dungeon\FightScene.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="common\GameDef.h" />
-    <ClInclude Include="GamePlayer\GamePlayer.h" />
+    <ClInclude Include="gameplayer\GamePlayer.h" />
     <ClInclude Include="bag\ItemBase.h" />
     <ClInclude Include="module\ModuleBuff.h" />
     <ClInclude Include="module\ModuleRank.h" />
@@ -196,6 +200,8 @@
     <ClInclude Include="scene\Scene.h" />
     <ClInclude Include="scene\map\Zone.h" />
     <ClInclude Include="scene\map\ZoneMgr.h" />
+    <ClInclude Include="ai\State.h" />
+    <ClInclude Include="ai\StateMgr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

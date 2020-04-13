@@ -32,7 +32,9 @@ void SceneImpl::OnObjEnterScene(Obj* obj)
 
 }
 void SceneImpl::OnObjLeaveScene(Obj* obj)
-{}
+{
+
+}
 void SceneImpl::OnObjKilledScene(Obj* obj)
 {
 
