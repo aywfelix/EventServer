@@ -95,38 +95,38 @@ void GatePlayerServer::OnOtherMessage(const socket_t sock_fd, const int msg_id, 
 	{
 	case ModuleGate::MODULE_ID_GATE:
 	{
-		cli_player->OnModuleGateMessage(msg_id, msg, msg_len, sock_fd);
+		cli_player->SendToGate(msg_id, msg, msg_len, sock_fd);
 		break;
 	}
 	case ModuleLogin::MODULE_ID_LOGIN:
 	{
-		cli_player->OnModuleLoginMessage(msg_id, msg, msg_len);
+		cli_player->SendToLogin(msg_id, msg, msg_len);
 		break;
 	}
 	case ModuleChat::MODULE_ID_CHAT:
 	{
-		cli_player->OnModuleChatMessage(msg_id, msg, msg_len);
+		cli_player->SendToChat(msg_id, msg, msg_len);
 		break;
 	}
 	case ModuleWorld::MODULE_ID_WORLD:
 	{
-		cli_player->OnModuleWorldMessage(msg_id, msg, msg_len);
+		cli_player->SendToWorld(msg_id, msg, msg_len);
 		break;
 	}
 	case ModuleGame::MODULE_ID_GAME:
-		cli_player->OnModuleGameMessage(msg_id, msg, msg_len);
+		cli_player->SendToGame(msg_id, msg, msg_len);
 		break;
 	default:
 		break;
 	}
 }
 
-void GatePlayerServer::SentToClient(const int msg_id, const std::string& msg, const socket_t sock_fd)
+void GatePlayerServer::SendToClient(const socket_t sock_fd, const int msg_id, const std::string& msg)
 {
 	m_pNetModule->SendMsg(sock_fd, msg_id, msg.c_str(), msg.length());
 }
 
-void GatePlayerServer::SentToClient(const int msg_id, google::protobuf::Message* msg, const socket_t sock_fd)
+void GatePlayerServer::SendToClient(const socket_t sock_fd, const int msg_id, google::protobuf::Message* msg)
 {
 	m_pNetModule->SendPbMsg(sock_fd, msg_id, msg);
 }

@@ -1,5 +1,6 @@
 #include "GamePlayer.h"
 #include "obj/ObjPlayer.h"
+#include "NodeNet/GameServerThread.h"
 
 std::unique_ptr<GamePlayerPool> g_pGamePlayerPool = nullptr;
 
@@ -13,15 +14,16 @@ bool GamePlayer::HeartBeat()
 	return true;
 }
 
-int GamePlayer::SendMsg(unsigned short msg_id, ::google::protobuf::Message* pb_msg)
+int GamePlayer::SendToGate(const int msg_id, ::google::protobuf::Message* pb_msg)
 {
+	g_pServerThread->GameClient().SendToGate(m_servid, m_playerid, msg_id, pb_msg);
 	return 0;
 }
-int GamePlayer::SendMsg(Packet* pPacket)
+int GamePlayer::SendToWorld(const int msg_id, ::google::protobuf::Message* pb_msg)
 {
+	g_pServerThread->GameClient().SendToWorld(m_servid, m_playerid, msg_id, pb_msg);
 	return 0;
 }
-
 
 GamePlayerPool::GamePlayerPool() {}
 GamePlayerPool::~GamePlayerPool() {}

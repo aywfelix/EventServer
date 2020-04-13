@@ -14,7 +14,7 @@ bool Player::HeartBeat()
 {
 	return true;
 }
-int Player::SendMsg(unsigned short msg_id, ::google::protobuf::Message* pb_msg)
+int Player::SendMsg(const int msg_id, ::google::protobuf::Message* pb_msg)
 {
 	return 0;
 }

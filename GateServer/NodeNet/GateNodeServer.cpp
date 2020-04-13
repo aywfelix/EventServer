@@ -11,8 +11,8 @@
 bool GateNodeServer::InitHelper()
 {
 	mNetServModule->AddReceiveCallBack(this, &GateNodeServer::OtherMessage);
-	mNetServModule->AddReceiveCallBack(LOGIN_ROUTE_TO_GATE, this, &GateNodeServer::OnLoginRouteBack);
-	mNetServModule->AddReceiveCallBack(CHAT_ROUTE_TO_GATE, this, &GateNodeServer::OnChatRouteBack);
+	mNetServModule->AddReceiveCallBack(LOGIN_ROUTE_TO_GATE, this, &GateNodeServer::OnLoginRouteGate);
+	mNetServModule->AddReceiveCallBack(CHAT_ROUTE_TO_GATE, this, &GateNodeServer::OnChatRouteGate);
 
 	//init server info
 	if (!mNetServModule->InitNet(g_JsonConfig->m_ServerConf["NodePort"].asUInt()))
@@ -29,16 +29,30 @@ void GateNodeServer::OtherMessage(const socket_t sock_fd, const int msg_id, cons
 	CLOG_DEBUG << "Gate Server recv other message msg_id:" << msg_id;
 }
 
-bool GateNodeServer::SendPackToLogin(const int msg_id, google::protobuf::Message* pb_msg)
+bool GateNodeServer::SendToLogin(const int msg_id, google::protobuf::Message* pb_msg)
 {
 	SendPbByServTypeOne(SERVER_TYPE_LOGIN, msg_id, pb_msg);
 	return true;
 }
-bool GateNodeServer::SendPackToScene(const int msg_id, google::protobuf::Message* pb_msg, int server_id)
+bool GateNodeServer::BroadcastToGame(const int msg_id, google::protobuf::Message* pb_msg)
 {
+	for (auto& it : mmServNodes)
+	{
+		ServerDataPtr pServerData = it.second;
+		if (pServerData->ServerInfo->server_type() == ServerType::SERVER_TYPE_GAME)
+		{
+			mNetServModule->SendPbMsg(pServerData->fd, msg_id, pb_msg);
+		}
+	}
 	return true;
 }
-bool GateNodeServer::SentPackToChat(const int msg_id, google::protobuf::Message* pb_msg)
+
+bool GateNodeServer::SendToGame(const int server_id, const int msg_id, google::protobuf::Message* pb_msg)
+{
+	SendPbByServId(server_id, msg_id, pb_msg);
+	return true;
+}
+bool GateNodeServer::SendToChat(const int msg_id, google::protobuf::Message* pb_msg)
 {
 	ServerDataPtr pServerData = nullptr;
 	std::vector<ServerDataPtr> cli_list;
@@ -59,16 +73,16 @@ bool GateNodeServer::SentPackToChat(const int msg_id, google::protobuf::Message*
 	mNetServModule->SendPbMsg(cli_list[0]->fd, msg_id, pb_msg);
 	return true;
 }
-bool GateNodeServer::SentPackToWorld(const int msg_id, google::protobuf::Message* msg)
+bool GateNodeServer::SendToWorld(const int msg_id, google::protobuf::Message* msg)
 {
 	return true;
 }
 
-void GateNodeServer::OnLoginRouteBack(socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
+void GateNodeServer::OnLoginRouteGate(socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 }
 
-void GateNodeServer::OnChatRouteBack(socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
+void GateNodeServer::OnChatRouteGate(socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	ChatToGatePacket chat_packet;
 	if (!ReceivePB(msg_id, msg, msg_len, &chat_packet)) return;
@@ -79,15 +93,16 @@ void GateNodeServer::OnChatRouteBack(socket_t sock_fd, const int msg_id, const c
 		ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayerByID(playerId);
 		if (pPlayer == nullptr) return;
 
-		socket_t nPlayerSock = pPlayer->GetSockFd();
-		if (nPlayerSock == -1) return;
+		socket_t sock_fd = pPlayer->GetSockFd();
+		if (sock_fd == -1) return;
 
-		g_pServerThread->PlayerServer().SentToClient(chat_packet.msg_id(), chat_packet.msg_body(), nPlayerSock);
+		g_pServerThread->PlayerServer().SendToClient(sock_fd, chat_packet.msg_id(), chat_packet.msg_body());
 	}
 
 	CLOG_INFO << "OnChatRouteBack and sent to client: socket_id:" << playerId << " " << chat_packet.msg_id();
 
 }
-void GateNodeServer::OnWorldRouteBack(socket_t sock_fd, const int msg_id, const char *msg, const size_t msg_len)
+void GateNodeServer::OnWorldRouteGate(socket_t sock_fd, const int msg_id, const char *msg, const size_t msg_len)
 {
+
 }

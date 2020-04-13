@@ -10,8 +10,8 @@ public:
 	virtual bool Init();
 
 	virtual bool HeartBeat();
-	virtual int SendMsg(unsigned short msg_id, ::google::protobuf::Message* pb_msg);
-	virtual int SendMsg(Packet* pPacket);
+	int SendToGate(const int msg_id, ::google::protobuf::Message* pb_msg);
+	int SendToWorld(const int msg_id, ::google::protobuf::Message* pb_msg);
 	void SetObjPlayer(ObjPlayer* player) { m_obj_player = player; }
 	ObjPlayer* GetObjPlayer() { return m_obj_player; }
 private:

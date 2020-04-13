@@ -20,11 +20,11 @@ public:
 	void SetConnTime(int64_t ti) { m_conntime = ti; }
 	void SetPlayerId(uint64_t playerId) { m_playerid = playerId; }
 public:
-	bool OnModuleGateMessage(const int msg_id, const char* msg, size_t msg_len, socket_t sock_fd);
-	bool OnModuleLoginMessage(const int msg_id, const char* msg, size_t msg_len);
-	bool OnModuleGameMessage(const int msg_id, const char* msg, size_t msg_len);
-	bool OnModuleChatMessage(const int msg_id, const char* msg, size_t msg_len);
-	bool OnModuleWorldMessage(const int msg_id, const char* msg, size_t msg_len);
+	bool SendToGate(const int msg_id, const char* msg, size_t msg_len, socket_t sock_fd);
+	bool SendToLogin(const int msg_id, const char* msg, size_t msg_len);
+	bool SendToGame(const int msg_id, const char* msg, size_t msg_len);
+	bool SendToChat(const int msg_id, const char* msg, size_t msg_len);
+	bool SendToWorld(const int msg_id, const char* msg, size_t msg_len);
 	void SendToClient(const int msg_id, const std::string& msg);
 private:
 	int m_lineid;

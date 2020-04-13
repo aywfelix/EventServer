@@ -4,7 +4,7 @@
 class ChatPlayer : public Player
 {
 public:
-	int SendToGate(unsigned short msg_id, ::google::protobuf::Message* pb_msg);
-	int SendToGame(unsigned short msg_id, ::google::protobuf::Message* pb_msg);
+	int SendToGate(const int msg_id, ::google::protobuf::Message* pb_msg);
+	int SendToGame(const int msg_id, ::google::protobuf::Message* pb_msg);
 
 };

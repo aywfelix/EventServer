@@ -12,7 +12,7 @@ public:
 	virtual bool Init();
 
 	virtual bool HeartBeat();
-	virtual int SendMsg(unsigned short msg_id, ::google::protobuf::Message* pb_msg);
+	virtual int SendMsg(const int msg_id, ::google::protobuf::Message* pb_msg);
 	virtual int SendMsg(Packet* pPacket);
 
 	uint64_t m_playerid;

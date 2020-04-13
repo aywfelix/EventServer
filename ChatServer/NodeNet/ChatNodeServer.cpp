@@ -7,7 +7,7 @@
 
 bool ChatNodeServer::InitHelper()
 {
-	mNetServModule->AddReceiveCallBack(GAME_ROUTE_TO_CHAT, this, &ChatNodeServer::OnGameRouteBack);
+	mNetServModule->AddReceiveCallBack(GAME_ROUTE_TO_CHAT, this, &ChatNodeServer::OnGameRouteChat);
 
 	//init server info
 	if (!mNetServModule->InitNet(g_JsonConfig->m_ServerConf["NodePort"].asUInt()))
@@ -20,13 +20,13 @@ bool ChatNodeServer::InitHelper()
 }
 
 
-bool ChatNodeServer::SendPackToGame(int server_id, const int msg_id, google::protobuf::Message* msg)
+bool ChatNodeServer::SendToGame(int server_id, const int msg_id, google::protobuf::Message* msg)
 {
 
 	return true;
 }
 
-bool ChatNodeServer::SendPackToGame(const int msg_id, google::protobuf::Message* msg)
+bool ChatNodeServer::SendToGame(const int msg_id, google::protobuf::Message* msg)
 {
 	std::string send_msg = msg->SerializeAsString();
 	ChatToGamePacket game_packet;
@@ -37,7 +37,7 @@ bool ChatNodeServer::SendPackToGame(const int msg_id, google::protobuf::Message*
 	return true;
 }
 
-void ChatNodeServer::OnGameRouteBack(socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
+void ChatNodeServer::OnGameRouteChat(socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 }
 
