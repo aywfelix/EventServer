@@ -244,22 +244,22 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_Login_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\013Login.proto\032\022ClientPublic.proto\"\227\001\n\016Lo"
-  "gin_LoginReq\022\022\n\nlogin_name\030\001 \001(\014\022\021\n\tlogi"
-  "n_pwd\030\002 \001(\014\022\017\n\007game_id\030\003 \001(\014\022\017\n\007open_id\030"
-  "\004 \001(\014\022\r\n\005token\030\005 \001(\014\022\022\n\nchannel_id\030\006 \001(\014"
-  "\022\014\n\004snid\030\007 \001(\014\022\013\n\003mac\030\010 \001(\014\"\037\n\020Login_Log"
-  "inReply\022\013\n\003ret\030\001 \001(\005\"F\n\023Login_CreateRole"
-  "Req\022\017\n\007role_id\030\001 \001(\005\022\021\n\tnick_name\030\002 \001(\014\022"
-  "\013\n\003sex\030\003 \001(\005\"$\n\025Login_CreateRoleReply\022\013\n"
-  "\003ret\030\001 \001(\005\"&\n\023Login_SelectRoleReq\022\017\n\007rol"
-  "e_id\030\001 \001(\005\"$\n\025Login_SelectRoleReply\022\013\n\003r"
-  "et\030\001 \001(\005\"#\n\020Login_DelRoleReq\022\017\n\007role_id\030"
-  "\001 \001(\005\"!\n\022Login_DelRoleReply\022\013\n\003ret\030\001 \001(\005"
-  "b\006proto3"
+  "\n\013Login.proto\032\014Common.proto\"\227\001\n\016Login_Lo"
+  "ginReq\022\022\n\nlogin_name\030\001 \001(\014\022\021\n\tlogin_pwd\030"
+  "\002 \001(\014\022\017\n\007game_id\030\003 \001(\014\022\017\n\007open_id\030\004 \001(\014\022"
+  "\r\n\005token\030\005 \001(\014\022\022\n\nchannel_id\030\006 \001(\014\022\014\n\004sn"
+  "id\030\007 \001(\014\022\013\n\003mac\030\010 \001(\014\"\037\n\020Login_LoginRepl"
+  "y\022\013\n\003ret\030\001 \001(\005\"F\n\023Login_CreateRoleReq\022\017\n"
+  "\007role_id\030\001 \001(\005\022\021\n\tnick_name\030\002 \001(\014\022\013\n\003sex"
+  "\030\003 \001(\005\"$\n\025Login_CreateRoleReply\022\013\n\003ret\030\001"
+  " \001(\005\"&\n\023Login_SelectRoleReq\022\017\n\007role_id\030\001"
+  " \001(\005\"$\n\025Login_SelectRoleReply\022\013\n\003ret\030\001 \001"
+  "(\005\"#\n\020Login_DelRoleReq\022\017\n\007role_id\030\001 \001(\005\""
+  "!\n\022Login_DelRoleReply\022\013\n\003ret\030\001 \001(\005b\006prot"
+  "o3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Login_2eproto_deps[1] = {
-  &::descriptor_table_ClientPublic_2eproto,
+  &::descriptor_table_Common_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_Login_2eproto_sccs[8] = {
   &scc_info_Login_CreateRoleReply_Login_2eproto.base,
@@ -274,7 +274,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_Log
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Login_2eproto_once;
 static bool descriptor_table_Login_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Login_2eproto = {
-  &descriptor_table_Login_2eproto_initialized, descriptor_table_protodef_Login_2eproto, "Login.proto", 488,
+  &descriptor_table_Login_2eproto_initialized, descriptor_table_protodef_Login_2eproto, "Login.proto", 482,
   &descriptor_table_Login_2eproto_once, descriptor_table_Login_2eproto_sccs, descriptor_table_Login_2eproto_deps, 8, 1,
   schemas, file_default_instances, TableStruct_Login_2eproto::offsets,
   file_level_metadata_Login_2eproto, 8, file_level_enum_descriptors_Login_2eproto, file_level_service_descriptors_Login_2eproto,

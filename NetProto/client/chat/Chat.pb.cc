@@ -81,13 +81,13 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_Chat_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\nChat.proto\032\022ClientPublic.proto\"1\n\014Chat"
-  "_ChatReq\022\017\n\007channel\030\001 \001(\005\022\020\n\010chat_msg\030\002 "
-  "\001(\t\"/\n\016Chat_ChatReply\022\013\n\003ret\030\001 \001(\005\022\020\n\010ch"
-  "at_msg\030\002 \001(\tb\006proto3"
+  "\n\nChat.proto\032\014Common.proto\"1\n\014Chat_ChatR"
+  "eq\022\017\n\007channel\030\001 \001(\005\022\020\n\010chat_msg\030\002 \001(\t\"/\n"
+  "\016Chat_ChatReply\022\013\n\003ret\030\001 \001(\005\022\020\n\010chat_msg"
+  "\030\002 \001(\tb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Chat_2eproto_deps[1] = {
-  &::descriptor_table_ClientPublic_2eproto,
+  &::descriptor_table_Common_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_Chat_2eproto_sccs[2] = {
   &scc_info_Chat_ChatReply_Chat_2eproto.base,
@@ -96,7 +96,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_Cha
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Chat_2eproto_once;
 static bool descriptor_table_Chat_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Chat_2eproto = {
-  &descriptor_table_Chat_2eproto_initialized, descriptor_table_protodef_Chat_2eproto, "Chat.proto", 140,
+  &descriptor_table_Chat_2eproto_initialized, descriptor_table_protodef_Chat_2eproto, "Chat.proto", 134,
   &descriptor_table_Chat_2eproto_once, descriptor_table_Chat_2eproto_sccs, descriptor_table_Chat_2eproto_deps, 2, 1,
   schemas, file_default_instances, TableStruct_Chat_2eproto::offsets,
   file_level_metadata_Chat_2eproto, 2, file_level_enum_descriptors_Chat_2eproto, file_level_service_descriptors_Chat_2eproto,

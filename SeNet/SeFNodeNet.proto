@@ -1,0 +1,190 @@
+syntax = "proto3";
+
+enum EServerState
+{
+	EST_CRASH = 0;
+	EST_NORMAL = 1;
+	EST_BUSY = 2;
+	EST_FIRE = 3;
+	EST_MAINTEN = 4;
+}
+
+message ServerReport
+{
+	int32	server_id = 1;
+	bytes	server_name = 2;
+	bytes	server_ip = 3;
+	int32	server_port = 4;
+	int32	server_max_online = 5;
+	int32	server_cur_count = 6;
+	EServerState	server_state = 7;
+	int32	server_type = 8;
+}
+
+message ServerReportList
+{
+	repeated ServerReport server_info = 1;
+}
+
+message ServerHeartBeat
+{
+	int32 count = 1;
+}
+
+enum ServerNodeMsgID
+{
+	SERVER_NODE_MSG_ID = 0;
+
+	GATE_ROUTE_TO_LOGIN = 10001;
+	LOGIN_ROUTE_TO_GATE = 10002;
+
+	GATE_ROUTE_TO_GAME = 10003;
+	GAME_ROUTE_TO_GATE = 10004;
+	
+	GATE_ROUTE_TO_CHAT  = 10005;
+	CHAT_ROUTE_TO_GATE = 10006;
+
+	WORLD_ROUTE_TO_GATE = 10007;
+	GATE_ROUTE_TO_WORLD = 10008;
+
+	GAME_ROUTE_TO_CHAT = 10009;
+	CHAT_ROUTE_TO_GAME = 10010;
+
+	GAME_ROUTE_TO_WORLD = 10011;
+	WORLD_ROUTE_TO_GAME = 10012;
+
+	LOGIN_ROUTE_TO_WORLD = 10013;
+	WORLD_ROUTE_TO_LOGIN = 10014;
+
+	WORLD_ROUTE_TO_DB = 10015;
+	DB_ROUTE_TO_WORLD = 10016;
+
+	PLAYER_ROUTE_TO_GATE = 10017;
+	GATE_ROUTE_TO_PLAYER = 10018;
+	
+	GAME_PLAYER_OFFLINE = 10051;
+	REPORT_CLIENT_INFO_TO_SERVER = 10054;
+	MASTER_REPORT_SERVER_INFO_TO_SERVER = 10053;
+}
+
+message NodeToMasterPacket
+{
+	ServerReport server_info = 1;
+}
+
+message MasterToNodePacket
+{
+	int32 result = 1;
+}
+
+message GateToLoginPacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message LoginToGatePacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message GateToGamePacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message GameToGatePacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message GateToChatPacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message ChatToGatePacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message WorldToGatePacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message GateToWorldPacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message GameToChatPacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message ChatToGamePacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message GameToWorldPacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message WorldToGamePacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message LoginToWorldPacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message WorldToLoginPacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message WorldToDBPacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}
+
+message DBToWorldPacket
+{
+	uint64 player_id = 1;
+	int32 msg_id = 2;
+	bytes msg_body = 3;
+}

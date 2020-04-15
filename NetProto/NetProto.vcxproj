@@ -80,7 +80,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\NetProto\server;..\NetProto\client;..\ThirdPart\protobuf\src;..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\NetProto;..\ThirdPart\protobuf\src;..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -132,17 +132,17 @@
   <ItemGroup>
     <ClInclude Include="client\chat\Chat.pb.h" />
     <ClInclude Include="client\chat\HandleChat.h" />
-    <ClInclude Include="client\ClientPublic.pb.h" />
     <ClInclude Include="client\gate\HandleGate.h" />
     <ClInclude Include="client\world\HandleWorld.h" />
     <ClInclude Include="client\login\HandleLogin.h" />
     <ClInclude Include="client\login\Login.pb.h" />
+    <ClInclude Include="Common.pb.h" />
     <ClInclude Include="server\rank\HandleRank.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="client\chat\Chat.pb.cc" />
-    <ClCompile Include="client\ClientPublic.pb.cc" />
     <ClCompile Include="client\login\Login.pb.cc" />
+    <ClCompile Include="Common.pb.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

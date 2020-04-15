@@ -1,5 +1,5 @@
 syntax = "proto3";
-import "ClientPublic.proto";
+import "Common.proto";
 
 // 请求登录 服务器登录验证
 message Login_LoginReq   

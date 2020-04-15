@@ -21,9 +21,6 @@
     <ClInclude Include="client\login\Login.pb.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="client\ClientPublic.pb.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="client\chat\Chat.pb.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -39,15 +36,18 @@
     <ClInclude Include="client\world\HandleWorld.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Common.pb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="client\login\Login.pb.cc">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="client\ClientPublic.pb.cc">
+    <ClCompile Include="client\chat\Chat.pb.cc">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="client\chat\Chat.pb.cc">
+    <ClCompile Include="Common.pb.cc">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
