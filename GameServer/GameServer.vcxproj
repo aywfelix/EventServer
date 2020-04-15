@@ -168,6 +168,9 @@
     <ClCompile Include="scene\map\Zone.cpp" />
     <ClCompile Include="scene\map\ZoneMgr.cpp" />
     <ClCompile Include="ai\StateMgr.cpp" />
+    <ClCompile Include="task\TaskTrigger.cpp" />
+    <ClCompile Include="task\TaskMgr.cpp" />
+    <ClCompile Include="task\Task.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bag\BagBase.h" />
@@ -202,6 +205,9 @@
     <ClInclude Include="scene\map\ZoneMgr.h" />
     <ClInclude Include="ai\State.h" />
     <ClInclude Include="ai\StateMgr.h" />
+    <ClInclude Include="task\TaskTrigger.h" />
+    <ClInclude Include="task\TaskMgr.h" />
+    <ClInclude Include="task\Task.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

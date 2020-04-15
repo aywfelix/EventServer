@@ -3,7 +3,7 @@
 #include "ClientPlayer/ClientPlayerMgr.h"
 #include "Session.h"
 #include "SnowFlake.h"
-#include "clientmodule/ModuleGate.h"
+
 
 Gate::Gate()
 {
@@ -37,5 +37,4 @@ void Gate::InitManager()
 {
 	g_pSnowFlake->Init();
 	// register msg
-	ModuleGate::Instance();
 }

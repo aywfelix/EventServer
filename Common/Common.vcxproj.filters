@@ -3,9 +3,6 @@
   <ItemGroup>
     <ClCompile Include="Assertx.cpp" />
     <ClCompile Include="cityhash\city.cc" />
-    <ClCompile Include="clientproto\Chat.pb.cc" />
-    <ClCompile Include="clientproto\ClientPublic.pb.cc" />
-    <ClCompile Include="clientproto\Login.pb.cc" />
     <ClCompile Include="designtable\TableMgr.cpp" />
     <ClCompile Include="JsonConfig.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
@@ -48,9 +45,6 @@
     <ClInclude Include="BlockQueue.hpp" />
     <ClInclude Include="cityhash\city.h" />
     <ClInclude Include="cityhash\citycrc.h" />
-    <ClInclude Include="clientproto\Chat.pb.h" />
-    <ClInclude Include="clientproto\ClientPublic.pb.h" />
-    <ClInclude Include="clientproto\Login.pb.h" />
     <ClInclude Include="CommDef.h" />
     <ClInclude Include="concurrentqueue.h" />
     <ClInclude Include="ConcurrentQueue.hpp" />
@@ -97,10 +91,5 @@
     <ClInclude Include="expr\SimpleExpr.h" />
     <ClInclude Include="stat\Stat.h" />
     <ClInclude Include="3d\V3Map.h" />
-    <ClInclude Include="clienthandle\HandleWorld.h" />
-    <ClInclude Include="clienthandle\HandleChat.h" />
-    <ClInclude Include="clienthandle\HandleLogin.h" />
-    <ClInclude Include="clienthandle\HandleGame.h" />
-    <ClInclude Include="clienthandle\HandleGate.h" />
   </ItemGroup>
 </Project>

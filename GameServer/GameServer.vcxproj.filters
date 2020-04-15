@@ -34,8 +34,10 @@
     <ClCompile Include="gameplayer\GamePlayer.cpp" />
     <ClCompile Include="msghandle\ModuleBag.cpp" />
     <ClCompile Include="ai\Context.cpp" />
-    <ClCompile Include="ai\State.cpp" />
     <ClCompile Include="ai\StateMgr.cpp" />
+    <ClCompile Include="task\Task.cpp" />
+    <ClCompile Include="task\TaskMgr.cpp" />
+    <ClCompile Include="task\TaskTrigger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -71,5 +73,8 @@
     <ClInclude Include="ai\Context.h" />
     <ClInclude Include="ai\State.h" />
     <ClInclude Include="ai\StateMgr.h" />
+    <ClInclude Include="task\Task.h" />
+    <ClInclude Include="task\TaskMgr.h" />
+    <ClInclude Include="task\TaskTrigger.h" />
   </ItemGroup>
 </Project>

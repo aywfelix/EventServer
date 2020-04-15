@@ -41,7 +41,7 @@ bool ClientPlayer::SendToGame(const int msg_id, const char* msg, size_t msg_len)
 	gatetogame.set_player_id(m_playerid);
 	gatetogame.set_msg_id(msg_id);
 	gatetogame.set_msg_body(msg, msg_len);
-	g_pServerThread->NodeServer().SendToGame(GATE_ROUTE_TO_GAME, &gatetogame);
+	g_pServerThread->NodeServer().BroadcastToGame(GATE_ROUTE_TO_GAME, &gatetogame);
 	CLOG_INFO << "gate send to game msg: " << CLOG_END;
 	return true;
 }

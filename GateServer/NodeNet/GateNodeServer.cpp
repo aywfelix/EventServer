@@ -1,11 +1,11 @@
 #include "GateNodeServer.h"
 #include "GateServerThread.h"
 #include "JsonConfig.h"
-#include "clientmodule/ModuleChat.h"
 #include "ClientPlayer/ClientPlayerMgr.h"
 #include "LogUtil.h"
 #include "SeFNodeNet.pb.h"
 #include "SeFNet.h"
+#include "client/chat/HandleChat.h"
 
 
 bool GateNodeServer::InitHelper()
@@ -88,7 +88,7 @@ void GateNodeServer::OnChatRouteGate(socket_t sock_fd, const int msg_id, const c
 	if (!ReceivePB(msg_id, msg, msg_len, &chat_packet)) return;
 
 	uint64_t playerId = chat_packet.player_id();
-	if (ModuleChat::RPC_CHAT_CHAT_REQ == chat_packet.msg_id())
+	if (HandleChat::RPC_CHAT_CHAT_REQ == chat_packet.msg_id())
 	{
 		ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayerByID(playerId);
 		if (pPlayer == nullptr) return;

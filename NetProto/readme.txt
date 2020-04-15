@@ -1,1 +1,4 @@
-保存生成protobuffer 协议
+生成客户端服务端的通信协议
+client 文件夹保存通信协议protobuffer信息（处理gameserver 与玩家之间的协议处理）
+server 文件夹保存服务器内部通信协议及游戏玩家的数据protobuffer信息（用于worldserver处理全局信息）
+

@@ -1,0 +1,14 @@
+syntax = "proto3";
+import "ClientPublic.proto";
+
+message Chat_ChatReq
+{
+	int32 channel = 1;
+	string chat_msg = 2;
+}
+
+message Chat_ChatReply
+{
+	int32 ret = 1;
+	string chat_msg = 2;
+}

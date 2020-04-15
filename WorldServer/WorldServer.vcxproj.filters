@@ -30,6 +30,9 @@
     <ClCompile Include="World.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="msghandle\HandleRank.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NodeNet\WorldNodeClient.h">

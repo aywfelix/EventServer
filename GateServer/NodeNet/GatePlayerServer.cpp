@@ -8,18 +8,17 @@
 #include "JsonConfig.h"
 #include "Session.h"
 
-#include "clientmodule/ModuleChat.h"
-#include "clientmodule/ModuleGate.h"
-#include "clientmodule/ModuleLogin.h"
-#include "clientmodule/ModuleWorld.h"
-#include "clientmodule/ModuleGame.h"
+#include "client/chat/HandleChat.h"
+#include "client/gate/HandleGate.h"
+#include "client/login/HandleLogin.h"
+#include "client/world/HandleWorld.h"
 
 bool GatePlayerServer::Init()
 {
 	m_pNetModule = new SeFNet();
 	m_pNetModule->AddEventCallBack(this, &GatePlayerServer::OnSocketClientEvent);
 	m_pNetModule->AddReceiveCallBack(this, &GatePlayerServer::OnOtherMessage);
-	m_pNetModule->AddReceiveCallBack(ModuleChat::RPC_CHAT_CHAT_REQ, this, &GatePlayerServer::OnOtherMessage);
+	m_pNetModule->AddReceiveCallBack(HandleChat::RPC_CHAT_CHAT_REQ, this, &GatePlayerServer::OnOtherMessage);
 	
 	//init server info
 	Json::Value GatePlayerServerConf = g_JsonConfig->m_Root["GatePlayerServer"];
@@ -93,30 +92,28 @@ void GatePlayerServer::OnOtherMessage(const socket_t sock_fd, const int msg_id, 
 
 	switch (moduleId)
 	{
-	case ModuleGate::MODULE_ID_GATE:
+	case HandleGate::MODULE_ID_GATE:
 	{
 		cli_player->SendToGate(msg_id, msg, msg_len, sock_fd);
 		break;
 	}
-	case ModuleLogin::MODULE_ID_LOGIN:
+	case HandleLogin::MODULE_ID_LOGIN:
 	{
 		cli_player->SendToLogin(msg_id, msg, msg_len);
 		break;
 	}
-	case ModuleChat::MODULE_ID_CHAT:
+	case HandleChat::MODULE_ID_CHAT:
 	{
 		cli_player->SendToChat(msg_id, msg, msg_len);
 		break;
 	}
-	case ModuleWorld::MODULE_ID_WORLD:
+	case HandleWorld::MODULE_ID_WORLD:
 	{
 		cli_player->SendToWorld(msg_id, msg, msg_len);
 		break;
 	}
-	case ModuleGame::MODULE_ID_GAME:
-		cli_player->SendToGame(msg_id, msg, msg_len);
-		break;
 	default:
+		cli_player->SendToGame(msg_id, msg, msg_len);
 		break;
 	}
 }

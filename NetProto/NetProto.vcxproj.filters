@@ -14,4 +14,41 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="client\login\HandleLogin.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="client\login\Login.pb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="client\ClientPublic.pb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="client\chat\Chat.pb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="client\chat\HandleChat.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="server\rank\HandleRank.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="client\gate\HandleGate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="client\world\HandleWorld.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="client\login\Login.pb.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="client\ClientPublic.pb.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="client\chat\Chat.pb.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

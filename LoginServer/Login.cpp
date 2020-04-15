@@ -4,7 +4,7 @@
 #include "Session.h"
 #include "Connection/ConnectionPool.h"
 #include "redis/db_redis.h"
-#include "clientmodule/ModuleLogin.h"
+#include "login/HandleLogin.h"
 
 
 Login::Login()
@@ -45,5 +45,5 @@ void Login::InitManager()
 		g_JsonConfig->m_RedisConf["port"].asInt());
 
 	// register msg
-	ModuleLogin::Instance();
+	HandleLogin::Instance();
 }

@@ -1,12 +1,12 @@
-#include "clientmodule/ModuleLogin.h"
 #include "LoginPlayer.h"
 #include "LogUtil.h"
 #include "Assertx.h"
 #include "Connection/ConnectionPool.h"
 #include "NodeNet/LoginServerThread.h"
 #include "redis/db_redis.h"
+#include "login/HandleLogin.h"
 
-int ModuleLogin::LoginReq(Player* player, Packet* packet)
+int HandleLogin::LoginReq(Player* player, Packet* packet)
 {
 	Assert(player && packet);
 	auto pb_msg = (Login_LoginReq*)packet->msg;
@@ -56,18 +56,18 @@ int ModuleLogin::LoginReq(Player* player, Packet* packet)
 
 	return 0;
 }
-int ModuleLogin::CreateRoleReq(Player* player, Packet* packet)
+int HandleLogin::CreateRoleReq(Player* player, Packet* packet)
 {
 
 	return 0;
 }
-int ModuleLogin::SelectRoleReq(Player* player, Packet* packet)
+int HandleLogin::SelectRoleReq(Player* player, Packet* packet)
 {
 	// TODO 选择角色数据 加载到redis中
 
 	return 0;
 }
-int ModuleLogin::DelRoleReq(Player* player, Packet* packet)
+int HandleLogin::DelRoleReq(Player* player, Packet* packet)
 {
 	return 0;
 }

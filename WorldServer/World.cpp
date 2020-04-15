@@ -1,7 +1,7 @@
 #include "World.h"
 #include "NodeNet/WorldServerThread.h"
 #include "Session.h"
-#include "clientmodule/ModuleWorld.h"
+#include "client/world/HandleWorld.h"
 
 World::World()
 {
@@ -32,5 +32,5 @@ void World::Stop()
 void World::InitManager()
 {
 	// register msg
-	ModuleWorld::Instance();
+	HandleWorld::Instance();
 }
