@@ -1,4 +1,4 @@
-#include "GameDef.h"
+#include "Common.h"
 
 float GetDistance(const WorldPos& posA, const WorldPos& posB)
 {

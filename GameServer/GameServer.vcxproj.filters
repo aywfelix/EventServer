@@ -29,7 +29,6 @@
     <ClCompile Include="scene\dungeon\FightSceneImpl.cpp" />
     <ClCompile Include="scene\SceneImpl.cpp" />
     <ClCompile Include="obj\ObjPlayerMgr.cpp" />
-    <ClCompile Include="common\GameDef.cpp" />
     <ClCompile Include="obj\ObjPool.cpp" />
     <ClCompile Include="gameplayer\GamePlayer.cpp" />
     <ClCompile Include="msghandle\ModuleBag.cpp" />
@@ -38,6 +37,7 @@
     <ClCompile Include="task\Task.cpp" />
     <ClCompile Include="task\TaskMgr.cpp" />
     <ClCompile Include="task\TaskTrigger.cpp" />
+    <ClCompile Include="common\Common.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -67,7 +67,6 @@
     <ClInclude Include="scene\dungeon\FightSceneImpl.h" />
     <ClInclude Include="scene\SceneImpl.h" />
     <ClInclude Include="obj\ObjPlayerMgr.h" />
-    <ClInclude Include="common\GameDef.h" />
     <ClInclude Include="obj\ObjPool.h" />
     <ClInclude Include="gameplayer\GamePlayer.h" />
     <ClInclude Include="ai\Context.h" />
@@ -76,5 +75,7 @@
     <ClInclude Include="task\Task.h" />
     <ClInclude Include="task\TaskMgr.h" />
     <ClInclude Include="task\TaskTrigger.h" />
+    <ClInclude Include="common\Common.h" />
+    <ClInclude Include="common\GameDef.h" />
   </ItemGroup>
 </Project>

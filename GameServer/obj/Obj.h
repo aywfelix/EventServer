@@ -1,5 +1,6 @@
 #pragma once
 #include "common/GameDef.h"
+#include "common/Common.h"
 #include "MemPool.hpp"
 #include "ai/Context.h"
 
