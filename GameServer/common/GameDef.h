@@ -1,7 +1,7 @@
 #pragma once
 
 #include <math.h>
-#include "Proto/ServerPublic.pb.h"
+#include "Common.pb.h"
 
 // 地图坐标处理（2D）
 class WorldPos

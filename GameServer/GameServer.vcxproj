@@ -79,7 +79,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\NavMesh\RecastDemo\Contrib;..\NavMesh\Recast\Include;..\NavMesh\DetourTileCache\Include;..\NavMesh\DetourCrowd\Include;..\NavMesh\Detour\Include;..\ThirdPart\hiredis;..\ThirdPart\protobuf\src;..\Common;..\SeNet;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\NetProto;..\NavMesh\RecastDemo\Contrib;..\NavMesh\Recast\Include;..\NavMesh\DetourTileCache\Include;..\NavMesh\DetourCrowd\Include;..\NavMesh\Detour\Include;..\ThirdPart\hiredis;..\ThirdPart\protobuf\src;..\Common;..\SeNet;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <DisableSpecificWarnings>4099</DisableSpecificWarnings>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>

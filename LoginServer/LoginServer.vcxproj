@@ -24,7 +24,7 @@
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="MsgHandle\LoginPlayer.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MsgHandle\ModuleLogin.cpp" />
+    <ClCompile Include="MsgHandle\HandleLogin.cpp" />
     <ClCompile Include="NodeNet\LoginNodeClient.cpp" />
     <ClCompile Include="NodeNet\LoginServerThread.cpp" />
   </ItemGroup>
@@ -97,7 +97,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\NetProto\client;..\ThirdPart\hiredis;C:\Program Files\MariaDB 10.4\include\mysql;..\ThirdPart\protobuf\src;..\SeNet;..\Common\mariacpp;..\Common;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\NetProto;..\ThirdPart\hiredis;C:\Program Files\MariaDB 10.4\include\mysql;..\ThirdPart\protobuf\src;..\SeNet;..\Common\mariacpp;..\Common;..\;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <DisableSpecificWarnings>4099</DisableSpecificWarnings>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>

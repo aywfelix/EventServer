@@ -1,7 +1,8 @@
-#include "chat/HandleChat.h"
 #include "ChatPlayer.h"
 #include "LogUtil.h"
 #include "Assertx.h"
+#include "client/chat/HandleChat.h"
+
 
 int HandleChat::ChatReq(Player* player, Packet* packet)
 {

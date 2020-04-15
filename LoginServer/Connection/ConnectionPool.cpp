@@ -4,7 +4,7 @@
 #include "SePlatForm.h"
 #include "Common/packet/Packet.h"
 #include "MsgHandle/LoginPlayer.h"
-#include "login/HandleLogin.h"
+#include "client/login/HandleLogin.h"
 
 std::unique_ptr<ConnectionPool> g_conn_pool = nullptr;
 

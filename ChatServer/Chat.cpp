@@ -1,7 +1,7 @@
 #include "Chat.h"
 #include "NodeNet/ChatServerThread.h"
 #include "packet/PacketMgr.h"
-#include "clienthandle/handleChat.h"
+#include "client/chat/handleChat.h"
 #include "Session.h"
 
 Chat::Chat()

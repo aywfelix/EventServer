@@ -30,13 +30,13 @@
     <ClCompile Include="MsgHandle\LoginPlayer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="MsgHandle\ModuleLogin.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Connection\Conn.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Connection\ConnectionPool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MsgHandle\HandleLogin.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
