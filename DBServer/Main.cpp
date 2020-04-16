@@ -46,11 +46,11 @@ int main()
 	OnHookSignal();
 
 	//server config
-	g_JsonConfig.reset(new JsonConfig());
-	g_JsonConfig->Load("../Config/ServerConf.json");
-	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root["DBServer"];
+	g_pConfig.reset(new JsonConfig());
+	g_pConfig->Load("../Config/ServerConf.json");
+	g_pConfig->m_ServerConf = g_pConfig->m_Root["DBServer"];
 	//mariadb config
-	g_JsonConfig->m_dbConf = g_JsonConfig->m_Root["MariaDB"];
+	g_pConfig->m_dbConf = g_pConfig->m_Root["MariaDB"];
 	INIT_SFLOG("DBServer");
 
 	DB db;

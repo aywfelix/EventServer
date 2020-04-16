@@ -2,18 +2,13 @@
 #include "MapNav.h"
 #include "scene/Scene.h"
 
-bool SceneMap::Init(std::string mapfile)
+
+void SceneMap::Start(const std::string& mapfile)
 {
-	m_mapfile = mapfile;
-	return true;
+	m_thread = std::thread(std::bind(&SceneMap::LoadMap, this, mapfile));
 }
 
-void SceneMap::Start()
-{
-	m_thread = std::thread(std::bind(&SceneMap::LoadMap, this));
-}
-
-void SceneMap::LoadMap()
+void SceneMap::LoadMap(const std::string& mapfile)
 {
 	m_map_nav.LoadTile(m_mapfile);
 }

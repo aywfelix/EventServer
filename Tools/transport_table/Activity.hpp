@@ -5,42 +5,42 @@
 #include <string>
 #include <unordered_map>
 
-#include "ServerComm/CommonDef.h"
-#include "jsoncpp/json.h"
-#include "easylogging/easylogging++.h"
-#include "Config.h"
+#include "CommDef.h"
+#include "json.h"
+#include "JsonConfig.h"
+#include "LogUtil.h"
 
 class ActivityRow
 {
 public:
-	int id;                                           //ä¸»é”®id æ´»åŠ¨id
-std::string comment;                              //æ³¨é‡Š 
-int tab_id;                                       //æ ‡ç­¾ç¼–å· æ´»åŠ¨æ‰€å±æ ‡ç­¾
-int weight;                                       //æƒé‡ æ ‡ç­¾åˆ—è¡¨å†…çš„æ˜¾ç¤ºæƒé‡
-int name_id;                                      //åç§°id æ´»åŠ¨åç§°id
-int describe_id;                                  //æè¿°æ–‡æœ¬id 
-int race_id;                                      //æ˜¯å¦ç›¸å…³ç§æ— æ˜¯å¦éœ€è¦åˆ¤æ–­ç©å®¶ç§æ—æ¥æ˜¾ç¤ºå¯¹è¯æŒ‰é’®,0è¡¨ç¤ºå¦ï¼Œ1è¡¨ç¤ºæ˜¯
-std::string main_icon;                            //ä¸»å›¾åç§° 
-std::string sub_icon;                             //å‰¯å›¾åç§° 
-int function_on;                                  //æ˜¯å¦å¼€å¯ 0 ä¸å¼€å¯ 1 å¼€å¯
-int recommend;                                    //æ˜¯å¦å¼€å¯æ¨è 0 ä¸å¼€å¯ 1 å¼€å¯
-int call;                                         //æ”¯æŒå¼€å¯å¼¹çª—æé†’ 0 ä¸å¼€å¯ 1 å¼€å¯
-int push;                                         //æ”¯æŒå¼€å¯æ¨é€æé†’ 0 ä¸å¼€å¯ 1 å¼€å¯
-int open_type;                                    //æ—¶é—´ç±»å‹ 1 å…¨å¤©å¼€æ”¾ 2 é™æ—¶å¼€æ”¾
-std::vector<int> open_in_week;                    //å¼€æ”¾å‘¨æ¬¡ é™æ—¶å¼€æ”¾æ—¶ä½¿ç”¨ ï¼ˆä¾‹ï¼‰2|4
-std::vector<int> open_in_day;                     //å¼€æ”¾æ—¶é—´ é™æ—¶å¼€æ”¾æ—¶ä½¿ç”¨ ï¼ˆä¾‹ 00:00 - 23:59ï¼‰ 0|0|23|59
-int reset_type;                                   //é‡ç½®æ¬¡æ•°ç±»å‹ 1 æ¯å¤© 2 æ¯å‘¨
-int level_min;                                    //æœ€ä½ç­‰çº§é™åˆ¶ 
-int player_min;                                   //æœ€ä½ç»„é˜Ÿç©å®¶æ•°é‡ 
-int active_value;                                 //æ´»è·ƒåº¦å¥–åŠ± å®Œæˆæ¯è½®ä»»åŠ¡å¥–åŠ±çš„æ´»è·ƒåº¦
-int rounds_max;                                   //è½®æ¬¡æ•°ä¸Šé™ 
-int times_max;                                    //ç¯æ¬¡æ•°ä¸Šé™ æ€»=ç¯Ã—è½®
-std::vector<int> drop_rounds;                     //æ¯è½®æ‰è½å¥–åŠ± è®¡ç®—æ–¹å¼|æ‰è½åŒ…id ï¼ˆæ‰è½è®¡ç®—ï¼š0æ¦‚ç‡ï¼›1æƒå€¼ï¼‰
-std::vector<int> drop_times;                      //æ¯ç¯æ‰è½å¥–åŠ± è®¡ç®—æ–¹å¼|æ‰è½åŒ…id ï¼ˆæ‰è½è®¡ç®—ï¼š0æ¦‚ç‡ï¼›1æƒå€¼ï¼‰
-std::vector<int> drop_display;                    //å¥–åŠ±æ˜¾ç¤º 
-std::vector<int> scene_id;                        //åœºæ™¯id æ´»åŠ¨æ¶‰åŠçš„æ‰€æœ‰åœºæ™¯id
-int quest_id;                                     //è®°å½•ä»»åŠ¡id è®°å½•æ´»è·ƒåº¦çš„ä»»åŠ¡id
-
+	int id;                                           // Ö÷¼üid »î¶¯id
+	std::string comment;                              // ×¢ÊÍ 
+	int tab_id;                                       // ±êÇ©±àºÅ »î¶¯ËùÊô±êÇ©
+	int weight;                                       // È¨ÖØ ±êÇ©ÁĞ±íÄÚµÄÏÔÊ¾È¨ÖØ
+	int name_id;                                      // Ãû³Æid »î¶¯Ãû³Æid
+	int describe_id;                                  // ÃèÊöÎÄ±¾id 
+	int race_id;                                      // ÊÇ·ñÏà¹ØÖÖ×å ÊÇ·ñĞèÒªÅĞ¶ÏÍæ¼ÒÖÖ×åÀ´ÏÔÊ¾¶Ô»°°´Å¥,0±íÊ¾·ñ£¬1±íÊ¾ÊÇ
+	std::string main_icon;                            // Ö÷Í¼Ãû³Æ 
+	std::string sub_icon;                             // ¸±Í¼Ãû³Æ 
+	int function_on;                                  // ÊÇ·ñ¿ªÆô 0 ²»¿ªÆô 1 ¿ªÆô
+	int recommend;                                    // ÊÇ·ñ¿ªÆôÍÆ¼ö 0 ²»¿ªÆô 1 ¿ªÆô
+	int call;                                         // Ö§³Ö¿ªÆôµ¯´°ÌáĞÑ 0 ²»¿ªÆô 1 ¿ªÆô
+	int push;                                         // Ö§³Ö¿ªÆôÍÆËÍÌáĞÑ 0 ²»¿ªÆô 1 ¿ªÆô
+	int open_type;                                    // Ê±¼äÀàĞÍ 1 È«Ìì¿ª·Å 2 ÏŞÊ±¿ª·Å
+	std::vector<int> open_in_week;                    // ¿ª·ÅÖÜ´Î ÏŞÊ±¿ª·ÅÊ±Ê¹ÓÃ £¨Àı£©2|4
+	std::vector<int> open_in_day;                     // ¿ª·ÅÊ±¼ä ÏŞÊ±¿ª·ÅÊ±Ê¹ÓÃ £¨Àı 00:00 - 23:59£© 0|0|23|59
+	int reset_type;                                   // ÖØÖÃ´ÎÊıÀàĞÍ 1 Ã¿Ìì 2 Ã¿ÖÜ
+	int level_min;                                    // ×îµÍµÈ¼¶ÏŞÖÆ 
+	int player_min;                                   // ×îµÍ×é¶ÓÍæ¼ÒÊıÁ¿ 
+	int active_value;                                 // »îÔ¾¶È½±Àø Íê³ÉÃ¿ÂÖÈÎÎñ½±ÀøµÄ»îÔ¾¶È
+	int rounds_max;                                   // ÂÖ´ÎÊıÉÏÏŞ 
+	int times_max;                                    // »·´ÎÊıÉÏÏŞ ×Ü=»·¡ÁÂÖ
+	std::vector<int> drop_rounds;                     // Ã¿ÂÖµôÂä½±Àø ¼ÆËã·½Ê½|µôÂä°üid £¨µôÂä¼ÆËã£º0¸ÅÂÊ£»1È¨Öµ£©
+	std::vector<int> drop_times;                      // Ã¿»·µôÂä½±Àø ¼ÆËã·½Ê½|µôÂä°üid £¨µôÂä¼ÆËã£º0¸ÅÂÊ£»1È¨Öµ£©
+	std::vector<int> drop_display;                    // ½±ÀøÏÔÊ¾ 
+	std::vector<int> scene_id;                        // ³¡¾°id »î¶¯Éæ¼°µÄËùÓĞ³¡¾°id
+	int quest_id;                                     // ¼ÇÂ¼ÈÎÎñid ¼ÇÂ¼»îÔ¾¶ÈµÄÈÎÎñid
+	
 };
 
 class ActivityTable
@@ -98,7 +98,7 @@ public:
 		std::string loadfile = std::string(TABLE_PATH).append(jsonFile.c_str());
 		if (!g_pConfig->Load(loadfile.c_str()))
 		{
-			LOG(ERROR) << "load table Activity error";
+			CLOG_ERR << "load table Activity error" << CLOG_END;
 			return false;
 		}
 
@@ -109,7 +109,7 @@ public:
 				auto& r = (*it);
 				ptr_row_type pRow(new ActivityRow);
 				ActivityRow& row = *pRow;
-				                row.id = r["id"].asInt();
+                row.id = r["id"].asInt();
                 row.comment = r["comment"].asString();
                 row.tab_id = r["tab_id"].asInt();
                 row.weight = r["weight"].asInt();
@@ -178,7 +178,7 @@ public:
 			}
 			catch (std::exception const& e)
 			{
-				LOG(ERROR) << "read table Activity error," << e.what() << ":" << (*it)["id"].asInt();
+				CLOG_ERR << "read table Activity error," << e.what() << ":" << (*it)["id"].asInt() << CLOG_END;
 				return false;
 			}
 		}

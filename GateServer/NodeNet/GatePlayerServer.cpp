@@ -21,7 +21,7 @@ bool GatePlayerServer::Init()
 	m_pNetModule->AddReceiveCallBack(HandleChat::RPC_CHAT_CHAT_REQ, this, &GatePlayerServer::OnOtherMessage);
 	
 	//init server info
-	Json::Value GatePlayerServerConf = g_JsonConfig->m_Root["GatePlayerServer"];
+	Json::Value GatePlayerServerConf = g_pConfig->m_Root["GatePlayerServer"];
 	if (!m_pNetModule->InitNet(GatePlayerServerConf["NodePort"].asUInt()))
 	{
 		CLOG_ERR << "init GatePlayerServer failed" << CLOG_END;

@@ -14,4 +14,4 @@ public:
 	Json::Value m_RedisConf;
 };
 
-extern std::unique_ptr<JsonConfig>  g_JsonConfig;
+extern std::unique_ptr<JsonConfig>  g_pConfig;

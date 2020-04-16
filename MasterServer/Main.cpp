@@ -46,9 +46,9 @@ int main()
 #ifdef SF_PLATFORM_LINUX
 	SetResource();
 #endif
-	g_JsonConfig.reset(new JsonConfig);
-	g_JsonConfig->Load("../Config/ServerConf.json");
-	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root["MasterServer"];
+	g_pConfig.reset(new JsonConfig);
+	g_pConfig->Load("../Config/ServerConf.json");
+	g_pConfig->m_ServerConf = g_pConfig->m_Root["MasterServer"];
 	INIT_SFLOG("MasterServer");
 	Master master;
 	master.Init();

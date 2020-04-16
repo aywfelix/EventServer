@@ -1,12 +1,12 @@
 #pragma once
 #include <map>
-
+#include <memory>
 
 class SceneMap;
 class Scene;
 class SceneMapMgr
 {
-	// <sceneid, <lineid, scenemap>>
+	// < sceneid, <lineid, scenemap> >
 	using scene_map_mgr_t = std::map<int32_t, std::map<int32_t, SceneMap*>>;
 
 public:
@@ -16,3 +16,4 @@ private:
 	scene_map_mgr_t m_scene_map;
 };
 
+extern std::unique_ptr<SceneMapMgr> g_pSceneMapMgr;

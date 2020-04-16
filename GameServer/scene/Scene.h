@@ -1,16 +1,10 @@
 #pragma once
 #include "map/ZoneMgr.h"
 #include "map/SceneMap.h"
+#include "common/GameDef.h"
 
 class SceneMap;
 class SceneImpl;
-
-enum ESceneType
-{
-	E_SCENE_NORM = 1,		// 普通场景
-	E_SCENE_MIRROR = 2,		// 游戏镜像
-	E_SCENE_DUNGEON = 3,	// 游戏副本
-};
 
 // 场景处理
 class Scene

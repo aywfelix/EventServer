@@ -28,9 +28,9 @@ bool Conn::ConnectToDB()
 	bool bConn = false;
 	try
 	{
-	const char* uri = g_JsonConfig->m_dbConf["uri"].asCString();
-	const char* user = g_JsonConfig->m_dbConf["user"].asCString();
-	const char* passwd = g_JsonConfig->m_dbConf["passwd"].asCString();
+	const char* uri = g_pConfig->m_dbConf["uri"].asCString();
+	const char* user = g_pConfig->m_dbConf["user"].asCString();
+	const char* passwd = g_pConfig->m_dbConf["passwd"].asCString();
 	bConn = m_conn.connect(MariaCpp::Uri(uri), user, passwd);
 	}
 	catch (const std::exception & e)

@@ -1,3 +1,5 @@
+#_*_coding:utf-8 _*_ 
+
 import xlrd
 from xlrd import xldate_as_tuple
 import multiprocessing
@@ -74,7 +76,7 @@ class ExcelToJson:
         return excels, self.classes_name
 
     def gen_row_fields(self, data_row_type, data_desc):
-        self.row_fields = ""
+        self.row_fields = "\t"
         tmp_field = ""
         for i in range(len(data_row_type)):
             x = data_row_type[i]
@@ -82,8 +84,8 @@ class ExcelToJson:
             strlen = 50
             data_desc[i] = data_desc[i].replace("\n", " ")
             self.row_fields += (tmp_field + " " *
-                                (strlen-len(tmp_field)) + "//"+data_desc[i])
-            self.row_fields += "\n"
+                                (strlen-len(tmp_field)) + "// "+data_desc[i])
+            self.row_fields += "\n\t"
 
     def gen_json_logic(self, data_row_type):
         for i in range(len(data_row_type)):
@@ -97,15 +99,14 @@ class ExcelToJson:
 
     def transport_config_cpp(self, table_name):
         s = ""
-        with codecs.open("./table_cpp.tmpl", "r", "utf-8") as f:
+        with codecs.open("./table_cpp.tmpl", "r", "GB2312") as f:
             s = f.read()
         if not s:
             return
-
         s = s % {"class_name": table_name,
                  "row_fields": self.row_fields, "json_logic": self.json_logic}
 
-        with codecs.open(table_name+".hpp", "w", "utf-8") as f:
+        with codecs.open(table_name+".hpp", "w", "GB2312") as f:
             f.write(s)
             f.flush()
             pass
@@ -144,7 +145,7 @@ class ExcelToJson:
             if "std::vector<std::string>" == data_type_tuple[0]:
                 row_dict[data_type_tuple[1]] = list(
                     map(str, row_values[i].split('|')))
-        print("=============", row_dict)
+        # print("=============", row_dict)
         return row_dict
         pass
 
@@ -169,28 +170,25 @@ class ExcelToJson:
         try:
             excelFile = xlrd.open_workbook(excelName)
             excelSheetNames = excelFile.sheet_names()
-            # print(excelSheetNames)
             sheet = excelFile.sheet_by_name(excelSheetNames[0])
             excel_data_type = sheet.row_values(0)
-            # print(excel_data_type)
             self.fields = sheet.row_values(2)
-            # print(self.fields)
             data_row_type = {}
             data_type = []
             for x in excel_data_type:
                 data_type.append(data_type_dic[x])
             data_row_type = list(zip(data_type, self.fields))
-            print(data_row_type)
             data_desc1 = sheet.row_values(3)
             data_desc2 = sheet.row_values(4)
             data_desc = [a+" "+b for a, b in zip(data_desc1, data_desc2)]
-            # print(data_desc)
+
             self.gen_row_fields(data_row_type, data_desc)
             self.gen_json_logic(data_row_type)
             # 生成cpp 文件及json文件
             self.transport_json(table_name, data_row_type, sheet)
             self.transport_config_cpp(table_name)
             self.init_attr()
+            print("transport table ok!", excelName)
         except Exception as e:
             print('str(Exception):\t', str(e))
             print('traceback.print_exc():', traceback.print_exc())

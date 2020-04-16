@@ -10,9 +10,9 @@ int main()
 	INIT_SFLOG("PlayerClient");
 	CLOG_INFO << "client connect to gate ok" << CLOG_END;
 	//init config
-	g_JsonConfig.reset(new JsonConfig);
-	g_JsonConfig->Load("../Config/ServerConf.json");
-	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root["GateServer"];
+	g_pConfig.reset(new JsonConfig);
+	g_pConfig->Load("../Config/ServerConf.json");
+	g_pConfig->m_ServerConf = g_pConfig->m_Root["GateServer"];
 
 	g_pSessionPool = std::make_unique<SessionPool>();
 

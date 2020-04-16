@@ -13,7 +13,7 @@ bool Client::Init()
 	m_pNetClientModule->AddReceiveCallBack(ServerType::SERVER_TYPE_GATE, this, &Client::OnMessage);
 	
 	ConnectServer();
-	m_ServerId = g_JsonConfig->m_Root["GatePlayerServer"]["NodeId"].asInt();
+	m_ServerId = g_pConfig->m_Root["GatePlayerServer"]["NodeId"].asInt();
 	return true;
 }
 
@@ -21,10 +21,10 @@ void Client::ConnectServer()
 {
 	//set gate server info
 	ConnectDataPtr ServerData = std::make_shared<ConnectData>();
-	ServerData->serv_id = g_JsonConfig->m_Root["GatePlayerServer"]["NodeId"].asInt();
-	ServerData->port = g_JsonConfig->m_Root["GatePlayerServer"]["NodePort"].asInt();
-	ServerData->serv_name = g_JsonConfig->m_Root["GatePlayerServer"]["NodeName"].asString();
-	ServerData->ip = g_JsonConfig->m_Root["GatePlayerServer"]["NodeIp"].asString();
+	ServerData->serv_id = g_pConfig->m_Root["GatePlayerServer"]["NodeId"].asInt();
+	ServerData->port = g_pConfig->m_Root["GatePlayerServer"]["NodePort"].asInt();
+	ServerData->serv_name = g_pConfig->m_Root["GatePlayerServer"]["NodeName"].asString();
+	ServerData->ip = g_pConfig->m_Root["GatePlayerServer"]["NodeIp"].asString();
 	ServerData->serv_type = ServerType::SERVER_TYPE_GATE;
 	ServerData->conn_state = ConnectState::CONNECTING;
 	m_pNetClientModule->AddServer(ServerData);

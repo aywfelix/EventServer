@@ -15,7 +15,7 @@ bool GateNodeServer::InitHelper()
 	mNetServModule->AddReceiveCallBack(CHAT_ROUTE_TO_GATE, this, &GateNodeServer::OnChatRouteGate);
 
 	//init server info
-	if (!mNetServModule->InitNet(g_JsonConfig->m_ServerConf["NodePort"].asUInt()))
+	if (!mNetServModule->InitNet(g_pConfig->m_ServerConf["NodePort"].asUInt()))
 	{
 		LOG_ERR("init GateNodeServer failed");
 		return false;

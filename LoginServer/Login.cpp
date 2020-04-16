@@ -40,9 +40,9 @@ void Login::Stop()
 void Login::InitManager()
 {
 	g_conn_pool->Init();
-	g_pRedis->init(g_JsonConfig->m_RedisConf["ConnNum"].asInt(), 
-		g_JsonConfig->m_RedisConf["ip"].asCString(), 
-		g_JsonConfig->m_RedisConf["port"].asInt());
+	g_pRedis->init(g_pConfig->m_RedisConf["ConnNum"].asInt(), 
+		g_pConfig->m_RedisConf["ip"].asCString(), 
+		g_pConfig->m_RedisConf["port"].asInt());
 
 	// register msg
 	HandleLogin::Instance();

@@ -10,7 +10,7 @@ bool ChatNodeServer::InitHelper()
 	mNetServModule->AddReceiveCallBack(GAME_ROUTE_TO_CHAT, this, &ChatNodeServer::OnGameRouteChat);
 
 	//init server info
-	if (!mNetServModule->InitNet(g_JsonConfig->m_ServerConf["NodePort"].asUInt()))
+	if (!mNetServModule->InitNet(g_pConfig->m_ServerConf["NodePort"].asUInt()))
 	{
 		LOG_ERR("init ChatNodeServer failed");
 		return false;

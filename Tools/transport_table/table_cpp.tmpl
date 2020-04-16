@@ -5,15 +5,15 @@
 #include <string>
 #include <unordered_map>
 
-#include "ServerComm/CommonDef.h"
-#include "jsoncpp/json.h"
-#include "easylogging/easylogging++.h"
-#include "Config.h"
+#include "CommDef.h"
+#include "json.h"
+#include "JsonConfig.h"
+#include "LogUtil.h"
 
 class %(class_name)sRow
 {
 public:
-	%(row_fields)s
+%(row_fields)s
 };
 
 class %(class_name)sTable
@@ -71,7 +71,7 @@ public:
 		std::string loadfile = std::string(TABLE_PATH).append(jsonFile.c_str());
 		if (!g_pConfig->Load(loadfile.c_str()))
 		{
-			LOG(ERROR) << "load table %(class_name)s error";
+			CLOG_ERR << "load table %(class_name)s error" << CLOG_END;
 			return false;
 		}
 
@@ -82,13 +82,13 @@ public:
 				auto& r = (*it);
 				ptr_row_type pRow(new %(class_name)sRow);
 				%(class_name)sRow& row = *pRow;
-				%(json_logic)s
+%(json_logic)s
 				m_table.emplace(row.id, pRow);
 				m_keys.emplace_back(row.id);
 			}
 			catch (std::exception const& e)
 			{
-				LOG(ERROR) << "read table %(class_name)s error," << e.what() << ":" << (*it)["id"].asInt();
+				CLOG_ERR << "read table %(class_name)s error," << e.what() << ":" << (*it)["id"].asInt() << CLOG_END;
 				return false;
 			}
 		}

@@ -7,7 +7,7 @@
 bool MasterNodeServer::InitHelper()
 {
 	//init server info
-	if (!mNetServModule->InitNet(g_JsonConfig->m_ServerConf["NodePort"].asUInt()))
+	if (!mNetServModule->InitNet(g_pConfig->m_ServerConf["NodePort"].asUInt()))
 	{
 		LOG_ERR("init MasterNodeServer failed");
 		return false;

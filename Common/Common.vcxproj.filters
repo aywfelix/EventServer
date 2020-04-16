@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="Assertx.cpp" />
     <ClCompile Include="cityhash\city.cc" />
-    <ClCompile Include="designtable\TableMgr.cpp" />
     <ClCompile Include="JsonConfig.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
     <ClCompile Include="mariacpp\src\bind.cpp" />
@@ -39,6 +38,7 @@
     <ClCompile Include="stat\Stat.cpp" />
     <ClCompile Include="3d\V3Map.cpp" />
     <ClCompile Include="PbJsonConvert.cpp" />
+    <ClCompile Include="datatable\TableMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assertx.h" />
@@ -50,8 +50,6 @@
     <ClInclude Include="concurrentqueue.h" />
     <ClInclude Include="ConcurrentQueue.hpp" />
     <ClInclude Include="ConsistentHash.hpp" />
-    <ClInclude Include="designtable\Activity.hpp" />
-    <ClInclude Include="designtable\TableMgr.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="JsonConfig.h" />
     <ClInclude Include="lexical_cast.hpp" />
@@ -93,5 +91,8 @@
     <ClInclude Include="stat\Stat.h" />
     <ClInclude Include="3d\V3Map.h" />
     <ClInclude Include="PbJsonConvert.h" />
+    <ClInclude Include="datatable\Scene.hpp" />
+    <ClInclude Include="datatable\Activity.hpp" />
+    <ClInclude Include="datatable\TableMgr.h" />
   </ItemGroup>
 </Project>

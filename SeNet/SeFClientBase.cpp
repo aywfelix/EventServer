@@ -86,13 +86,13 @@ void SeFClientBase::AddConnectMaster()
 {
 	if (this->GetServerType() != ServerType::SERVER_TYPE_MASTER)
 	{
-		g_JsonConfig->Load("../Config/ServerConf.json");
+		g_pConfig->Load("../Config/ServerConf.json");
 		ConnectDataPtr ServerData = std::make_shared<ConnectData>();
-		ServerData->serv_id = g_JsonConfig->m_Root["MasterServer"]["NodeId"].asInt();
+		ServerData->serv_id = g_pConfig->m_Root["MasterServer"]["NodeId"].asInt();
 		ServerData->serv_type = ServerType::SERVER_TYPE_MASTER;
-		ServerData->ip = g_JsonConfig->m_Root["MasterServer"]["NodeIp"].asString();
-		ServerData->port = g_JsonConfig->m_Root["MasterServer"]["NodePort"].asInt();
-		ServerData->serv_name = g_JsonConfig->m_Root["MasterServer"]["NodeName"].asString();
+		ServerData->ip = g_pConfig->m_Root["MasterServer"]["NodeIp"].asString();
+		ServerData->port = g_pConfig->m_Root["MasterServer"]["NodePort"].asInt();
+		ServerData->serv_name = g_pConfig->m_Root["MasterServer"]["NodeName"].asString();
 		ServerData->conn_state = ConnectState::CONNECTING;
 		mNetCliModule->AddServer(ServerData);
 	}

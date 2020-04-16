@@ -46,12 +46,12 @@ int main(int argc, char** argv)
 #ifdef SF_PLATFORM_LINUX
 	SetResource();
 #endif
-	g_JsonConfig.reset(new JsonConfig());
-	g_JsonConfig->Load("../Config/ServerConf.json");
-	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root["LoginServer"];
-	g_JsonConfig->m_RedisConf = g_JsonConfig->m_Root["Redis"];
+	g_pConfig.reset(new JsonConfig());
+	g_pConfig->Load("../Config/ServerConf.json");
+	g_pConfig->m_ServerConf = g_pConfig->m_Root["LoginServer"];
+	g_pConfig->m_RedisConf = g_pConfig->m_Root["Redis"];
 	//mariadb config
-	g_JsonConfig->m_dbConf = g_JsonConfig->m_Root["MariaDB"];
+	g_pConfig->m_dbConf = g_pConfig->m_Root["MariaDB"];
 
 	INIT_SFLOG("LoginServer");
 	Login login;

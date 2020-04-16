@@ -10,7 +10,7 @@ bool WorldNodeServer::InitHelper()
 	mNetServModule->AddReceiveCallBack(this, &WorldNodeServer::OtherMessage);
 
 	//init server info
-	if (!mNetServModule->InitNet(g_JsonConfig->m_ServerConf["NodePort"].asUInt()))
+	if (!mNetServModule->InitNet(g_pConfig->m_ServerConf["NodePort"].asUInt()))
 	{
 		LOG_ERR("init WorldServer failed");
 		return false;

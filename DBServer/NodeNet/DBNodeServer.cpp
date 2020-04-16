@@ -9,7 +9,7 @@ bool DBNodeServer::InitHelper()
 	mNetServModule->AddReceiveCallBack(this, &DBNodeServer::OtherMessage);
 
 	//init server info
-	if (!mNetServModule->InitNet(g_JsonConfig->m_ServerConf["NodePort"].asUInt()))
+	if (!mNetServModule->InitNet(g_pConfig->m_ServerConf["NodePort"].asUInt()))
 	{
 		LOG_ERR("init DBNodeServer failed");
 		return false;

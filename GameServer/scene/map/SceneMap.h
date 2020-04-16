@@ -12,11 +12,11 @@ using scene_ptr_t = std::shared_ptr<Scene>;
 class SceneMap
 {
 public:
-	bool Init(std::string mapfile);
-	void Start();
-	void LoadMap();
+	void Start(const std::string mapfile);
+	MapNav* GetMapNav() { return &m_map_nav; }
 private:
-	std::string m_mapfile;
+	void LoadMap(const std::string mapfile);
+private:
 	std::thread m_thread;
 	MapNav m_map_nav;
 };

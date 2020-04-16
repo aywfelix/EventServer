@@ -46,9 +46,9 @@ int main()
 	SetResource();
 #endif
 	//init config
-    g_JsonConfig.reset(new JsonConfig);
-	g_JsonConfig->Load("../Config/ServerConf.json");
-	g_JsonConfig->m_ServerConf = g_JsonConfig->m_Root["GateServer"];
+    g_pConfig.reset(new JsonConfig);
+	g_pConfig->Load("../Config/ServerConf.json");
+	g_pConfig->m_ServerConf = g_pConfig->m_Root["GateServer"];
 	INIT_SFLOG("GateServer");
 
 	Gate gate;

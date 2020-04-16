@@ -1,0 +1,11 @@
+{
+    "1": {
+        "id": 1,
+        "comment": "默认出生地地图",
+        "name": "test",
+        "path": "Config/Map/TestMap/",
+        "lines": 2,
+        "type": 1,
+        "server": 1
+    }
+}
