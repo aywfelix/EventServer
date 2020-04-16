@@ -140,6 +140,7 @@
     <ClCompile Include="common\Common.cpp" />
     <ClCompile Include="email\EmailMgr.cpp" />
     <ClCompile Include="email\Email.cpp" />
+    <ClCompile Include="module\ModuleMgr.cpp" />
     <ClCompile Include="msghandle\ModuleBag.cpp" />
     <ClCompile Include="obj\ObjPool.cpp" />
     <ClCompile Include="obj\ObjPlayerMgr.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="common\Common.h" />
     <ClInclude Include="email\EmailMgr.h" />
     <ClInclude Include="email\Email.h" />
+    <ClInclude Include="module\ModuleMgr.h" />
     <ClInclude Include="obj\ObjPool.h" />
     <ClInclude Include="obj\ObjPlayerMgr.h" />
     <ClInclude Include="scene\dungeon\FightSceneImpl.h" />

@@ -38,6 +38,7 @@
     <ClCompile Include="task\TaskMgr.cpp" />
     <ClCompile Include="task\TaskTrigger.cpp" />
     <ClCompile Include="common\Common.cpp" />
+    <ClCompile Include="module\ModuleMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -77,5 +78,6 @@
     <ClInclude Include="task\TaskTrigger.h" />
     <ClInclude Include="common\Common.h" />
     <ClInclude Include="common\GameDef.h" />
+    <ClInclude Include="module\ModuleMgr.h" />
   </ItemGroup>
 </Project>

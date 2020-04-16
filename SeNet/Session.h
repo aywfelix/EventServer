@@ -10,7 +10,7 @@ class Session : public MemElem
 {
 public:
 	virtual bool Init();
-	virtual bool Clear();
+	virtual void Clear();
 	void SetSocket(Socket* pSocket) { m_pSocket = pSocket; }
 	Socket* GetSocket() { return m_pSocket; }
 	// call by socket

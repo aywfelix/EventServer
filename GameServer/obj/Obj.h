@@ -11,14 +11,13 @@ class Obj : public MemElem
 public:
 	Obj();
 	virtual ~Obj();
-	
 	virtual void HeartBeat(time_t ti);
 	virtual void EnterScene() {}
 	virtual void LeaveScene() {}
 	virtual void OnEnterScene() {}
 	virtual void OnLeaveScene() {}
 	virtual EObjType GetObjType() { return E_OBJ_INVALID; }
-	virtual void IsEnemy(){}
+	virtual bool IsEnemy() { return false; }
 
 	time_t LastTime() { return m_last; }
 	time_t NowTime() { return m_now; }

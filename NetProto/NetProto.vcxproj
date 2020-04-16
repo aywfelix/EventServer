@@ -144,6 +144,9 @@
     <ClCompile Include="client\login\Login.pb.cc" />
     <ClCompile Include="Common.pb.cc" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="db\GameDB.proto" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

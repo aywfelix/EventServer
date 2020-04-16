@@ -6,7 +6,8 @@ bool Session::Init()
 {
 	return true;
 }
-bool Session::Clear()
+
+void Session::Clear()
 {
 	if (m_pSocket)
 	{
@@ -16,7 +17,6 @@ bool Session::Clear()
 	}
 	m_SendBuffer.Clear();
 	m_RecvBuffer.Clear();
-	return true;
 }
 
 SessionPool::SessionPool()

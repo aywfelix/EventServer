@@ -51,4 +51,7 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="db\GameDB.proto" />
+  </ItemGroup>
 </Project>

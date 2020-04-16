@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+message ActivityDB
+{
+}
+
+message PetDB
+{
+}
+
+message TasksDB
+{
+}
+
+message SkillDB
+{
+}
+
+message BuffDB
+{
+}
+
+message ResourceDB
+{
+}
+
+message ItemDB
+{
+}
+
+message EquipDB
+{
+}
+
+message Role
+{
+	// 常用基础属性 
+	uint64 role_id = 1;	// 角色ID
+	string account = 2;	// 账号
+	string role_name = 3;	// 名称
+	int32	role_sex = 4;	// 性别
+	int32	role_isvalid = 5; // 角色是否有效
+	int64	tm_login = 6;	// 登录时间
+	int64	tm_logout = 7;	// 退出时间
+	float	scene_id = 8;
+	float	pos_x = 9;		// 
+	float	pos_z = 10;		//
+	float	last_scene_id = 11;	//
+	float	last_pos_x = 12;	// 
+	float	last_pos_z = 13;	//
+	// 战斗属性数据
+	int32	role_hp = 51;
+	int32	role_mp = 52; 
+	// 各个模块数据
+	ActivityDB	activity_db = 80;
+	PetDB		pet_db = 81;
+	TasksDB	tasks_db = 82;
+	SkillDB	skill_db = 83;
+	BuffDB		buff_db = 84;
+	ResourceDB	resource_db = 85;	// 角色资源（各种资源货币）
+	ResourceDB	his_resource_db = 86;	// 角色资源（历史各种资源货币）
+	ItemDB		item_db = 87;
+	EquipDB	equip_db = 88;
+}

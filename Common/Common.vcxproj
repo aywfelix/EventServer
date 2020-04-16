@@ -154,6 +154,7 @@
     <ClCompile Include="packet\Packet.cpp" />
     <ClCompile Include="packet\PacketMgr.cpp" />
     <ClCompile Include="packet\Player.cpp" />
+    <ClCompile Include="PbJsonConvert.cpp" />
     <ClCompile Include="redis\db_hiredis.cpp" />
     <ClCompile Include="redis\db_redis.cpp" />
     <ClCompile Include="SePlatForm.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="packet\Packet.h" />
     <ClInclude Include="packet\PacketMgr.h" />
     <ClInclude Include="packet\Player.h" />
+    <ClInclude Include="PbJsonConvert.h" />
     <ClInclude Include="Random.hpp" />
     <ClInclude Include="redis\db_hiredis.h" />
     <ClInclude Include="redis\db_redis.h" />

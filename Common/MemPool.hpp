@@ -18,7 +18,7 @@ public:
 		return m_memid;
 	}
 	virtual bool Init() { return true; }
-	virtual bool Clear() { return true; }
+	virtual void Clear() {  }
 private:
 	int m_memid{ 0 };
 };

@@ -10,9 +10,9 @@ extern std::unique_ptr<PacketMgr> g_packetmgr;
 class HandleRank : public SingleTon<HandleRank>
 {
 public:
-	enum ELogin
+	enum ERank
 	{
-		MODULE_ID_LOGIN = 14,
+		MODULE_ID_RANK = 14,
 	};
 	HandleRank()
 	{

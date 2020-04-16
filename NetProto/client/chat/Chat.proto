@@ -1,5 +1,5 @@
 syntax = "proto3";
-import "../../Common.proto";
+import "Common.proto";
 
 message Chat_ChatReq
 {

@@ -8,7 +8,6 @@
 #include <iostream>
 #include <sstream>
 #include "ConcurrentQueue.hpp"
-#include "SePlatForm.h"
 #include "FileUtil.h"
 #include "CommDef.h"
 #include "Util.h"
