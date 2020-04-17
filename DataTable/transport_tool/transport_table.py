@@ -50,6 +50,11 @@ vector_tmpl = '''
             '''
 
 
+excel_dir = "../excels/"
+json_dir = "../"
+cpp_dir = "../../Common/datatable/"
+
+
 class ExcelToJson:
     def __init__(self):
         self.init_attr()
@@ -99,14 +104,14 @@ class ExcelToJson:
 
     def transport_config_cpp(self, table_name):
         s = ""
-        with codecs.open("./table_cpp.tmpl", "r", "GB2312") as f:
+        with codecs.open("./table_cpp.tmpl", "r", "utf-8") as f:
             s = f.read()
         if not s:
             return
         s = s % {"class_name": table_name,
                  "row_fields": self.row_fields, "json_logic": self.json_logic}
 
-        with codecs.open(table_name+".hpp", "w", "GB2312") as f:
+        with codecs.open(cpp_dir+table_name+".hpp", "w", "GB2312") as f:
             f.write(s)
             f.flush()
             pass
@@ -161,7 +166,7 @@ class ExcelToJson:
             rows = rows+1
 
         # 写入json
-        with open(table_name+".json", 'w+') as f:
+        with open(json_dir+table_name+".json", 'w+') as f:
             jsonStr = json.dumps(
                 all_rows, indent=4, sort_keys=False, ensure_ascii=False)
             f.write(jsonStr + '\n')
@@ -196,14 +201,13 @@ class ExcelToJson:
 
 
 if __name__ == "__main__":
-    srcDir = "./"
     excelToJson = ExcelToJson()
-    excels, classes_name = excelToJson.get_excel(srcDir)
+    excels, classes_name = excelToJson.get_excel(excel_dir)
     print(excels)
     pool = multiprocessing.Pool(processes=5)
     for excel in excels:
         class_name = (os.path.splitext(excel)[0]).split('_')[0]
-        pool.apply_async(excelToJson.read_excel, (srcDir+excel, class_name))
+        pool.apply_async(excelToJson.read_excel, (excel_dir+excel, class_name))
     # gc pool
     pool.close()
     pool.join()
