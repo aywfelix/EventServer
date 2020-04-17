@@ -5,6 +5,7 @@
         "name": "test",
         "path": "Config/Map/TestMap/",
         "lines": 2,
+        "ismirror": 1,
         "type": 1,
         "server": 1
     }

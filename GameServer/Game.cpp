@@ -1,9 +1,10 @@
 #include "Game.h"
 #include "NodeNet/GameServerThread.h"
-#include "designtable/TableMgr.h"
 #include "Session.h"
 #include "redis/db_redis.h"
-#include "scene/map/SceneMapMgr.h"
+#include "JsonConfig.h"
+#include "scene/map/SceneMgr.h"
+#include "datatable/TableMgr.h"
 
 Game::Game()
 {
@@ -20,7 +21,7 @@ void Game::Init()
 	g_pServerThread = std::make_unique<GameServerThread>();
 	g_pSessionPool = std::make_unique<SessionPool>();
 	g_pRedis = std::make_unique<db_redis>();
-	g_pSceneMapMgr = std::make_unique<SceneMapMgr>();
+	g_pSceneMgr = std::make_unique<SceneMgr>();
 	InitManager();
 }
 
@@ -41,5 +42,6 @@ void Game::InitManager()
 	g_pRedis->init(g_pConfig->m_RedisConf["ConnNum"].asInt(),
 		g_pConfig->m_RedisConf["ip"].asCString(),
 		g_pConfig->m_RedisConf["port"].asInt());
-	g_pSceneMapMgr->LoadAllMap();
+
+	g_pSceneMgr->LoadAllMap();
 }

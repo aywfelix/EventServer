@@ -13,11 +13,12 @@
 class SceneRow
 {
 public:
-	int id;                                           // 主键id 活动id
+	int id;                                           // 主键id 地图id也是场景id
 	std::string comment;                              // 注释 
 	std::string name;                                 // 名称 场景的名字
 	std::string path;                                 // 场景保存路径 
 	int lines;                                        // 分线 0不分线 其他按照配置分线，默认2个分线
+	int ismirror;                                     // 场景类型 0不是镜像 1可以是镜像
 	int type;                                         // 场景类型 1普通场景 2副本 3镜像
 	int server;                                       // 场景所在游戏服 
 	
@@ -94,6 +95,7 @@ public:
                 row.name = r["name"].asString();
                 row.path = r["path"].asString();
                 row.lines = r["lines"].asInt();
+                row.ismirror = r["ismirror"].asInt();
                 row.type = r["type"].asInt();
                 row.server = r["server"].asInt();
 

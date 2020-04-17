@@ -1,5 +1,5 @@
 #pragma once
-#include "scene/Scene.h"
+#include "scene/map/Scene.h"
 
 class FightSceneImpl;
 //Scene* fightScene = new FightScene(FightSceneImpl* impl);

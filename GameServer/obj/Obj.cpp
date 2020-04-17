@@ -1,5 +1,5 @@
 #include "Obj.h"
-#include "scene/Scene.h"
+#include "scene/map/Scene.h"
 
 Obj::Obj()
 {

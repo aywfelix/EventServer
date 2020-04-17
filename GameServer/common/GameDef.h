@@ -22,6 +22,7 @@ enum EModuleType
 // 游戏场景分类
 enum ESceneType
 {
+	E_SCENE_VOID = 0,
 	E_SCENE_NORM = 1,		// 普通场景
 	E_SCENE_MIRROR = 2,		// 游戏镜像
 	E_SCENE_DUNGEON = 3,	// 游戏副本

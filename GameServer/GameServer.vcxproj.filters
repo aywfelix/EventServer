@@ -12,7 +12,6 @@
     <ClCompile Include="obj\ObjPet.cpp" />
     <ClCompile Include="obj\ObjPlayer.cpp" />
     <ClCompile Include="obj\ObjMonster.cpp" />
-    <ClCompile Include="scene\Scene.cpp" />
     <ClCompile Include="bag\ItemBase.cpp" />
     <ClCompile Include="bag\BagBase.cpp" />
     <ClCompile Include="email\Email.cpp" />
@@ -22,12 +21,9 @@
     <ClCompile Include="scene\map\ZoneMgr.cpp" />
     <ClCompile Include="scene\Scene.cpp" />
     <ClCompile Include="obj\Obj.cpp" />
-    <ClCompile Include="scene\map\SceneMap.cpp" />
-    <ClCompile Include="scene\map\SceneMapMgr.cpp" />
     <ClCompile Include="scene\move\ObjMove.cpp" />
     <ClCompile Include="scene\dungeon\FightScene.cpp" />
     <ClCompile Include="scene\dungeon\FightSceneImpl.cpp" />
-    <ClCompile Include="scene\SceneImpl.cpp" />
     <ClCompile Include="obj\ObjPlayerMgr.cpp" />
     <ClCompile Include="obj\ObjPool.cpp" />
     <ClCompile Include="gameplayer\GamePlayer.cpp" />
@@ -39,6 +35,12 @@
     <ClCompile Include="task\TaskTrigger.cpp" />
     <ClCompile Include="common\Common.cpp" />
     <ClCompile Include="module\ModuleMgr.cpp" />
+    <ClCompile Include="scene\mirror\MirrorScene.cpp" />
+    <ClCompile Include="scene\map\Scene.cpp" />
+    <ClCompile Include="scene\map\SceneImpl.cpp" />
+    <ClCompile Include="scene\map\SceneMgr.cpp" />
+    <ClCompile Include="scene\gmscene\GameScene.cpp" />
+    <ClCompile Include="scene\mirror\MirrorSceneImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -51,7 +53,6 @@
     <ClInclude Include="obj\ObjPet.h" />
     <ClInclude Include="obj\ObjPlayer.h" />
     <ClInclude Include="obj\ObjMonster.h" />
-    <ClInclude Include="scene\Scene.h" />
     <ClInclude Include="bag\ItemBase.h" />
     <ClInclude Include="bag\BagBase.h" />
     <ClInclude Include="email\Email.h" />
@@ -61,12 +62,9 @@
     <ClInclude Include="scene\map\ZoneMgr.h" />
     <ClInclude Include="scene\Scene.h" />
     <ClInclude Include="obj\Obj.h" />
-    <ClInclude Include="scene\map\SceneMap.h" />
-    <ClInclude Include="scene\map\SceneMapMgr.h" />
     <ClInclude Include="scene\move\ObjMove.h" />
     <ClInclude Include="scene\dungeon\FightScene.h" />
     <ClInclude Include="scene\dungeon\FightSceneImpl.h" />
-    <ClInclude Include="scene\SceneImpl.h" />
     <ClInclude Include="obj\ObjPlayerMgr.h" />
     <ClInclude Include="obj\ObjPool.h" />
     <ClInclude Include="gameplayer\GamePlayer.h" />
@@ -79,5 +77,11 @@
     <ClInclude Include="common\Common.h" />
     <ClInclude Include="common\GameDef.h" />
     <ClInclude Include="module\ModuleMgr.h" />
+    <ClInclude Include="scene\mirror\MirrorScene.h" />
+    <ClInclude Include="scene\map\Scene.h" />
+    <ClInclude Include="scene\map\SceneImpl.h" />
+    <ClInclude Include="scene\map\SceneMgr.h" />
+    <ClInclude Include="scene\gmscene\GameScene.h" />
+    <ClInclude Include="scene\mirror\MirrorSceneImpl.h" />
   </ItemGroup>
 </Project>

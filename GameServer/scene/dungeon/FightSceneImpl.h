@@ -1,5 +1,5 @@
 #pragma once
-#include "scene/SceneImpl.h"
+#include "scene/map/SceneImpl.h"
 class Obj;
 class FightSceneImpl : public SceneImpl
 {

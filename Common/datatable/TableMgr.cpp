@@ -1,14 +1,13 @@
-
 #include "TableMgr.h"
+#include "Activity.hpp"
+#include "Scene.hpp"
 
 std::unique_ptr<TableMgr> g_pTableMgr = nullptr;
 
 void TableMgr::LoadTables()
 {
-	if (!ActivityTable::Instance()->Load())
-	{
-		exit(-1);
-	}
+	ActivityTable::Instance()->Load();
+	SceneTable::Instance()->Load();
 }
 
 bool TableMgr::ReLoadTables()
