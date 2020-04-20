@@ -11,7 +11,7 @@ class ClientPlayer : public Player
 public:
 
 	virtual bool Init();
-	virtual bool Clear();
+	virtual void Clear();
 	socket_t GetSockFd();
 	uint64_t GetPlayerId() { return m_playerid; }   // Ä¬ÈÏplayeridÎªmemid
 	void SetSceneId(int sceneId) { m_sceneid = sceneId; }

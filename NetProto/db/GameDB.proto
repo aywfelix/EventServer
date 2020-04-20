@@ -34,31 +34,31 @@ message EquipDB
 
 message Role
 {
-	// ³£ÓÃ»ù´¡ÊôĞÔ 
-	uint64 role_id = 1;	// ½ÇÉ«ID
-	string account = 2;	// ÕËºÅ
-	string role_name = 3;	// Ãû³Æ
-	int32	role_sex = 4;	// ĞÔ±ğ
-	int32	role_isvalid = 5; // ½ÇÉ«ÊÇ·ñÓĞĞ§
-	int64	tm_login = 6;	// µÇÂ¼Ê±¼ä
-	int64	tm_logout = 7;	// ÍË³öÊ±¼ä
+	// å¸¸ç”¨åŸºç¡€å±æ€§ 
+	uint64 role_id = 1;	// è§’è‰²ID
+	string account = 2;	// è´¦å·
+	string role_name = 3;	// åç§°
+	int32	role_sex = 4;	// æ€§åˆ«
+	int32	role_isvalid = 5; // è§’è‰²æ˜¯å¦æœ‰æ•ˆ
+	int64	tm_login = 6;	// ç™»å½•æ—¶é—´
+	int64	tm_logout = 7;	// é€€å‡ºæ—¶é—´
 	float	scene_id = 8;
 	float	pos_x = 9;		// 
 	float	pos_z = 10;		//
 	float	last_scene_id = 11;	//
 	float	last_pos_x = 12;	// 
 	float	last_pos_z = 13;	//
-	// Õ½¶·ÊôĞÔÊı¾İ
+	// æˆ˜æ–—å±æ€§æ•°æ®
 	int32	role_hp = 51;
 	int32	role_mp = 52; 
-	// ¸÷¸öÄ£¿éÊı¾İ
+	// å„ä¸ªæ¨¡å—æ•°æ®
 	ActivityDB	activity_db = 80;
 	PetDB		pet_db = 81;
 	TasksDB	tasks_db = 82;
 	SkillDB	skill_db = 83;
 	BuffDB		buff_db = 84;
-	ResourceDB	resource_db = 85;	// ½ÇÉ«×ÊÔ´£¨¸÷ÖÖ×ÊÔ´»õ±Ò£©
-	ResourceDB	his_resource_db = 86;	// ½ÇÉ«×ÊÔ´£¨ÀúÊ·¸÷ÖÖ×ÊÔ´»õ±Ò£©
+	ResourceDB	resource_db = 85;	// è§’è‰²èµ„æºï¼ˆå„ç§èµ„æºè´§å¸ï¼‰
+	ResourceDB	his_resource_db = 86;	// è§’è‰²èµ„æºï¼ˆå†å²å„ç§èµ„æºè´§å¸ï¼‰
 	ItemDB		item_db = 87;
 	EquipDB	equip_db = 88;
 }

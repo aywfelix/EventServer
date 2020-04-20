@@ -31,14 +31,14 @@
     <ClCompile Include="Util.cpp" />
     <ClCompile Include="LogUtil.cpp" />
     <ClCompile Include="FileUtil.cpp" />
-    <ClCompile Include="SqlUtil.cpp" />
-    <ClCompile Include="TableDB.cpp" />
     <ClCompile Include="SnowFlake.cpp" />
     <ClCompile Include="expr\SimpleExpr.cpp" />
     <ClCompile Include="stat\Stat.cpp" />
     <ClCompile Include="3d\V3Map.cpp" />
-    <ClCompile Include="PbJsonConvert.cpp" />
-    <ClCompile Include="datatable\TableMgr.cpp" />
+    <ClCompile Include="tbpb\TableDB.cpp" />
+    <ClCompile Include="tbpb\SqlUtil.cpp" />
+    <ClCompile Include="tbpb\PbJsonConvert.cpp" />
+    <ClCompile Include="tablecpp\TableMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assertx.h" />
@@ -81,18 +81,18 @@
     <ClInclude Include="Util.h" />
     <ClInclude Include="LogUtil.h" />
     <ClInclude Include="FileUtil.h" />
-    <ClInclude Include="SqlUtil.h" />
     <ClInclude Include="AnyData.hpp" />
-    <ClInclude Include="TableDB.h" />
     <ClInclude Include="Random.hpp" />
     <ClInclude Include="SingleTon.hpp" />
     <ClInclude Include="SnowFlake.h" />
     <ClInclude Include="expr\SimpleExpr.h" />
     <ClInclude Include="stat\Stat.h" />
     <ClInclude Include="3d\V3Map.h" />
-    <ClInclude Include="PbJsonConvert.h" />
-    <ClInclude Include="datatable\Scene.hpp" />
-    <ClInclude Include="datatable\Activity.hpp" />
-    <ClInclude Include="datatable\TableMgr.h" />
+    <ClInclude Include="tbpb\TableDB.h" />
+    <ClInclude Include="tbpb\SqlUtil.h" />
+    <ClInclude Include="tbpb\PbJsonConvert.h" />
+    <ClInclude Include="tablecpp\Activity.hpp" />
+    <ClInclude Include="tablecpp\Scene.hpp" />
+    <ClInclude Include="tablecpp\TableMgr.h" />
   </ItemGroup>
 </Project>

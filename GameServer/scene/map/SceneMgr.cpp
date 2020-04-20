@@ -1,6 +1,6 @@
 #include "SceneMgr.h"
 #include "Scene.h"
-#include "datatable/Scene.hpp"
+#include "tablecpp/Scene.hpp"
 #include "scene/gmscene/GameScene.h"
 #include "scene/mirror/MirrorScene.h"
 #include "scene/dungeon/FightScene.h"

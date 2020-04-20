@@ -136,7 +136,7 @@
   <ItemGroup>
     <ClCompile Include="Assertx.cpp" />
     <ClCompile Include="cityhash\city.cc" />
-    <ClCompile Include="datatable\TableMgr.cpp" />
+    <ClCompile Include="tablecpp\TableMgr.cpp" />
     <ClCompile Include="FileUtil.cpp" />
     <ClCompile Include="JsonConfig.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
@@ -154,16 +154,16 @@
     <ClCompile Include="packet\Packet.cpp" />
     <ClCompile Include="packet\PacketMgr.cpp" />
     <ClCompile Include="packet\Player.cpp" />
-    <ClCompile Include="PbJsonConvert.cpp" />
+    <ClCompile Include="tbpb\PbJsonConvert.cpp" />
     <ClCompile Include="redis\db_hiredis.cpp" />
     <ClCompile Include="redis\db_redis.cpp" />
     <ClCompile Include="SePlatForm.cpp" />
     <ClCompile Include="expr\SimpleExpr.cpp" />
     <ClCompile Include="SnowFlake.cpp" />
-    <ClCompile Include="SqlUtil.cpp" />
+    <ClCompile Include="tbpb\SqlUtil.cpp" />
     <ClCompile Include="stat\Stat.cpp" />
     <ClCompile Include="StringUtil.cpp" />
-    <ClCompile Include="TableDB.cpp" />
+    <ClCompile Include="tbpb\TableDB.cpp" />
     <ClCompile Include="ThreadBase.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="timer\Timer.cpp" />
@@ -184,9 +184,9 @@
     <ClInclude Include="concurrentqueue.h" />
     <ClInclude Include="ConcurrentQueue.hpp" />
     <ClInclude Include="ConsistentHash.hpp" />
-    <ClInclude Include="datatable\Activity.hpp" />
-    <ClInclude Include="datatable\Scene.hpp" />
-    <ClInclude Include="datatable\TableMgr.h" />
+    <ClInclude Include="tablecpp\Activity.hpp" />
+    <ClInclude Include="tablecpp\Scene.hpp" />
+    <ClInclude Include="tablecpp\TableMgr.h" />
     <ClInclude Include="FileUtil.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="JsonConfig.h" />
@@ -207,7 +207,7 @@
     <ClInclude Include="packet\Packet.h" />
     <ClInclude Include="packet\PacketMgr.h" />
     <ClInclude Include="packet\Player.h" />
-    <ClInclude Include="PbJsonConvert.h" />
+    <ClInclude Include="tbpb\PbJsonConvert.h" />
     <ClInclude Include="Random.hpp" />
     <ClInclude Include="redis\db_hiredis.h" />
     <ClInclude Include="redis\db_redis.h" />
@@ -215,10 +215,10 @@
     <ClInclude Include="expr\SimpleExpr.h" />
     <ClInclude Include="SingleTon.hpp" />
     <ClInclude Include="SnowFlake.h" />
-    <ClInclude Include="SqlUtil.h" />
+    <ClInclude Include="tbpb\SqlUtil.h" />
     <ClInclude Include="stat\Stat.h" />
     <ClInclude Include="StringUtil.h" />
-    <ClInclude Include="TableDB.h" />
+    <ClInclude Include="tbpb\TableDB.h" />
     <ClInclude Include="ThreadBase.h" />
     <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="timer\Timer.h" />

@@ -4,7 +4,7 @@
 #include "redis/db_redis.h"
 #include "JsonConfig.h"
 #include "scene/map/SceneMgr.h"
-#include "datatable/TableMgr.h"
+#include "tablecpp/TableMgr.h"
 
 Game::Game()
 {

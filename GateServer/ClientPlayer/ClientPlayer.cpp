@@ -11,9 +11,9 @@ bool ClientPlayer::Init()
 	return true;
 }
 
-bool ClientPlayer::Clear()
+void ClientPlayer::Clear()
 {
-	return true;
+
 }
 
 socket_t ClientPlayer::GetSockFd() 

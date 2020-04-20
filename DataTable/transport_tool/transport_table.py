@@ -1,4 +1,4 @@
-#_*_coding:utf-8 _*_ 
+# _*_coding:utf-8 _*_
 
 import xlrd
 from xlrd import xldate_as_tuple
@@ -52,7 +52,7 @@ vector_tmpl = '''
 
 excel_dir = "../excels/"
 json_dir = "../"
-cpp_dir = "../../Common/datatable/"
+cpp_dir = "../../Common/tablecpp/"
 
 
 class ExcelToJson:
