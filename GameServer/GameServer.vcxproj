@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ai\State.cpp" />
     <ClCompile Include="bag\BagBase.cpp" />
     <ClCompile Include="ai\Context.cpp" />
     <ClCompile Include="common\Common.cpp" />

@@ -41,6 +41,7 @@
     <ClCompile Include="scene\map\SceneMgr.cpp" />
     <ClCompile Include="scene\gmscene\GameScene.cpp" />
     <ClCompile Include="scene\mirror\MirrorSceneImpl.cpp" />
+    <ClCompile Include="ai\State.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
