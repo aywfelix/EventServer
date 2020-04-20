@@ -51,9 +51,7 @@ public:
 	void SendPBToAll(const int msg_id, ::google::protobuf::Message* pb_msg);
 	
 	void SendByServType(ServerType type, const int msg_id, const char* msg, int len);
-	void SendByServTypes(std::vector<ServerType>& types, const int msg_id, const char* msg, int len);
 	void SendPbByServType(ServerType type, const int msg_id, ::google::protobuf::Message* pb_msg);
-	void SendPbByServTypes(std::vector<ServerType>& types, const int msg_id, ::google::protobuf::Message* pb_msg);
 	// get server info
 	ConnectDataPtr GetServerNetInfo(const int& nServerID);
 	ConnectDataPtr GetServerNetInfo(const SeNet* pNet);

@@ -1,10 +1,15 @@
 #include "Client.h"
 #include "JsonConfig.h"
-#include "clientproto/Chat.pb.h"
-#include "clientmodule/ModuleChat.h"
 #include "Util.h"
 #include "SeFNetClient.h"
 #include "LogUtil.h"
+
+// 通信协议
+#include "client/chat/Chat.pb.h"
+#include "client/chat/HandleChat.h"
+#include "client/login/Login.pb.h"
+#include "client/login/HandleLogin.h"
+
 
 bool Client::Init()
 {
@@ -46,17 +51,24 @@ void Client::OnSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, Se
 		CLOG_INFO << "client connect to gate ok" << CLOG_END;
 		//send msg to gate
 		std::string send_msg;
-		Chat_ChatReq chat_msg;
-		chat_msg.set_channel(ChatChannelType::CHAT_CHANNEL_GM);
-		chat_msg.set_chat_msg("this is gm msg to game player");
-		chat_msg.SerializeToString(&send_msg);
-		m_pNetClientModule->SendByServId(m_ServerId, (const uint16_t)(ModuleChat::RPC_CHAT_CHAT_REQ), send_msg.c_str(), send_msg.length());
+		//Chat_ChatReq chat_msg;
+		//chat_msg.set_channel(ChatChannelType::CHAT_CHANNEL_GM);
+		//chat_msg.set_chat_msg("this is gm msg to game player");
+		//chat_msg.SerializeToString(&send_msg);
+		//m_pNetClientModule->SendByServId(m_ServerId, (const uint16_t)(HandleChat::RPC_CHAT_CHAT_REQ), send_msg.c_str(), send_msg.length());
 	
-		//send msg to gate
-		chat_msg.set_channel(ChatChannelType::CHAT_CHANNEL_SYSTEM);
-		chat_msg.set_chat_msg("this is system msg to system");
-		chat_msg.SerializeToString(&send_msg);
-		m_pNetClientModule->SendByServId(m_ServerId, (const uint16_t)(ModuleChat::RPC_CHAT_CHAT_REQ), send_msg.c_str(), send_msg.length());
+		////send msg to gate
+		//chat_msg.set_channel(ChatChannelType::CHAT_CHANNEL_SYSTEM);
+		//chat_msg.set_chat_msg("this is system msg to system");
+		//chat_msg.SerializeToString(&send_msg);
+		//m_pNetClientModule->SendByServId(m_ServerId, (const uint16_t)(HandleChat::RPC_CHAT_CHAT_REQ), send_msg.c_str(), send_msg.length());
+		
+		// 验证登录信息
+		Login_LoginReq login_msg;
+		login_msg.set_login_name("aa");
+		login_msg.set_login_pwd("123456");
+		login_msg.SerializeToString(&send_msg);
+		m_pNetClientModule->SendByServId(m_ServerId, (const uint16_t)(HandleLogin::RPC_LOGIN_LOGIN_REQ), send_msg.c_str(), send_msg.length());
 	}
 }
 

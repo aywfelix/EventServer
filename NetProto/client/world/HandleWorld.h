@@ -11,7 +11,7 @@ class HandleWorld : public SingleTon<HandleWorld>
 public:
 	enum EWorld
 	{
-		MODULE_ID_WORLD = 15,
+		MODULE_ID_WORLD = 13,
 	};
 	HandleWorld()
 	{

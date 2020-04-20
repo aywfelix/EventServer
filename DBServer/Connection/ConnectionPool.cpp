@@ -19,6 +19,7 @@ ConnectionPool::ConnectionPool()
 
 ConnectionPool::~ConnectionPool()
 {
+
 }
 
 void ConnectionPool::Stop()

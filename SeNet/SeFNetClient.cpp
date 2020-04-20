@@ -149,7 +149,7 @@ void SeFNetClient::SendByServId(int nServerId, const int msg_id, const char* msg
 	auto it = mConnecServers.find(nServerId);
 	if (it == mConnecServers.end()) return;
 
-	it->second->pNet->SendMsg(0, msg_id, msg, len);
+	it->second->pNet->SendMsg(0, msg_id, msg, len); // 客户端对于server来说一个socket链接一个server端，fd默认填0即可
 }
 void SeFNetClient::SendByServIds(std::vector<int>& nServerIds, const int msg_id, const char* msg, int len)
 {
@@ -195,19 +195,25 @@ void SeFNetClient::SendPBToAll(const int msg_id, ::google::protobuf::Message* pb
 
 void SeFNetClient::SendByServType(ServerType type, const int msg_id, const char* msg, int len)
 {
-
+	for (auto& it : mConnecServers)
+	{
+		if (it.second->serv_type == type)
+		{
+			it.second->pNet->SendMsg(0, msg_id, msg, len);
+		}
+	}
 }
-void SeFNetClient::SendByServTypes(std::vector<ServerType>& types, const int msg_id, const char* msg, int len)
-{
 
-}
 void SeFNetClient::SendPbByServType(ServerType type, const int msg_id, ::google::protobuf::Message* pb_msg)
 {
-
-}
-void SeFNetClient::SendPbByServTypes(std::vector<ServerType>& types, const int msg_id, ::google::protobuf::Message* pb_msg)
-{
-
+	for (auto& it : mConnecServers)
+	{
+		if (it.second->serv_type == type)
+		{
+			std::string strMsg = pb_msg->SerializeAsString();
+			it.second->pNet->SendMsg(0, msg_id, strMsg.c_str(), strMsg.length());
+		}
+	}
 }
 
 ConnectDataPtr SeFNetClient::GetServerNetInfo(const int& nServerID)
