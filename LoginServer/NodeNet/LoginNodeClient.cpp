@@ -35,14 +35,15 @@ void LoginNodeClient::AddConnectServer()
 void LoginNodeClient::OnGateRouteLogin(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	GateToLoginPacket gate_packet;
-	if (!ReceivePB(msg_id, msg, msg_len, &gate_packet)) return;
+	if (msg==nullptr || !gate_packet.ParseFromArray(msg, msg_len)) return;
 
 	ConnectDataPtr pServerData = GetServerNetInfo(sock_fd);
 	if (!pServerData) return;
 
 	Packet* pRecvPacket = g_pPacketMgr->CreatePakcet(gate_packet.msg_id(), gate_packet.msg_body().c_str(), gate_packet.msg_body().length());
 	MsgHandle pHandle = g_pPacketMgr->GetMsgHandle(gate_packet.msg_id());
-	if (pHandle == nullptr) return;
+	if (pHandle == nullptr || pRecvPacket == nullptr)
+		return;
 
 	LoginPlayer* loginPlayer = g_pLoginPlayerPool->NewLoginPlayer();
 	loginPlayer->m_playerid = gate_packet.player_id();
@@ -56,14 +57,15 @@ void LoginNodeClient::OnGateRouteLogin(const socket_t sock_fd, const int msg_id,
 void LoginNodeClient::OnWorldRouteLogin(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	GateToWorldPacket gate_packet;
-	if (!ReceivePB(msg_id, msg, msg_len, &gate_packet)) return;
+	if (msg == nullptr || !gate_packet.ParseFromArray(msg, msg_len)) return;
 
 	ConnectDataPtr pServerData = GetServerNetInfo(sock_fd);
 	if (!pServerData) return;
 
 	Packet* pRecvPacket = g_pPacketMgr->CreatePakcet(gate_packet.msg_id(), gate_packet.msg_body().c_str(), gate_packet.msg_body().length());
 	MsgHandle pHandle = g_pPacketMgr->GetMsgHandle(gate_packet.msg_id());
-	if (pHandle == nullptr) return;
+	if (pHandle == nullptr || pRecvPacket == nullptr)
+		return;
 
 	LoginPlayer* loginPlayer = g_pLoginPlayerPool->NewLoginPlayer();
 	loginPlayer->m_playerid = gate_packet.player_id();

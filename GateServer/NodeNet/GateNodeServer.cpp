@@ -81,7 +81,7 @@ bool GateNodeServer::SendToWorld(const int msg_id, google::protobuf::Message* ms
 void GateNodeServer::OnLoginRouteGate(socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	LoginToGatePacket login_packet;
-	if (!ReceivePB(msg_id, msg, msg_len, &login_packet)) return;
+	if (msg == nullptr || !(login_packet.ParseFromArray(msg, msg_len))) return;
 
 	uint64_t playerId = login_packet.player_id();
 	ClientPlayer* pPlayer = g_pClientPlayerMgr->GetPlayerByID(playerId);
@@ -98,7 +98,7 @@ void GateNodeServer::OnLoginRouteGate(socket_t sock_fd, const int msg_id, const 
 void GateNodeServer::OnChatRouteGate(socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	ChatToGatePacket chat_packet;
-	if (!ReceivePB(msg_id, msg, msg_len, &chat_packet)) return;
+	if (msg == nullptr || !(chat_packet.ParseFromArray(msg, msg_len))) return;
 
 	uint64_t playerId = chat_packet.player_id();
 	if (HandleChat::RPC_CHAT_CHAT_REQ == chat_packet.msg_id())

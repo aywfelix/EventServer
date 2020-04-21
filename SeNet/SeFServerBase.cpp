@@ -58,10 +58,10 @@ ServerDataPtr SeFServerBase::GetClientNodeData(int nServerId)
 
 void SeFServerBase::OnReportToServer(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
-	ServerDataPtr pServerData = std::make_shared<ServerData>();
 	ServerReport report;
-	if (!ReceivePB(msg_id, msg, msg_len, &report)) return;
+	if (msg == nullptr || !report.ParseFromArray(msg, msg_len)) return;
 
+	ServerDataPtr pServerData = std::make_shared<ServerData>();
 	pServerData->fd = sock_fd;
 	pServerData->ServerInfo = std::make_shared<ServerReport>(report);
 	mmServNodes.emplace(report.server_id(), pServerData);

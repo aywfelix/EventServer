@@ -124,7 +124,7 @@ void ConnThread::ThreadLoop()
 					MsgCache& msg = m_reqmsgcache.front();
 					Query(msg);
 					auto pHandle = g_pPacketMgr->GetMsgHandle(msg.m_packet->msg_id);
-					pHandle(msg.m_player, msg.m_packet);
+					pHandle(msg.m_player, msg.m_packet.get());
 					m_reqmsgcache.pop_front();
 				}
 				catch (const std::exception & e)

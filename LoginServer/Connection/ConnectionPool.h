@@ -34,7 +34,7 @@ class MsgCache
 {
 public:
 	LoginPlayer* m_player;
-	Packet* m_packet;
+	std::shared_ptr<Packet> m_packet;
 	std::string m_sql;
 	result_t m_result;
 };

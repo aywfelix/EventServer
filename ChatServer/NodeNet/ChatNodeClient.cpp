@@ -33,8 +33,7 @@ void ChatNodeClient::AddConnectServer()
 void ChatNodeClient::OnGateRouteChat(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	GateToChatPacket gate_packet;
-	if (!ReceivePB(msg_id, msg, msg_len, &gate_packet))
-		return;
+	if (msg == nullptr || !gate_packet.ParseFromArray(msg, msg_len)) return;
 
 	ConnectDataPtr pServerData = GetServerNetInfo(sock_fd);
 	if (!pServerData)
@@ -42,9 +41,8 @@ void ChatNodeClient::OnGateRouteChat(const socket_t sock_fd, const int msg_id, c
 
 	// parse the packet
 	Packet* pRecvPacket = g_pPacketMgr->CreatePakcet(gate_packet.msg_id(), gate_packet.msg_body().c_str(), gate_packet.msg_body().length());
-
 	MsgHandle pHandle = g_pPacketMgr->GetMsgHandle(gate_packet.msg_id());
-	if (pHandle == nullptr)
+	if (pHandle == nullptr || pRecvPacket == nullptr)
 		return;
 
 	ChatPlayer chatPlayer;

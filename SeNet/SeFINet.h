@@ -184,11 +184,3 @@ private:
 	uint32_t m_size;
 	uint16_t m_msgid;
 };
-
-// recv pb msg
-//bool ReceivePB(const int msg_id, const std::string& strMsg, google::protobuf::Message* pb_msg)
-//{
-//	return ReceivePB(msg_id, strMsg.c_str(), strMsg.length(), pb_msg);
-//}
-
-bool ReceivePB(const int msg_id, const char* msg, const size_t msg_len, google::protobuf::Message* pb_msg);
