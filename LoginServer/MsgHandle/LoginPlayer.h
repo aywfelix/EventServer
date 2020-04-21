@@ -10,3 +10,17 @@ public:
 
 };
 
+using loginplayer_pool_t = MemPool<LoginPlayer>;
+class LoginPlayerPool
+{
+public:
+	LoginPlayerPool();
+	~LoginPlayerPool();
+	LoginPlayer* NewLoginPlayer();
+	LoginPlayer* GetLoginPlayer(int32_t memid);
+	void DelLoginPlayer(LoginPlayer* player);
+private:
+	loginplayer_pool_t m_player_pool;
+};
+
+extern std::unique_ptr<LoginPlayerPool> g_pLoginPlayerPool;

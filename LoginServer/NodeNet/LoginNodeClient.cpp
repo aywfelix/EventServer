@@ -44,10 +44,10 @@ void LoginNodeClient::OnGateRouteLogin(const socket_t sock_fd, const int msg_id,
 	MsgHandle pHandle = g_pPacketMgr->GetMsgHandle(gate_packet.msg_id());
 	if (pHandle == nullptr) return;
 
-	LoginPlayer loginPlayer; // TODO loginPlayer 临时变量在查询多线程里会被释放，改成分配内存方式处理
-	loginPlayer.m_playerid = gate_packet.player_id();
-	loginPlayer.m_servid = pServerData->serv_id;
-	if (pHandle(&loginPlayer, pRecvPacket) != 0)
+	LoginPlayer* loginPlayer = g_pLoginPlayerPool->NewLoginPlayer();
+	loginPlayer->m_playerid = gate_packet.player_id();
+	loginPlayer->m_servid = pServerData->serv_id;
+	if (pHandle(loginPlayer, pRecvPacket) != 0)
 	{
 		CLOG_INFO << "OnGateRouteLogin: msg handle error" << CLOG_END;
 	}
@@ -65,10 +65,10 @@ void LoginNodeClient::OnWorldRouteLogin(const socket_t sock_fd, const int msg_id
 	MsgHandle pHandle = g_pPacketMgr->GetMsgHandle(gate_packet.msg_id());
 	if (pHandle == nullptr) return;
 
-	LoginPlayer loginPlayer;
-	loginPlayer.m_playerid = gate_packet.player_id();
-	loginPlayer.m_servid = pServerData->serv_id;
-	if (pHandle(&loginPlayer, pRecvPacket) != 0)
+	LoginPlayer* loginPlayer = g_pLoginPlayerPool->NewLoginPlayer();
+	loginPlayer->m_playerid = gate_packet.player_id();
+	loginPlayer->m_servid = pServerData->serv_id;
+	if (pHandle(loginPlayer, pRecvPacket) != 0)
 	{
 		CLOG_INFO << "OnGateRouteWorld: msg handle error" << CLOG_END;
 	}
@@ -81,7 +81,7 @@ void LoginNodeClient::SendToGate(const int& serverid, uint64_t playerId, const i
 	login_packet.set_msg_id(msg_id);
 	login_packet.set_msg_body(send_msg);
 	login_packet.set_player_id(playerId);
-	mNetCliModule->SendPbByServId(serverid, CHAT_ROUTE_TO_GATE, &login_packet);
+	mNetCliModule->SendPbByServId(serverid, LOGIN_ROUTE_TO_GATE, &login_packet);
 }
 
 void LoginNodeClient::SendToWorld(const int& serverid, uint64_t playerId, const int msg_id, ::google::protobuf::Message* pb_msg)

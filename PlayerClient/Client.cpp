@@ -80,8 +80,9 @@ void Client::OnSocketEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, Se
 
 void Client::OnMessage(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
-	Chat_ChatReply reply;
+	//Chat_ChatReply reply;
+	Login_LoginReply reply;
 	reply.ParseFromArray(msg, msg_len);
-	CLOG_INFO << "client recv msg from gate :" << reply.chat_msg() <<CLOG_END;
+	CLOG_INFO << "client recv msg from gate :" << (int)(reply.ret()) << CLOG_END;
 }
 

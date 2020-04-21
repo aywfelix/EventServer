@@ -9,8 +9,14 @@ class Packet
 {
 public:
 	Packet() {}
+	~Packet() 
+	{
+		if (msg)
+		{
+			msg->Clear();
+		}
+	}
 	Packet(int msg_id, ::google::protobuf::Message* msg) : msg_id(msg_id), msg(msg) {}
-
 	int msg_id{ -1 };
 	::google::protobuf::Message* msg{ nullptr };
 };

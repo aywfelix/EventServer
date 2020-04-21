@@ -21,7 +21,9 @@ int HandleLogin::LoginReq(Player* player, Packet* packet)
 			// 本地数据验证
 			ConnThread* conn_thrd = g_conn_pool->Malloc();
 			MsgCache msg_cache;
-			msg_cache.m_packet = packet;
+			msg_cache.m_packet = new Packet();
+			msg_cache.m_packet->msg->CopyFrom(*packet->msg);
+			msg_cache.m_packet->msg_id = packet->msg_id;
 			msg_cache.m_player = login_player;
 			msg_cache.m_result = nullptr;
 
@@ -47,12 +49,17 @@ int HandleLogin::LoginReq(Player* player, Packet* packet)
 		if (msg_cache->m_result)
 		{
 			LOG_INFO("login ok!!!");
+			// TODO : 通过验证后（1）新用户 插入tb_player数据，（2）老用户更新用户表信息
+			// 通知客户端登录验证成功
+			Login_LoginReply reply;
+			reply.set_ret(0);
+
+			g_pServerThread->LoginClient().SendToGate(msg_cache->m_player->m_servid, msg_cache->m_player->m_playerid, msg_cache->m_packet->msg_id, &reply);
+			g_pLoginPlayerPool->DelLoginPlayer(msg_cache->m_player);
+			DELETE_PTR(msg_cache->m_packet);
+
 		}
 	}
-	// TODO : 通过验证后（1）新用户 插入tb_player数据，（2）老用户更新用户表信息
-
-	Login_LoginReply reply;
-	//reply.set_ret(0);
 
 	return 0;
 }

@@ -7,6 +7,7 @@
 #include "client/login/HandleLogin.h"
 #include "JsonConfig.h"
 #include "packet/PacketMgr.h"
+#include "MsgHandle/LoginPlayer.h"
 
 Login::Login()
 {
@@ -25,6 +26,7 @@ void Login::Init()
 	g_conn_pool = std::make_unique<ConnectionPool>();
 	g_pRedis = std::make_unique<db_redis>();
 	g_pPacketMgr = std::make_unique<PacketMgr>();
+	g_pLoginPlayerPool = std::make_unique<LoginPlayerPool>();
 	InitManager();
 }
 
