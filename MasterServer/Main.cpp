@@ -47,7 +47,7 @@ int main()
 	SetResource();
 #endif
 	g_pConfig.reset(new JsonConfig);
-	g_pConfig->Load("../Config/ServerConf.json");
+	g_pConfig->Load(SERVER_CFG);
 	g_pConfig->m_ServerConf = g_pConfig->m_Root["MasterServer"];
 	INIT_SFLOG("MasterServer");
 	Master master;

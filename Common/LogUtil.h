@@ -9,9 +9,9 @@
 #include <sstream>
 #include "ConcurrentQueue.hpp"
 #include "FileUtil.h"
-#include "CommDef.h"
 #include "Util.h"
 #include "Lock.hpp"
+#include "SePlatForm.h"
 
 enum ELogLevel
 {
@@ -147,7 +147,7 @@ extern std::unique_ptr<LogUtil> g_pLog;
 
 #define INIT_SFLOG(a) do{\
 g_pLog = std::make_unique<LogUtil>();\
-g_pLog->LoadLogCfg(LOG_CFG_PATH);\
+g_pLog->LoadLogCfg(SERVER_CFG);\
 g_pLog->Init(a);\
 g_pLog->Start();\
 }while (0);

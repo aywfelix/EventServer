@@ -2,6 +2,7 @@
 #include "NodeNet/WorldServerThread.h"
 #include "Session.h"
 #include "client/world/HandleWorld.h"
+#include "packet/PacketMgr.h"
 
 World::World()
 {
@@ -14,8 +15,9 @@ World::~World()
 
 void World::Init()
 {
-	g_pServerThread.reset(new WorldServerThread());
+	g_pServerThread = std::make_unique<WorldServerThread>();
 	g_pSessionPool = std::make_unique<SessionPool>();
+	g_pPacketMgr = std::make_unique<PacketMgr>();
 	InitManager();
 }
 

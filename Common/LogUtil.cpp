@@ -142,10 +142,10 @@ bool LogUtil::LoadLogCfg(const char* logcfg)
 		AssertEx(0, "log path cfg error");
 		return false;
 	}
-	m_level = json_config.m_Root["log"]["default_level"].asInt();
-	m_roll_type = json_config.m_Root["log"]["default_roll"].asInt();
-	m_LogPath = json_config.m_Root["log"]["default_path"].asString();
-	m_roll_size = json_config.m_Root["log"]["roll_size"].asInt64();
+	m_level = json_config.m_Root["Log"]["level"].asInt();
+	m_roll_type = json_config.m_Root["Log"]["roll"].asInt();
+	m_LogPath = json_config.m_Root["Log"]["path"].asString();
+	m_roll_size = json_config.m_Root["Log"]["roll_size"].asInt64();
 	return true;
 }
 

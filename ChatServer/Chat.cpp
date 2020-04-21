@@ -15,8 +15,8 @@ Chat::~Chat()
 
 void Chat::Init()
 {
-	g_pServerThread.reset(new ChatServerThread());
-	g_packetmgr.reset(new PacketMgr);
+	g_pPacketMgr = std::make_unique<PacketMgr>();
+	g_pServerThread = std::make_unique<ChatServerThread>();
 	g_pSessionPool = std::make_unique<SessionPool>();
 	InitManager();
 }

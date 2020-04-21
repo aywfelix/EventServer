@@ -6,7 +6,7 @@
 
 class Player;
 class Packet;
-extern std::unique_ptr<PacketMgr> g_packetmgr;
+extern std::unique_ptr<PacketMgr> g_pPacketMgr;
 class HandleChat : public SingleTon<HandleChat>
 {
 public:
@@ -17,8 +17,8 @@ public:
 	};
 	HandleChat()
 	{
-		g_packetmgr->RegisterHandle(RPC_CHAT_CHAT_REQ, HandleChat::ChatReq);
-		g_packetmgr->RegisterPacket(RPC_CHAT_CHAT_REQ, new CPacket<Chat_ChatReq>());
+		g_pPacketMgr->RegisterHandle(RPC_CHAT_CHAT_REQ, HandleChat::ChatReq);
+		g_pPacketMgr->RegisterPacket(RPC_CHAT_CHAT_REQ, new CPacket<Chat_ChatReq>());
 	}
 public:
 	static int ChatReq(Player* player, Packet* recv_packet);

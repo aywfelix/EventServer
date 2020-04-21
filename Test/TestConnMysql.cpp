@@ -8,7 +8,7 @@ void SFTest::TestConnMysql()
 {
 	//server config
 	g_pConfig.reset(new JsonConfig());
-	g_pConfig->Load("../Config/ServerConf.json");
+	g_pConfig->Load(SERVER_CFG);
 	g_pConfig->m_ServerConf = g_pConfig->m_Root["DBServer"];
 	//mariadb config
 	g_pConfig->m_dbConf = g_pConfig->m_Root["MariaDB"];

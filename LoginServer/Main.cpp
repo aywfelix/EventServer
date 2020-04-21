@@ -47,7 +47,7 @@ int main(int argc, char** argv)
 	SetResource();
 #endif
 	g_pConfig.reset(new JsonConfig());
-	g_pConfig->Load("../Config/ServerConf.json");
+	g_pConfig->Load(SERVER_CFG);
 	g_pConfig->m_ServerConf = g_pConfig->m_Root["LoginServer"];
 	g_pConfig->m_RedisConf = g_pConfig->m_Root["Redis"];
 	//mariadb config

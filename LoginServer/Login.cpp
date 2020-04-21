@@ -6,6 +6,7 @@
 #include "redis/db_redis.h"
 #include "client/login/HandleLogin.h"
 #include "JsonConfig.h"
+#include "packet/PacketMgr.h"
 
 Login::Login()
 {
@@ -23,6 +24,7 @@ void Login::Init()
 	g_pSessionPool = std::make_unique<SessionPool>();
 	g_conn_pool = std::make_unique<ConnectionPool>();
 	g_pRedis = std::make_unique<db_redis>();
+	g_pPacketMgr = std::make_unique<PacketMgr>();
 	InitManager();
 }
 

@@ -5,6 +5,7 @@
 #include "JsonConfig.h"
 #include "scene/map/SceneMgr.h"
 #include "tablecpp/TableMgr.h"
+#include "packet/PacketMgr.h"
 
 Game::Game()
 {
@@ -22,6 +23,7 @@ void Game::Init()
 	g_pSessionPool = std::make_unique<SessionPool>();
 	g_pRedis = std::make_unique<db_redis>();
 	g_pSceneMgr = std::make_unique<SceneMgr>();
+	g_pPacketMgr = std::make_unique<PacketMgr>();
 	InitManager();
 }
 

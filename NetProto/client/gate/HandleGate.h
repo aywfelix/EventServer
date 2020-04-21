@@ -5,7 +5,7 @@
 
 class Player;
 class Packet;
-extern std::unique_ptr<PacketMgr> g_packetmgr;
+extern std::unique_ptr<PacketMgr> g_pPacketMgr;
 class HandleGate : public SingleTon<HandleGate>
 {
 public:

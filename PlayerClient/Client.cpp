@@ -11,6 +11,12 @@
 #include "client/login/HandleLogin.h"
 
 
+enum ChatChannelType
+{
+	CHAT_CHANNEL_GM = 1,
+	CHAT_CHANNEL_SYSTEM = 2,
+};
+
 bool Client::Init()
 {
 	m_pNetClientModule = new SeFNetClient();

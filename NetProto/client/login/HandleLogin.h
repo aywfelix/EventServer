@@ -6,7 +6,7 @@
 
 class Player;
 class Packet;
-extern std::unique_ptr<PacketMgr> g_packetmgr;
+extern std::unique_ptr<PacketMgr> g_pPacketMgr;
 class HandleLogin : public SingleTon<HandleLogin>
 {
 public:
@@ -20,14 +20,14 @@ public:
 	};
 	HandleLogin()
 	{
-		g_packetmgr->RegisterHandle(RPC_LOGIN_LOGIN_REQ, HandleLogin::LoginReq);
-		g_packetmgr->RegisterPacket(RPC_LOGIN_LOGIN_REQ, new CPacket<Login_LoginReq>());
-		g_packetmgr->RegisterHandle(RPC_LOGIN_CREATEROLE_REQ, HandleLogin::CreateRoleReq);
-		g_packetmgr->RegisterPacket(RPC_LOGIN_CREATEROLE_REQ, new CPacket<Login_CreateRoleReq>());
-		g_packetmgr->RegisterHandle(RPC_LOGIN_SELECTROLE_REQ, HandleLogin::SelectRoleReq);
-		g_packetmgr->RegisterPacket(RPC_LOGIN_SELECTROLE_REQ, new CPacket<Login_SelectRoleReq>());
-		g_packetmgr->RegisterHandle(RPC_LOGIN_DELROLE_REQ, HandleLogin::DelRoleReq);
-		g_packetmgr->RegisterPacket(RPC_LOGIN_DELROLE_REQ, new CPacket<Login_DelRoleReq>());
+		g_pPacketMgr->RegisterHandle(RPC_LOGIN_LOGIN_REQ, HandleLogin::LoginReq);
+		g_pPacketMgr->RegisterPacket(RPC_LOGIN_LOGIN_REQ, new CPacket<Login_LoginReq>());
+		g_pPacketMgr->RegisterHandle(RPC_LOGIN_CREATEROLE_REQ, HandleLogin::CreateRoleReq);
+		g_pPacketMgr->RegisterPacket(RPC_LOGIN_CREATEROLE_REQ, new CPacket<Login_CreateRoleReq>());
+		g_pPacketMgr->RegisterHandle(RPC_LOGIN_SELECTROLE_REQ, HandleLogin::SelectRoleReq);
+		g_pPacketMgr->RegisterPacket(RPC_LOGIN_SELECTROLE_REQ, new CPacket<Login_SelectRoleReq>());
+		g_pPacketMgr->RegisterHandle(RPC_LOGIN_DELROLE_REQ, HandleLogin::DelRoleReq);
+		g_pPacketMgr->RegisterPacket(RPC_LOGIN_DELROLE_REQ, new CPacket<Login_DelRoleReq>());
 	}
 public:
 	static int LoginReq(Player* player, Packet* packet);

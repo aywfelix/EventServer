@@ -5,7 +5,6 @@
 #include <string>
 #include <unordered_map>
 
-#include "CommDef.h"
 #include "json.h"
 #include "JsonConfig.h"
 #include "LogUtil.h"

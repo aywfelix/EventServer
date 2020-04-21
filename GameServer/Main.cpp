@@ -48,7 +48,7 @@ int main(int argc, char** argv)
 #endif
 	std::string gameserver = "GameServer" + std::string(argv[1]);
 	g_pConfig.reset(new JsonConfig());
-	g_pConfig->Load("../Config/ServerConf.json");
+	g_pConfig->Load(SERVER_CFG);
 	g_pConfig->m_ServerConf = g_pConfig->m_Root[gameserver];
 	g_pConfig->m_RedisConf = g_pConfig->m_Root["Redis"];
 	INIT_SFLOG(gameserver);

@@ -40,8 +40,8 @@ void LoginNodeClient::OnGateRouteLogin(const socket_t sock_fd, const int msg_id,
 	ConnectDataPtr pServerData = GetServerNetInfo(sock_fd);
 	if (!pServerData) return;
 
-	Packet* pRecvPacket = g_packetmgr->CreatePakcet(gate_packet.msg_id(), gate_packet.msg_body().c_str(), gate_packet.msg_body().length());
-	MsgHandle pHandle = g_packetmgr->GetMsgHandle(gate_packet.msg_id());
+	Packet* pRecvPacket = g_pPacketMgr->CreatePakcet(gate_packet.msg_id(), gate_packet.msg_body().c_str(), gate_packet.msg_body().length());
+	MsgHandle pHandle = g_pPacketMgr->GetMsgHandle(gate_packet.msg_id());
 	if (pHandle == nullptr) return;
 
 	LoginPlayer loginPlayer;
@@ -61,8 +61,8 @@ void LoginNodeClient::OnGateRouteWorld(const socket_t sock_fd, const int msg_id,
 	ConnectDataPtr pServerData = GetServerNetInfo(sock_fd);
 	if (!pServerData) return;
 
-	Packet* pRecvPacket = g_packetmgr->CreatePakcet(gate_packet.msg_id(), gate_packet.msg_body().c_str(), gate_packet.msg_body().length());
-	MsgHandle pHandle = g_packetmgr->GetMsgHandle(gate_packet.msg_id());
+	Packet* pRecvPacket = g_pPacketMgr->CreatePakcet(gate_packet.msg_id(), gate_packet.msg_body().c_str(), gate_packet.msg_body().length());
+	MsgHandle pHandle = g_pPacketMgr->GetMsgHandle(gate_packet.msg_id());
 	if (pHandle == nullptr) return;
 
 	LoginPlayer loginPlayer;

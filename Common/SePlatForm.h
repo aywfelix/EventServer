@@ -75,10 +75,12 @@ typedef pthread_t	TID;
 void	SetResource();
 #endif
 
-TID CurrentThreadId();
-
-void LocalTime(const time_t* timep, struct tm* result);
-
+#define TABLE_PATH "../DataTable/"
+#define SERVER_CFG "../Config/ServerConf.json"
+#define GAME_MAX_PLAYERS 5000
 #define LOOP_TIMEOUT 30   // event loop 30ms
 
+
+TID CurrentThreadId();
+void LocalTime(const time_t* timep, struct tm* result);
 int GetCpuCores();

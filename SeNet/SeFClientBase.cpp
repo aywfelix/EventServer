@@ -3,6 +3,7 @@
 #include "SeFNetClient.h"
 #include "JsonConfig.h"
 #include "SeNet.h"
+#include "SePlatForm.h"
 
 bool SeFClientBase::Init()
 {
@@ -86,7 +87,7 @@ void SeFClientBase::AddConnectMaster()
 {
 	if (this->GetServerType() != ServerType::SERVER_TYPE_MASTER)
 	{
-		g_pConfig->Load("../Config/ServerConf.json");
+		g_pConfig->Load(SERVER_CFG);
 		ConnectDataPtr ServerData = std::make_shared<ConnectData>();
 		ServerData->serv_id = g_pConfig->m_Root["MasterServer"]["NodeId"].asInt();
 		ServerData->serv_type = ServerType::SERVER_TYPE_MASTER;

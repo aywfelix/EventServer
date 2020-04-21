@@ -32,7 +32,7 @@
         "NodeName": "GameServer1",
         "NodeIp": "127.0.0.1",
         "NodePort": 100005,
-        "MaxConnect": 10,
+        "MaxConnect": 10
     },
     "ChatServer": {
         "NodeId": 1006,
@@ -50,13 +50,12 @@
     },
     "DBServer": {
         "NodeId": 1008,
-        "NodeName": "GatePlayerServer",
+        "NodeName": "DBServer",
         "NodeIp": "127.0.0.1",
         "NodePort": 100008,
         "MaxConnect": 10
     },
     "GameGlobal": {
-        "LogPath": "../logs",
         "MaxOnline": 5000
     },
     "MariaDB": {
@@ -67,6 +66,12 @@
     "Redis": {
         "ip": "192.168.40.182",
         "port": 6379,
-        "ConnNum":5
+        "ConnNum": 5
+    },
+    "Log": {
+        "level": 1,
+        "roll": 1,
+        "path": "../Logs/",
+        "roll_size": 41943040
     }
 }

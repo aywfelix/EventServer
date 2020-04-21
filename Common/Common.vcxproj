@@ -180,7 +180,6 @@
     <ClInclude Include="BlockQueue.hpp" />
     <ClInclude Include="cityhash\city.h" />
     <ClInclude Include="cityhash\citycrc.h" />
-    <ClInclude Include="CommDef.h" />
     <ClInclude Include="concurrentqueue.h" />
     <ClInclude Include="ConcurrentQueue.hpp" />
     <ClInclude Include="ConsistentHash.hpp" />
