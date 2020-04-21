@@ -12,9 +12,7 @@ public:
 	void ThreadLoop();
 
 	GatePlayerServer &PlayerServer() { return m_gate_player; }
-
 	GateNodeServer &NodeServer() { return m_gate_serv; }
-
 	GateNodeClient &NodeClient() { return m_gate_cli; }
 
 private:

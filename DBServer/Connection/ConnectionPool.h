@@ -31,6 +31,7 @@ class ConnThread : public ThreadBase
 	using sqlresult_t = std::map<uint64_t, MariaCpp::ResultSet*>;
 public:
 	bool Init();
+	void Clear() { m_conn.DisConnect(); m_sqlquery.clear(); m_sqlresult.clear(); }
 	void ThreadLoop();
 	void AddSqlReq(uint64_t playerid, const std::string& sql);
 	bool IsFree() { return m_sqlquery.size()==0; }

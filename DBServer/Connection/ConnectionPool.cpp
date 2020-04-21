@@ -27,9 +27,9 @@ void ConnectionPool::Stop()
 	for (int i = 0; i < m_conn_num; ++i)
 	{
 		ConnThread* thread = m_conn_threads[i];
+		thread->Clear();
 		thread->Stop();
 		DELETE_PTR(thread);
-		thread = nullptr;
 	}
 	m_conn_threads.clear();
 }
@@ -38,9 +38,9 @@ void ConnectionPool::Init()
 {
 	for (int i = 0; i < m_conn_num; ++i)
 	{
-		ConnThread* conn_thread = new ConnThread;
-		conn_thread->Start();
-		m_conn_threads[i] = conn_thread;
+		ConnThread* thread = new ConnThread;
+		thread->Start();
+		m_conn_threads[i] = thread;
 	}
 }
 
@@ -82,31 +82,38 @@ void ConnectionPool::Free(ConnThread* conn)
 
 bool ConnThread::Init()
 {
+	m_conn.Init();
 	m_sqlquery.clear();
 	return true;
 }
 
 void ConnThread::ThreadLoop()
 {
-	bool bConn = false;
 	while (IsActive())
 	{
-		if (!bConn)
+		if (!m_conn.IsConnOk())
 		{
 			m_conn.ConnectToDB();
 		}
-		bConn = m_conn.IsConnOk();
-		if (bConn && !m_sqlquery.empty())
+		else
 		{
-			for (auto& it : m_sqlquery)
+			if (!m_sqlquery.empty())
 			{
-				Query(it.first, it.second);
+				try
+				{
+					for (auto& it : m_sqlquery)
+					{
+						Query(it.first, it.second);
+					}
+				}
+				catch (const std::exception & e)
+				{
+					LOG_FATAL("DBServer: query error(%s)", e.what());
+				}
 			}
 		}
 		sf_sleep(20);
 	}
-	//线程结束断开连接
-	m_conn.DisConnect();
 }
 
 void ConnThread::AddSqlReq(uint64_t playerid, const std::string& sql)

@@ -48,6 +48,7 @@ class ConnThread : public ThreadBase
 	using reqmsgcache_t = std::deque<MsgCache>;
 public:
 	bool Init();
+	void Clear() { m_conn.DisConnect(); m_reqmsgcache.clear(); }
 	void ThreadLoop();
 	void AddReqMsg(MsgCache& msgcache);
 	MsgCache* GetMsgCache() { return &m_reqmsgcache.front(); }

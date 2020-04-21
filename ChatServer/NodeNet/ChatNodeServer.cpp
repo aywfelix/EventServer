@@ -4,7 +4,6 @@
 #include "SeFNodeNet.pb.h"
 #include "SeFNet.h"
 
-
 bool ChatNodeServer::InitHelper()
 {
 	mNetServModule->AddReceiveCallBack(GAME_ROUTE_TO_CHAT, this, &ChatNodeServer::OnGameRouteChat);

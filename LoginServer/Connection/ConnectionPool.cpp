@@ -16,7 +16,7 @@ ConnectionPool::ConnectionPool(int thrdnum) :m_conn_num(thrdnum)
 ConnectionPool::ConnectionPool()
 {
 	m_conn_num = GetCpuCores();
-	//m_conn_num = 1;
+	m_conn_num = 1;
 	m_conn_threads.resize(m_conn_num);
 }
 
@@ -29,9 +29,9 @@ void ConnectionPool::Stop()
 	for (int i = 0; i < m_conn_num; ++i)
 	{
 		ConnThread* thread = m_conn_threads[i];
+		thread->Clear();
 		thread->Stop();
 		DELETE_PTR(thread);
-		thread = nullptr;
 	}
 	m_conn_threads.clear();
 }
@@ -40,9 +40,9 @@ void ConnectionPool::Init()
 {
 	for (int i = 0; i < m_conn_num; ++i)
 	{
-		ConnThread* conn_thread = new ConnThread;
-		conn_thread->Start();
-		m_conn_threads[i] = conn_thread;
+		ConnThread* thread = new ConnThread;
+		thread->Start();
+		m_conn_threads[i] = thread;
 	}
 }
 
@@ -98,32 +98,43 @@ ConnThread* ConnectionPool::GetConnThread(std::thread::id& tid)
 
 bool ConnThread::Init()
 {
+	m_conn.Init();
+	m_reqmsgcache.clear();
 	return true;
 }
 
 
 void ConnThread::ThreadLoop()
 {
-	bool bConn = false;
 	while (IsActive())
 	{
-		if (!bConn)
+		if (!m_conn.IsConnOk())
 		{
-			m_conn.ConnectToDB();
+			if (m_conn.ConnectToDB())
+			{
+				LOG_INFO("conn database ok!!!");
+			}
 		}
-		bConn = m_conn.IsConnOk();
-		if (bConn && !m_reqmsgcache.empty())
+		else 
 		{
-			MsgCache& msg = m_reqmsgcache.front();
-			Query(msg);
-			auto pHandle = g_pPacketMgr->GetMsgHandle(msg.m_packet->msg_id);
-			pHandle(msg.m_player, msg.m_packet);
-			m_reqmsgcache.pop_front();
+			if (!m_reqmsgcache.empty())
+			{
+				try
+				{
+					MsgCache& msg = m_reqmsgcache.front();
+					Query(msg);
+					auto pHandle = g_pPacketMgr->GetMsgHandle(msg.m_packet->msg_id);
+					pHandle(msg.m_player, msg.m_packet);
+					m_reqmsgcache.pop_front();
+				}
+				catch (const std::exception & e)
+				{
+					LOG_FATAL("LoginServer: query error(%s)", e.what());
+				}
+			}
 		}
 		sf_sleep(20);
 	}
-	//线程结束断开连接
-	m_conn.DisConnect();
 }
 
 void ConnThread::AddReqMsg(MsgCache& msgcache)

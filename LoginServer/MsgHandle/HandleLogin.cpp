@@ -25,8 +25,8 @@ int HandleLogin::LoginReq(Player* player, Packet* packet)
 			msg_cache.m_player = login_player;
 			msg_cache.m_result = nullptr;
 
-			std::string sql = "select loginname,loginpwd from tb_account where loginname=" + pb_msg->login_name() \
-				+ ",loginpwd=" + pb_msg->login_pwd();
+			std::string sql = "select loginname,loginpwd from tb_account where loginname='" + pb_msg->login_name() \
+				+ "' and loginpwd='" + pb_msg->login_pwd()+"';";
 			msg_cache.m_sql = sql;
 			conn_thrd->AddReqMsg(msg_cache);
 		}

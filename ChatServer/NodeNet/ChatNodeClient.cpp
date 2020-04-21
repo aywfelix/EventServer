@@ -9,7 +9,6 @@
 void ChatNodeClient::InitHelper()
 {
 	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_GATE, GATE_ROUTE_TO_CHAT, this, &ChatNodeClient::OnGateRouteChat);
-	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_GAME, GAME_ROUTE_TO_CHAT, this, &ChatNodeClient::OnGameRouteChat);
 	SetReportInfo();
 	AddConnectServer();
 }
@@ -29,7 +28,6 @@ void ChatNodeClient::AddConnectServer()
 {
 	AddConnectMaster();
 	mConnectType.push_back(ServerType::SERVER_TYPE_GATE);
-	mConnectType.push_back(ServerType::SERVER_TYPE_GAME);
 }
 
 void ChatNodeClient::OnGateRouteChat(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
@@ -56,11 +54,6 @@ void ChatNodeClient::OnGateRouteChat(const socket_t sock_fd, const int msg_id, c
 	{
 		CLOG_INFO << "msg handle error" << CLOG_END;
 	}
-}
-
-void ChatNodeClient::OnGameRouteChat(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
-{
-
 }
 
 void ChatNodeClient::SendToGate(const int& server_id, uint64_t player_id, const int msg_id, ::google::protobuf::Message* pb_msg)

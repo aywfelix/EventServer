@@ -139,7 +139,7 @@ void SeFServerBase::SendPbByServTypeOne(ServerType type, const int msg_id, ::goo
 	{
 		if (it.second->ServerInfo->server_type() == type)
 		{
-			vec.emplace_back(it.second->fd);
+			vec.push_back(it.second->fd);
 		}
 	}
 	if (vec.empty()) return;

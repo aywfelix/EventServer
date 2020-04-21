@@ -8,9 +8,12 @@ void GameNodeClient::InitHelper()
     mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_MASTER, this, &GameNodeClient::OnSocketEvent);
 	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_WORLD, this, &GameNodeClient::OnSocketEvent);
 	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_GATE, this, &GameNodeClient::OnSocketEvent);
+	mNetCliModule->AddEventCallBack(ServerType::SERVER_TYPE_CHAT, this, &GameNodeClient::OnSocketEvent);
 	
 	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_GATE, GATE_ROUTE_TO_GAME, this, &GameNodeClient::OnGateRouteGame);
 	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_WORLD, WORLD_ROUTE_TO_GAME, this, &GameNodeClient::OnWorldRouteGame);
+	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_CHAT, CHAT_ROUTE_TO_GAME, this, &GameNodeClient::OnChatRouteGame);
+
 	SetReportInfo();
 	AddConnectServer();
 }
@@ -32,6 +35,7 @@ void GameNodeClient::AddConnectServer()
 	AddConnectMaster();
 	mConnectType.push_back(ServerType::SERVER_TYPE_WORLD);
 	mConnectType.push_back(ServerType::SERVER_TYPE_GATE);
+	mConnectType.push_back(ServerType::SERVER_TYPE_CHAT);
 }
 
 
@@ -45,6 +49,10 @@ void GameNodeClient::OnGateRouteGame(const socket_t sock_fd, const int msg_id, c
 
 }
 void GameNodeClient::OnWorldRouteGame(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
+{
+
+}
+void GameNodeClient::OnChatRouteGame(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 
 }

@@ -8,7 +8,7 @@
 void LoginNodeClient::InitHelper()
 {
 	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_GATE, GATE_ROUTE_TO_LOGIN, this, &LoginNodeClient::OnGateRouteLogin);
-	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_WORLD, GATE_ROUTE_TO_WORLD, this, &LoginNodeClient::OnGateRouteWorld);
+	mNetCliModule->AddReceiveCallBack(ServerType::SERVER_TYPE_WORLD, WORLD_ROUTE_TO_LOGIN, this, &LoginNodeClient::OnWorldRouteLogin);
 	SetReportInfo();
 	AddConnectServer();
 }
@@ -22,7 +22,7 @@ void LoginNodeClient::SetReportInfo()
 	mServerInfo.set_server_port(g_pConfig->m_ServerConf["NodePort"].asInt());
 	mServerInfo.set_server_max_online(2000);
 	mServerInfo.set_server_state(EServerState::EST_NORMAL);
-	mServerInfo.set_server_type(ServerType::SERVER_TYPE_GAME);
+	mServerInfo.set_server_type(ServerType::SERVER_TYPE_LOGIN);
 }
 
 void LoginNodeClient::AddConnectServer()
@@ -44,7 +44,7 @@ void LoginNodeClient::OnGateRouteLogin(const socket_t sock_fd, const int msg_id,
 	MsgHandle pHandle = g_pPacketMgr->GetMsgHandle(gate_packet.msg_id());
 	if (pHandle == nullptr) return;
 
-	LoginPlayer loginPlayer;
+	LoginPlayer loginPlayer; // TODO loginPlayer 临时变量在查询多线程里会被释放，改成分配内存方式处理
 	loginPlayer.m_playerid = gate_packet.player_id();
 	loginPlayer.m_servid = pServerData->serv_id;
 	if (pHandle(&loginPlayer, pRecvPacket) != 0)
@@ -53,7 +53,7 @@ void LoginNodeClient::OnGateRouteLogin(const socket_t sock_fd, const int msg_id,
 	}
 }
 
-void LoginNodeClient::OnGateRouteWorld(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
+void LoginNodeClient::OnWorldRouteLogin(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)
 {
 	GateToWorldPacket gate_packet;
 	if (!ReceivePB(msg_id, msg, msg_len, &gate_packet)) return;

@@ -29,4 +29,3 @@ private:
 	//MariaCpp::PreparedStatement m_login_check;
 	//MariaCpp::PreparedStatement m_login_insert;
 };
-
