@@ -13,6 +13,7 @@
 #include "Lock.hpp"
 #include "SePlatForm.h"
 
+
 enum ELogLevel
 {
 	E_LOG_DEBUG = 1,
@@ -35,6 +36,7 @@ enum ELogRollType
 	E_ROLL_HOUR = 2,
 	E_ROLL_DAY = 3,
 };
+
 
 class NullStream
 {

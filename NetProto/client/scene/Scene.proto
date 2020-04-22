@@ -1,0 +1,31 @@
+syntax = "proto3";
+import "Common.proto";
+
+// 进入场景
+message Scene_EnterReq   
+{
+	bytes login_name = 1;
+	bytes login_pwd = 2;
+	bytes game_id = 3;
+	bytes open_id = 4;
+	bytes token = 5;
+	bytes channel_id = 6;
+	bytes snid = 7;
+	bytes mac = 8;
+}
+
+message Scene_EnterReply   
+{
+
+}
+
+// 离开场景
+message Scene_LeaveReq
+{
+	int32 ret = 1;
+}
+
+message Scene_LeaveReply
+{
+	int32 ret = 1;
+}

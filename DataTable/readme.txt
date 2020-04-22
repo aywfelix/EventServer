@@ -1,0 +1,2 @@
+transport_table.py 脚本 读取excels文件夹下的excel文件，并将其转成json文件，生成加载相应json代码的cpp代码
+cpp代码放在common工程下

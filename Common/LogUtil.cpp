@@ -7,6 +7,12 @@
 
 std::unique_ptr<LogUtil> g_pLog = nullptr;
 
+#define RED	"\x1b[31m"
+#define YELLOW	"\x1b[33m"
+#define GREEN	"\x1b[32m"
+#define WHITE	"\x1b[37m"
+#define COLOR_VOID	"\x1b[0m"
+
 bool LogUtil::Init(std::string servername)
 {
 	m_servername = servername;
@@ -108,19 +114,19 @@ void LogUtil::Log(int level, const char* file, const char* func, int line, const
 #ifdef DEBUG
 	if (level == E_LOG_FATAL || level == E_LOG_ERR)
 	{
-		m_oss << "\x1b[31m" << timestr << "|" << file << ":" << line << "|" << func << "|" << content << "\x1b[0m";  //red
+		m_oss << RED << timestr << "|" << file << ":" << line << "|" << func << "|" << content << COLOR_VOID;  //red
 	}
 	else if (level == E_LOG_WARN)
 	{
-		m_oss << "\x1b[33m" << timestr << "|" << file << ":" << line << "|" << func << "|" << content << "\x1b[0m"; //yellow
+		m_oss << YELLOW << timestr << "|" << file << ":" << line << "|" << func << "|" << content << COLOR_VOID; //yellow
 	}
 	else if (level == E_LOG_INFO)
 	{
-		m_oss << "\x1b[32m" << timestr << "|" << file << ":" << line << "|" << func << "|" << content << "\x1b[0m"; //green
+		m_oss << GREEN << timestr << "|" << file << ":" << line << "|" << func << "|" << content << COLOR_VOID; //green
 	}
 	else if (level == E_LOG_DEBUG)
 	{
-		m_oss << "\x1b[37m" << timestr << "|" << file << ":" << line << "|" << func << "|" << content << "\x1b[0m"; //white
+		m_oss << WHITE << timestr << "|" << file << ":" << line << "|" << func << "|" << content << COLOR_VOID; //white
 	}
 #else
 	m_oss << timestr << "|" << file << ":" << line << "|" << func << "|" << content;
@@ -171,19 +177,19 @@ void LogStream::Init(int level, const char* file, const char* func, int line)
 #ifdef DEBUG
 	if (level == E_LOG_FATAL || level == E_LOG_ERR)
 	{
-		m_oss << "\x1b[31m" << timestr << "|" << file << ":" << line << "|" << func << "|";
+		m_oss << RED << timestr << "|" << file << ":" << line << "|" << func << "|";
 	}
 	else if (level == E_LOG_WARN)
 	{
-		m_oss << "\x1b[33m" << timestr << "|" << file << ":" << line << "|" << func << "|";
+		m_oss << YELLOW << timestr << "|" << file << ":" << line << "|" << func << "|";
 	}
 	else if (level == E_LOG_INFO)
 	{
-		m_oss << "\x1b[32m" << timestr << "|" << file << ":" << line << "|" << func << "|";
+		m_oss << GREEN << timestr << "|" << file << ":" << line << "|" << func << "|";
 	}
 	else if (level == E_LOG_DEBUG)
 	{
-		m_oss << "\x1b[37m" << timestr << "|" << file << ":" << line << "|" << func << "|";
+		m_oss << WHITE << timestr << "|" << file << ":" << line << "|" << func << "|";
 	}
 #else
 	m_oss << timestr << "|" << file << ":" << line << "|" << func << ">>>";
@@ -193,22 +199,7 @@ void LogStream::Init(int level, const char* file, const char* func, int line)
 void LogStream::Clear()
 {
 #ifdef DEBUG
-	if (m_level == E_LOG_FATAL || m_level == E_LOG_ERR)
-	{
-		m_oss << "\x1b[0m";  // red
-}
-	else if (m_level == E_LOG_WARN)
-	{
-		m_oss << "\x1b[0m"; // yellow
-	}
-	else if (m_level == E_LOG_INFO)
-	{
-		m_oss << "\x1b[0m"; // green
-	}
-	else if (m_level == E_LOG_DEBUG)
-	{
-		m_oss << "\x1b[0m"; // white
-	}
+	m_oss << COLOR_VOID;
 #endif // DEBUG
 	m_oss << "\n";
 	g_pLog->GetQueue().PutQ(m_oss.str());
