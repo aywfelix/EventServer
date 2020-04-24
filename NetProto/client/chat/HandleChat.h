@@ -1,8 +1,8 @@
 #pragma once
 
-#include "SingleTon.hpp"
 #include "packet/PacketMgr.h"
 #include "Chat.pb.h"
+#include "SingleTon.hpp"
 
 class Player;
 class Packet;
@@ -14,6 +14,7 @@ public:
 	{
 		MODULE_ID_CHAT = 11,
 		RPC_CHAT_CHAT_REQ = 1101,
+		RPC_CHAT_CHAT2_REQ = 1102,
 	};
 	HandleChat()
 	{
@@ -21,5 +22,6 @@ public:
 		g_pPacketMgr->RegisterPacket(RPC_CHAT_CHAT_REQ, new CPacket<Chat_ChatReq>());
 	}
 public:
-	static int ChatReq(Player* player, Packet* recv_packet);
+	static int ChatReq(Player* player, Packet* packet);
+	static int Chat2Req(Player* player, Packet* packet);
 };
