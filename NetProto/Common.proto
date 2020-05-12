@@ -4,7 +4,7 @@ syntax = "proto3";
 message Vector2//The base protocol can not be transfer directly
 { 
     float	x = 1;
-    float	y = 2;
+    float	z = 2;
 }
 
 message Vector3//The base protocol can not be transfer directly

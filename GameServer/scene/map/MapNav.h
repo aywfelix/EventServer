@@ -11,6 +11,8 @@
 
 #include "common/Common.h"
 
+// 此地图导航使用的recast-navigation 算法库实现(用于3D地图导航)
+
 // load tile
 static const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; //'MSET';
 static const int NAVMESHSET_VERSION = 1;

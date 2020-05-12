@@ -42,6 +42,13 @@ bool FileC::Read(void* buf, size_t size, size_t count)
 	}
 	return true;
 }
+// 按照行读取文件
+//while (!feof(fp))
+//{
+//	memset(szTest, 0, sizeof(szTest));
+//	fgets(szTest, sizeof(szTest) - 1, fp); // 包含了换行符  
+//	printf("%s", szTest);
+//}
 
 void FileC::SeekEnd()
 {
@@ -53,6 +60,7 @@ long FileC::FileSize()
 	if (mFp == nullptr) return 0L;
 	fseek(mFp, 0L, SEEK_END);
 	long size = ftell(mFp);
+	fseek(mFp, 0L, SEEK_SET);
 	return size;
 }
 
@@ -89,10 +97,14 @@ bool FileCpp::Read(void* buf)
 	return true;
 }
 
+// 按照行读取
+//while(getline(in, line))
+//{ }
 long FileCpp::FileSize()
 {
 	mfs.seekg(0, std::ios::end);
 	long size = mfs.tellg();
+	mfs.seekg(0, std::ios::beg);
 	return size;
 }
 

@@ -19,7 +19,6 @@
     <ClCompile Include="scene\map\MapNav.cpp" />
     <ClCompile Include="scene\map\Zone.cpp" />
     <ClCompile Include="scene\map\ZoneMgr.cpp" />
-    <ClCompile Include="scene\Scene.cpp" />
     <ClCompile Include="obj\Obj.cpp" />
     <ClCompile Include="scene\move\ObjMove.cpp" />
     <ClCompile Include="scene\dungeon\FightScene.cpp" />
@@ -61,7 +60,6 @@
     <ClInclude Include="scene\map\MapNav.h" />
     <ClInclude Include="scene\map\Zone.h" />
     <ClInclude Include="scene\map\ZoneMgr.h" />
-    <ClInclude Include="scene\Scene.h" />
     <ClInclude Include="obj\Obj.h" />
     <ClInclude Include="scene\move\ObjMove.h" />
     <ClInclude Include="scene\dungeon\FightScene.h" />

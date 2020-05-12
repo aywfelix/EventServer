@@ -4,6 +4,8 @@
 #include <memory>
 #include <vector>
 
+// 跟据地图划分的格子进行消息分发
+
 struct ZoneInfo
 {
 	ZoneInfo()

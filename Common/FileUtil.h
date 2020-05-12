@@ -49,5 +49,7 @@ private:
 	std::fstream mfs;
 };
 
-
+// windows
+//#include <corecrt_io.h>
+//int size = filelength(fileno(fp));
  

@@ -55,7 +55,9 @@ int main()
 	//	std::cout << it << " ";
 	//}
 
-	SFTest::TestExpr();
+	//SFTest::TestExpr();
+
+	SFTest::TestAStar();
 
 	while (1)
 	{
