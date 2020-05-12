@@ -22,7 +22,7 @@ void SFTest::TestCpuNum()
 
 int main()
 {
-	INIT_SFLOG("Test");
+	//INIT_SFLOG("Test");
 	//SFTest::TestRedis();
 	//SFTest::TestSplit();
 	//SFTest::TestWriteLog();

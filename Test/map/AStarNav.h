@@ -3,7 +3,7 @@
 #include <set>
 #include <vector>
 #include <map>
-#include<algorithm>
+
 // 二维地图A*算法实现
 
 const int OBLIQUE = 14;  // 斜线移动权重为14
@@ -36,7 +36,7 @@ struct Point
 //|6 7 8 9 10
 //|11 12 13 14 15
 //|....
-typedef std::set<Point*> points_type;
+typedef std::vector<Point*> points_type;
 class AStarNav
 {
 public:
