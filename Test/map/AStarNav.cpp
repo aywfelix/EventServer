@@ -73,7 +73,7 @@ int AStarNav::GetPointId(int i, int j)
 	return point_id;
 }
 
-void AStarNav::GetAroundPoints(int point_id, points_type& point_vec)
+void AStarNav::GetAroundPoints(int point_id, point_vec_type& point_vec)
 {
 	int i = 0, j = 0;
 	GetPos(i, j, point_id);
@@ -104,13 +104,14 @@ bool AStarNav::FindPath(int start_id, int end_id, std::vector<Point*>& find_path
 	{
 		Point* tmp_start = GetMinFInOpenList();
 		m_close_list.emplace_back(tmp_start);
-		auto it = std::find_if(m_open_list.begin(), m_open_list.end(), [tmp_start](const Point* elem) {
-			if (elem == tmp_start)
-			{
-				return true;
-			}
-			return false;
-			});
+		//auto it = std::find_if(m_open_list.begin(), m_open_list.end(), [tmp_start](const Point* elem) {
+		//	if (elem == tmp_start)
+		//	{
+		//		return true;
+		//	}
+		//	return false;
+		//	});
+
 		m_open_list.erase(it);
 
 		points_type around_points;
@@ -161,7 +162,7 @@ bool AStarNav::FindPath(int start_id, int end_id)
 	m_open_list.emplace_back(start);
 	while (m_open_list.size() > 0)
 	{
-		Point* tmp_start = GetMinFInOpenList();
+		Point* tmp_start = m_open_list.top();
 		m_close_list.emplace_back(tmp_start);
 		auto it = std::find_if(m_open_list.begin(), m_open_list.end(), [tmp_start](const Point* elem) {
 			if (elem == tmp_start)
@@ -170,9 +171,9 @@ bool AStarNav::FindPath(int start_id, int end_id)
 			}
 			return false;
 			});
-		m_open_list.erase(it);
+		m_open_list.pop();
 
-		points_type around_points;
+		point_vec_type around_points;
 		GetAroundPoints(tmp_start->m_id, around_points);
 		for (auto point : around_points)
 		{
@@ -217,12 +218,12 @@ bool comp(const Point* a, const Point* b)
 
 Point* AStarNav::GetMinFInOpenList()
 {
-	std::stable_sort(m_open_list.begin(), m_open_list.end(), comp);
-	auto it = m_open_list.begin();
-	if (it != m_open_list.end())
-	{
-		return *it;
-	}
+	//std::stable_sort(m_open_list.begin(), m_open_list.end(), comp);
+	//auto it = m_open_list.begin();
+	//if (it != m_open_list.end())
+	//{
+	//	return *it;
+	//}
 	return nullptr;
 }
 
