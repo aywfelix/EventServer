@@ -23,3 +23,25 @@ public:
 	static void TestFileSystem();
 };
 
+class Test2
+{
+public:
+	Test2()
+	{
+		std::cout << "init test" << endl;
+	}
+
+	Test2(const Test2& t)
+	{
+		std::cout << "init test1" << endl;
+	}
+	Test2(const Test2&& t)
+	{
+		std::cout << "init test2" << endl;
+	}
+
+	bool operator==(const Test2& t)
+	{
+		std::cout << "init test3" << endl;
+	}
+};

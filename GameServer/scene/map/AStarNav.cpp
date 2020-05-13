@@ -73,7 +73,7 @@ int AStarNav::GetPointId(int i, int j)
 	return point_id;
 }
 
-void AStarNav::GetAroundPoints(int point_id, points_type& point_vec)
+void AStarNav::GetAroundPoints(int point_id, point_vec_type& point_vec)
 {
 	int i = 0, j = 0;
 	GetPos(i, j, point_id);
@@ -92,98 +92,51 @@ void AStarNav::GetAroundPoints(int point_id, points_type& point_vec)
 		}
 }
 
-
 bool AStarNav::FindPath(int start_id, int end_id, std::vector<Point*>& find_path)
 {
-	Point* start = GetPoint(start_id);
-	Point* end = GetPoint(end_id);
-	if (start == nullptr || end == nullptr) 
-		return false;
-	m_open_list.emplace_back(start);
-	while(m_open_list.size()>0)
+	if (CanReach(start_id, end_id))
 	{
-		Point* tmp_start = GetMinFInOpenList();
-		m_close_list.emplace_back(tmp_start);
-		auto it = std::find_if(m_open_list.begin(), m_open_list.end(), [tmp_start](const Point* elem) {
-			if (elem == tmp_start)
-			{
-				return true;
-			}
-			return false;
-			});
-		m_open_list.erase(it);
-
-		points_type around_points;
-		GetAroundPoints(tmp_start->m_id, around_points);
-		for (auto point : around_points)
+		Point* start = GetPoint(start_id);
+		Point* end = GetPoint(end_id);
+		Point* point = end;
+		while (point->m_parent)
 		{
-			if (!point->IsReachable() || IsInCloseList(point))
-				continue;
-			if (!IsInOpenList(point))
-			{
-				point->m_parent = tmp_start;
-				point->m_G = CalcG(tmp_start, point);
-				point->m_H = CalcH(end, point);
-				m_open_list.emplace_back(point);
-			}
-			else
-			{
-				int G = CalcG(tmp_start, point);
-				if (G < point->m_G)
-				{
-					point->m_parent = tmp_start;
-					point->m_G = G;
-					point->CalcF();
-				}
-			}
+			find_path.emplace_back(point);
+			point = point->m_parent;
 		}
-		if (IsInOpenList(end))
-		{
-			Point* point = end;
-			while (point->m_parent)
-			{
-				find_path.emplace_back(point);
-				point = point->m_parent;
-			}
-			find_path.emplace_back(start);  // 路径包含了开始结束位置
-			return true;
-		}
-	} 
+		find_path.emplace_back(start);  // 路径包含了开始结束位置
+		return true;
+	}
 	return false;
 }
 
-bool AStarNav::FindPath(int start_id, int end_id)
+bool AStarNav::CanReach(int start_id, int end_id)
 {
 	Point* start = GetPoint(start_id);
 	Point* end = GetPoint(end_id);
 	if (start == nullptr || end == nullptr)
 		return false;
-	m_open_list.emplace_back(start);
+	InOpenList(start);
+	point_vec_type around_points;
 	while (m_open_list.size() > 0)
 	{
 		Point* tmp_start = GetMinFInOpenList();
-		m_close_list.emplace_back(tmp_start);
-		auto it = std::find_if(m_open_list.begin(), m_open_list.end(), [tmp_start](const Point* elem) {
-			if (elem == tmp_start)
-			{
-				return true;
-			}
-			return false;
-			});
-		m_open_list.erase(it);
+		m_close_list.emplace(tmp_start->m_id, tmp_start);
+		OutOpenList(tmp_start);
 
-		points_type around_points;
+		around_points.clear();
 		GetAroundPoints(tmp_start->m_id, around_points);
 		for (auto point : around_points)
 		{
-			if (!point->IsReachable() || IsInCloseList(point))
+			if (!point->IsReachable() || IsInList<point_map_type>(m_close_list, point))
 				continue;
-			if (!IsInOpenList(point))
+			if (!IsInList<point_map_type>(m_open_list, point))
 			{
 				point->m_parent = tmp_start;
 				point->m_G = CalcG(tmp_start, point);
 				point->m_H = CalcH(end, point);
-				m_open_list.emplace_back(point);
+				m_open_list.emplace(point->m_id,point);
+				m_open_queue.push(point);
 			}
 			else
 			{
@@ -196,53 +149,40 @@ bool AStarNav::FindPath(int start_id, int end_id)
 				}
 			}
 		}
-		if (IsInOpenList(end))
+		if (IsInList<point_map_type>(m_open_list, end))
 		{
 			return true;
 		}
 	}
 	return false;
-
 }
 
-bool AStarNav::CanReach(int start_id, int end_id)
-{
-	return FindPath(start_id, end_id);
-}
-
-bool comp(const Point* a, const Point* b)
-{
-	return a->m_F < b->m_F;
-}
 
 Point* AStarNav::GetMinFInOpenList()
 {
-	std::stable_sort(m_open_list.begin(), m_open_list.end(), comp);
-	auto it = m_open_list.begin();
-	if (it != m_open_list.end())
-	{
-		return *it;
-	}
-	return nullptr;
+	return m_open_queue.top();
 }
 
 // 目标格已经在 "开启列表", 这时候路径被找到
 bool AStarNav::StopSearch(int target_id)
 {
-	auto it = std::find_if(m_open_list.begin(), m_open_list.end(), [target_id](Point* point) {
-		if (point->m_id == target_id)
-		{
-			return true;
-		}
-		return false;
-		});
+	auto it = m_open_list.find(target_id);
 	if (it != m_open_list.end())
 	{
 		return true;
 	}
 	return false;
 }
-
+void AStarNav::InOpenList(Point* point)
+{
+	m_open_list.emplace(point->m_id, point);
+	m_open_queue.push(point);
+}
+void AStarNav::OutOpenList(Point* point)
+{
+	m_open_queue.pop();
+	m_open_list.erase(point->m_id);
+}
 
 Point* AStarNav::GetPoint(int point_id)
 {
@@ -254,20 +194,13 @@ Point* AStarNav::GetPoint(int point_id)
 	return it->second;
 }
 
-bool AStarNav::IsInCloseList(Point* point)
+template <typename T>
+bool AStarNav::IsInList(const T& t, Point* point)
 {
-	auto it = std::find(m_close_list.begin(), m_close_list.end(), point);
-	if (it == m_close_list.end())
-		return false;
-	return true;
-}
-
-bool AStarNav::IsInOpenList(Point* point)
-{
-	auto it = std::find(m_open_list.begin(), m_open_list.end(), point);
-	if (it == m_open_list.end())
-		return false;
-	return true;
+	auto it = t.find(point->m_id);
+	if (it != t.end())
+		return true;
+	return false;
 }
 
 int AStarNav::CalcG(const Point* start, const Point* point)

@@ -57,8 +57,13 @@ int main()
 
 	//SFTest::TestExpr();
 
-	//SFTest::TestAStar();
-	SFTest::TestFileSystem();
+	SFTest::TestAStar();
+	//SFTest::TestFileSystem();
+
+	//Test2* t = new Test2;
+	//std::cout << "-------------" << std::endl;
+	//std::vector<Test2*> vec;
+	//vec.push_back(t);
 
 	while (1)
 	{
