@@ -57,7 +57,8 @@ int main()
 
 	//SFTest::TestExpr();
 
-	SFTest::TestAStar();
+	//SFTest::TestAStar();
+	SFTest::TestFileSystem();
 
 	while (1)
 	{

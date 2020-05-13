@@ -20,5 +20,6 @@ public:
 	static void TestConnMysql();
 	static void TestExpr();
 	static void TestAStar();
+	static void TestFileSystem();
 };
 
