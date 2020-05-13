@@ -48,9 +48,9 @@ public:
 
 	bool LoadMap(const char* path);
 	void GetAroundPoints(int point_id, points_type& point_set);
-	int GetPointId(int i, int j);
 private:
 	void GetPos(int& i, int& j, int point_id);
+	int GetPointId(int i, int j);
 	bool StopSearch(int target_id);
 	Point* GetPoint(int point_id);
 	Point* GetMinFInOpenList();

@@ -60,10 +60,10 @@
     <ClCompile Include="TestExpr.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="map\AStarNav.cpp">
+    <ClCompile Include="TestAStar.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="TestAStar.cpp">
+    <ClCompile Include="map\AStarNav.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -141,6 +141,7 @@
     <ClCompile Include="common\Common.cpp" />
     <ClCompile Include="email\EmailMgr.cpp" />
     <ClCompile Include="email\Email.cpp" />
+    <ClCompile Include="scene\map\AStarNav.cpp" />
     <ClCompile Include="scene\mirror\MirrorSceneImpl.cpp" />
     <ClCompile Include="scene\mirror\MirrorScene.cpp" />
     <ClCompile Include="scene\gmscene\GameScene.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="common\Common.h" />
     <ClInclude Include="email\EmailMgr.h" />
     <ClInclude Include="email\Email.h" />
+    <ClInclude Include="scene\map\AStarNav.h" />
     <ClInclude Include="scene\mirror\MirrorSceneImpl.h" />
     <ClInclude Include="scene\mirror\MirrorScene.h" />
     <ClInclude Include="scene\gmscene\GameScene.h" />
