@@ -7,6 +7,8 @@
 #include "Common/SePlatForm.h"
 #include "LogUtil.h"
 
+std::string SFTest::m_content = "";
+
 class Test
 {
 public:
@@ -57,8 +59,8 @@ int main()
 
 	//SFTest::TestExpr();
 
-	SFTest::TestAStar();
-	//SFTest::TestFileSystem();
+	//SFTest::TestAStar();
+	SFTest::TestFileSystem();
 
 	//Test2* t = new Test2;
 	//std::cout << "-------------" << std::endl;

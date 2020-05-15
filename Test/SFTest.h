@@ -21,6 +21,8 @@ public:
 	static void TestExpr();
 	static void TestAStar();
 	static void TestFileSystem();
+
+	static std::string m_content;
 };
 
 class Test2
