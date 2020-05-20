@@ -3,9 +3,11 @@
 #include <cstdio>
 #include "StringUtil.h"
 #include <filesystem>
+#include <fstream>
 
 using namespace std;
 using namespace std::filesystem;
+
 
 std::string TimeToDate(Time_t t)
 {
@@ -28,12 +30,30 @@ void SFTest::TestFile()
 	std::cout << TimeToDate(time(0)) << std::endl;
 }
 
+
 void SFTest::TestFileSystem()
 {
 	string path = "./";
 	for (auto it : directory_iterator(path))
 	{
 		cout << it.path() << endl;
+
+		std::string path = it.path().string();
+		if (path == "./SFTest.h")
+		{
+			std::ifstream ifs(path);
+			std::string content;
+			std::string tmp;
+			while (!ifs.eof())
+			{
+				ifs >> tmp;
+				m_content.append(tmp);
+			}
+			std::cout << m_content << std::endl;
+			m_content[0] = 1+'0';
+			char a = m_content[0];
+			std::cout << a << endl;
+		}
 	}
 	if (exists(path))
 	{

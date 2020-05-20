@@ -23,6 +23,7 @@ public:
 	static void TestFileSystem();
 	static void TestInnerCls();
 	static void TestTrait();
+	static std::string m_content;
 };
 
 class Test2
