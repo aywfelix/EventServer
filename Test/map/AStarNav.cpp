@@ -2,7 +2,6 @@
 #include <string>
 #include <algorithm>
 #include "AStarNav.h"
-#include "lexical_cast.hpp"
 #include "StringUtil.h"
 
 
@@ -16,7 +15,6 @@ Point::~Point()
 
 AStarNav::AStarNav()
 {
-
 }
 
 AStarNav::~AStarNav()
@@ -33,7 +31,7 @@ AStarNav::~AStarNav()
 
 bool AStarNav::LoadMap(const char* path)
 {
-	std::ifstream ifs(path);
+	std::ifstream ifs(path, std::ios::in | std::ios::binary);
 	if (!ifs) return false;
 
 	std::string line;
@@ -49,7 +47,7 @@ bool AStarNav::LoadMap(const char* path)
 		}
 		for (auto& it : vec_nodes)
 		{
-			int k = lexical_cast<int>(it);
+			int k = std::stoi(it);
 			Point* point = new Point(point_id, k);
 			point->m_x = point_id % m_map_width;
 			point->m_y = m_map_hight;
@@ -95,6 +93,8 @@ void AStarNav::GetAroundPoints(int point_id, point_vec_type& point_vec)
 
 bool AStarNav::FindPath(int start_id, int end_id, std::vector<Point*>& find_path)
 {
+	m_close_list.clear();
+	m_open_list.clear();
 	if (CanReach(start_id, end_id))
 	{
 		Point* start = GetPoint(start_id);

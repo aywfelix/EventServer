@@ -113,6 +113,7 @@ void SeFNetClient::ProcessAddConnect()
 			mConnecServers.emplace(connPtr->serv_id, connPtr);
 			if (connPtr->pNet->InitNet(connPtr->ip.c_str(), connPtr->port))
 			{
+				connPtr->sock_fd = connPtr->pNet->GetSocket()->GetFd();
 				connPtr->conn_state = ConnectState::NORMAL;
 				CLOG_INFO << "connect to server " << connPtr->serv_name << " ok!!!" << CLOG_END;
 			}
@@ -148,7 +149,6 @@ void SeFNetClient::SendByServId(int nServerId, const int msg_id, const char* msg
 {
 	auto it = mConnecServers.find(nServerId);
 	if (it == mConnecServers.end()) return;
-
 	it->second->pNet->SendMsg(0, msg_id, msg, len); // 客户端对于server来说一个socket链接一个server端，fd默认填0即可
 }
 void SeFNetClient::SendByServIds(std::vector<int>& nServerIds, const int msg_id, const char* msg, int len)

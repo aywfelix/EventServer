@@ -58,8 +58,10 @@ int main()
 	//}
 
 	//SFTest::TestExpr();
-
 	//SFTest::TestAStar();
+	//SFTest::TestFileSystem();
+	//SFTest::TestInnerCls();
+	SFTest::TestTrait();
 	SFTest::TestFileSystem();
 
 	//Test2* t = new Test2;
