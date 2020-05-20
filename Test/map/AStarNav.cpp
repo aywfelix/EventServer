@@ -38,8 +38,9 @@ bool AStarNav::LoadMap(const char* path)
 
 	std::string line;
 	int point_id = 0;
-	while (std::getline(ifs, line))
+	while (!ifs.eof())
 	{
+		ifs >> line;
 		std::vector<std::string>  vec_nodes;
 		StringUtil::SplitCpp(line, ",", vec_nodes);
 		if (m_map_width == 0)
@@ -112,6 +113,8 @@ bool AStarNav::FindPath(int start_id, int end_id, std::vector<Point*>& find_path
 
 bool AStarNav::CanReach(int start_id, int end_id)
 {
+	m_open_list.clear();
+	m_close_list.clear();
 	Point* start = GetPoint(start_id);
 	Point* end = GetPoint(end_id);
 	if (start == nullptr || end == nullptr)

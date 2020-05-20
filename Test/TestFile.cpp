@@ -51,10 +51,20 @@ void SFTest::TestFileSystem()
 			}
 			std::cout << m_content << std::endl;
 			m_content[0] = 1+'0';
-			char a = m_content[0];
-			std::cout << a << endl;
+
+			char arr[4];
+			arr[0] = 0x01;
+			arr[1] = 0x00;
+			arr[2] = 0x01;
+			arr[3] = 0x01;
+			string str = arr;
+			cout << (str[0] & 0x01) << endl;
+			cout << (str[1] & 0x01) << endl;
+			return;
+			//char a = m_content[0];
+			//std::cout << a << endl;
 		}
-	}
+	} 
 	if (exists(path))
 	{
 		cout << "path exist" << endl;
