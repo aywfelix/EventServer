@@ -21,6 +21,8 @@ public:
 	static void TestExpr();
 	static void TestAStar();
 	static void TestFileSystem();
+	static void TestInnerCls();
+	static void TestTrait();
 };
 
 class Test2

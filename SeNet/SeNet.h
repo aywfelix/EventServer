@@ -65,6 +65,9 @@ public:
 	void CloseAllClient();
 
 	Session* GetSession(socket_t fd);
+	Socket* GetSocket() {
+		return mSocket;
+	}
 private:
 	Socket* InitSeNet();
 	void AddSession(Socket* pSocket);

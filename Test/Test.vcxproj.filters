@@ -66,6 +66,15 @@
     <ClCompile Include="map\AStarNav.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="map\GameMapMgr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestInner.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestTraits.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SFTest.h">
@@ -78,6 +87,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="map\AStarNav.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="map\GameMapMgr.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

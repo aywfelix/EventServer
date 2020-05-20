@@ -57,8 +57,11 @@ int main()
 
 	//SFTest::TestExpr();
 
-	SFTest::TestAStar();
+	//SFTest::TestAStar();
 	//SFTest::TestFileSystem();
+	//SFTest::TestInnerCls();
+
+	SFTest::TestTrait();
 
 	//Test2* t = new Test2;
 	//std::cout << "-------------" << std::endl;
