@@ -139,6 +139,7 @@
     <ClCompile Include="Connection\ConnectionPool.cpp" />
     <ClCompile Include="map\GameMapMgr.cpp" />
     <ClCompile Include="map\AStarNav.cpp" />
+    <ClCompile Include="Observer.cpp" />
     <ClCompile Include="SFTest.cpp" />
     <ClCompile Include="TestAnyData.cpp" />
     <ClCompile Include="TestAStar.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="Connection\ConnectionPool.h" />
     <ClInclude Include="map\GameMapMgr.h" />
     <ClInclude Include="map\AStarNav.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="SFTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
