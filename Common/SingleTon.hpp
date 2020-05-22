@@ -4,15 +4,31 @@ template<typename T>
 class SingleTon
 {
 public:
-	static T* Instance()
+	template<typename... Args>
+	static T* Instance(Args&&... args)
 	{
-		static T t;
-		return &t;
+		if (m_instance == nullptr)
+			m_instance = new T(std::forward<Args>(args)...);
+		return m_instance;
 	}
-	virtual bool Init() { return true; }
+	static T* GetInstance()
+	{
+		if (m_instance == nullptr)
+			throw std::logic_error("instance is nullptr");
+		return m_instance;
+	}
+	static void Destroy()
+	{
+		delete m_instance;
+		m_instance = nullptr;
+	}
 
-	SingleTon() = default;
-	virtual ~SingleTon() = default;
+	virtual void Init(){}
+
+	SingleTon(void) = default;
+	virtual ~SingleTon(void) = default;
 	SingleTon(const SingleTon&) = delete;
 	SingleTon& operator=(const SingleTon&) = delete;
+private:
+	static T* m_instance;
 };

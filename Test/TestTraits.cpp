@@ -42,14 +42,11 @@ void print(T t, Args... args)
 	print(t);
 	print(args...);
 }
-
-
 template<int... Indexes, typename... Args>
 void print_helper(IndexSeq<Indexes...>, std::tuple<Args...>&& tup) {
 	//再将tuple转换为可变模板参数，将参数还原回来，再调用print
 	print(std::get<Indexes>(tup)...);
 }
-
 
 template<typename... Args>
 void printargs(Args... args) {

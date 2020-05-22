@@ -5,12 +5,12 @@
 #include <atomic>
 
 
-typedef std::recursive_mutex RecursiveMutex;
 typedef std::mutex Mutex;
 typedef std::lock_guard<std::mutex> GuardLock;
 typedef std::unique_lock<std::mutex> UniqueLock;
 
-typedef std::condition_variable Condition;
+typedef std::condition_variable Cond;
+typedef std::condition_variable_any AnyCond;
 
 class AtomicLock
 {

@@ -177,7 +177,7 @@
     <ClInclude Include="AnyData.hpp" />
     <ClInclude Include="Assertx.h" />
     <ClInclude Include="blockingconcurrentqueue.h" />
-    <ClInclude Include="BlockQueue.hpp" />
+    <ClInclude Include="SyncQueue.hpp" />
     <ClInclude Include="cityhash\city.h" />
     <ClInclude Include="cityhash\citycrc.h" />
     <ClInclude Include="concurrentqueue.h" />

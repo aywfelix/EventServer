@@ -43,7 +43,6 @@
   <ItemGroup>
     <ClInclude Include="Assertx.h" />
     <ClInclude Include="blockingconcurrentqueue.h" />
-    <ClInclude Include="BlockQueue.hpp" />
     <ClInclude Include="cityhash\city.h" />
     <ClInclude Include="cityhash\citycrc.h" />
     <ClInclude Include="concurrentqueue.h" />
@@ -93,5 +92,6 @@
     <ClInclude Include="tablecpp\Activity.hpp" />
     <ClInclude Include="tablecpp\Scene.hpp" />
     <ClInclude Include="tablecpp\TableMgr.h" />
+    <ClInclude Include="SyncQueue.hpp" />
   </ItemGroup>
 </Project>

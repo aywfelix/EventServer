@@ -46,8 +46,8 @@ private:
 	ThreadPoolType m_vThreads;
 	TaskQueueType m_dTaskQueue;
 	Mutex m_Mutex;
-	Condition m_NotEmptyCond;
-	Condition m_NotFullCond;
+	AnyCond m_NotEmptyCond;
+	AnyCond m_NotFullCond;
 
 	Task threadInitCb;
 	bool m_bRunning{false};

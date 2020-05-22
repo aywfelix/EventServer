@@ -113,7 +113,6 @@ void SeFNetClient::ProcessAddConnect()
 			mConnecServers.emplace(connPtr->serv_id, connPtr);
 			if (connPtr->pNet->InitNet(connPtr->ip.c_str(), connPtr->port))
 			{
-				connPtr->sock_fd = connPtr->pNet->GetSocket()->GetFd();
 				connPtr->conn_state = ConnectState::NORMAL;
 				CLOG_INFO << "connect to server " << connPtr->serv_name << " ok!!!" << CLOG_END;
 			}

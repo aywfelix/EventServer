@@ -56,7 +56,6 @@ public:
 	void SendPBToAllMsg(const int msg_id, ::google::protobuf::Message* pb_msg);
 
 	SeNet* GetNet() { return mNet; }
-	Socket* GetSocket() { return mNet->GetSocket(); }
 private:
 	void OnReceiveNetPack(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len);
 	void OnSocketNetEvent(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet);
