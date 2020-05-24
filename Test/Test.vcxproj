@@ -156,6 +156,7 @@
     <ClCompile Include="TestSql.cpp" />
     <ClCompile Include="TestTraits.cpp" />
     <ClCompile Include="TestWriteLog.cpp" />
+    <ClCompile Include="Visitor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Connection\Conn.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="map\AStarNav.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="SFTest.h" />
+    <ClInclude Include="Visitor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

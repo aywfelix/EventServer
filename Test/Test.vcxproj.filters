@@ -78,6 +78,9 @@
     <ClCompile Include="Observer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Visitor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SFTest.h">
@@ -96,6 +99,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Observer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

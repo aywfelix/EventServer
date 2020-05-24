@@ -1,3 +1,10 @@
+/*
+ * @Author: jia.lai
+ * @Date: 2019-12-26 20:58:18
+ * @LastEditTime: 2020-05-23 21:30:03
+ * @Description: 
+ * @Version: 1.0
+ */
 #pragma once
 
 #include <memory>
@@ -13,7 +20,7 @@ class SeNet;
 
 #define EV_NONE 0
 #define EV_TIMEOUT 1
-#define EV_READ	2
+#define EV_READ 2
 #define EV_WRITE 4
 #define EV_CLOSED 8
 
@@ -27,12 +34,11 @@ enum LOOP_RUN_TYPE
 
 enum SE_NET_EVENT
 {
-	SE_NET_EVENT_EOF = 0x10,	/**< eof file reached */
-	SE_NET_EVENT_ERROR = 0x20,	/**< unrecoverable error encountered */
-	SE_NET_EVENT_TIMEOUT = 0x40,	/**< user-specified timeout reached */
-	SE_NET_EVENT_CONNECTED = 0x80,	/**< connect operation finished. */
+	SE_NET_EVENT_EOF = 0x10,	   /**< eof file reached */
+	SE_NET_EVENT_ERROR = 0x20,	   /**< unrecoverable error encountered */
+	SE_NET_EVENT_TIMEOUT = 0x40,   /**< user-specified timeout reached */
+	SE_NET_EVENT_CONNECTED = 0x80, /**< connect operation finished. */
 };
-
 
 enum ServerType
 {
@@ -58,12 +64,11 @@ enum ConnectState
 	RECONNECT,
 };
 
-using NET_RECEIVE_FUNCTOR = std::function<void(const socket_t sock_fd, const int msg_id, const char* msg, const size_t msg_len)>;
+using NET_RECEIVE_FUNCTOR = std::function<void(const socket_t sock_fd, const int msg_id, const char *msg, const size_t msg_len)>;
 using NET_RECEIVE_FUNCTOR_PTR = std::shared_ptr<NET_RECEIVE_FUNCTOR>;
 
-using NET_EVENT_FUNCTOR = std::function<void(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet* pNet)>;
+using NET_EVENT_FUNCTOR = std::function<void(const socket_t sock_fd, const SE_NET_EVENT nEvent, SeNet *pNet)>;
 using NET_EVENT_FUNCTOR_PTR = std::shared_ptr<NET_EVENT_FUNCTOR>;
-
 
 // Message Head[ MsgID(2) | MsgSize(4) ]
 #define MSG_HEAD_LEN 6
@@ -116,7 +121,7 @@ public:
 #endif
 	}
 
-	uint16_t Ntohs (uint16_t nData)
+	uint16_t Ntohs(uint16_t nData)
 	{
 #ifdef SF_PLATFORM_WIN
 		return ntohs(nData);
@@ -124,7 +129,6 @@ public:
 		return be16toh(nData);
 #endif
 	}
-
 };
 
 class NetMsgHead : public IMsgHead
@@ -135,10 +139,10 @@ public:
 		m_size = 0;
 		m_msgid = 0;
 	}
-	NetMsgHead(uint16_t MsgID, uint32_t Size):m_msgid(MsgID), m_size(Size){}
+	NetMsgHead(uint16_t MsgID, uint32_t Size) : m_msgid(MsgID), m_size(Size) {}
 
 	// Message Head[ MsgID(2) | MsgSize(4) ]
-	virtual void EnCode(char* strData)
+	virtual void EnCode(char *strData)
 	{
 		uint16_t msg_id = Htons(m_msgid);
 		memcpy(strData, &msg_id, sizeof(msg_id));
@@ -149,7 +153,7 @@ public:
 	}
 
 	// Message Head[ MsgID(2) | MsgSize(4) ]
-	virtual void DeCode(const char* strData)
+	virtual void DeCode(const char *strData)
 	{
 		uint16_t msg_id = 0;
 		memcpy(&msg_id, strData, sizeof(m_msgid));
