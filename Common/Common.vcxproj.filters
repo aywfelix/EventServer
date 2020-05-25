@@ -93,5 +93,7 @@
     <ClInclude Include="tablecpp\Scene.hpp" />
     <ClInclude Include="tablecpp\TableMgr.h" />
     <ClInclude Include="SyncQueue.hpp" />
+    <ClInclude Include="NonCopyable.hpp" />
+    <ClInclude Include="ObjPool.hpp" />
   </ItemGroup>
 </Project>

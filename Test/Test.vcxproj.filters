@@ -81,6 +81,9 @@
     <ClCompile Include="Visitor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="TestObjPool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SFTest.h">
@@ -102,6 +105,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Visitor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TestObjPool.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

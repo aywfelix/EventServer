@@ -63,8 +63,8 @@ int main()
 	//SFTest::TestInnerCls();
 	//SFTest::TestTrait();
 	//SFTest::TestFileSystem();
-	SFTest::TestVisitor();
-
+	//SFTest::TestVisitor();
+	SFTest::TestObjPool();
 	//Test2* t = new Test2;
 	//std::cout << "-------------" << std::endl;
 	//std::vector<Test2*> vec;

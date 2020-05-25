@@ -150,6 +150,7 @@
     <ClCompile Include="TestFile.cpp" />
     <ClCompile Include="TestInner.cpp" />
     <ClCompile Include="TestMd5.cpp" />
+    <ClCompile Include="TestObjPool.cpp" />
     <ClCompile Include="TestRedis.cpp" />
     <ClCompile Include="TestSnowFlake.cpp" />
     <ClCompile Include="TestSplit.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="map\AStarNav.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="SFTest.h" />
+    <ClInclude Include="TestObjPool.h" />
     <ClInclude Include="Visitor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
