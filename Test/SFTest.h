@@ -4,18 +4,6 @@
 #include "SePlatForm.h"
 
 
-class user
-{
-public:
-	user(){}
-
-	void SetMemId(int32_t id)
-	{
-		m_id = id;
-	}
-	int m_id;
-	std::string m_str;
-};
 
 class SFTest
 {
