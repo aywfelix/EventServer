@@ -36,7 +36,7 @@ bool LogUtil::CreateLog()
 	if (!m_timeout.IsTimeOut()) { return false; }
 	
 	int64_t now = time(0);
-	m_logname = m_servername + "_" + std::to_string(now / 60) + ".log"; // È¡·ÖÖÓÊıÈÕÖ¾µÄÃû³ÆÎª£º·şÎñÆ÷Ãû_·ÖÖÓÊı.log
+	m_logname = m_servername + "_" + std::to_string(now / 60) + ".log"; // å–åˆ†é’Ÿæ•°æ—¥å¿—çš„åç§°ä¸ºï¼šæœåŠ¡å™¨å_åˆ†é’Ÿæ•°.log
 	switch (m_roll_type)
 	{
 	case E_ROLL_HOUR:
@@ -219,6 +219,6 @@ void LogUtil::LogGame(int type, const char* fmt, ...)
 	va_end(ap);
 
 	m_oss << timestr << "|" << content << "\n";
-	// ´¦ÀíÒµÎñÈÕÖ¾ĞÅÏ¢
+	// å¤„ç†ä¸šåŠ¡æ—¥å¿—ä¿¡æ¯
 	std::cout << m_oss.str() << std::endl;
 }
