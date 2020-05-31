@@ -26,6 +26,7 @@ public:
 	static void TestInnerCls();
 	static void TestTrait();
 	static void TestObserve();
+	static void TestCommand();
 
 	static void TestVisitor();
 	static void TestObjPool();

@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CommCommand.cpp" />
     <ClCompile Include="Connection\Conn.cpp" />
     <ClCompile Include="Connection\ConnectionPool.cpp" />
     <ClCompile Include="map\GameMapMgr.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Visitor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CommCommand.h" />
     <ClInclude Include="Connection\Conn.h" />
     <ClInclude Include="Connection\ConnectionPool.h" />
     <ClInclude Include="map\GameMapMgr.h" />

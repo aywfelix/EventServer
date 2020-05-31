@@ -64,11 +64,13 @@ int main()
 	//SFTest::TestTrait();
 	//SFTest::TestFileSystem();
 	//SFTest::TestVisitor();
-	SFTest::TestObjPool();
+	//SFTest::TestObjPool();
 	//Test2* t = new Test2;
 	//std::cout << "-------------" << std::endl;
 	//std::vector<Test2*> vec;
 	//vec.push_back(t);
+
+	SFTest::TestCommand();
 
 	while (1)
 	{
