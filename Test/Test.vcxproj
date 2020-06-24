@@ -148,6 +148,7 @@
     <ClCompile Include="TestEncypt.cpp" />
     <ClCompile Include="TestExpr.cpp" />
     <ClCompile Include="TestFile.cpp" />
+    <ClCompile Include="TestGuard.cpp" />
     <ClCompile Include="TestInner.cpp" />
     <ClCompile Include="TestMd5.cpp" />
     <ClCompile Include="TestObjPool.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="TestSnowFlake.cpp" />
     <ClCompile Include="TestSplit.cpp" />
     <ClCompile Include="TestSql.cpp" />
+    <ClCompile Include="TestThreadPool.cpp" />
     <ClCompile Include="TestTraits.cpp" />
     <ClCompile Include="TestWriteLog.cpp" />
     <ClCompile Include="Visitor.cpp" />
@@ -166,7 +168,9 @@
     <ClInclude Include="map\AStarNav.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="SFTest.h" />
+    <ClInclude Include="TestGuard.h" />
     <ClInclude Include="TestObjPool.h" />
+    <ClInclude Include="TestThreadPool.h" />
     <ClInclude Include="Visitor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

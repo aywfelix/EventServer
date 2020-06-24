@@ -29,6 +29,8 @@ public:
 
 	static void TestVisitor();
 	static void TestObjPool();
+	static void TestGuard();
+	static void _TestThreadPool();
 	static std::string m_content;
 };
 

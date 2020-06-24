@@ -84,6 +84,12 @@
     <ClCompile Include="TestObjPool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="TestGuard.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestThreadPool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SFTest.h">
@@ -108,6 +114,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="TestObjPool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TestGuard.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TestThreadPool.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
