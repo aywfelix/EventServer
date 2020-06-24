@@ -1,99 +1,68 @@
 #include "ThreadPool.h"
 
-void ThreadPool::Start(int32_t nNumThreads)
+ThreadPool::ThreadPool()
 {
-	if(nNumThreads == 0 && threadInitCb)
-	{
-		threadInitCb();
-		return;
-	}
-
-	for(int i=0;i<nNumThreads;++i)
-	{
-		auto thrd = new std::thread(std::bind(&ThreadPool::ThreadFunc, this));
-		m_vThreads.push_back(thrd);
-	}
-	m_bRunning = true;
+	m_thread_n = std::thread::hardware_concurrency();
+	Start();
 }
 
-void ThreadPool::Run(const Task& f)
+ThreadPool::ThreadPool(int32_t n) : m_thread_n(n)
 {
-	if(m_vThreads.empty())
-	{
-		return f();
-	}
-	UniqueLock Lock(m_Mutex);
-	while(IsFull())
-	{
-		m_NotFullCond.wait(Lock);
-	}
-	m_dTaskQueue.push_back(f);
-	m_NotEmptyCond.notify_all();
-
+	Start();
 }
 
-void ThreadPool::Run(Task&& f)
+ThreadPool::~ThreadPool()
 {
-	if(m_vThreads.empty())
-	{
-		return f();
-	}
-	UniqueLock Lock(m_Mutex);
-	while(IsFull())
-	{
-		m_NotFullCond.wait(Lock);
-	}
-	m_dTaskQueue.push_back(std::move(f));
-	m_NotEmptyCond.notify_all();
+	Stop();
 }
-#include <iostream>
+
+void ThreadPool::Start()
+{
+	m_running = true;
+	for (int32_t i=0;i<m_thread_n;i++)
+	{
+		m_thread_list.emplace_back(std::make_shared<std::thread>(&ThreadPool::Running, this));
+	}
+}
+
 void ThreadPool::Stop()
 {
-	UniqueLock Lock(m_Mutex);
-	m_bRunning = false;
-	m_NotEmptyCond.notify_all();
-	for(auto it = m_vThreads.begin();it != m_vThreads.end();)
-	{
-		it = m_vThreads.erase(it);
-	}
-	std::cout <<"stop thread pool" << std::endl;
+	std::call_once(m_once, [this] {StopPool(); });
 }
 
-size_t ThreadPool::GetTaskQueueSize()
+void ThreadPool::StopPool()
 {
-	UniqueLock Lock(m_Mutex);
-	return m_dTaskQueue.size();
+	m_task_queue.Stop();
+	m_running = false;
+	for (auto& it : m_thread_list)
+	{
+		it->join();
+	}
+	m_thread_list.clear();
 }
 
-void ThreadPool::ThreadFunc()
+void ThreadPool::AddTask(task_t& task)
 {
-	if(threadInitCb)
+	m_task_queue.Put(task);
+}
+
+void ThreadPool::AddTask(task_t&& task)
+{
+	m_task_queue.Put(task);
+}
+
+void ThreadPool::Running()
+{
+	while (m_running)
 	{
-		threadInitCb();
-	}
-	while(m_bRunning)
-	{
-		Task task = TaskTake();
-		if(task)
+		std::list<task_t> task_list;
+		m_task_queue.Take(task_list);
+		for (auto& task : task_list)
 		{
-			task();
+			if (m_running)
+			{
+				task();
+			}
 		}
 	}
-}
-
-ThreadPool::Task ThreadPool::TaskTake()
-{
-	UniqueLock Lock(m_Mutex);
-	while(m_dTaskQueue.empty() && m_bRunning)
-	{
-		m_NotEmptyCond.wait(Lock);
-	}
-	Task task;
-	if(!m_dTaskQueue.empty())
-	{
-		task = m_dTaskQueue.front();
-		m_dTaskQueue.pop_front();
-		m_NotFullCond.notify_all();
-	}
-	return task;
 }

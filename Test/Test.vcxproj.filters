@@ -84,10 +84,14 @@
     <ClCompile Include="TestObjPool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="TestGuard.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="TestThreadPool.cpp">
+=======
+    <ClCompile Include="CommCommand.cpp">
+>>>>>>> 9bdbfd6c9c653f4e334cb2996eb15510901464ad
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,10 +120,14 @@
     <ClInclude Include="TestObjPool.h">
       <Filter>头文件</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="TestGuard.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="TestThreadPool.h">
+=======
+    <ClInclude Include="CommCommand.h">
+>>>>>>> 9bdbfd6c9c653f4e334cb2996eb15510901464ad
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

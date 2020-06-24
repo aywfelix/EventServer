@@ -103,6 +103,7 @@ int main()
 	//std::vector<Test2*> vec;
 	//vec.push_back(t);
 
+
 	//MyTest myTest;
 	//std::vector<MyTest> vec1;
 	//std::vector<MyTest> vec2;
@@ -126,6 +127,8 @@ int main()
 
 	//SFTest::_TestThreadPool();
 	TestThreadPool m;
+
+	SFTest::TestCommand();
 
 	while (1)
 	{

@@ -1,54 +1,30 @@
-#pragma once
-
-#include "Lock.hpp"
+#include <list>
 #include <functional>
-#include <vector>
-#include <deque>
+#include <atomic>
 #include <thread>
+#include "SyncQueue.hpp"
+#include "SingleTon.hpp"
 
-
-class ThreadPool
+class ThreadPool : public SingleTon<ThreadPool>
 {
-	typedef std::vector<std::thread*> ThreadPoolType;
-	typedef std::function<void()> Task;
-	typedef std::deque<Task> TaskQueueType;
+	using task_t = std::function<void()>;
+	using thread_list_t = std::list<std::shared_ptr<std::thread>>;
 public:
-	 static ThreadPool* Instance()
-	 {
-	 	static ThreadPool pool;
-	 	return &pool;
-	 }
+	ThreadPool();
+	ThreadPool(int32_t n);
+	~ThreadPool();
 
-	void SetQueueMaxSize(size_t nMaxSize)
-	{
-		m_nMaxQueueSize = nMaxSize;
-	}
-	void Start(int32_t nNumThreads);
-	void Run(const Task& f);
-	void Run(Task&& f);
+	void Start();
 	void Stop();
-	size_t GetTaskQueueSize();
-	void SetThreadInitCb(const Task& cb)
-	{
-		threadInitCb = cb;
-	}
+	void AddTask(task_t& task);
+	void AddTask(task_t&& task);
 private:
-	void ThreadFunc();
-	Task TaskTake();
-	bool IsFull()
-	{
-		return m_nMaxQueueSize>0 && m_dTaskQueue.size() >= m_nMaxQueueSize;
-	}
+	void Running();
+	void StopPool();
 private:
-	int32_t m_nThreadNum{0};
-	size_t m_nMaxQueueSize{0};
-
-	ThreadPoolType m_vThreads;
-	TaskQueueType m_dTaskQueue;
-	Mutex m_Mutex;
-	AnyCond m_NotEmptyCond;
-	AnyCond m_NotFullCond;
-
-	Task threadInitCb;
-	bool m_bRunning{false};
+	int32_t m_thread_n;
+	thread_list_t m_thread_list;
+	SyncQueue<task_t> m_task_queue;
+	std::atomic_bool m_running;
+	std::once_flag m_once;
 };
