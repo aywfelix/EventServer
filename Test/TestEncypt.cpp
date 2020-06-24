@@ -121,15 +121,15 @@ namespace Encrypt
 	void TEA::encrypt(const ULONG* in, ULONG* out) {
 
 		ULONG* k = (ULONG*)_key;
-		register ULONG y = ntoh(in[0]);
-		register ULONG z = ntoh(in[1]);
-		register ULONG a = ntoh(k[0]);
-		register ULONG b = ntoh(k[1]);
-		register ULONG c = ntoh(k[2]);
-		register ULONG d = ntoh(k[3]);
-		register ULONG delta = 0x9E3779B9; /* (sqrt(5)-1)/2*2^32 */
-		register int round = _round;
-		register ULONG sum = 0;
+		ULONG y = ntoh(in[0]);
+		ULONG z = ntoh(in[1]);
+		ULONG a = ntoh(k[0]);
+		ULONG b = ntoh(k[1]);
+		ULONG c = ntoh(k[2]);
+		ULONG d = ntoh(k[3]);
+		ULONG delta = 0x9E3779B9; /* (sqrt(5)-1)/2*2^32 */
+		int round = _round;
+		ULONG sum = 0;
 
 		while (round--) {    /* basic cycle start */
 			sum += delta;
@@ -143,15 +143,15 @@ namespace Encrypt
 	void TEA::decrypt(const ULONG* in, ULONG* out) {
 
 		ULONG* k = (ULONG*)_key;
-		register ULONG y = ntoh(in[0]);
-		register ULONG z = ntoh(in[1]);
-		register ULONG a = ntoh(k[0]);
-		register ULONG b = ntoh(k[1]);
-		register ULONG c = ntoh(k[2]);
-		register ULONG d = ntoh(k[3]);
-		register ULONG delta = 0x9E3779B9; /* (sqrt(5)-1)/2*2^32 */
-		register int round = _round;
-		register ULONG sum = 0;
+		ULONG y = ntoh(in[0]);
+		ULONG z = ntoh(in[1]);
+		ULONG a = ntoh(k[0]);
+		ULONG b = ntoh(k[1]);
+		ULONG c = ntoh(k[2]);
+		ULONG d = ntoh(k[3]);
+		ULONG delta = 0x9E3779B9; /* (sqrt(5)-1)/2*2^32 */
+		int round = _round;
+		ULONG sum = 0;
 
 		if (round == 32)
 			sum = 0xC6EF3720; /* delta << 5*/
