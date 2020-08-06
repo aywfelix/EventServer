@@ -43,5 +43,6 @@ int main()
 	cpp_lua.LoadScript("script.lua");
 	cpp_lua.CallLuaFunction("print_v");
 	cpp_lua.CallLuaFunction("print_name", obj);
+	cpp_lua.CallLuaFunc("print_test", 1, 3, 4, 5);
 	return 0;
 }
