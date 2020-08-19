@@ -95,5 +95,6 @@
     <ClInclude Include="SyncQueue.hpp" />
     <ClInclude Include="NonCopyable.hpp" />
     <ClInclude Include="ObjPool.hpp" />
+    <ClInclude Include="prettyprint.hpp" />
   </ItemGroup>
 </Project>

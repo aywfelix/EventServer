@@ -153,6 +153,7 @@
     <ClCompile Include="TestInner.cpp" />
     <ClCompile Include="TestMd5.cpp" />
     <ClCompile Include="TestObjPool.cpp" />
+    <ClCompile Include="TestPrintContener.cpp" />
     <ClCompile Include="TestRedis.cpp" />
     <ClCompile Include="TestSnowFlake.cpp" />
     <ClCompile Include="TestSplit.cpp" />

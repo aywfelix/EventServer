@@ -126,9 +126,11 @@ int main()
 	//SFTest::TestGuard();
 
 	//SFTest::_TestThreadPool();
-	TestThreadPool m;
+	//TestThreadPool m;
 
-	SFTest::TestCommand();
+	//SFTest::TestCommand();
+
+	SFTest::TestPrintContener();
 
 	while (1)
 	{

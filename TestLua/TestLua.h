@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sol/sol.hpp"
+#include <sol/sol.hpp>
 #include <string>
 
 struct ScriptObj

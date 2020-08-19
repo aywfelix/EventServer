@@ -179,6 +179,7 @@
     <ClInclude Include="blockingconcurrentqueue.h" />
     <ClInclude Include="NonCopyable.hpp" />
     <ClInclude Include="ObjPool.hpp" />
+    <ClInclude Include="prettyprint.hpp" />
     <ClInclude Include="SyncQueue.hpp" />
     <ClInclude Include="cityhash\city.h" />
     <ClInclude Include="cityhash\citycrc.h" />

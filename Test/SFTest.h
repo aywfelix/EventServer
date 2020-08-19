@@ -32,6 +32,7 @@ public:
 	static void TestObjPool();
 	static void TestGuard();
 	static void _TestThreadPool();
+	static void TestPrintContener();
 	static std::string m_content;
 };
 
