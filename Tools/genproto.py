@@ -1,6 +1,15 @@
-#通过python进行proto编译
+'''
+Author: jia.lai
+Date: 2020-01-20 17:41:45
+LastEditTime: 2020-09-10 23:56:20
+Description: 
+Version: 1.0
+'''
+# 通过python进行proto编译
 
-import os,sys
+import os
+import sys
+
 
 class GenProto(object):
     def __init__(self):
@@ -20,10 +29,10 @@ class GenProto(object):
             else:
                 if not proto.endswith((".proto")):
                     continue
-                cmd_str = "protoc -I="+proto_path +" -I="+self.root_path + " --cpp_out="+proto_path + " " + proto
+                cmd_str = "protoc -I="+proto_path + " -I=" + \
+                    self.root_path + " --cpp_out="+proto_path + " " + proto
                 print(cmd_str)
                 os.system(cmd_str)
-
 
     def genproto(self, proto_path):
         self.root_path = proto_path

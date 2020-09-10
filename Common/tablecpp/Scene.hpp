@@ -38,14 +38,14 @@ public:
 		return &instance;
 	}
 
-	const SceneRow* GetRow(int key)
+	const ptr_row_type GetRow(int key)
 	{
 		map_table_type::iterator it = m_table.find(key);
 		if (it == m_table.end())
 		{
 			return nullptr;
 		}
-		return it->second.get();
+		return it->second;
 	}
 
 	bool HasRow(int key)

@@ -1,6 +1,28 @@
 #include "Socket.h"
 #include "Assertx.h"
 
+/*! Multi-family socket end-point address. */
+//typedef union address
+//{
+//	struct sockaddr sa;
+//	struct sockaddr_in sa_in;
+//	struct sockaddr_in6 sa_in6;
+//	struct sockaddr_storage sa_stor;
+//}
+//address_t;
+//void* get_in_addr(struct sockaddr* sa)
+//{
+//	union {
+//		struct sockaddr* sa;
+//		struct sockaddr_in* sa_in;
+//		struct sockaddr_in6* sa_in6;
+//	} u;
+//	u.sa = sa;
+//	if (sa->sa_family == AF_INET)
+//		return &(u.sa_in->sin_addr);
+//	else
+//		return &(u.sa_in6->sin6_addr);
+//}
 
 void Socket::SetSocket(socket_t sock, struct sockaddr_in& addr)
 {

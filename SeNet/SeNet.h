@@ -36,7 +36,6 @@ public:
 	void SetEvent(socket_t fd, int mask);
 	std::map<socket_t, int> &GetEvents();
 	void SetMaxFd(socket_t fd);
-
 protected:
 	socket_t m_maxfd;
 	struct timeval mtv;

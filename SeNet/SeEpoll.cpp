@@ -31,7 +31,7 @@ bool SeEpoll::InitOp()
 	return true;
 }
 
-bool SeEpoll::AddEvent(socket_t fd, int mask)
+bool SeEpoll::AddEvent(socket_t fd, int mask£¬ void* ptr)
 {
 	uint32_t events = 0;
 	if (mask & EV_READ)

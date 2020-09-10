@@ -70,7 +70,6 @@ public:
 
 	LogStream& operator<<(std::ostream& (*log)(std::ostream&))
 	{
-		Clear();
 		return *this;
 	}
 
@@ -80,7 +79,6 @@ public:
 	int m_line{ 0 };
 	const char* m_file{nullptr};
 	const char* m_func{nullptr};
-
 };
 
 class LogUtil {
